@@ -6,7 +6,7 @@ import insLogo from '../assets/insLogo.jpg';
 
 export default function Footer() {
     return (
-        <div className="container-footer">
+        <div className="container-footer" >
             <img class="logo_footer" src={logoFooter} />
             <p className="description">Lorem ipsum dolor sit amet, consetetur sadipscing elit</p>
             <div className="contact">
