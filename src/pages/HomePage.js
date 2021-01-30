@@ -8,12 +8,9 @@ import Footer from '../Components/Footer';
 export default function HomePage() {
     return (
         <div>
-            <Navbar />
-
-            <Background />
-
+            <Background></Background>
             <div className="container">
-                <h2 className="title mt-32">Impressive Contributions</h2>
+                <h2 className="title">Impressive Contributions</h2>
                 <div className="row">
                     <Contribution />
                     <Contribution />
@@ -24,11 +21,11 @@ export default function HomePage() {
                 </div>
 
                 <div className="text-center">
-                    <button type="button" className="show-btn mt-32">show more</button>
+                    <button type="button" className="show-btn ">show more</button>
                 </div>
             </div>
 
-            <Footer />
+          
         </div>
     )
 }
