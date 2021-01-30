@@ -2,10 +2,20 @@
 .bg-light {
     background-color: #fff !important;
 }
+.navbar-light {
+    .navbar-nav {
+        .nav-link {
+            color: black;
+            &:hover {
+                color: #32b260;
+            }
+        }
+    }
+}
 // Homepage
 // Background
 .background {
-    background-image: url('../assets/backgroundImg.jpg');
+    background-image: url("../assets/backgroundImg.jpg");
     height: 696px; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
@@ -37,7 +47,7 @@
 // Contribution
 .card {
     box-shadow: 2px 2px 13px -3px rgba(0, 0, 0, 0.25);
-     margin-top: 24px;
+    margin-top: 24px;
     height: 356px;
 }
 
@@ -110,7 +120,6 @@
     color: #ffffff;
 }
 
-
 // Footer
 .container-footer {
     max-width: 1140px;
@@ -146,4 +155,113 @@ ul {
 }
 .social-media__item {
     margin-left: 32px;
+}
+@media screen and (max-width: 1024px) {
+    .container-footer {
+        max-width: 975px;
+    }
+    .social-media,
+    .contact-info {
+        margin-right: 15px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .container-footer {
+        max-width: 700px;
+    }
+    .description {
+        width: 30%;
+    }
+}
+@media screen and (max-width: 375px) {
+    .container-footer {
+        max-width: 350px;
+    }
+    .description {
+        display: none;
+    }
+    .social-media__item {
+        width: 24px;
+        height: 24px;
+        margin-left: 15px;
+    }
+    .contact-info {
+        a {
+            color: black;
+            font-size: 14px;
+        }
+    }
+    .logo_footer {
+        width: 25%;
+    }
+}
+// Login page
+.w-100 {
+    img {
+        width: 100%;
+        height: 435px;
+    }
+}
+.login-form {
+    height: 435px;
+    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 0px 6px 6px 0px;
+    font-family: Roboto;
+    h3 {
+        font-size: 24px;
+    }
+    span {
+        color: #32b260;
+        margin-right: 5px;
+    }
+    .form-control {
+        border: 1px solid #000;
+        border-radius: 6px;
+    }
+    label {
+        font-size: 14px;
+        color: #000;
+    }
+    button {
+        width: 190px;
+        height: 44px;
+        background: #32b260;
+        color: white;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        border-radius: 6px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .forget-password {
+        font-weight: 400;
+        font-style: normal;
+        font-size: 14px;
+        margin-top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+    }
+}
+@media screen and (max-width: 768px) {
+    .w-100 {
+        img {
+            display: none;
+        }
+    }
+    .login-form {
+        margin: 0 8rem;
+    }
+}
+@media screen and (max-width: 375px) {
+    .login-form {
+        margin: 0 0.5rem;
+        button {
+            width: 128px;
+            height: 35px;
+        }
+        .forget-password {
+            margin-top: 6px;
+        }
+    }
 }
