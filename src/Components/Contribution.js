@@ -17,7 +17,7 @@ export default function Contribution() {
              </button>
             </div>
             <div className="card-body">
-                <h5 className="card-title">This is a contribution</h5>
+                <h4 className="card-title">This is a contribution</h4>
                 <p className="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elit</p>
             </div>
         </div>
