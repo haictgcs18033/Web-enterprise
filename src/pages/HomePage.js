@@ -1,17 +1,16 @@
 import React from 'react'
-import Navbar from '../Components/Navbar'
 import Background from '../Components/Background';
 import Contribution from '../Components/Contribution';
-import Footer from '../Components/Footer';
-
+import notifyIcon from '../assets/img/notifyIcon.png';
 
 export default function HomePage() {
     return (
         <div>
             <Background></Background>
             <div className="container">
-                <h2 className="title">Impressive Contributions</h2>
-                <div className="row">
+                <img className="notify-icon" src={notifyIcon} />
+                <h2 className="contribution-title">New Contributions</h2>
+                <div className="grid">
                     <Contribution />
                     <Contribution />
                     <Contribution />
@@ -20,12 +19,13 @@ export default function HomePage() {
                     <Contribution />
                 </div>
 
+
                 <div className="text-center">
-                    <button type="button" className="show-btn ">show more</button>
+                    <button type="button" className="show-btn">show more</button>
                 </div>
             </div>
 
-          
+
         </div>
     )
 }
