@@ -1,17 +1,28 @@
 import React from 'react'
-import Navbar from '../Components/Navbar'
-import Background from '../Components/Background';
-import Contribution from '../Components/Contribution';
-import Footer from '../Components/Footer';
-
+import Background from '../Components/Background'
+import Contribution from '../Components/Contribution'
+import notifyIcon from '../assets/img/notifyIcon.png'
+import trendingIcon from '../assets/img/trending-icon.png'
+import Trending from '../Components/Trending'
 
 export default function HomePage() {
     return (
         <div>
             <Background></Background>
             <div className="container">
-                <h2 className="title">Impressive Contributions</h2>
-                <div className="row">
+
+                <h2 className="trend-title"><span> <img className="trend-icon" src={trendingIcon} /></span>Now Treding</h2>
+                <div className="grid">
+                    <Trending />
+                    <Trending />
+                    <Trending />
+                    <Trending />
+                    <Trending />
+                    <Trending />
+                </div>
+
+                <h2 className="contribution-title"><span> <img className="notify-icon" src={notifyIcon} /></span>New Contributions</h2>
+                <div className="grid">
                     <Contribution />
                     <Contribution />
                     <Contribution />
@@ -20,12 +31,13 @@ export default function HomePage() {
                     <Contribution />
                 </div>
 
+
                 <div className="text-center">
-                    <button type="button" className="show-btn ">show more</button>
+                    <button type="button" className="show-btn">show more</button>
                 </div>
             </div>
 
-          
+
         </div>
     )
 }

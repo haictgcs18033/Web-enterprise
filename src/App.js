@@ -6,6 +6,7 @@ import { PrimaryTemplate } from './templates/PrimaryTemplate';
 
 import LoginPage from './pages/LoginPage';
 import { client } from './Route'
+import NotFound from './pages/NotFound';
 
 function App() {
     const clientRoute = (routes) => {
@@ -19,6 +20,7 @@ function App() {
         <BrowserRouter>
             <Switch>
                 {clientRoute(client)}
+                <PrimaryTemplate path="*" Component={NotFound}></PrimaryTemplate>
             </Switch>
 
         </BrowserRouter>
