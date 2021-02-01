@@ -10,26 +10,32 @@ export default function HomePage() {
         <div>
             <Background></Background>
             <div className="container">
-                <img className="trend-icon" src={trendingIcon} />
-                <h2 className="trend-title">Now Treding</h2>
-                <div className="grid">
-                    <Trending />
-                    <Trending />
-                    <Trending />
-                    <Trending />
-                    <Trending />
-                    <Trending />
+                <div className="box">
+                    <img className="trend-icon" src={trendingIcon} />
+                    <h2 className="trend-title">Now Treding</h2>
+                    <div className="grid">
+                        <Trending />
+                        <Trending />
+                        <Trending />
+                        <Trending />
+                        <Trending />
+                        <Trending />
+                    </div>
                 </div>
-                <img className="notify-icon" src={notifyIcon} />
-                <h2 className="contribution-title">New Contributions</h2>
-                <div className="grid">
-                    <Contribution />
-                    <Contribution />
-                    <Contribution />
-                    <Contribution />
-                    <Contribution />
-                    <Contribution />
+
+                <div className="box">
+                    <img className="notify-icon" src={notifyIcon} />
+                    <h2 className="contribution-title">New Contributions</h2>
+                    <div className="grid">
+                        <Contribution />
+                        <Contribution />
+                        <Contribution />
+                        <Contribution />
+                        <Contribution />
+                        <Contribution />
+                    </div>
                 </div>
+
 
 
                 <div className="text-center">
