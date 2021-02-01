@@ -4,10 +4,10 @@ export default function ForgotPassword() {
     return (
         <div className="container-forget">
             <div className="row">
-                <div className="col-xl-4">
+                <div className="col-lg-4 col-xl-4 image">
                     <img src="./img/forgot-password-1.jpg" />
                 </div>
-                <div className="col-xl-8">
+                <div className="col-sm-12 col-md-12 col-lg-8 col-xl-8">
                     <div className="form-group p-4">
                     <h3 className="text-center">FORGOT PASSWORD</h3>
                        <label className="py-3">Email</label>
