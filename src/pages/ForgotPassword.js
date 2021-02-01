@@ -2,8 +2,20 @@ import React from 'react'
 
 export default function ForgotPassword() {
     return (
-        <div>
-
+        <div className="container-forget">
+            <div className="row">
+                <div className="col-xl-4">
+                    <img src="./img/forgot-password-1.jpg" />
+                </div>
+                <div className="col-xl-8">
+                    <div className="form-group p-4">
+                        <h3 className="text-center">FORGOT PASSWORD</h3>
+                        <label className="py-3">Email</label>
+                        <input type="text" className="form-control my-3" />
+                        <button className="text-center mt-4">SEND EMAIL</button>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

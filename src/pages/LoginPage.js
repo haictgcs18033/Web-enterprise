@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 export default function LoginPage() {
     return (
-        <div className="container">
+        <div className="container-login">
             <div className="row my-4">
                 <div className="col-xl-5 px-0">
                     <div className="w-100">
