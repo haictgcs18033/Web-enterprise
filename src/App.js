@@ -5,8 +5,10 @@ import './sass/webEnterprise.scss'
 import { PrimaryTemplate } from './templates/PrimaryTemplate';
 
 import LoginPage from './pages/LoginPage';
-import { client } from './Route'
+import { admin, client } from './Route'
 import NotFound from './pages/NotFound';
+import { AdminTemplate } from './templates/AdminTemplate';
+import AdminLogin from './pages/AdminLogin';
 
 function App() {
     const clientRoute = (routes) => {
@@ -16,13 +18,21 @@ function App() {
             })
         }
     }
+    const adminRoute = (routes) => {
+        return routes.map((route, index) => {
+            return <AdminTemplate key={index} path={route.path} Component={route.component}></AdminTemplate>
+        })
+    }
     return (
         <BrowserRouter>
             <Switch>
                 {clientRoute(client)}
                 <PrimaryTemplate path="*" Component={NotFound}></PrimaryTemplate>
             </Switch>
-
+            <Switch>
+                {adminRoute(admin)}
+            </Switch>
+            {/* <AdminTemplate path="/greenplus/admin" Component={AdminLogin}></AdminTemplate> */}
         </BrowserRouter>
     );
 }
