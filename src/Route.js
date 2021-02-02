@@ -1,3 +1,4 @@
+import AdminLogin from "./pages/AdminLogin";
 import ForgotPassword from "./pages/ForgotPassword";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -22,9 +23,10 @@ export const client = [
         path: '/',
         component: HomePage
     },
+]
+export const admin=[
     {
-        path: '/not',
-        component: NotFound
+        path:'/admin',
+        component:AdminLogin
     }
-
 ]
