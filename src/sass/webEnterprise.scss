@@ -4,7 +4,7 @@
 }
 
 .container {
-    max-width: 1140px;
+    width: 1140px;
 }
 
 .navbar-light {
@@ -23,7 +23,7 @@
 
 @media screen and (max-width: 1280px) {
     .container {
-        max-width: 1000px;
+        width: 1000px;
         padding: 0;
     }
     .navbar {
@@ -32,7 +32,7 @@
 }
 @media screen and (max-width: 1024px) {
     .container {
-        max-width: 918px;
+        width: 918px;
     }
     .logo {
         width: 170px;
@@ -41,7 +41,7 @@
 }
 @media screen and (max-width: 768px) {
     .container {
-        max-width: 658px;
+        width: 658px;
     }
     .logo {
         width: 136px;
@@ -51,13 +51,22 @@
 
 @media screen and (max-width: 656px) {
     .container {
-        max-width: 420px;
+        width: 420px;
     }
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (min-width: 375px) and (max-width:414px) {
     .container {
-        max-width: 317px;
+        width: 317px;
+    }
+    .logo {
+        width: 112px;
+        height: 83px;
+    }
+}
+@media screen and (max-width: 374px) {
+    .container {
+        width: 317px;
     }
     .logo {
         width: 112px;
@@ -128,19 +137,19 @@
 
 //box and grid
 .box {
-    max-width: 1140px;
+    width: 1140px;
     margin: 0 auto;
     @media screen and (min-width: 1281px) {
-        max-width: 1000px;
+        width: 1000px;
     }
     @media screen and (max-width: 1280px) {
-        max-width: 1000px;
+        width: 1000px;
     }
     @media screen and (max-width: 1024px) {
-        max-width: 658px;
+        width: 658px;
     }
     @media screen and (max-width: 656px) {
-        max-width: 316.8px;
+       width: 316.8px;
     }
 }
 .grid {
@@ -307,7 +316,7 @@
 
 // Footer
 .container-footer {
-    max-width: 1140px;
+    width: 1140px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -366,13 +375,13 @@ ul {
 
 @media screen and (max-width: 1280px) {
     .container-footer {
-        max-width: 1000px;
+        width: 1000px;
     }
 }
 
 @media screen and (max-width: 1024px) {
     .container-footer {
-        max-width: 918px;
+        width: 918px;
     }
     .social-media__item {
         margin-left: 24px;
@@ -393,7 +402,7 @@ ul {
 
 @media screen and (max-width: 768px) {
     .container-footer {
-        max-width: 658px;
+        width: 658px;
     }
     .logo_footer {
         width: 100px;
@@ -408,16 +417,16 @@ ul {
 
 @media screen and (max-width: 656px) {
     .container-footer {
-        max-width: 420px;
+        width: 420px;
     }
     .description {
         display: none;
     }
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (min-width: 375px) and (max-width:414px) {
     .container-footer {
-        max-width: 317px;
+        width: 317px;
     }
     .description {
         display: none;
@@ -435,9 +444,14 @@ ul {
         height: 64px;
     }
 }
+@media screen and (max-width:374px){
+    .container-footer {
+        width: 317px;
+    }
+}
 // Login page
 .container-login {
-    max-width: 914px;
+    width: 914px;
     margin: 0 183px;
 }
 .w-100 {
@@ -487,6 +501,24 @@ ul {
         font-size: 14px;
         margin-top: 15px;
         color: rgba(0, 0, 0, 0.5);
+    }
+}
+@media screen and (max-width:1024px){
+    .container-login{
+        width:810px;
+        margin:0 115px;
+    }
+    .login-form{
+        width:446px;
+    }
+    .w-100 {
+        img {
+            width: 340px;
+           
+        }
+    }
+    .login-form{
+        width: 490px;
     }
 }
 @media screen and (max-width: 768px) {

@@ -7,7 +7,7 @@ export default function AdminLogin() {
             <div className="row">
                 <div className="col-12">
                     <form className="admin-form p-4">
-                        <img className="d-block mx-auto" src={logo} />
+                        <img className="d-block mx-auto" src={logo}  alt="123" />
                         <h3 className="text-center">FOR ADMIN</h3>
                         <h3 className="text-center"><span className="mr-2">WELCOME</span>TO SIGN IN</h3>
                         <label className="mb-2">Email</label>

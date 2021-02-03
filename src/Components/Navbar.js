@@ -8,11 +8,11 @@ export default function Navbar() {
     return (
         <div className="container">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">
-                    <img className="logo" src={logo} width="180px" height="145px" />
-                </a>
+                <NavLink className="navbar-brand" to="/">
+                    <img className="logo" src={logo} width="180px" height="145px" alt="123" />
+                </NavLink>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <img src={navbarToggle} />
+                    <img src={navbarToggle} alt="123"/>
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
