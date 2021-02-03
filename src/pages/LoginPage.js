@@ -7,7 +7,7 @@ export default function LoginPage() {
             <div className="row my-4">
                 <div className="col-xl-5 px-0">
                     <div className="w-100">
-                        <img src="/img/cover-1.jpg" />
+                        <img src="/img/cover-1.jpg" alt="123" />
                     </div>
                 </div>
                 <div className="col-xs-12 col-md-12 col-xl-7 px-0">

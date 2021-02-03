@@ -9,11 +9,11 @@ export default function Contribution() {
         // </div>
 
         <div className="card">
-            <img className="card-img-top" src={contribution} alt="" />
+            <img className="card-img-top" src={contribution} alt="123" />
             <div class="overlay"></div>
             <div className="text-center">
                 <button type="button" className="contribution-btn">
-                    <img src={eyeIcon} /> See Contribution
+                    <img src={eyeIcon} alt="123"/> See Contribution
              </button>
             </div>
             <div className="card-body">
