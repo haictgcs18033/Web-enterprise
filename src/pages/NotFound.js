@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 export default function NotFound() {
     return (
-        <div className="container align-component">
+        <div className="container container-content">
             <div className="text-center">
                 <span className="title-span">404</span>
                 <h2 className="notfound-title">Page not found</h2>
