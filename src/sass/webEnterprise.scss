@@ -572,6 +572,7 @@ ul {
 .container-forget {
     width: 900px;
     margin: 50px 224px 111px;
+
     h3 {
         font-size: 24px;
         font-family: Roboto;
@@ -639,16 +640,13 @@ ul {
 @media screen and (max-width: 375px) {
     .container-forget {
         width: 375px;
-        margin: 50px  0  111px;
-      .row{
-          width:375px;
-          margin: 0 0;
-          padding:0 0;
-      }
+        margin: 50px 8px 111px;
+        .image {
+            display: none;
+        }
         .form-group {
-           
             width: 360px;
-            margin-left: -7px;
+            margin-left: 0;
         }
     }
 }
@@ -687,10 +685,16 @@ ul {
     border-radius: 6px;
 }
 
-.back-home-btn a {
-    color: #ffffff;
+.back-home-btn,
+.go-back-btn {
+    a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+    &:hover {
+        cursor: pointer;
+    }
 }
-
 .back-home-btn {
     padding: 11px 40.5px;
     border-radius: 6px;
@@ -698,17 +702,39 @@ ul {
     margin-left: 24.5px;
     border: none;
 }
-
 .btn-reverse {
     margin-top: 32px;
 }
-
-.align-component {
-    margin-top: 180px;
-    margin-bottom: 163px;
+.container-content {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 768px) {
+    .container-content {
+        max-width: 658px;
+    }
+}
+
+@media screen and (max-width: 656px) {
+    .container-content {
+        max-width: 420px;
+    }
+    .title-span {
+        font-size: 64px;
+    }
+    .notfound-title {
+        font-size: 40px;
+    }
+    .notfound-content {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 387px) {
+    .container-content {
+        max-width: 317px;
+    }
     .btn-reverse {
         display: flex;
         flex-direction: column-reverse;
@@ -719,65 +745,13 @@ ul {
     .go-back-btn {
         margin-top: 1rem;
     }
-}
-// Login for admin
- .admin-form{
-    width: 400px;
-    height: 528px;
-   margin:64px 460px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    overflow-x: hidden;
-    h3{
+    .title-span {
+        font-size: 48px;
+    }
+    .notfound-title {
         font-size: 24px;
-        font-family: Roboto;
-        span{
-            color:#6C5DD3;
-        }
     }
-    img{
-        width:89px;
-        height:91px;
-        margin:20px 0;
+    .notfound-content {
+        font-size: 18px;
     }
-    label{
-        font-size: 14px;
-        font-family: Roboto;
-    }
-    input{
-        height:46px;
-        border: 1px solid #000000;
-        border-radius: 6px;
-    }
-    button{
-        width:128px;
-        height:35px;
-        color:#FFF;
-        font-size: 14px;
-        font-family: Roboto;
-        border-radius: 6px;
-        background: #6C5DD3;
-        border:none;
-        &:hover{
-           background-color: white;
-           border: 1px solid #6C5DD3;
-           transition: all 0.5s; 
-           color:#6C5DD3;
-           cursor:pointer;
-
-        }
-    }
-    .permission{
-        font-size: 12px;
-        font-family: Roboto;
-        line-height: 35px;
-        color:rgba(0, 0, 0, 0.5);
-        &:hover{
-            color:red;
-            transition:0.5s all;
-            text-decoration: none;
-        }
-    }
-
- }
+}
