@@ -55,7 +55,7 @@
     }
 }
 
-@media screen and (min-width: 375px) and (max-width:414px) {
+@media screen and (min-width: 375px) and (max-width: 414px) {
     .container {
         width: 317px;
     }
@@ -149,7 +149,7 @@
         width: 658px;
     }
     @media screen and (max-width: 656px) {
-       width: 316.8px;
+        width: 316.8px;
     }
 }
 .grid {
@@ -375,8 +375,8 @@ ul {
 }
 
 @media screen and (max-width: 1024px) {
-    .footer{
-        padding:18px 73px;
+    .footer {
+        padding: 18px 73px;
     }
     .container-footer {
         max-width: 918px;
@@ -399,8 +399,8 @@ ul {
 }
 
 @media screen and (max-width: 768px) {
-    .footer{
-        padding:18px 55px;
+    .footer {
+        padding: 18px 55px;
     }
     .container-footer {
         max-width: 658px;
@@ -415,9 +415,9 @@ ul {
         height: 35px;
     }
 }
-@media screen and (min-width: 375px) and (max-width:414px) {
-    .footer{
-        padding:23px 40px;
+@media screen and (min-width: 375px) and (max-width: 414px) {
+    .footer {
+        padding: 23px 40px;
     }
     .container-footer {
         max-width: 377px;
@@ -438,9 +438,9 @@ ul {
         height: 64px;
     }
 }
-@media screen and (max-width:374px){
-    .footer{
-        padding:23px 18px;
+@media screen and (max-width: 374px) {
+    .footer {
+        padding: 23px 18px;
     }
     .description {
         display: none;
@@ -503,47 +503,46 @@ ul {
         color: rgba(0, 0, 0, 0.5);
     }
 }
-@media screen and (max-width:1024px){
-    .container-login{
-        width:810px;
-        margin:0 115px;
+@media screen and (max-width: 1024px) {
+    .container-login {
+        width: 810px;
+        margin: 0 115px;
     }
-    .login-form{
-        width:446px;
+    .login-form {
+        width: 446px;
     }
     .w-100 {
         img {
-            width: 340px; 
+            width: 340px;
         }
     }
-    .login-form{
+    .login-form {
         width: 490px;
     }
 }
 @media screen and (max-width: 768px) {
-    .container-login{
-        width:380px;
-        margin:0 204px;
+    .container-login {
+        width: 380px;
+        margin: 0 204px;
     }
-    .login-form{
-        width:380px;
+    .login-form {
+        width: 380px;
     }
     .w-100 {
         img {
             display: none;
         }
     }
-    
 }
-@media screen and (min-width: 376px) and (max-width:414px) {
-    .container-login{
-        width:330px;
-      margin:0 0;
+@media screen and (min-width: 376px) and (max-width: 414px) {
+    .container-login {
+        width: 330px;
+        margin: 0 0;
     }
     .login-form {
-       width:395px;
-       height:384px;
-       margin:0 1.5rem;
+        width: 395px;
+        height: 384px;
+        margin: 0 1.5rem;
         button {
             width: 128px;
             height: 35px;
@@ -554,14 +553,14 @@ ul {
     }
 }
 @media screen and (max-width: 375px) {
-    .container-login{
-        width:330px;
-      margin:0 0;
+    .container-login {
+        width: 330px;
+        margin: 0 0;
     }
     .login-form {
-       width:360px;
-       height:384px;
-       margin:0 1.5rem;
+        width: 343px;
+        height: 384px;
+        margin: 0 1.5rem;
         button {
             width: 128px;
             height: 35px;
@@ -625,15 +624,15 @@ ul {
         }
     }
 }
-@media screen and (min-width: 375px) and (max-width:414px) {
+@media screen and (min-width: 375px) and (max-width: 414px) {
     .container-forget {
         width: 375px;
-        margin: 50px  0  111px;
-      .row{
-          width:375px;
-          margin: 0 0;
-          padding:0 0;
-      }
+        margin: 50px 0 111px;
+        .row {
+            width: 375px;
+            margin: 0 0;
+            padding: 0 0;
+        }
         .form-group {
             width: 385px;
             margin-left: 0;
@@ -642,15 +641,82 @@ ul {
 }
 @media screen and (max-width: 375px) {
     .container-forget {
-        width: 375px;
-        margin: 50px 8px 111px;
+        width: 330px;
+        margin: 50px 10px 111px;
         .image {
             display: none;
         }
         .form-group {
-            width: 360px;
+            width: 340px;
             margin-left: 0;
         }
+    }
+}
+// Admin Login
+.admin-form {
+    max-width: 410px;
+    margin: 60px 460px;
+    background: #ffffff;
+    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    font-family: Roboto;
+    img{
+        width:89px;
+        height:91px;
+        margin: 18px 0;
+    }
+    h3{
+        font-size: 24px;
+    }
+    span{
+        color:#6C5DD3;
+    }
+    label{
+        font-size: 14px;
+    }
+    button {
+        width: 128px;
+        height: 35px;
+        background: #6c5dd3;
+        border-radius: 6px;
+        color:white;
+        border:none;
+        &:hover{
+            border:1px solid  #6c5dd3;
+            background:white;
+            color:#6C5DD3;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+    }
+    .permission{
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.5);
+        &:hover{
+            text-decoration: none;
+            color: #6C5DD3;
+            transition: all 0.5s;
+        }
+    }
+}
+@media screen and (max-width:1024px){
+    .admin-form{
+        margin:30px 300px;
+    }
+}
+@media screen and (max-width:768px){
+    .admin-form{
+        margin:30px 185px;
+    }
+}
+@media screen and (min-width:375px) and (max-width:414px){
+    .admin-form{
+        margin:30px 0px;
+    }
+}
+@media screen and (max-width:375px) {
+    .admin-form{
+        margin:30px 0px;
     }
 }
 //Not found
