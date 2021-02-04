@@ -316,8 +316,7 @@
 
 // Footer
 .container-footer {
-    width: 1140px;
-    margin: 0 auto;
+    max-width: 1140px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -326,6 +325,8 @@
 
 .footer {
     background-color: #f8fdf9;
+    max-width: 100%;
+    padding: 18px 130px;
 }
 
 ul {
@@ -373,15 +374,12 @@ ul {
     margin-left: 32px;
 }
 
-@media screen and (max-width: 1280px) {
-    .container-footer {
-        width: 1000px;
-    }
-}
-
 @media screen and (max-width: 1024px) {
+    .footer{
+        padding:18px 73px;
+    }
     .container-footer {
-        width: 918px;
+        max-width: 918px;
     }
     .social-media__item {
         margin-left: 24px;
@@ -401,8 +399,11 @@ ul {
 }
 
 @media screen and (max-width: 768px) {
+    .footer{
+        padding:18px 55px;
+    }
     .container-footer {
-        width: 658px;
+        max-width: 658px;
     }
     .logo_footer {
         width: 100px;
@@ -414,19 +415,12 @@ ul {
         height: 35px;
     }
 }
-
-@media screen and (max-width: 656px) {
-    .container-footer {
-        width: 420px;
-    }
-    .description {
-        display: none;
-    }
-}
-
 @media screen and (min-width: 375px) and (max-width:414px) {
+    .footer{
+        padding:23px 40px;
+    }
     .container-footer {
-        width: 317px;
+        max-width: 377px;
     }
     .description {
         display: none;
@@ -445,13 +439,16 @@ ul {
     }
 }
 @media screen and (max-width:374px){
+    .footer{
+        padding:23px 18px;
+    }
     .container-footer {
-        width: 317px;
+        max-width: 317px;
     }
 }
 // Login page
 .container-login {
-    width: 914px;
+    max-width: 914px;
     margin: 0 183px;
 }
 .w-100 {
@@ -513,8 +510,7 @@ ul {
     }
     .w-100 {
         img {
-            width: 340px;
-           
+            width: 340px; 
         }
     }
     .login-form{
@@ -522,18 +518,47 @@ ul {
     }
 }
 @media screen and (max-width: 768px) {
+    .container-login{
+        width:380px;
+        margin:0 204px;
+    }
+    .login-form{
+        width:380px;
+    }
     .w-100 {
         img {
             display: none;
         }
     }
+    
+}
+@media screen and (min-width: 376px) and (max-width:414px) {
+    .container-login{
+        width:330px;
+      margin:0 0;
+    }
     .login-form {
-        margin: 0 8rem;
+       width:395px;
+       height:384px;
+       margin:0 1.5rem;
+        button {
+            width: 128px;
+            height: 35px;
+        }
+        .forget-password {
+            margin-top: 6px;
+        }
     }
 }
 @media screen and (max-width: 375px) {
+    .container-login{
+        width:330px;
+      margin:0 0;
+    }
     .login-form {
-        margin: 0 0.5rem;
+       width:360px;
+       height:384px;
+       margin:0 1.5rem;
         button {
             width: 128px;
             height: 35px;
@@ -592,6 +617,21 @@ ul {
         }
         .form-group {
             width: 360px;
+            margin-left: 0;
+        }
+    }
+}
+@media screen and (min-width: 375px) and (max-width:414px) {
+    .container-forget {
+        width: 375px;
+        margin: 50px  0  111px;
+      .row{
+          width:375px;
+          margin: 0 0;
+          padding:0 0;
+      }
+        .form-group {
+            width: 385px;
             margin-left: 0;
         }
     }
