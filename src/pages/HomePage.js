@@ -10,7 +10,10 @@ export default function HomePage() {
         <div>
             <Background></Background>
             <div className="container">
-                <h2 className="trend-title"><span> <img className="trend-icon" src={trendingIcon} alt="123"/></span>Now Treding</h2>
+                <h2 className="trend-title">
+                    <span><img className="trend-icon" src={trendingIcon} alt="123" /></span>
+                    Now Treding
+                </h2>
                 <div className="box">
                     <div className="grid">
                         <Trending />
@@ -21,7 +24,12 @@ export default function HomePage() {
                         <Trending />
                     </div>
                 </div>
-                <h2 className="contribution-title"><span> <img className="notify-icon" src={notifyIcon} alt="123" /></span>New Contributions</h2>
+            </div>
+            <div className="container">
+                <h2 className="contribution-title">
+                    <span><img className="notify-icon" src={notifyIcon} alt="123" /></span>
+                    New Contributions
+                </h2>
                 <div className="box">
                     <div className="grid">
                         <Contribution />
@@ -32,15 +40,12 @@ export default function HomePage() {
                         <Contribution />
                     </div>
                 </div>
-
-
 
                 <div className="text-center">
                     <button type="button" className="show-btn">show more</button>
                 </div>
             </div>
-
-
         </div>
+
     )
 }
