@@ -9,7 +9,7 @@ export default function Contribution() {
             <div class="overlay"></div>
             <div className="text-center">
                 <button type="button" className="contribution-btn">
-                    <img src={eyeIcon} alt="123"/> See Contribution
+                    <img src={eyeIcon} alt="123" /> See Contribution
              </button>
             </div>
             <div className="card-body">

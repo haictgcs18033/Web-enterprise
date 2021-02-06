@@ -1,12 +1,15 @@
 import './App.css';
-import { BrowserRouter, Switch } from 'react-router-dom'
+import { Router, Switch } from 'react-router-dom'
 import './sass/webEnterprise.scss'
 import { PrimaryTemplate } from './templates/PrimaryTemplate';
 import { admin, client } from './Route'
-import NotFound from './pages/NotFound';
 import { AdminTemplate } from './templates/AdminTemplate';
+import { AdminDashboard } from './templates/AdminDashboard';
+import AdminUser from './pages/AdminUser';
+import { createBrowserHistory } from 'history';
 
 
+export const history = createBrowserHistory();
 function App() {
     const clientRoute = (routes) => {
         if (routes.length > 0) {
@@ -21,16 +24,18 @@ function App() {
         })
     }
     return (
-        <BrowserRouter>
+        <Router history={history}>
+
             <Switch>
                 {clientRoute(client)}
-                <PrimaryTemplate path="*" Component={NotFound}></PrimaryTemplate>
             </Switch>
             <Switch>
-                {adminRoute(admin)}
+                    {adminRoute(admin)}
             </Switch>
-           
-        </BrowserRouter>
+            <Switch>
+                <AdminDashboard path="/admin/dashboard" Component={AdminUser}></AdminDashboard>
+            </Switch>
+        </Router>
     );
 }
 

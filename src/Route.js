@@ -6,7 +6,6 @@ import NotFound from "./pages/NotFound";
 
 
 export const client = [
-
     {
         path: '/not',
         component: NotFound
@@ -25,8 +24,10 @@ export const client = [
     },
 ]
 export const admin=[
+   
     {
         path:'/admin',
         component:AdminLogin
     }
+ 
 ]
