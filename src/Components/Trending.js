@@ -9,7 +9,7 @@ export default function Trending() {
             </div>
             <div className="trend-content">
                 <h4 className="topic">This is the topic of the trending contribution</h4>
-                <p className="comment">Jan 28 - 30 comments</p>
+                <p className="comment">Jan 28 - 30 views</p>
             </div>
         </div>
     )

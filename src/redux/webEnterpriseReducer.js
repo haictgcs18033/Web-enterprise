@@ -9,12 +9,12 @@ const stateDefault = {
 }
 export const webEnterpriseReducer = (state = stateDefault, action) => {
     switch (action.type) {
-        case 'INPUT':{
-            return {...state,user:action.user}
+        case 'INPUT': {
+            return { ...state, user: action.user }
         }
-        default : {
+        default: {
             return { ...state }
-        }   
+        }
     }
-    
+
 }

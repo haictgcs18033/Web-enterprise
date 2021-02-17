@@ -12,13 +12,13 @@ export default function ChangePassword() {
                         <h3 className="text-center changepassword-title">Change password</h3>
                         <label className="changepassword-label">Current Password</label>
                         <input
-                            class="form-control" />
+                            className="form-control" />
                         <label className="changepassword-label">Password</label>
                         <input
-                            class="form-control" />
+                            className="form-control" />
                         <label className="changepassword-label">Confirm Password</label>
                         <input
-                            class="form-control" />
+                            className="form-control" />
                         <button className="confirm-btn">Confirm</button>
                     </form>
                 </div>
