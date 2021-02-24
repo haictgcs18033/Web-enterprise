@@ -11,7 +11,7 @@ export default function LoginPage() {
                     </div>
                 </div>
                 <div className="col-xs-12 col-md-12 col-lg-7 col-xl-7 px-0">
-                    <form className="login-form p-4">
+                    <form className="login-form p-4" >
                         <h3 className="text-center mb-4" > <span >WELCOME</span> TO SIGN IN</h3>
                         <label>Email</label>
                         <input className="form-control" />
