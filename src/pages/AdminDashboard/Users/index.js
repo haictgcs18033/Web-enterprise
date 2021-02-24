@@ -12,6 +12,8 @@ import { Edit, Delete } from '../../../Components/icons';
 
 import styles from './user.module.css';
 
+import { switchRole } from './helper/role';
+
 export default function UserDashboard(props) {
   const dispatch = useDispatch();
 
@@ -31,21 +33,6 @@ export default function UserDashboard(props) {
   }, [getUserList, curPage]);
 
   const pageNumber = [];
-
-  const switchRole = (roleCode) => {
-    switch (roleCode) {
-      case 'ADMIN':
-        return 'Admin';
-      case 'MARKETING_CORDINATOR':
-        return 'Marketing Coordinator';
-      case 'MARKETING_MANAGER':
-        return 'Marketing Manager';
-      case 'STUDENT':
-        return 'Student';
-      default:
-        return 'Invalid Role';
-    }
-  };
 
   if (users) {
     for (let i = 1; i <= Math.ceil(users.total / 2); i++) {
@@ -71,7 +58,7 @@ export default function UserDashboard(props) {
 
   const renderUsers = () => {
     if (Object.keys(users).length > 0) {
-      return users.results.map((user, index) => {
+      return users.results.map((user) => {
         return (
           <tr key={user.id} className={styles.listItem}>
             <td className={styles.listColumn}>
