@@ -39,8 +39,10 @@ export const fetchUsers = (page) => {
     dispatch({
       type: 'GET_USERS_REQUEST',
     });
+     
     try {
       let result = await Axios.get(
+        // Ở đây 2 limit 2 items chỉ để làm mẫu để nhìn thấy các trang hiện ra, khi xem xong sửa lại limit thành 6 ở đây
         `https://greenplus-dev.herokuapp.com/users?offset=${
           (page - 1) * 2
         }&limit=2`,
