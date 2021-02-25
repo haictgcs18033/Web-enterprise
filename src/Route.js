@@ -1,3 +1,5 @@
+import Faculty from "./pages/AdminDashboard/Faculty/Faculty";
+import UserDashboard from "./pages/AdminDashboard/Users/UserDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import ChangePassword from "./pages/ChangePassword";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -33,5 +35,14 @@ export const admin = [
         path: '/admin',
         component: AdminLogin
     }
- 
+]
+export const adminDashboardRoute = [
+    {
+        path: '/admin/dashboard/users',
+        component: UserDashboard
+    },
+    {
+        path: '/admin/dashboard/faculty',
+        component: Faculty
+    }
 ]
