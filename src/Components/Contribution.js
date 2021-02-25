@@ -1,14 +1,9 @@
 import React from 'react'
 import contributionImg from '../assets/img/contributionImg.jpg'
 import eyeIcon from '../assets/img/eye-icon.png'
-// import axios from 'axios'
 
 export default function Contribution() {
-    // axios({
-    //     method: 'GET',
-    //     url: 'https://greenplus-dev.herokuapp.com/contributions',
-    //     data: null,
-    // })
+
     return (
         <div className="card">
             <img className="card-img-top" src={contributionImg} alt="123" />

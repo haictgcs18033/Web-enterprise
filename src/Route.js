@@ -1,4 +1,5 @@
 import AdminLogin from "./pages/AdminLogin";
+import AdminUser from "./pages/AdminUser";
 import ChangePassword from "./pages/ChangePassword";
 import ForgotPassword from "./pages/ForgotPassword";
 import HomePage from "./pages/HomePage";
@@ -32,6 +33,10 @@ export const admin = [
     {
         path: '/admin',
         component: AdminLogin
+    },
+    {
+        path: '/user',
+        component: AdminUser
     }
- 
+
 ]
