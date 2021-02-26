@@ -13,7 +13,7 @@ export const AdminDashboard = props => {
                     <Sidebar></Sidebar>
                     <div className="user-info">
                         <p className="user-name" >Hello {userLogin.user.fullName}</p>
-                        <img className="user-avt" src={UserAvt}></img>
+                        <img className="user-avt" src={UserAvt} alt="123"></img>
                     </div>
 
                     <Route path={path} exact render={(propsRoute) => {

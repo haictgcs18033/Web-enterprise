@@ -33,6 +33,12 @@ export default function UserDashboard(props) {
 
     const load = useSelector((state) => state.webEnterpriseReducer.load);
 
+    const createUser=useSelector((state)=>state.webEnterpriseReducer.createUser)
+    const facultyType=useSelector((state)=>state.webEnterpriseReducer.facultyType)
+    const userType=useSelector((state)=>state.webEnterpriseReducer.userType)
+    let {fullName,email}=createUser.values
+    let {facultyId,facultyId1,facultyId2}=facultyType
+   let {admin,marketingCordinator,marketingManager,student}=userType
     useEffect(() => {
         getUserList();
     }, [getUserList, curPage]);
@@ -89,39 +95,51 @@ export default function UserDashboard(props) {
         }
 
     };
+    let handleChangeInput=(e)=>{
+       let {name,value}=e.target
+       let newValues={...createUser.values}
+       newValues[name]=value
+       if(name==='facultyId'){
+           newValues[name]=parseInt(value)
+       }
+       dispatch(action.handleInput(newValues))
+    }
+    let handleSubmit=(e)=>{
+        e.preventDefault();
+        let user ={...createUser.values}
+        dispatch(action.handleCreateUser(user));
 
-    console.log(users);
+    }
     return (
         <div className={`container-fluid ${styles.wrapper}`}>
             <div className={clsx(styles.tableWrap, load && styles.load)}>
                 <div className="d-flex justify-content-between">
                     <h3 className={styles.userTitle}>Users</h3>
-
                     <button type="button" className={styles.createBtn} data-toggle="modal" data-target="#exampleModal">
                         Create
                     </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <form class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+                     onSubmit={handleSubmit}>
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Create User</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
                                 </div>
                                 <div class="modal-body">
                                     <div className="row">
                                         <div className="col-6">
                                             <div className="form-group">
                                                 <label>Full name</label>
-                                                <input type="text" className="form-control" />
+                                                <input type="text" className="form-control" name="fullName" value={fullName}
+                                                 onChange={handleChangeInput}/>
                                             </div>
                                             <div className="form-group">
                                                 <label>Role</label>
-                                                <select className="">
-                                                    <option value={1}>One</option>
-                                                    <option value={2}>Two</option>
-                                                    <option value={3}>Three</option>
+                                                <select name="role" onChange={handleChangeInput} >
+                                                    <option value={admin}>Admin</option>
+                                                    <option value={marketingCordinator}>Marketing Coordinator</option>
+                                                    <option value={marketingManager}>Marketing Manager</option>
+                                                    <option value={student}>Student</option>
                                                 </select>
 
                                             </div>
@@ -129,14 +147,14 @@ export default function UserDashboard(props) {
                                         <div className="col-6">
                                             <div className="form-group">
                                                 <label>Email</label>
-                                                <input type="text" className="form-control" />
+                                                <input type="text" className="form-control" name="email" value={email}  onChange={handleChangeInput}/>
                                             </div>
                                             <div className="form-group">
                                                 <label>Faculty</label>
-                                                <select className="">
-                                                    <option value={1}>One</option>
-                                                    <option value={2}>Two</option>
-                                                    <option value={3}>Three</option>
+                                                <select  name="facultyId" onChange={handleChangeInput}>
+                                                    <option value={facultyId}>One</option>
+                                                    <option value={facultyId1}>Two</option>
+                                                    <option value={facultyId2}>Three</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -144,25 +162,22 @@ export default function UserDashboard(props) {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn__cancel" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn__create">Create</button>
+                                    <button type="submit" class="btn btn__create">Create</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div className={"user-form"}>
                     <div className="search-role">
                         <div className="row">
                             <div className="col-9">
-
                                 <input
                                     type="text"
                                     name=""
                                     placeholder="Search tao di" />
-                                <img
-                                    className="search-icon"
-                                    src={SearchIcon} />
+                                <img className="search-icon" src={SearchIcon} alt="123" />
                             </div>
                             <div className="col-3">
                                 <select className="role-select" name="role" id="">

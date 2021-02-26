@@ -1,7 +1,6 @@
 import Faculty from "./pages/AdminDashboard/Faculty/Faculty";
 import UserDashboard from "./pages/AdminDashboard/Users/UserDashboard";
 import AdminLogin from "./pages/AdminLogin";
-import AdminUser from "./pages/AdminUser";
 import ChangePassword from "./pages/ChangePassword";
 import ForgotPassword from "./pages/ForgotPassword";
 import HomePage from "./pages/HomePage";

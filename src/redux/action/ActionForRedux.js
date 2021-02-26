@@ -8,6 +8,9 @@ export const handleInput = (newValues) => {
         user: {
             values: newValues,
         },
+        createUser: {
+            values:newValues
+        }
     };
 };
 
@@ -35,7 +38,6 @@ export const loginAction = (user, props) => {
 };
 
 export const fetchUsers = (page) => {
-    console.log(page);
     return async (dispatch) => {
         dispatch({
             type: 'GET_USERS_REQUEST',
@@ -59,3 +61,26 @@ export const fetchUsers = (page) => {
         }
     };
 };
+export const handleCreateUser=(user)=>{
+    console.log(user);
+    return async dispatch=>{
+        try{
+           let result= await Axios({
+               url:'https://greenplus-dev.herokuapp.com/users',
+               method:'POST',
+               data:user,
+               headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+           })
+           console.log(result.data);
+          alert('Them thanh cong')
+           dispatch(fetchUsers())
+        }catch(err){
+            swal({
+                title: 'That bai',
+                text: "",
+                icon: "warning",
+                button: "OK",
+              });
+        }
+    }
+}
