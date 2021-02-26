@@ -35,14 +35,7 @@ export const admin = [
     {
         path: '/admin',
         component: AdminLogin
-    },
-    {
-        path: '/user',
-        component: AdminUser
     }
-<<<<<<< HEAD
-
-=======
 ]
 export const adminDashboardRoute = [
     {
@@ -53,5 +46,4 @@ export const adminDashboardRoute = [
         path: '/admin/dashboard/faculty',
         component: Faculty
     }
->>>>>>> 75579a7af11009077629d67c87826efe95af69a2
 ]
