@@ -1,6 +1,7 @@
 import { Redirect, Route } from "react-router-dom"
 import swal from "sweetalert";
 import Sidebar from "../Components/Sidebar";
+import UserAvt from '../assets/img/user-avt.png'
 
 export const AdminDashboard = props => {
     if (localStorage.getItem('USER_LOGIN')) {
@@ -9,19 +10,18 @@ export const AdminDashboard = props => {
             let { path, Component } = props
             return (
                 <div className="container-fluid admin-dashboard">
-                <Sidebar></Sidebar>
-                <div style={{paddingTop:'19px'}}>
-                <p className="text-right" style={{marginRight:'54px'}}>
-                    <span>Hello {userLogin.user.fullName}</span>
-                </p>
+                    <Sidebar></Sidebar>
+                    <div className="user-info">
+                        <p className="user-name" >Hello {userLogin.user.fullName}</p>
+                        <img className="user-avt" src={UserAvt}></img>
+                    </div>
+
+                    <Route path={path} exact render={(propsRoute) => {
+                        return <Component {...propsRoute}></Component>
+                    }}></Route>
                 </div>
-               
-                <Route path={path} exact render={(propsRoute) => {
-                    return <Component {...propsRoute}></Component>
-                }}></Route>
-                </div>
-            ) 
-          
+            )
+
 
         }
         swal({

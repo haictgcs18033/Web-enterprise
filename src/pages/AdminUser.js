@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/img/logo-admin.png'
+import logo from '../assets/img/logo.jpg'
 import UserAvt from '../assets/img/user-avt.png'
 import SearchIcon from '../assets/img/search-icon.png'
 
