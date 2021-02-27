@@ -36,6 +36,9 @@ export default function LoginPage() {
         resolver: yupResolver(schema),
     });
 
+    const onSubmit = (data) => console.log(data);
+
+
     return (
         <div className='container-login'>
             <div className='row my-4'>
