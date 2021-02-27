@@ -1,5 +1,5 @@
 import React from 'react'
-import changepasswordImg from '../assets/img/FormWrap.png'
+import changepasswordImg from '../assets/img/change-password-img.png'
 
 export default function ChangePassword() {
     return (
