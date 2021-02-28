@@ -36,7 +36,10 @@ export default function LoginPage() {
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        //fetch to API
+        console.log(data)
+    };
 
 
     return (
