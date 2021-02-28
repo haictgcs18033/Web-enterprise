@@ -569,6 +569,15 @@ ul {
         }
     }
 }
+.err-message {
+    color: #be0e62;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 7.72px;
+}
 // Forget password page
 .container-forget {
     width: 900px;
@@ -869,6 +878,9 @@ ul {
     font-size: 14px;
     color: #ffffff;
 }
+.changepassword-img {
+    padding: 31px 31px 31px 0;
+}
 @media screen and (max-width: 768px) {
     .changepassword-img {
         display: none;
@@ -1025,7 +1037,7 @@ ul {
     margin-top: 15px;
     border-radius: 24px;
     padding: 20px 24px;
-    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);;
+    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
     input {
         margin-top: 26px;
         width: 100%;
@@ -1077,7 +1089,6 @@ ul {
         line-height: 32px;
         color: #111142;
     }
-    
 }
 
 .modal-content {
