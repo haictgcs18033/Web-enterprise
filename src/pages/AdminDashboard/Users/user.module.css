@@ -113,6 +113,18 @@
   color: var(--default);
   transition: all 0.1s ease-in;
 }
+.button{
+  background: none;
+}
+.modalDelete{
+  background:#BE0E62;
+  color: white;
+}
+.modalDeleteClose{
+  background: white;
+  color:#BE0E62;
+  border:1px solid #BE0E62;
+}
 
 .edit.disabled,
 .del.disabled {

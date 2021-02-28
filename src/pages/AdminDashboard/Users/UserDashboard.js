@@ -42,6 +42,7 @@ export default function UserDashboard(props) {
   const facultyType = useSelector(
     (state) => state.webEnterpriseReducer.facultyType
   );
+
   const userType = useSelector((state) => state.webEnterpriseReducer.userType);
   let { fullName, email } = createUser.values;
   let { facultyId, facultyId1, facultyId2 } = facultyType;
@@ -80,8 +81,7 @@ export default function UserDashboard(props) {
         return (
           <tr key={user.id} className={styles.listItem}>
             <td className={styles.listColumn}>
-              <p>{user.fullname}</p>
-              <p className={styles.username}>{user.email}</p>
+              <p className={styles.username}>{user.fullName}</p>
             </td>
             <td className={styles.listColumn}>
               <p>{switchRole(user.role)}</p>
@@ -89,10 +89,34 @@ export default function UserDashboard(props) {
             <td>
               <div className={styles.listColumn}>
                 <div className={styles.edit}>
-                  <Edit />
+                  <button type="button" className={`btn ${styles.button}`} data-toggle="modal" data-target="#exampleModal">
+                    <Edit />
+                  </button>
                 </div>
                 <div className={styles.del}>
-                  <Delete />
+                  <button type="button" className={`btn ${styles.button}`}
+                    data-toggle="modal" data-target="#exampleModalDelete"
+                >
+                    <Delete />
+                  </button>
+                </div>
+                <div className="modal fade" id="exampleModalDelete" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Delete User</h5>
+                      </div>
+                      <div className="modal-body">
+                        <p>
+                          <span>Are you want to delete </span>
+                        </p>
+                      </div>
+                      <div className="modal-footer">
+                        <button type="button" className={`btn ${styles.modalDeleteClose}`} data-dismiss="modal">Close</button>
+                        <button type="button" className={`btn ${styles.modalDelete}`} data-dismiss="modal" onClick={()=>{deleteUser(user.id)}}>Save changes</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </td>
@@ -115,6 +139,10 @@ export default function UserDashboard(props) {
     let user = { ...createUser.values };
     dispatch(action.handleCreateUser(user));
   };
+  let deleteUser=(id)=>{
+     dispatch(action.DeleteUser(id))
+  }
+ 
   return (
     <div className={`container-fluid ${styles.wrapper}`}>
       <div className={clsx(styles.tableWrap, load && styles.load)}>

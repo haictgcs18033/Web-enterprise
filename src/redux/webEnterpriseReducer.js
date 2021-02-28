@@ -15,6 +15,9 @@ const stateDefault = {
       facultyId: 0,
     },
   },
+  userNameDelete:{
+      name:''
+  },
   userType: {
     admin: 'ADMIN',
     marketingCordinator: 'MARKETING_CORDINATOR',
@@ -56,6 +59,12 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
         ...state,
       };
     }
+   case 'DELETE_USER':{
+      let userDelete=[...state.users]
+      userDelete= userDelete.filter(user=>user.id!==action.id);
+     state.users=userDelete;
+     return{...state}
+   }
     default: {
       return { ...state };
     }
