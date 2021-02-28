@@ -8,11 +8,11 @@ import * as  yup from 'yup';
 
 
 export default function LoginPage() {
-    const emailTest = [
-        'test1@gmail.com',
-        'test2@gmail.com',
-        'test3@gmail.com',
-    ]
+    // const emailTest = [
+    //     'test1@gmail.com',
+    //     'test2@gmail.com',
+    //     'test3@gmail.com',
+    // ]
 
     // const lowerCaseRegex = /(?=.*[a-z])/;
     const upperCaseRegex = /(?=.*[A-Z])/;
@@ -21,8 +21,8 @@ export default function LoginPage() {
     let schema = yup.object().shape({
         email: yup.string()
             .required('Email is required')
-            .email('Enter a valid email')
-            .notOneOf(emailTest, 'Email already existed!'),
+            .email('Enter a valid email'),
+        // .notOneOf(emailTest, 'Email already existed!'),
         password: yup.string()
             .required('Password is required')
             // .matches(lowerCaseRegex, 'Password must have at least 1 lowercase character')
