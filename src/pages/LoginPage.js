@@ -2,14 +2,13 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { handleInput, loginAction } from '../redux/action/ActionForRedux'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as  yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux'
-import { handleInput, loginAction } from '../redux/action/ActionForRedux'
 
-
-export default function LoginPage() {
+export default function LoginPage(props) {
     const user = useSelector(state => state.webEnterpriseReducer.user)
     const dispatch = useDispatch()
     let { email, password } = user.values
@@ -37,9 +36,9 @@ export default function LoginPage() {
         resolver: yupResolver(schema),
     });
 
-    const handleCC = (data) => {
-        //fetch to API
-        console.log(data)
+    const onSubmit = (data) => {
+        data = { ...user.values }
+        dispatch(loginAction(data, props))
     };
 
 
@@ -53,7 +52,7 @@ export default function LoginPage() {
                 </div>
                 <div className='login-wrapform'>
                     <form
-                        onSubmit={handleCC}
+                        onSubmit={handleSubmit(onSubmit)}
                         className='login-form'
                     >
                         <h3 className='text-center mb-4'>
@@ -61,8 +60,9 @@ export default function LoginPage() {
                             <span>WELCOME</span> TO SIGN IN
                         </h3>
                         <div className='email'>
-                            <label>Email</label>
+                            <label htmlFor="email">Email</label>
                             <input
+                                id='email'
                                 type='text'
                                 name='email'
                                 value={email}
@@ -75,6 +75,7 @@ export default function LoginPage() {
                         <div className='password'>
                             <label>Password</label>
                             <input
+                                id='password'
                                 type='password'
                                 name='password'
                                 value={password}

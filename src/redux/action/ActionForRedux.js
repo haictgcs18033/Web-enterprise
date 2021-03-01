@@ -93,3 +93,25 @@ export const handleCreateUser = (user) => {
     }
   };
 };
+export const DeleteUser=(id)=>{
+
+    return async dispatch=>{
+        try{
+           let result = await Axios({
+               url:`https://greenplus-dev.herokuapp.com/users/${id}`,
+               method:'DELETE',
+               headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+           })
+          console.log(result.data);
+           dispatch({type:'DELETE_USER',id:id});
+           swal({
+            title: 'Thanh cong',
+            text: 'thành công là con thất bại',
+            icon: 'success',
+            button: 'OK',
+          });
+        }catch(err){
+            console.log(err.response?.data);
+        }
+    }
+}
