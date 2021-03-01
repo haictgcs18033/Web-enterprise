@@ -2,28 +2,28 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/img/logo.jpg'
 import { useDispatch, useSelector } from 'react-redux'
-import { handleInput,loginAction } from '../redux/action/ActionForRedux'
+import { handleInput, loginAction } from '../redux/action/ActionForRedux'
 
 export default function AdminLogin(props) {
     const user = useSelector(state => state.webEnterpriseReducer.user)
     const dispatch = useDispatch()
     let { email, password } = user.values
-    let handleChangeInput=(e)=>{
-        let {value,name} =e.target
-        console.log(value,name);
-       let newValues={...user.values}
-       newValues[name]=value;
-       dispatch(handleInput(newValues));
+    let handleChangeInput = (e) => {
+        let { value, name } = e.target
+        console.log(value, name);
+        let newValues = { ...user.values }
+        newValues[name] = value;
+        dispatch(handleInput(newValues));
     }
-    
-    let handleSubmit=(e)=>{
+
+    let handleSubmit = (e) => {
         e.preventDefault();
-        let userData={...user.values}
-        dispatch(loginAction(userData,props))
+        let userData = { ...user.values }
+        dispatch(loginAction(userData, props))
     }
- 
+
     return (
-        
+
         <div className="container-fluid">
             <div className="row">
                 <div className="col-12">
@@ -37,7 +37,7 @@ export default function AdminLogin(props) {
                             <label className="mb-2">Password</label>
                             <input className="form-control" name="password" value={password} onChange={handleChangeInput} />
                         </div>
-                       
+
                         <div className="row mt-4">
                             <div className="col-6">
                                 <button >SIGN IN</button>
