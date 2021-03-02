@@ -2,43 +2,43 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { handleInput, loginAction } from '../redux/action/ActionForRedux'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as  yup from 'yup';
 
+export default function LoginPage(props) {
+    const user = useSelector(state => state.webEnterpriseReducer.user)
+    const dispatch = useDispatch()
+    let { email, password } = user.values
+    let handleChangeInput = (e) => {
+        let { value, name } = e.target
+        console.log(value, name);
+        let newValues = { ...user.values }
+        newValues[name] = value;
+        dispatch(handleInput(newValues));
+    }
 
-export default function LoginPage() {
-    // const emailTest = [
-    //     'test1@gmail.com',
-    //     'test2@gmail.com',
-    //     'test3@gmail.com',
-    // ]
-
-    // const lowerCaseRegex = /(?=.*[a-z])/;
-    const upperCaseRegex = /(?=.*[A-Z])/;
-    const numericRegex = /(?=.*[0-9])/;
 
     let schema = yup.object().shape({
         email: yup.string()
             .required('Email is required')
             .email('Enter a valid email'),
-        // .notOneOf(emailTest, 'Email already existed!'),
         password: yup.string()
             .required('Password is required')
-            // .matches(lowerCaseRegex, 'Password must have at least 1 lowercase character')
-            .matches(upperCaseRegex, 'Password must have at least 1 uppercase character')
-            .matches(numericRegex, 'Password must have at least 1 number')
+            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/, 'Password must have at least 1 uppercase character and 1 number')
             .min(8, 'Password must have at least 8 characters'),
     })
 
     const { register, handleSubmit, errors } = useForm({
-        mode: "onTouched",
+        mode: 'onSubmit',
         resolver: yupResolver(schema),
     });
 
     const onSubmit = (data) => {
-        //fetch to API
-        console.log(data)
+        data = { ...user.values }
+        dispatch(loginAction(data, props))
     };
 
 
@@ -60,22 +60,28 @@ export default function LoginPage() {
                             <span>WELCOME</span> TO SIGN IN
                         </h3>
                         <div className='email'>
-                            <label>Email</label>
+                            <label htmlFor="email">Email</label>
                             <input
+                                id='email'
                                 type='text'
                                 name='email'
+                                value={email}
                                 className='form-control'
                                 ref={register}
+                                onChange={handleChangeInput}
                             />
                             <p className='err-message'>{errors.email?.message}</p>
                         </div>
                         <div className='password'>
                             <label>Password</label>
                             <input
+                                id='password'
                                 type='password'
                                 name='password'
+                                value={password}
                                 className='form-control'
                                 ref={register}
+                                onChange={handleChangeInput}
                             />
                             <p className='err-message'>{errors.password?.message}</p>
                         </div>
