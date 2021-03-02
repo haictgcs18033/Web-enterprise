@@ -24,9 +24,9 @@ export default function AdminLogin(props) {
  
     return (
         
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-12">
+        <div className="container-fluid  admin-container">
+            
+               
                     <form className="admin-form p-4" onSubmit={handleSubmit}>
                         <img className="d-block mx-auto" src={logo} alt="123" />
                         <h3 className="text-center">FOR ADMIN</h3>
@@ -47,8 +47,8 @@ export default function AdminLogin(props) {
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
+                
+            
         </div>
 
     )

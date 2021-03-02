@@ -59,9 +59,10 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
         ...state,
       };
     }
+ 
    case 'DELETE_USER':{
       let userDelete=[...state.users]
-      userDelete= userDelete.filter(user=>user.id!==action.id);
+      userDelete= userDelete.filter(user=>user.id !== action.id);
      state.users=userDelete;
      return{...state}
    }

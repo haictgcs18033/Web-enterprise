@@ -661,9 +661,15 @@ ul {
     }
 }
 // Admin Login
+.admin-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:60px;
+}
 .admin-form {
     max-width: 410px;
-    margin: 60px 460px;
+    // margin: 60px 460px;
     background: #ffffff;
     box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
@@ -705,26 +711,6 @@ ul {
             color: #6c5dd3;
             transition: all 0.5s;
         }
-    }
-}
-@media screen and (max-width: 1024px) {
-    .admin-form {
-        margin: 30px 300px;
-    }
-}
-@media screen and (max-width: 768px) {
-    .admin-form {
-        margin: 30px 185px;
-    }
-}
-@media screen and (min-width: 375px) and (max-width: 414px) {
-    .admin-form {
-        margin: 30px 0px;
-    }
-}
-@media screen and (max-width: 375px) {
-    .admin-form {
-        margin: 30px 0px;
     }
 }
 //Not found
@@ -1041,8 +1027,7 @@ ul {
     input {
         margin-top: 26px;
         width: 100%;
-        background: #e4e4e4;
-        opacity: 0.3;
+        background: #e4e4e473;
         border-radius: 16px;
         position: relative;
         font-family: "Open Sans", sans-serif;
@@ -1084,8 +1069,8 @@ ul {
     .modal-title {
         font-family: Montserrat;
         font-style: normal;
-        font-weight: 500;
-        font-size: 24px;
+        font-weight: 600;
+        font-size: 40px;
         line-height: 32px;
         color: #111142;
     }

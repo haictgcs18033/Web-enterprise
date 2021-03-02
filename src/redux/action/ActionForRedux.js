@@ -104,6 +104,9 @@ export const DeleteUser=(id)=>{
            })
           console.log(result.data);
            dispatch({type:'DELETE_USER',id:id});
+           dispatch({
+            type: 'GET_USERS_REQUEST',
+          });
            swal({
             title: 'Thanh cong',
             text: 'thành công là con thất bại',
