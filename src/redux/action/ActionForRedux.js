@@ -94,7 +94,6 @@ export const handleCreateUser = (user) => {
   };
 };
 export const DeleteUser=(id)=>{
-
     return async dispatch=>{
       dispatch({
         type: 'GET_USERS_REQUEST',
