@@ -61,7 +61,7 @@ export const fetchUsers = (limit, page) => {
     }
   };
 };
-export const fetchFaculty=(limit, offset,query,sort)=>{
+export const fetchFaculty=(limit, offset,query,sort)=>{ 
   return async dispatch=>{
     try{
          let result= await Axios({
