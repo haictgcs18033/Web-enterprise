@@ -47,6 +47,7 @@ export default function UserDashboard(props) {
   let { fullName, email } = createUser.values;
   let { facultyId, facultyId1, facultyId2 } = facultyType;
   let { admin, marketingCordinator, marketingManager, student } = userType;
+  const [userDelete, setUserDelete] = useState({ id: 0, fullName: '' })
   useEffect(() => {
     getUserList();
   }, [getUserList, curPage]);
@@ -81,7 +82,7 @@ export default function UserDashboard(props) {
         return (
           <tr key={user.id} className={styles.listItem}>
             <td className={styles.listColumn}>
-              <p className={styles.username}>{user.fullName}</p>
+              <p className={styles.username}>{user.id}-{user.fullName}</p>
             </td>
             <td className={styles.listColumn}>
               <p>{switchRole(user.role)}</p>
@@ -89,6 +90,7 @@ export default function UserDashboard(props) {
             <td>
               <div className={styles.listColumn}>
                 <div className={styles.edit}>
+<<<<<<< HEAD
                   <button
                     type='button'
                     className={`btn ${styles.button}`}
@@ -119,12 +121,107 @@ export default function UserDashboard(props) {
                         <h5 className='modal-title' id='exampleModalLabel'>
                           Delete User
                         </h5>
+=======
+                  <button type="button" className={`btn ${styles.button}`} data-toggle="modal" data-target="#exampleModalUpdate">
+                    <Edit />
+                  </button>
+                </div>
+                <div className="modal fade" id="exampleModalUpdate" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div className={`modal-dialog ${styles.dialogUpdate}`} role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel update">Update User</h5>
+                      </div>
+                      <div className="modal-body">
+                        <div className="row">
+                          <div className="col-6">
+                            <div className='form-group'>
+                              <label>Full name</label>
+                              <input
+                                type='text'
+                                className='form-control'
+                                name='fullName'
+                                value={fullName}
+                                onChange={handleChangeInput}
+                              />
+                            </div>
+                          </div>
+                          <div className="col-6">
+                            <div className='form-group'>
+                              <label>Password</label>
+                              <input
+                                type='text'
+                                className='form-control'
+                                name='fullName'
+                                value={fullName}
+                                onChange={handleChangeInput}
+                              />
+                            </div>
+
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-12">
+                            <div className='form-group'>
+                              <label>Email</label>
+                              <input
+                                type='text'
+                                className='form-control'
+                                name='fullName'
+                                value={fullName}
+                                onChange={handleChangeInput}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-6">
+                            <div className='form-group'>
+                              <label>Role</label>
+                              <select name='role' onChange={handleChangeInput}>
+                                <option value={admin}>Admin</option>
+                                <option value={marketingCordinator}>
+                                  Marketing Coordinator
+                          </option>
+                                <option value={marketingManager}>
+                                  Marketing Manager
+                          </option>
+                                <option value={student}>Student</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="modal-footer">
+                        <button type="button" className={`btn ${styles.modalDisable}`} >Disable</button>
+                        <button type="button" className={`btn btn__cancel`} data-dismiss="modal">Close</button>
+                        <button type="button" className={`btn btn__create`} >Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {user.role === 'ADMIN' ? '' :
+                  <div className={styles.del}>
+                    <button type="button" className={`btn ${styles.button}`}
+                      data-toggle="modal" data-target="#exampleModalDelete"
+                      onClick={() => { setUserDelete({ id: user.id, fullName: user.fullName }) }}>
+                      <Delete />
+                    </button>
+                  </div>
+                }
+                <div className="modal fade" id="exampleModalDelete" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Delete User</h5>
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
                       </div>
                       <div className='modal-body'>
                         <p>
-                          <span>Are you want to delete </span>
+                          <span>Do you want to delete <span className="font-weight-bold">{userDelete.fullName}</span> </span>
                         </p>
                       </div>
+<<<<<<< HEAD
                       <div className='modal-footer'>
                         <button
                           type='button'
@@ -141,12 +238,19 @@ export default function UserDashboard(props) {
                           }}>
                           Save changes
                         </button>
+=======
+                      <div className="modal-footer">
+                        <button type="button" className={`btn ${styles.modalDeleteClose}`} data-dismiss="modal">Close</button>
+                        <button type="button" className={`btn ${styles.modalDelete}`} data-dismiss="modal" onClick={() => { deleteUser(userDelete.id) }}>Save changes</button>
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
                       </div>
                     </div>
                   </div>
                 </div>
+
               </div>
             </td>
+
           </tr>
         );
       });
@@ -167,8 +271,13 @@ export default function UserDashboard(props) {
     dispatch(action.handleCreateUser(user));
   };
   let deleteUser = (id) => {
+<<<<<<< HEAD
     dispatch(action.DeleteUser(id));
   };
+=======
+    dispatch(action.DeleteUser(id))
+  }
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
 
   return (
     <div className={`${styles.wrapper}`}>
@@ -288,6 +397,7 @@ export default function UserDashboard(props) {
                   <p>Role</p>
                 </th>
                 <th></th>
+
               </tr>
             </thead>
             <tbody className={styles.body}>{renderUsers()}</tbody>

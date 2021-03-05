@@ -111,10 +111,14 @@
   color: var(--default);
   transition: all 0.1s ease-in;
 }
+.dialogUpdate {
+  margin: 1.75rem auto;
+}
 .button {
   background: none;
 }
-.modalDelete {
+.modalDelete,
+.modalDisable {
   background: #be0e62;
   color: white;
 }
@@ -123,7 +127,9 @@
   color: #be0e62;
   border: 1px solid #be0e62;
 }
-
+.modalDisable {
+  margin-right: 16rem !important;
+}
 .edit.disabled,
 .del.disabled {
   opacity: 0.7;

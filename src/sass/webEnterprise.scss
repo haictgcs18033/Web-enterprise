@@ -661,7 +661,14 @@ ul {
   }
 }
 // Admin Login
+.admin-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:60px;
+}
 .admin-form {
+<<<<<<< HEAD
   max-width: 410px;
   margin: 60px 460px;
   background: #ffffff;
@@ -686,6 +693,12 @@ ul {
     width: 128px;
     height: 35px;
     background: #6c5dd3;
+=======
+    max-width: 410px;
+    // margin: 60px 460px;
+    background: #ffffff;
+    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
     border-radius: 6px;
     color: white;
     border: none;
@@ -707,6 +720,7 @@ ul {
     }
   }
 }
+<<<<<<< HEAD
 @media screen and (max-width: 1024px) {
   .admin-form {
     margin: 30px 300px;
@@ -727,6 +741,8 @@ ul {
     margin: 30px 0px;
   }
 }
+=======
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
 //Not found
 .title-span {
   font-family: Roboto;
@@ -1030,6 +1046,7 @@ ul {
   }
 }
 .user-form {
+<<<<<<< HEAD
   background-color: #fff;
   margin-top: 15px;
   border-radius: 24px;
@@ -1049,6 +1066,46 @@ ul {
     padding: 18px 56px;
     &::placeholder {
       color: #808191;
+=======
+    background-color: #fff;
+    max-width: 70.3125rem;
+    margin-top: 15px;
+    border-radius: 24px;
+    padding: 20px 24px;
+    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+    input {
+        margin-top: 26px;
+        width: 100%;
+        background: #e4e4e473;
+        border-radius: 16px;
+        position: relative;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 14px;
+        padding: 18px 56px;
+        &::placeholder {
+            color: #808191;
+        }
+    }
+    .search-icon {
+        position: absolute;
+        left: 3.5%;
+        top: 54%;
+    }
+    .role-select {
+        margin-top: 26px;
+        width: 100%;
+        background: #e4e4e4;
+        opacity: 0.3;
+        border-radius: 16px;
+        padding: 18px 0 18px 22.53px;
+        color: #808191;
+        font-size: 14px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
     }
   }
   .search-icon {
@@ -1076,6 +1133,7 @@ ul {
   max-width: 720px;
 }
 .modal-header {
+<<<<<<< HEAD
   border-bottom: none;
   padding: 1.5rem;
   .modal-title {
@@ -1086,6 +1144,18 @@ ul {
     line-height: 32px;
     color: #111142;
   }
+=======
+    border-bottom: none;
+    padding: 1.5rem;
+    .modal-title {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 32px;
+        color: #111142;
+    }
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
 }
 
 .modal-content {
