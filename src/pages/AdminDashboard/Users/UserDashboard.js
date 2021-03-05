@@ -30,7 +30,7 @@ export default function UserDashboard(props) {
   const getFaculty = useCallback(() => dispatch(action.fetchFaculty(limit, curPage)), [dispatch, curPage])
   const users = useSelector((state) => state.webEnterpriseReducer.users);
   const faculties = useSelector(state => state.webEnterpriseReducer.faculties);
-
+ 
   const totalItems = useSelector(
     (state) => state.webEnterpriseReducer.totalItems
   );
@@ -77,7 +77,7 @@ export default function UserDashboard(props) {
         return (
           <tr key={user.id} className={styles.listItem}>
             <td className={styles.listColumn}>
-              <p className={styles.username}>{user.id}-{user.fullName}</p>
+              <p className={styles.username}>{user.id}-{user.fullName}-{user.email}</p>
             </td>
             <td className={styles.listColumn}>
               <p>{switchRole(user.role)}</p>
