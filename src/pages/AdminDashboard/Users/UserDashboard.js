@@ -89,31 +89,58 @@ export default function UserDashboard(props) {
             <td>
               <div className={styles.listColumn}>
                 <div className={styles.edit}>
-                  <button type="button" className={`btn ${styles.button}`} data-toggle="modal" data-target="#exampleModal">
+                  <button
+                    type='button'
+                    className={`btn ${styles.button}`}
+                    data-toggle='modal'
+                    data-target='#exampleModal'>
                     <Edit />
                   </button>
                 </div>
                 <div className={styles.del}>
-                  <button type="button" className={`btn ${styles.button}`}
-                    data-toggle="modal" data-target="#exampleModalDelete"
-                >
+                  <button
+                    type='button'
+                    className={`btn ${styles.button}`}
+                    data-toggle='modal'
+                    data-target='#exampleModalDelete'>
                     <Delete />
                   </button>
                 </div>
-                <div className="modal fade" id="exampleModalDelete" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Delete User</h5>
+                <div
+                  className='modal fade'
+                  id='exampleModalDelete'
+                  tabIndex={-1}
+                  role='dialog'
+                  aria-labelledby='exampleModalLabel'
+                  aria-hidden='true'>
+                  <div className='modal-dialog' role='document'>
+                    <div className='modal-content'>
+                      <div className='modal-header'>
+                        <h5 className='modal-title' id='exampleModalLabel'>
+                          Delete User
+                        </h5>
                       </div>
-                      <div className="modal-body">
+                      <div className='modal-body'>
                         <p>
                           <span>Are you want to delete </span>
                         </p>
                       </div>
-                      <div className="modal-footer">
-                        <button type="button" className={`btn ${styles.modalDeleteClose}`} data-dismiss="modal">Close</button>
-                        <button type="button" className={`btn ${styles.modalDelete}`} data-dismiss="modal" onClick={()=>{deleteUser(user.id)}}>Save changes</button>
+                      <div className='modal-footer'>
+                        <button
+                          type='button'
+                          className={`btn ${styles.modalDeleteClose}`}
+                          data-dismiss='modal'>
+                          Close
+                        </button>
+                        <button
+                          type='button'
+                          className={`btn ${styles.modalDelete}`}
+                          data-dismiss='modal'
+                          onClick={() => {
+                            deleteUser(user.id);
+                          }}>
+                          Save changes
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -139,12 +166,12 @@ export default function UserDashboard(props) {
     let user = { ...createUser.values };
     dispatch(action.handleCreateUser(user));
   };
-  let deleteUser=(id)=>{
-     dispatch(action.DeleteUser(id))
-  }
- 
+  let deleteUser = (id) => {
+    dispatch(action.DeleteUser(id));
+  };
+
   return (
-    <div className={`container-fluid ${styles.wrapper}`}>
+    <div className={`${styles.wrapper}`}>
       <div className={clsx(styles.tableWrap, load && styles.load)}>
         <div className='d-flex justify-content-between'>
           <h3 className={styles.userTitle}>Users</h3>

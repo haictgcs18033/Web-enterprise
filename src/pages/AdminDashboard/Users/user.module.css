@@ -8,7 +8,6 @@
   font-weight: 600;
   font-style: normal;
   font-size: 40px;
-  margin-left: 30px;
 }
 .createBtn {
   background-color: #6c5dd3;
@@ -16,7 +15,6 @@
   padding: 14px 37px;
   border-radius: 12px;
   border: none;
-  margin-right: 24px;
   cursor: pointer;
   font-family: Inter;
   font-weight: 600;
@@ -25,8 +23,8 @@
 }
 .tableWrap {
   opacity: 1;
-  width: 80%;
-  margin-left: 261px;
+  max-width: 77rem;
+  margin-left: 19rem;
 }
 .tableWrap.load {
   opacity: 0.4;
@@ -113,17 +111,17 @@
   color: var(--default);
   transition: all 0.1s ease-in;
 }
-.button{
+.button {
   background: none;
 }
-.modalDelete{
-  background:#BE0E62;
+.modalDelete {
+  background: #be0e62;
   color: white;
 }
-.modalDeleteClose{
+.modalDeleteClose {
   background: white;
-  color:#BE0E62;
-  border:1px solid #BE0E62;
+  color: #be0e62;
+  border: 1px solid #be0e62;
 }
 
 .edit.disabled,
@@ -189,6 +187,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-right: 1.5rem;
 }
 
 .page {
