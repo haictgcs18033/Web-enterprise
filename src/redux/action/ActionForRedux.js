@@ -22,6 +22,7 @@ export const loginAction = (user, props) => {
         method: 'POST',
         data: user,
       });
+      // if (result.user.role === 'ADMIN') {
       localStorage.setItem('ACCESS_TOKEN', result.data.access_token);
       localStorage.setItem('USER_LOGIN', JSON.stringify(result.data));
       swal({
@@ -31,6 +32,7 @@ export const loginAction = (user, props) => {
         button: 'OK',
       });
       props.history.push('/admin/dashboard/users');
+      // }
     } catch (err) {
       console.log(err.response?.data);
     }
@@ -93,6 +95,28 @@ export const handleCreateUser = (user) => {
     }
   };
 };
+<<<<<<< HEAD
+export const DeleteUser = (id) => {
+  return async (dispatch) => {
+    try {
+      let result = await Axios({
+        url: `https://greenplus-dev.herokuapp.com/users/${id}`,
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+        },
+      });
+      console.log(result.data);
+      dispatch({ type: 'DELETE_USER', id: id });
+      swal({
+        title: 'Thanh cong',
+        text: 'thành công là con thất bại',
+        icon: 'success',
+        button: 'OK',
+      });
+    } catch (err) {
+      console.log(err.response?.data);
+=======
 export const DeleteUser=(id)=>{
 
     return async dispatch=>{
@@ -117,5 +141,7 @@ export const DeleteUser=(id)=>{
         }catch(err){
             console.log(err.response?.data);
         }
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
     }
-}
+  };
+};

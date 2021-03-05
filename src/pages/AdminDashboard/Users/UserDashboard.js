@@ -90,6 +90,38 @@ export default function UserDashboard(props) {
             <td>
               <div className={styles.listColumn}>
                 <div className={styles.edit}>
+<<<<<<< HEAD
+                  <button
+                    type='button'
+                    className={`btn ${styles.button}`}
+                    data-toggle='modal'
+                    data-target='#exampleModal'>
+                    <Edit />
+                  </button>
+                </div>
+                <div className={styles.del}>
+                  <button
+                    type='button'
+                    className={`btn ${styles.button}`}
+                    data-toggle='modal'
+                    data-target='#exampleModalDelete'>
+                    <Delete />
+                  </button>
+                </div>
+                <div
+                  className='modal fade'
+                  id='exampleModalDelete'
+                  tabIndex={-1}
+                  role='dialog'
+                  aria-labelledby='exampleModalLabel'
+                  aria-hidden='true'>
+                  <div className='modal-dialog' role='document'>
+                    <div className='modal-content'>
+                      <div className='modal-header'>
+                        <h5 className='modal-title' id='exampleModalLabel'>
+                          Delete User
+                        </h5>
+=======
                   <button type="button" className={`btn ${styles.button}`} data-toggle="modal" data-target="#exampleModalUpdate">
                     <Edit />
                   </button>
@@ -182,15 +214,35 @@ export default function UserDashboard(props) {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">Delete User</h5>
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
                       </div>
-                      <div className="modal-body">
+                      <div className='modal-body'>
                         <p>
                           <span>Do you want to delete <span className="font-weight-bold">{userDelete.fullName}</span> </span>
                         </p>
                       </div>
+<<<<<<< HEAD
+                      <div className='modal-footer'>
+                        <button
+                          type='button'
+                          className={`btn ${styles.modalDeleteClose}`}
+                          data-dismiss='modal'>
+                          Close
+                        </button>
+                        <button
+                          type='button'
+                          className={`btn ${styles.modalDelete}`}
+                          data-dismiss='modal'
+                          onClick={() => {
+                            deleteUser(user.id);
+                          }}>
+                          Save changes
+                        </button>
+=======
                       <div className="modal-footer">
                         <button type="button" className={`btn ${styles.modalDeleteClose}`} data-dismiss="modal">Close</button>
                         <button type="button" className={`btn ${styles.modalDelete}`} data-dismiss="modal" onClick={() => { deleteUser(userDelete.id) }}>Save changes</button>
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
                       </div>
                     </div>
                   </div>
@@ -219,11 +271,16 @@ export default function UserDashboard(props) {
     dispatch(action.handleCreateUser(user));
   };
   let deleteUser = (id) => {
+<<<<<<< HEAD
+    dispatch(action.DeleteUser(id));
+  };
+=======
     dispatch(action.DeleteUser(id))
   }
+>>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
 
   return (
-    <div className={`container-fluid ${styles.wrapper}`}>
+    <div className={`${styles.wrapper}`}>
       <div className={clsx(styles.tableWrap, load && styles.load)}>
         <div className='d-flex justify-content-between'>
           <h3 className={styles.userTitle}>Users</h3>
