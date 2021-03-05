@@ -22,6 +22,7 @@ export const loginAction = (admin, props) => {
         method: 'POST',
         data: admin,
       });
+      // if (result.user.role === 'ADMIN') {
       localStorage.setItem('ACCESS_TOKEN', result.data.access_token);
       localStorage.setItem('USER_LOGIN', JSON.stringify(result.data));
       swal({
@@ -31,6 +32,7 @@ export const loginAction = (admin, props) => {
         button: 'OK',
       });
       props.history.push('/admin/dashboard/users');
+      // }
     } catch (err) {
       console.log(err.response?.data);
     }
@@ -129,5 +131,7 @@ export const DeleteUser=(id)=>{
         }catch(err){
             console.log(err.response?.data);
         }
+
     }
-}
+  };
+
