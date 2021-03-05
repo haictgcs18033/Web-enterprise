@@ -30,6 +30,7 @@ export default function UserDashboard(props) {
   const getFaculty = useCallback(() => dispatch(action.fetchFaculty(limit, curPage)), [dispatch, curPage])
   const users = useSelector((state) => state.webEnterpriseReducer.users);
   const faculties = useSelector(state => state.webEnterpriseReducer.faculties);
+
   const totalItems = useSelector(
     (state) => state.webEnterpriseReducer.totalItems
   );
@@ -205,7 +206,7 @@ export default function UserDashboard(props) {
     if (name === 'facultyId') {
       newValues[name] = parseInt(value);
     }
-    console.log(newValues);
+  
     dispatch(action.handleInput(newValues));
   };
   let handleSubmit = (e) => {
@@ -319,9 +320,9 @@ export default function UserDashboard(props) {
               </div>
               <div className='col-3'>
                 <select name='id' onChange={handleChangeInput}>
-                  {faculties.map((faculty, index) => {
+                  {/* {faculties.map((faculty, index) => {
                     return <option key={index} value={faculty.id}>{faculty.name}</option>
-                  })}
+                  })} */}
                 </select>
               </div>
             </div>

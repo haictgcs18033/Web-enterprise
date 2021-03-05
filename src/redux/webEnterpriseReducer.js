@@ -12,7 +12,7 @@ const stateDefault = {
             fullName: '',
             email: '',
             role: 'ADMIN',
-            facultyId: 0,
+            facultyId: '',
         },
     },
     userNameDelete: {
@@ -24,11 +24,7 @@ const stateDefault = {
         marketingManager: 'MARKETING_MANAGER',
         student: 'STUDENT',
     },
-    facultyType: {
-        facultyId: 0,
-        facultyId1: 1,
-        facultyId2: 2,
-    },
+    faculties:[],
     totalItems: 0,
     users: [],
     load: false,
@@ -48,6 +44,10 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
                 load: false,
             };
         }
+       case 'GET_FACULTY':{
+           state.createUser.values.facultyId=action.payload.results[0].id
+           return{...state,faculties:action.payload.results}
+       }
         case 'CREATE_USER': {
             if (state.users.length <= 6) {
                 state.users = [...state.users, action.payload];
