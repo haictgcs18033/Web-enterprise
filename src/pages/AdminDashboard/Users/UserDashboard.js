@@ -217,6 +217,7 @@ export default function UserDashboard(props) {
     e.preventDefault();
     let user = { ...createUser.values };
     dispatch(action.handleCreateUser(user));
+    dispatch(action.handleSendMail(user.email))
   };
   let deleteUser = (id) => {
     dispatch(action.DeleteUser(id))

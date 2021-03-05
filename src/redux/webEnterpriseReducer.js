@@ -63,7 +63,7 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
             let userDelete = [...state.users]
             userDelete = userDelete.filter(user => user.id !== action.id);
             state.users = userDelete;
-            return { ...state }
+            return { ...state ,load:false}
         }
         default: {
             return { ...state };

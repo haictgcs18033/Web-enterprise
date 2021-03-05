@@ -21,8 +21,6 @@ export const AdminDashboard = props => {
                     }}></Route>
                 </div>
             )
-
-
         }
         swal({
             title: "You are not admin!",

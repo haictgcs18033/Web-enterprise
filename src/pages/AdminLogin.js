@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/img/logo.jpg'
 import { useDispatch, useSelector } from 'react-redux'
-import { handleInput, loginAction } from '../redux/action/ActionForRedux'
+import { handleInput,loginAction } from '../redux/action/ActionForRedux'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as  yup from 'yup';

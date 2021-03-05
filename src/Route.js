@@ -6,6 +6,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
+import StudentLanding from "./pages/StudentDashboard/StudentLanding";
 
 
 export const client = [
@@ -44,5 +45,11 @@ export const adminDashboardRoute = [
     {
         path: '/admin/dashboard/faculty',
         component: Faculty
+    }
+]
+export const studentDashboardRoute=[
+    {
+        path:'student/home',
+        component:StudentLanding
     }
 ]

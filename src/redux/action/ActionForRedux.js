@@ -14,13 +14,13 @@ export const handleInput = (newValues) => {
   };
 };
 
-export const loginAction = (user, props) => {
+export const loginAction = (admin, props) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
         url: 'https://greenplus-dev.herokuapp.com/auth/login',
         method: 'POST',
-        data: user,
+        data: admin,
       });
       localStorage.setItem('ACCESS_TOKEN', result.data.access_token);
       localStorage.setItem('USER_LOGIN', JSON.stringify(result.data));
@@ -36,7 +36,6 @@ export const loginAction = (user, props) => {
     }
   };
 };
-
 export const fetchUsers = (limit, page) => {
   return async (dispatch) => {
     dispatch({
@@ -93,6 +92,21 @@ export const handleCreateUser = (user) => {
     }
   };
 };
+export const handleSendMail=(email)=>{
+  return async dispatch=>{
+      try{
+         let result=await Axios({
+           url:"https://greenplus-dev.herokuapp.com/auth/send-reset-password-mail",
+           method:'POST',
+           data:email
+         })
+         console.log(result.data);
+         console.log('Thanh cong');
+      }catch(err){
+          console.log(err.response?.data);
+      }
+  }
+}
 export const DeleteUser=(id)=>{
     return async dispatch=>{
       dispatch({
@@ -106,7 +120,6 @@ export const DeleteUser=(id)=>{
            })
           console.log(result.data);
            dispatch({type:'DELETE_USER',id:id});
-        
            swal({
             title: 'Thanh cong',
             text: 'thành công là con thất bại',
