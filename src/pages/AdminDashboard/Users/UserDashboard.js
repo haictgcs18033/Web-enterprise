@@ -27,9 +27,9 @@ export default function UserDashboard(props) {
     () => dispatch(action.fetchUsers(limit, curPage)),
     [dispatch, curPage]
   );
-
+  const getFaculty = useCallback(() => dispatch(action.fetchFaculty(limit, curPage)), [dispatch, curPage])
   const users = useSelector((state) => state.webEnterpriseReducer.users);
-
+  const faculties = useSelector(state => state.webEnterpriseReducer.faculties);
   const totalItems = useSelector(
     (state) => state.webEnterpriseReducer.totalItems
   );
@@ -39,21 +39,23 @@ export default function UserDashboard(props) {
   const createUser = useSelector(
     (state) => state.webEnterpriseReducer.createUser
   );
-  const facultyType = useSelector(
-    (state) => state.webEnterpriseReducer.facultyType
-  );
+  // const facultyType = useSelector(
+  //   (state) => state.webEnterpriseReducer.facultyType
+  // );
 
   const userType = useSelector((state) => state.webEnterpriseReducer.userType);
   let { fullName, email } = createUser.values;
-  let { facultyId, facultyId1, facultyId2 } = facultyType;
+  // let { facultyId, facultyId1, facultyId2 } = facultyType;
   let { admin, marketingCordinator, marketingManager, student } = userType;
   const [userDelete, setUserDelete] = useState({ id: 0, fullName: '' })
   useEffect(() => {
     getUserList();
   }, [getUserList, curPage]);
-
+  useEffect(() => {
+    getFaculty();
+  }, [getFaculty])
   const pageNumber = [];
-
+console.log(faculties);
   if (users) {
     for (let i = 1; i <= Math.ceil(totalItems / limit); i++) {
       pageNumber.push(i);
@@ -211,6 +213,7 @@ export default function UserDashboard(props) {
     if (name === 'facultyId') {
       newValues[name] = parseInt(value);
     }
+    console.log(newValues);
     dispatch(action.handleInput(newValues));
   };
   let handleSubmit = (e) => {
@@ -290,10 +293,10 @@ export default function UserDashboard(props) {
                       </div>
                       <div className='form-group'>
                         <label>Faculty</label>
-                        <select name='facultyId' onChange={handleChangeInput}>
-                          <option value={facultyId}>One</option>
-                          <option value={facultyId1}>Two</option>
-                          <option value={facultyId2}>Three</option>
+                        <select name='facultyId' onChange={handleChangeInput} >
+                          {faculties.map((faculty, index) => {
+                            return <option key={index} value={faculty.id}>{faculty.name}</option>
+                          })}
                         </select>
                       </div>
                     </div>
@@ -323,10 +326,10 @@ export default function UserDashboard(props) {
                 <img className='search-icon' src={SearchIcon} alt='123' />
               </div>
               <div className='col-3'>
-                <select className='role-select' name='role' id=''>
-                  <option value='1'>One</option>
-                  <option value='2'>Two</option>
-                  <option value='3'>Three</option>
+                <select name='id' onChange={handleChangeInput}>
+                  {faculties.map((faculty, index) => {
+                    return <option key={index} value={faculty.id}>{faculty.name}</option>
+                  })}
                 </select>
               </div>
             </div>
