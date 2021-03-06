@@ -82,7 +82,7 @@ export default function AdminLogin(props) {
                             <div className="col-6">
                                 <button >SIGN IN</button>
                             </div>
-                            <div className="col-6 text-right ">
+                            <div className="col-6 text-center permission-container ">
                                 <NavLink to="/" className="permission"> Does not have permission ?</NavLink>
                             </div>
                         </div>

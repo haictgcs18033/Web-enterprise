@@ -79,7 +79,7 @@
 // Homepage
 // Background
 .background {
-  background-image: url('../assets/img/backgroundImg.jpg');
+  background-image: url("../assets/img/backgroundImg.jpg");
   height: 696px; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
@@ -125,7 +125,7 @@
   display: inline-block;
   position: relative;
   &::after {
-    content: '';
+    content: "";
     position: absolute;
 
     background-color: #32b260;
@@ -218,7 +218,7 @@
   display: inline-block;
   position: relative;
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     background-color: #32b260;
     width: 100% !important;
@@ -661,37 +661,48 @@ ul {
   }
 }
 // Admin Login
-.admin-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding:60px;
+.admin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
 }
 .admin-form {
-    max-width: 410px;
-    // margin: 60px 460px;
-    background: #ffffff;
-    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+  width: 420px;
+  // margin: 60px 460px;
+  background: #ffffff;
+  box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  color: #6c5dd3;
+  button{
+    width: 128px;
+    height: 35px;
     border-radius: 6px;
+    background: #6c5dd3;
+    border:1px solid #6c5dd3;
     color: white;
-    border: none;
+    transition: all 0.5s;
     &:hover {
-      border: 1px solid #6c5dd3;
+      color:#6c5dd3;
       background: white;
-      color: #6c5dd3;
       cursor: pointer;
-      transition: all 0.5s;
     }
   }
-  .permission {
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.5);
-    &:hover {
-      text-decoration: none;
-      color: #6c5dd3;
-      transition: all 0.5s;
-    }
+ 
+}
+.permission-container{
+  line-height: 30px;
+}
+.permission {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  transition: all 0.5s;
+  &:hover {
+    text-decoration: none;
+    color: #6c5dd3;
+    transition: all 0.5s;
   }
+}
 
 //Not found
 .title-span {
@@ -920,7 +931,7 @@ ul {
     color: #808191;
     display: block;
     font-weight: 600;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-style: normal;
     size: 14px;
     line-height: 20px;
@@ -963,7 +974,7 @@ ul {
   padding: 1.5rem;
   .user-name {
     margin: 0;
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -996,44 +1007,25 @@ ul {
   }
 }
 .user-form {
-    background-color: #fff;
-    max-width: 70.3125rem;
-    margin-top: 15px;
-    border-radius: 24px;
-    padding: 20px 24px;
-    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
-    input {
-        margin-top: 26px;
-        width: 100%;
-        background: #e4e4e473;
-        border-radius: 16px;
-        position: relative;
-        font-family: "Open Sans", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-        font-size: 14px;
-        padding: 18px 56px;
-        &::placeholder {
-            color: #808191;
-        }
-    }
-    .search-icon {
-        position: absolute;
-        left: 3.5%;
-        top: 54%;
-    }
-    .role-select {
-        margin-top: 26px;
-        width: 100%;
-        background: #e4e4e4;
-        opacity: 0.3;
-        border-radius: 16px;
-        padding: 18px 0 18px 22.53px;
-        color: #808191;
-        font-size: 14px;
-        font-family: "Open Sans", sans-serif;
-        font-weight: 600;
-        font-style: normal;
+  background-color: #fff;
+  max-width: 70.3125rem;
+  margin-top: 15px;
+  border-radius: 24px;
+  padding: 20px 24px;
+  box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+  input {
+    margin-top: 26px;
+    width: 100%;
+    background: #e4e4e473;
+    border-radius: 16px;
+    position: relative;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    padding: 18px 56px;
+    &::placeholder {
+      color: #808191;
     }
   }
   .search-icon {
@@ -1050,10 +1042,29 @@ ul {
     padding: 18px 0 18px 22.53px;
     color: #808191;
     font-size: 14px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: 600;
     font-style: normal;
   }
+}
+.search-icon {
+  position: absolute;
+  left: 3.5%;
+  top: 54%;
+}
+.role-select {
+  margin-top: 26px;
+  width: 100%;
+  background: #e4e4e4;
+  opacity: 0.3;
+  border-radius: 16px;
+  padding: 18px 0 18px 22.53px;
+  color: #808191;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
 
 // modal-create
 .modal-dialog {
@@ -1061,16 +1072,16 @@ ul {
   max-width: 720px;
 }
 .modal-header {
-    border-bottom: none;
-    padding: 1.5rem;
-    .modal-title {
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 40px;
-        line-height: 32px;
-        color: #111142;
-    }
+  border-bottom: none;
+  padding: 1.5rem;
+  .modal-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 32px;
+    color: #111142;
+  }
 }
 
 .modal-content {
@@ -1107,7 +1118,7 @@ ul {
   padding: 1rem 1.5rem 1.5rem 1.5rem;
   border-top: none;
   .btn {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
