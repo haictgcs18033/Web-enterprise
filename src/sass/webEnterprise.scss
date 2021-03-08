@@ -579,18 +579,20 @@ ul {
     margin-top: 7.72px;
 }
 // Forget password page
-.container-forget {
-    width: 900px;
-    margin: 50px 224px 111px;
-
+.forgotpassword-container {
+    max-width: 707px;
+    margin: 79px auto;
+    .forgotpassword-grid {
+        display: inline-grid;
+        grid-template-columns: auto auto;
+    }
     h3 {
         font-size: 24px;
         font-family: Roboto;
     }
-    .form-group {
-        margin-left: 1.2rem;
-        height: 376px;
-        width: 590px;
+    .forgotpassword-form {
+        width: 377px;
+        padding: 43.28px 23.71px 57px 23.71px;
         box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
         border-radius: 0px 6px 6px 0px;
         font-family: Roboto;
@@ -611,25 +613,9 @@ ul {
         }
     }
 }
-@media screen and (max-width: 1024px) {
-    .container-forget {
-        margin: 50px 95px 111px;
-        .form-group {
-            width: 500px;
-        }
-    }
-}
 @media screen and (max-width: 768px) {
-    .container-forget {
-        width: 500px;
-        margin: 50px 204px 111px;
-        .image {
-            display: none;
-        }
-        .form-group {
-            width: 360px;
-            margin-left: 0;
-        }
+    .forgotpassword-img {
+        display: none;
     }
 }
 @media screen and (min-width: 375px) and (max-width: 414px) {
@@ -891,9 +877,9 @@ ul {
     .changepassword-img {
         display: none;
     }
-    .changepassword-form {
-        margin-left: 10rem;
-    }
+    // .changepassword-form {
+    //     margin-left: 10rem;
+    // }
 }
 @media screen and (min-width: 376px) and (max-width: 414px) {
     .wrapper {

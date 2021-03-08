@@ -169,10 +169,10 @@ export default function UserDashboard(props) {
                                                                 <option value={admin}>Admin</option>
                                                                 <option value={marketingCordinator}>
                                                                     Marketing Coordinator
-                          </option>
+                                                                </option>
                                                                 <option value={marketingManager}>
                                                                     Marketing Manager
-                          </option>
+                                                                </option>
                                                                 <option value={student}>Student</option>
                                                             </select>
                                                         </div>
