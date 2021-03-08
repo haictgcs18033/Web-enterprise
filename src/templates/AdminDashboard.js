@@ -11,11 +11,14 @@ export const AdminDashboard = props => {
             return (
                 <div className="container-fluid admin-dashboard">
                     <Sidebar></Sidebar>
-                    <div className="user-info">
-                        <p className="user-name" >Hello {userLogin.user.fullName}</p>
-                        <img className="user-avt" src={UserAvt} alt="123"></img>
+                    <div className="container-fluid user-info-wrap">
+                        <div className="user-info-tableWrap">
+                            <div className="user-info">
+                                <p className="user-name" >Hello {userLogin.user.fullName}</p>
+                                <img className="user-avt" src={UserAvt} alt="123"></img>
+                            </div>
+                        </div>
                     </div>
-
                     <Route path={path} exact render={(propsRoute) => {
                         return <Component {...propsRoute}></Component>
                     }}></Route>

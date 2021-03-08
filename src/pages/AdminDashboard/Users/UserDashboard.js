@@ -204,10 +204,8 @@ export default function UserDashboard(props) {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </td>
-
                     </tr>
                 );
             });
@@ -243,7 +241,7 @@ export default function UserDashboard(props) {
                         data-toggle='modal'
                         data-target='#exampleModal'>
                         Create
-          </button>
+                    </button>
                     <form
                         class='modal fade'
                         id='exampleModal'
@@ -338,8 +336,8 @@ export default function UserDashboard(props) {
                             <div className='col-3'>
                                 <select name='id' onChange={handleChangeInput}>
                                     {/* {faculties.map((faculty, index) => {
-                    return <option key={index} value={faculty.id}>{faculty.name}</option>
-                  })} */}
+                                    return <option key={index} value={faculty.id}>{faculty.name}</option>
+                                    })} */}
                                 </select>
                             </div>
                         </div>
