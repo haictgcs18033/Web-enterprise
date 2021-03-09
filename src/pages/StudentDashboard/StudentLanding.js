@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function AdminUser() {
+export default function StudentLanding() {
     return (
         <div>
-            Hello
+            Hello 123
         </div>
     )
 }

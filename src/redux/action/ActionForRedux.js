@@ -14,13 +14,13 @@ export const handleInput = (newValues) => {
   };
 };
 
-export const loginAction = (user, props) => {
+export const loginAction = (admin, props) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
         url: 'https://greenplus-dev.herokuapp.com/auth/login',
         method: 'POST',
-        data: user,
+        data: admin,
       });
       // if (result.user.role === 'ADMIN') {
       localStorage.setItem('ACCESS_TOKEN', result.data.access_token);
@@ -38,7 +38,6 @@ export const loginAction = (user, props) => {
     }
   };
 };
-
 export const fetchUsers = (limit, page) => {
   return async (dispatch) => {
     dispatch({
@@ -64,6 +63,23 @@ export const fetchUsers = (limit, page) => {
     }
   };
 };
+export const fetchFaculty=(limit, offset,query,sort)=>{ 
+  return async dispatch=>{
+    try{
+         let result= await Axios({
+           url:`https://greenplus-dev.herokuapp.com/faculty?offset=${offset-1}&limit=${limit}`,
+           method:'GET',
+           headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+         })
+         dispatch({
+           type:'GET_FACULTY',
+           payload:result.data
+          })
+    }catch(err){
+      console.log(err.response?.data);
+    }
+  }
+}
 export const handleCreateUser = (user) => {
   return async (dispatch) => {
     try {
@@ -95,30 +111,22 @@ export const handleCreateUser = (user) => {
     }
   };
 };
-<<<<<<< HEAD
-export const DeleteUser = (id) => {
-  return async (dispatch) => {
-    try {
-      let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/users/${id}`,
-        method: 'DELETE',
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
-        },
-      });
-      console.log(result.data);
-      dispatch({ type: 'DELETE_USER', id: id });
-      swal({
-        title: 'Thanh cong',
-        text: 'thành công là con thất bại',
-        icon: 'success',
-        button: 'OK',
-      });
-    } catch (err) {
-      console.log(err.response?.data);
-=======
+export const handleSendMail=(email)=>{
+  return async dispatch=>{
+      try{
+         let result=await Axios({
+           url:"https://greenplus-dev.herokuapp.com/auth/send-reset-password-mail",
+           method:'POST',
+           data:email
+         })
+         console.log(result.data);
+         console.log('Thanh cong');
+      }catch(err){
+          console.log(err.response?.data);
+      }
+  }
+}
 export const DeleteUser=(id)=>{
-
     return async dispatch=>{
       dispatch({
         type: 'GET_USERS_REQUEST',
@@ -131,7 +139,6 @@ export const DeleteUser=(id)=>{
            })
           console.log(result.data);
            dispatch({type:'DELETE_USER',id:id});
-        
            swal({
             title: 'Thanh cong',
             text: 'thành công là con thất bại',
@@ -141,7 +148,7 @@ export const DeleteUser=(id)=>{
         }catch(err){
             console.log(err.response?.data);
         }
->>>>>>> e8a8adb21ccf79ec5090f762447d3ca81ad22577
+
     }
   };
-};
+
