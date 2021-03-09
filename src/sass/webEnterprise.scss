@@ -1016,26 +1016,25 @@ ul {
     }
 }
 .user-form {
-    background-color: #fff;
-    max-width: 70.3125rem;
-    margin-top: 15px;
-    border-radius: 24px;
-    padding: 20px 24px;
-    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
-    input {
-        margin-top: 26px;
-        width: 100%;
-        background: #e4e4e473;
-        border-radius: 16px;
-        position: relative;
-        font-family: "Open Sans", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-        font-size: 14px;
-        padding: 18px 56px;
-        &::placeholder {
-            color: #808191;
-        }
+  background-color: #fff;
+  margin-top: 15px;
+  border-radius: 24px;
+  padding: 20px 24px;
+  box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+  input {
+    margin-top: 26px;
+    width: 100%;
+    background: #e4e4e4;
+    opacity: 0.3;
+    border-radius: 16px;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    padding: 18px 56px;
+    &::placeholder {
+      color: #808191;
     }
     .search-icon {
         position: absolute;
