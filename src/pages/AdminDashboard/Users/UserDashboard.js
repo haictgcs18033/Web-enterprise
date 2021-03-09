@@ -30,19 +30,18 @@ export default function UserDashboard(props) {
   const getFaculty = useCallback(() => dispatch(action.fetchFaculty(limit, curPage)), [dispatch, curPage])
   const users = useSelector((state) => state.webEnterpriseReducer.users);
   const faculties = useSelector(state => state.webEnterpriseReducer.faculties);
- 
+
   const totalItems = useSelector(
     (state) => state.webEnterpriseReducer.totalItems
   );
 
   const load = useSelector((state) => state.webEnterpriseReducer.load);
 
-  const createUser = useSelector(
-    (state) => state.webEnterpriseReducer.createUser
-  );
+  const createUser = useSelector((state) => state.webEnterpriseReducer.createUser);
   const userType = useSelector((state) => state.webEnterpriseReducer.userType);
   let { fullName, email } = createUser.values;
   let { admin, marketingCordinator, marketingManager, student } = userType;
+  const userUpdate=useSelector(state=>state.webEnterpriseReducer.userUpdate)
   const [userDelete, setUserDelete] = useState({ id: 0, fullName: '' })
   useEffect(() => {
     getUserList();
@@ -85,7 +84,14 @@ export default function UserDashboard(props) {
             <td>
               <div className={styles.listColumn}>
                 <div className={styles.edit}>
-                  <button type="button" className={`btn ${styles.button}`} data-toggle="modal" data-target="#exampleModalUpdate">
+                  <button type="button" className={`btn ${styles.button}`} 
+                  data-toggle="modal" data-target="#exampleModalUpdate"
+                  onClick={()=>{
+                    dispatch({
+                      type:'UPDATE_USER',
+                      userUpdate:user
+                    })
+                  }}>
                     <Edit />
                   </button>
                 </div>
@@ -104,7 +110,7 @@ export default function UserDashboard(props) {
                                 type='text'
                                 className='form-control'
                                 name='fullName'
-                                value={fullName}
+                                value={userUpdate.values.fullName}
                                 onChange={handleChangeInput}
                               />
                             </div>
@@ -116,7 +122,7 @@ export default function UserDashboard(props) {
                                 type='text'
                                 className='form-control'
                                 name='fullName'
-                                value={fullName}
+                                value={userUpdate.values.password}
                                 onChange={handleChangeInput}
                               />
                             </div>
@@ -131,7 +137,7 @@ export default function UserDashboard(props) {
                                 type='text'
                                 className='form-control'
                                 name='fullName'
-                                value={fullName}
+                                value={userUpdate.values.email}
                                 onChange={handleChangeInput}
                               />
                             </div>
@@ -140,16 +146,11 @@ export default function UserDashboard(props) {
                         <div className="row">
                           <div className="col-6">
                             <div className='form-group'>
-                              <label>Role</label>
-                              <select name='role' onChange={handleChangeInput}>
-                                <option value={admin}>Admin</option>
-                                <option value={marketingCordinator}>
-                                  Marketing Coordinator
-                          </option>
-                                <option value={marketingManager}>
-                                  Marketing Manager
-                          </option>
-                                <option value={student}>Student</option>
+                              <label>Faculty</label>
+                              <select name='facultyId' onChange={handleChangeInput} defaultValue={userUpdate.values.facultyName}>
+                              {faculties.map((faculty,index)=>{
+                                return <option values={faculty.id}>{faculty.name}</option>
+                              })}
                               </select>
                             </div>
                           </div>
@@ -206,7 +207,7 @@ export default function UserDashboard(props) {
     if (name === 'facultyId') {
       newValues[name] = parseInt(value);
     }
-  
+
     dispatch(action.handleInput(newValues));
   };
   let handleSubmit = (e) => {
