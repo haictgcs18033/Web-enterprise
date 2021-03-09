@@ -16,7 +16,25 @@ import { switchRole } from './helper/role';
 
 import SearchIcon from '../../../assets/img/search-icon.png';
 
+import { useForm } from 'react-hook-form';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import * as  yup from 'yup';
+
 export default function UserDashboard(props) {
+  let schema = yup.object().shape({
+    fullName: yup.string()
+      .required('Full name is required'),
+    email: yup.string()
+      .required('Email is required')
+      .email('Enter a valid email'),
+  })
+
+  const { register, handleSubmit, errors } = useForm({
+    mode: 'onBlur',
+    resolver: yupResolver(schema),
+  });
   const dispatch = useDispatch();
 
   const [curPage, setCurPage] = useState(1);
@@ -35,13 +53,15 @@ export default function UserDashboard(props) {
     (state) => state.webEnterpriseReducer.totalItems
   );
 
-  const load = useSelector((state) => state.webEnterpriseReducer.load);
+  const totalItems = useSelector(
+    (state) => state.webEnterpriseReducer.totalItems
+  );
 
   const createUser = useSelector((state) => state.webEnterpriseReducer.createUser);
   const userType = useSelector((state) => state.webEnterpriseReducer.userType);
   let { fullName, email } = createUser.values;
   let { admin, marketingCordinator, marketingManager, student } = userType;
-  const userUpdate=useSelector(state=>state.webEnterpriseReducer.userUpdate)
+  const userUpdate = useSelector(state => state.webEnterpriseReducer.userUpdate)
   const [userDelete, setUserDelete] = useState({ id: 0, fullName: '' })
   useEffect(() => {
     getUserList();
@@ -84,14 +104,14 @@ export default function UserDashboard(props) {
             <td>
               <div className={styles.listColumn}>
                 <div className={styles.edit}>
-                  <button type="button" className={`btn ${styles.button}`} 
-                  data-toggle="modal" data-target="#exampleModalUpdate"
-                  onClick={()=>{
-                    dispatch({
-                      type:'UPDATE_USER',
-                      userUpdate:user
-                    })
-                  }}>
+                  <button type="button" className={`btn ${styles.button}`}
+                    data-toggle="modal" data-target="#exampleModalUpdate"
+                    onClick={() => {
+                      dispatch({
+                        type: 'UPDATE_USER',
+                        userUpdate: user
+                      })
+                    }}>
                     <Edit />
                   </button>
                 </div>
@@ -148,9 +168,9 @@ export default function UserDashboard(props) {
                             <div className='form-group'>
                               <label>Faculty</label>
                               <select name='facultyId' onChange={handleChangeInput} defaultValue={userUpdate.values.facultyName}>
-                              {faculties.map((faculty,index)=>{
-                                return <option values={faculty.id}>{faculty.name}</option>
-                              })}
+                                {faculties.map((faculty, index) => {
+                                  return <option values={faculty.id}>{faculty.name}</option>
+                                })}
                               </select>
                             </div>
                           </div>
@@ -194,158 +214,168 @@ export default function UserDashboard(props) {
 
               </div>
             </td>
-
           </tr>
-        );
+        )
       });
-    }
-  };
-  let handleChangeInput = (e) => {
-    let { name, value } = e.target;
-    let newValues = { ...createUser.values };
-    newValues[name] = value;
-    if (name === 'facultyId') {
-      newValues[name] = parseInt(value);
-    }
-
-    dispatch(action.handleInput(newValues));
-  };
-  let handleSubmit = (e) => {
-    e.preventDefault();
-    let user = { ...createUser.values };
-    dispatch(action.handleCreateUser(user));
-    dispatch(action.handleSendMail(user.email))
-  };
-  let deleteUser = (id) => {
-    dispatch(action.DeleteUser(id))
+    };
   }
+    let handleChangeInput=(e)=>{
+      let { name, value } = e.target;
+        let newValues = { ...createUser.values };
+        newValues[name] = value;
+        if (name === 'facultyId') {
+            newValues[name] = parseInt(value);
+        }
+        dispatch(action.handleInput(newValues));
+    }
+    let onSubmit = (user) => {
+      user = { ...createUser.values };
+      dispatch(action.handleCreateUser(user));
+      dispatch(action.handleSendMail(user.email))
+    };
+    let deleteUser = (id) => {
+      dispatch(action.DeleteUser(id))
+    }
+    let handleSubmit = (e) => {
+      e.preventDefault();
+      let user = { ...createUser.values };
+      dispatch(action.handleCreateUser(user));
+      dispatch(action.handleSendMail(user.email))
+    };
+    let deleteUser = (id) => {
+      dispatch(action.DeleteUser(id))
+    }
 
-  return (
-    <div className={`container-fluid ${styles.wrapper}`}>
-      <div className={clsx(styles.tableWrap, load && styles.load)}>
-        <div className='d-flex justify-content-between'>
-          <h3 className={styles.userTitle}>Users</h3>
-          <button
-            type='button'
-            className={styles.createBtn}
-            data-toggle='modal'
-            data-target='#exampleModal'>
-            Create
-          </button>
-          <form
-            class='modal fade'
-            id='exampleModal'
-            tabindex='-1'
-            role='dialog'
-            aria-labelledby='exampleModalLabel'
-            aria-hidden='true'
-            onSubmit={handleSubmit}>
-            <div class='modal-dialog' role='document'>
-              <div class='modal-content'>
-                <div class='modal-header'>
-                  <h5 class='modal-title' id='exampleModalLabel'>
-                    Create User
-                  </h5>
-                </div>
-                <div class='modal-body'>
-                  <div className='row'>
-                    <div className='col-6'>
-                      <div className='form-group'>
-                        <label>Full name</label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          name='fullName'
-                          value={fullName}
-                          onChange={handleChangeInput}
-                        />
+    return (
+      <div className={`container-fluid ${styles.wrapper}`}>
+        <div className={clsx(styles.tableWrap, load && styles.load)}>
+          <div className='d-flex justify-content-between'>
+            <h3 className={styles.userTitle}>Users</h3>
+            <button
+              type='button'
+              className={styles.createBtn}
+              data-toggle='modal'
+              data-target='#exampleModal'>
+              Create
+                    </button>
+            <form
+              class='modal fade'
+              id='exampleModal'
+              tabindex='-1'
+              role='dialog'
+              aria-labelledby='exampleModalLabel'
+              aria-hidden='true'
+              onSubmit={handleSubmit(onSubmit)}>
+              <div class='modal-dialog' role='document'>
+                <div class='modal-content'>
+                  <div class='modal-header'>
+                    <h5 class='modal-title' id='exampleModalLabel'>
+                      Create User
+                                    </h5>
+                  </div>
+                  <div class='modal-body'>
+                    <div className='row'>
+                      <div className='col-6'>
+                        <div className='form-group'>
+                          <label>Full name</label>
+                          <input
+                            type='text'
+                            className='form-control'
+                            name='fullName'
+                            value={fullName}
+                            onChange={handleChangeInput}
+                            ref={register}
+                          />
+                          <p className='err-message'>{errors.fullName?.message}</p>
+                        </div>
+                        <div className='form-group'>
+                          <label>Role</label>
+                          <select name='role' onChange={handleChangeInput}>
+                            <option value={admin}>Admin</option>
+                            <option value={marketingCordinator}>
+                              Marketing Coordinator
+                                                    </option>
+                            <option value={marketingManager}>
+                              Marketing Manager
+                                                    </option>
+                            <option value={student}>Student</option>
+                          </select>
+                        </div>
                       </div>
-                      <div className='form-group'>
-                        <label>Role</label>
-                        <select name='role' onChange={handleChangeInput}>
-                          <option value={admin}>Admin</option>
-                          <option value={marketingCordinator}>
-                            Marketing Coordinator
-                          </option>
-                          <option value={marketingManager}>
-                            Marketing Manager
-                          </option>
-                          <option value={student}>Student</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className='col-6'>
-                      <div className='form-group'>
-                        <label>Email</label>
-                        <input
-                          type='text'
-                          className='form-control'
-                          name='email'
-                          value={email}
-                          onChange={handleChangeInput}
-                        />
-                      </div>
-                      <div className='form-group'>
-                        <label>Faculty</label>
-                        <select name='facultyId' onChange={handleChangeInput} >
-                          {faculties.map((faculty, index) => {
-                            return <option key={index} value={faculty.id}>{faculty.name}</option>
-                          })}
-                        </select>
+                      <div className='col-6'>
+                        <div className='form-group'>
+                          <label>Email</label>
+                          <input
+                            type='text'
+                            className='form-control'
+                            name='email'
+                            value={email}
+                            onChange={handleChangeInput}
+                            ref={register}
+                          />
+                          <p className='err-message'>{errors.email?.message}</p>
+                        </div>
+                        <div className='form-group'>
+                          <label>Faculty</label>
+                          <select name='facultyId' onChange={handleChangeInput} >
+                            {faculties.map((faculty, index) => {
+                              return <option key={index} value={faculty.id}>{faculty.name}</option>
+                            })}
+                          </select>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class='modal-footer'>
-                  <button
-                    type='button'
-                    class='btn btn__cancel'
-                    data-dismiss='modal'>
-                    Cancel
+                  <div class='modal-footer'>
+                    <button
+                      type='button'
+                      class='btn btn__cancel'
+                      data-dismiss='modal'>
+                      Cancel
                   </button>
-                  <button type='submit' class='btn btn__create'>
-                    Create
+                    <button type='submit' class='btn btn__create'>
+                      Create
                   </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </form>
-        </div>
-
-        <div className={'user-form'}>
-          <div className='search-role'>
-            <div className='row'>
-              <div className='col-9'>
-                <input type='text' name='' placeholder='Search tao di' />
-                <img className='search-icon' src={SearchIcon} alt='123' />
-              </div>
-              <div className='col-3'>
-                <select name='id' onChange={handleChangeInput}>
-                  {/* {faculties.map((faculty, index) => {
-                    return <option key={index} value={faculty.id}>{faculty.name}</option>
-                  })} */}
-                </select>
-              </div>
-            </div>
+            </form>
           </div>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th className={styles.head}>
-                  <p>Name</p>
-                </th>
-                <th className={styles.head}>
-                  <p>Role</p>
-                </th>
-                <th></th>
 
-              </tr>
-            </thead>
-            <tbody className={styles.body}>{renderUsers()}</tbody>
-          </table>
-          <div className={styles.pages}>{renderPages()}</div>
+          <div className={'user-form'}>
+            <div className='search-role'>
+              <div className='row'>
+                <div className='col-9'>
+                  <input type='text' name='' placeholder='Search tao di' />
+                  <img className='search-icon' src={SearchIcon} alt='123' />
+                </div>
+                <div className='col-3'>
+                  <select name='id' onChange={handleChangeInput}>
+                    {/* {faculties.map((faculty, index) => {
+                                    return <option key={index} value={faculty.id}>{faculty.name}</option>
+                                    })} */}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th className={styles.head}>
+                    <p>Name</p>
+                  </th>
+                  <th className={styles.head}>
+                    <p>Role</p>
+                  </th>
+                  <th></th>
+
+                </tr>
+              </thead>
+              <tbody className={styles.body}>{renderUsers()}</tbody>
+            </table>
+            <div className={styles.pages}>{renderPages()}</div>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
