@@ -522,6 +522,19 @@ ul {
         color: rgba(0, 0, 0, 0.5);
     }
 }
+.login-action {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.forget-password {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    margin-top: 15px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
 @media screen and (max-width: 1024px) {
     .w-100 {
         .login-img {
@@ -552,6 +565,7 @@ ul {
         }
     }
 }
+
 @media screen and (max-width: 375px) {
     .login-form {
         .forget-password {
@@ -559,6 +573,7 @@ ul {
         }
     }
 }
+
 .err-message {
     color: #be0e62;
     font-family: Roboto;
@@ -612,6 +627,7 @@ h3 {
         }
     }
 }
+
 @media screen and (max-width: 768px) {
     .forgetpassword-img {
         display: none;
@@ -621,18 +637,29 @@ h3 {
         border-radius: 6px;
     }
 }
+
 @media screen and (min-width: 375px) and (max-width: 414px) {
     .forget-form {
         width: 360px;
         border-radius: 6px;
     }
+    .form-group {
+        width: 385px;
+        margin-left: 0;
+    }
 }
+
 @media screen and (max-width: 375px) {
     .forget-form {
         width: 360px;
         border-radius: 6px;
     }
+    .form-group {
+        width: 340px;
+        margin-left: 0;
+    }
 }
+
 // Admin Login
 .admin-container {
     display: flex;
@@ -681,7 +708,7 @@ h3 {
 }
 .user-info-tableWrap {
     opacity: 1;
-    max-width: 77rem;
+    max-width: 73rem;
     margin-left: 19rem;
 }
 //Not found
@@ -922,7 +949,6 @@ h3 {
     justify-content: flex-end;
     margin-bottom: 26px;
     padding: 1.5rem 0 1.5rem 1.5rem;
-    margin-right: 5%;
     .user-name {
         margin: 0;
         font-family: "Open Sans";
