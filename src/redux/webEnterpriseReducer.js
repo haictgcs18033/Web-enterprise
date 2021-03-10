@@ -13,8 +13,20 @@ const stateDefault = {
             email: '',
             role: 'ADMIN',
             facultyId: '',
+           
         },
     },
+    userUpdate:{
+        values:{
+            fullName:'',
+            email:'',
+            facultyId: '',
+            password:'',
+            facultyName:'',
+            isBlocked:false
+        }
+    },
+  
     userNameDelete: {
         name: ''
     },
@@ -64,6 +76,12 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
             userDelete = userDelete.filter(user => user.id !== action.id);
             state.users = userDelete;
             return { ...state ,load:false}
+        }
+        case 'UPDATE_USER':{
+            let newInfo={...state.userUpdate};
+            newInfo.values={...action.userUpdate}
+            console.log(newInfo.values)
+            return {...state,userUpdate:newInfo}
         }
         default: {
             return { ...state };

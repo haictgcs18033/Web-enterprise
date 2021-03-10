@@ -1013,7 +1013,6 @@ ul {
 }
 .user-form {
     background-color: #fff;
-    max-width: 70.3125rem;
     margin-top: 15px;
     border-radius: 24px;
     padding: 20px 24px;
@@ -1021,7 +1020,8 @@ ul {
     input {
         margin-top: 26px;
         width: 100%;
-        background: #e4e4e473;
+        background: #e4e4e4;
+        opacity: 0.3;
         border-radius: 16px;
         position: relative;
         font-family: "Open Sans", sans-serif;
@@ -1032,11 +1032,11 @@ ul {
         &::placeholder {
             color: #808191;
         }
-    }
-    .search-icon {
-        position: absolute;
-        left: 3.5%;
-        top: 54%;
+        .search-icon {
+            position: absolute;
+            left: 3.5%;
+            top: 54%;
+        }
     }
     .role-select {
         margin-top: 26px;
