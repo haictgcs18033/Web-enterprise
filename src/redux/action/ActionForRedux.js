@@ -3,12 +3,16 @@
 import Axios from 'axios';
 import swal from 'sweetalert';
 export const handleInput = (newValues) => {
+  console.log(newValues);
   return {
     type: 'INPUT',
     user: {
       values: newValues,
     },
     createUser: {
+      values: newValues,
+    },
+    userUpdate: {
       values: newValues,
     },
   };
@@ -63,23 +67,27 @@ export const fetchUsers = (limit, page) => {
     }
   };
 };
-export const fetchFaculty=(limit, offset,query,sort)=>{ 
-  return async dispatch=>{
-    try{
-         let result= await Axios({
-           url:`https://greenplus-dev.herokuapp.com/faculty?offset=${offset-1}&limit=${limit}`,
-           method:'GET',
-           headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
-         })
-         dispatch({
-           type:'GET_FACULTY',
-           payload:result.data
-          })
-    }catch(err){
+export const fetchFaculty = (limit, offset, query, sort) => {
+  return async (dispatch) => {
+    try {
+      let result = await Axios({
+        url: `https://greenplus-dev.herokuapp.com/faculty?offset=${
+          offset - 1
+        }&limit=${limit}`,
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+        },
+      });
+      dispatch({
+        type: 'GET_FACULTY',
+        payload: result.data,
+      });
+    } catch (err) {
       console.log(err.response?.data);
     }
-  }
-}
+  };
+};
 export const handleCreateUser = (user) => {
   return async (dispatch) => {
     try {
@@ -111,44 +119,72 @@ export const handleCreateUser = (user) => {
     }
   };
 };
-export const handleSendMail=(email)=>{
-  return async dispatch=>{
-      try{
-         let result=await Axios({
-           url:"https://greenplus-dev.herokuapp.com/auth/send-reset-password-mail",
-           method:'POST',
-           data:email
-         })
-         console.log(result.data);
-         console.log('Thanh cong');
-      }catch(err){
-          console.log(err.response?.data);
-      }
-  }
-}
-export const DeleteUser=(id)=>{
-    return async dispatch=>{
-      dispatch({
-        type: 'GET_USERS_REQUEST',
+export const handleSendMail = (email) => {
+  return async (dispatch) => {
+    try {
+      let result = await Axios({
+        url:
+          'https://greenplus-dev.herokuapp.com/auth/send-reset-password-mail',
+        method: 'POST',
+        data: email,
       });
-        try{
-           let result = await Axios({
-               url:`https://greenplus-dev.herokuapp.com/users/${id}`,
-               method:'DELETE',
-               headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
-           })
-          console.log(result.data);
-           dispatch({type:'DELETE_USER',id:id});
-           swal({
-            title: 'Thanh cong',
-            text: 'thành công là con thất bại',
-            icon: 'success',
-            button: 'OK',
-          });
-        }catch(err){
-            console.log(err.response?.data);
-        }
-
+      console.log(result.data);
+      console.log('Thanh cong');
+    } catch (err) {
+      console.log(err.response?.data);
     }
   };
+};
+export const DeleteUser = (id) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'GET_USERS_REQUEST',
+    });
+    try {
+      let result = await Axios({
+        url: `https://greenplus-dev.herokuapp.com/users/${id}`,
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+        },
+      });
+      console.log(result.data);
+      dispatch({ type: 'DELETE_USER', id: id });
+      swal({
+        title: 'Thanh cong',
+        text: 'thành công là con thất bại',
+        icon: 'success',
+        button: 'OK',
+      });
+    } catch (err) {
+      console.log(err.response?.data);
+    }
+  };
+};
 
+export const UpdateUser = (id, user) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'GET_USERS_REQUEST',
+    });
+    try {
+      let result = await Axios({
+        url: `https://greenplus-dev.herokuapp.com/users/${id}`,
+        method: 'PUT',
+        data: user,
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+        },
+      });
+      dispatch({ type: 'UPDATE_USER', payload: result.data });
+      swal({
+        title: 'Thanh cong',
+        text: 'thành công là con thất bại',
+        icon: 'success',
+        button: 'OK',
+      });
+    } catch (err) {
+      console.log(err.response?.data);
+    }
+  };
+};
