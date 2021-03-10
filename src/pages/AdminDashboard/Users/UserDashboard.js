@@ -55,6 +55,7 @@ export default function UserDashboard(props) {
 
     const createUser = useSelector((state) => state.webEnterpriseReducer.createUser);
     const userType = useSelector((state) => state.webEnterpriseReducer.userType);
+    const load = useSelector((state) => state.webEnterpriseReducer.load);
     let { fullName, email } = createUser.values;
     let { admin, marketingCordinator, marketingManager, student } = userType;
     const userUpdate = useSelector(state => state.webEnterpriseReducer.userUpdate)
@@ -355,7 +356,6 @@ export default function UserDashboard(props) {
                                     <p>Role</p>
                                 </th>
                                 <th></th>
-
                             </tr>
                         </thead>
                         <tbody className={styles.body}>{renderUsers()}</tbody>
