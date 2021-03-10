@@ -93,9 +93,9 @@ export default function UserDashboard(props) {
     let { name, value } = e.target;
     let newValues = { ...createUser.values };
     newValues[name] = value;
-    // if (name === 'facultyId') {
-    //   newValues[name] = parseInt(value);
-    // }
+    if (name === 'facultyId') {
+      newValues[name] = parseInt(value);
+    }
     dispatch(action.handleInput(newValues));
     setUserObj({ ...userObj, [name]: value });
   };
@@ -251,7 +251,7 @@ export default function UserDashboard(props) {
                               fullName: userObj.fullName,
                               email: userObj.email,
                               password: userObj.password,
-                              // facultyId: userObj.facultyId,
+                              facultyId: userObj.facultyId,
                               isBlocked: false,
                             })
                           }
