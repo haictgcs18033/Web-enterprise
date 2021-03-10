@@ -251,7 +251,7 @@ export default function UserDashboard(props) {
                               fullName: userObj.fullName,
                               email: userObj.email,
                               password: userObj.password,
-                              facultyId: userObj.facultyId,
+                              facultyId: parseInt(userObj.facultyId),
                               isBlocked: false,
                             })
                           }
