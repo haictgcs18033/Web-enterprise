@@ -167,7 +167,7 @@ export default function UserDashboard(props) {
                                                     className='modal-title'
                                                     id='exampleModalLabel update'>
                                                     Update User
-                        </h5>
+                                                </h5>
                                             </div>
                                             <div className='modal-body'>
                                                 <div className='row'>
@@ -216,7 +216,7 @@ export default function UserDashboard(props) {
                                                         <div className='col-6'>
                                                             <div className='form-group'>
                                                                 <label>Faculty</label>
-                                                                <select
+                                                                <select className='form-control'
                                                                     name='facultyId'
                                                                     value={userObj.facultyId}
                                                                     onChange={handleChangeInput}>
@@ -238,13 +238,13 @@ export default function UserDashboard(props) {
                                                     type='button'
                                                     className={`btn ${styles.modalDisable}`}>
                                                     Disable
-                        </button>
+                                                </button>
                                                 <button
                                                     type='button'
                                                     className={`btn btn__cancel`}
                                                     data-dismiss='modal'>
                                                     Close
-                        </button>
+                                                </button>
                                                 <button
                                                     onClick={() =>
                                                         editUser(userObj.id, {
@@ -259,7 +259,7 @@ export default function UserDashboard(props) {
                                                     className={`btn btn__create`}
                                                     data-dismiss='modal'>
                                                     Save changes
-                        </button>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -292,7 +292,7 @@ export default function UserDashboard(props) {
                                             <div className='modal-header'>
                                                 <h5 className='modal-title' id='exampleModalLabel'>
                                                     Delete User
-                        </h5>
+                                                </h5>
                                             </div>
                                             <div className='modal-body'>
                                                 <p>
@@ -310,7 +310,7 @@ export default function UserDashboard(props) {
                                                     className={`btn ${styles.modalDeleteClose}`}
                                                     data-dismiss='modal'>
                                                     Close
-                        </button>
+                                                </button>
                                                 <button
                                                     type='button'
                                                     className={`btn ${styles.modalDelete}`}
@@ -319,7 +319,7 @@ export default function UserDashboard(props) {
                                                         deleteUser(userDelete.id);
                                                     }}>
                                                     Save changes
-                        </button>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -343,7 +343,7 @@ export default function UserDashboard(props) {
                         data-toggle='modal'
                         data-target='#exampleModal'>
                         Create
-          </button>
+                    </button>
                     <form
                         className='modal fade'
                         id='exampleModal'
@@ -357,7 +357,7 @@ export default function UserDashboard(props) {
                                 <div className='modal-header'>
                                     <h5 className='modal-title' id='exampleModalLabel'>
                                         Create User
-                  </h5>
+                                    </h5>
                                 </div>
                                 <div className='modal-body'>
                                     <div className='row'>
@@ -382,10 +382,10 @@ export default function UserDashboard(props) {
                                                     <option value={admin}>Admin</option>
                                                     <option value={marketingCordinator}>
                                                         Marketing Coordinator
-                          </option>
+                                                    </option>
                                                     <option value={marketingManager}>
                                                         Marketing Manager
-                          </option>
+                                                    </option>
                                                     <option value={student}>Student</option>
                                                 </select>
                                             </div>
@@ -425,13 +425,13 @@ export default function UserDashboard(props) {
                                         className='btn btn__cancel'
                                         data-dismiss='modal'>
                                         Cancel
-                  </button>
+                                    </button>
                                     <button
                                         data-dismiss='modal'
                                         type='submit'
                                         className='btn btn__create'>
                                         Create
-                  </button>
+                                    </button>
                                 </div>
                             </div>
                         </div>
