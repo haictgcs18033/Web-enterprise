@@ -458,7 +458,10 @@ export default function UserDashboard(props) {
               <div className='col-9'>
                 <input
                   type='text'
-                  onChange={(e) => setKeyword(e.target.value)}
+                  onChange={(e) => {
+                    setKeyword(e.target.value);
+                    setCurPage(1);
+                  }}
                   placeholder='Search'
                 />
                 <img className='search-icon' src={SearchIcon} alt='search' />
@@ -467,7 +470,10 @@ export default function UserDashboard(props) {
                 <select
                   className='role-select'
                   name='id'
-                  onChange={(e) => setFaculty(e.target.value)}>
+                  onChange={(e) => {
+                    setFaculty(e.target.value);
+                    setCurPage(1);
+                  }}>
                   <option value=''>All faculties</option>
                   {faculties.map((faculty, index) => {
                     return (
