@@ -3,7 +3,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { handleInput, loginAction } from '../redux/action/ActionForRedux'
+import { handleInput, loginHomePageAction } from '../redux/action/ActionForRedux'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as  yup from 'yup';
@@ -36,7 +36,7 @@ export default function LoginPage(props) {
 
     const onSubmit = (data) => {
         data = { ...user.values }
-        dispatch(loginAction(data, props))
+        dispatch(loginHomePageAction(data, props))
     };
 
     return (

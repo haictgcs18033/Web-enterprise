@@ -26,11 +26,20 @@ export default function UserDashboard(props) {
     const [userObj, setUserObj] = useState({});
 
     let schema = yup.object().shape({
-        fullName: yup.string().required('Full name is required'),
+        fullName: yup
+            .string()
+            .required('Full name is required'),
         email: yup
             .string()
             .required('Email is required')
             .email('Enter a valid email'),
+        password: yup
+            .string()
+            .required('Password is required')
+            .matches(
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/,
+                'Password must have at least 8 characters, 1 uppercase character, 1 number'
+            ),
     });
 
     const { register, handleSubmit, errors } = useForm({
@@ -180,7 +189,11 @@ export default function UserDashboard(props) {
                                                                 name='fullName'
                                                                 value={userObj.fullName}
                                                                 onChange={handleChangeInput}
+                                                                ref={register}
                                                             />
+                                                            <p className='err-message'>
+                                                                {errors.fullName?.message}
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div className='col-6'>
@@ -189,9 +202,15 @@ export default function UserDashboard(props) {
                                                             <input
                                                                 type='text'
                                                                 className='form-control'
-                                                                name='fullName'
+                                                                name='password'
+                                                                value={userObj.password}
                                                                 onChange={handleChangeInput}
+                                                                ref={register}
                                                             />
+                                                            <p className='err-message'>
+                                                                {errors.password?.message}
+                                                            </p>
+                                                            <p></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -216,7 +235,7 @@ export default function UserDashboard(props) {
                                                         <div className='col-6'>
                                                             <div className='form-group'>
                                                                 <label>Faculty</label>
-                                                                <select className='form-control'
+                                                                <select
                                                                     name='facultyId'
                                                                     value={userObj.facultyId}
                                                                     onChange={handleChangeInput}>
@@ -446,7 +465,7 @@ export default function UserDashboard(props) {
                                 <img className='search-icon' src={SearchIcon} alt='123' />
                             </div>
                             <div className='col-3'>
-                                <select name='id' onChange={handleChangeInput}>
+                                <select className='role-select' name='id' onChange={handleChangeInput}>
                                     {faculties.map((faculty, index) => {
                                         return (
                                             <option key={index} value={faculty.id}>

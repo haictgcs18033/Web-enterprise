@@ -5,7 +5,9 @@ import notifyIcon from '../assets/img/notifyIcon.png'
 import trendingIcon from '../assets/img/trending-icon.png'
 import Trending from '../Components/Trending'
 
-export default function HomePage() {
+
+export default function HomePage(props) {
+
     return (
         <div>
             <Background></Background>
