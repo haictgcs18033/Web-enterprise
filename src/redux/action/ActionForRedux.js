@@ -75,7 +75,7 @@ export const fetchUsers = (limit, page, keyword, faculty) => {
         `https://greenplus-dev.herokuapp.com/users?offset=${
           (page - 1) * limit
         }&limit=${limit}${keyword !== '' ? `&query=${keyword}` : ''}${
-          faculty !== '' ? `&facultyId=${faculty}` : ''
+          faculty !== '' ? `&role=${faculty}` : ''
         }`,
         {
           headers: {
