@@ -214,3 +214,19 @@
   transform: translateY(-20%);
   box-shadow: 0 10px 6px -6px black;
 }
+
+/* Style for faculty */
+.setClosureBtn{
+  margin-right: 10px;
+  background-color:white ;
+  border: 1px solid #6c5dd3;
+  color: #6c5dd3;
+  padding: 14px 37px;
+  border-radius: 12px;
+ 
+  cursor: pointer;
+  font-family: Inter;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 14px;
+}

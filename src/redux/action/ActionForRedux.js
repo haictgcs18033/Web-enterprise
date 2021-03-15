@@ -94,6 +94,9 @@ export const fetchUsers = (limit, page, keyword, faculty) => {
 };
 export const fetchFaculty = (limit, offset, query, sort) => {
   return async (dispatch) => {
+    dispatch({
+      type: 'GET_USERS_REQUEST',
+    })
     try {
       let result = await Axios({
         url: `https://greenplus-dev.herokuapp.com/faculty?offset=${

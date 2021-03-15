@@ -62,7 +62,12 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
         }
         case 'GET_FACULTY': {
             state.createUser.values.facultyId = action.payload.results[0].id;
-            return { ...state, faculties: action.payload.results };
+            return {
+                ...state,
+                faculties: action.payload.results,
+                totalItems: action.payload.total,
+                load: false
+            };
         }
         case 'CREATE_USER': {
             if (state.users.length <= 6) {

@@ -59,8 +59,8 @@ export default function UserDashboard(props) {
     [dispatch, curPage, keyword, faculty]
   );
 
-  const getFaculty = useCallback(() => dispatch(action.fetchFaculty(9999, 1)), [
-    dispatch,
+  const getFaculty = useCallback(() => dispatch(action.fetchFaculty(limit, curPage)), [
+    dispatch,curPage
   ]);
 
   const editUser = (id, user) => dispatch(action.UpdateUser(id, user));
