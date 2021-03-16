@@ -138,6 +138,7 @@ export default function UserDashboard(props) {
   };
 
   const renderUsers = () => {
+    let userLogin = JSON.parse(localStorage.getItem('USER_LOGIN'));
     if (users.length > 0) {
       return users.map((user) => {
         return (
@@ -151,16 +152,20 @@ export default function UserDashboard(props) {
             </td>
             <td>
               <div className={styles.listColumn}>
-                <div className={styles.edit}>
-                  <button
-                    type='button'
-                    className={`btn ${styles.button}`}
-                    data-toggle='modal'
-                    data-target='#exampleModalUpdate'
-                    onClick={() => setUserObj(user)}>
-                    <Edit />
-                  </button>
-                </div>
+                {user.role !== 'ADMIN' ||
+                (user.role === 'ADMIN' &&
+                  userLogin.user.email === user.email) ? (
+                  <div className={styles.edit}>
+                    <button
+                      type='button'
+                      className={`btn ${styles.button}`}
+                      data-toggle='modal'
+                      data-target='#exampleModalUpdate'
+                      onClick={() => setUserObj(user)}>
+                      <Edit />
+                    </button>
+                  </div>
+                ) : null}
                 <div
                   className='modal fade'
                   id='exampleModalUpdate'
@@ -215,20 +220,6 @@ export default function UserDashboard(props) {
                             </div>
                           </div>
                         </div>
-                        <div className='row'>
-                          <div className='col-12'>
-                            <div className='form-group'>
-                              <label>Email</label>
-                              <input
-                                type='text'
-                                className='form-control'
-                                name='email'
-                                value={userObj.email}
-                                onChange={handleChangeInput}
-                              />
-                            </div>
-                          </div>
-                        </div>
 
                         {userObj.role === 'MARKETING_MANAGER' ||
                         userObj.role === 'ADMIN' ? null : (
@@ -264,7 +255,6 @@ export default function UserDashboard(props) {
                           onClick={() =>
                             editUser(userObj.id, {
                               fullName: userObj.fullName,
-                              email: userObj.email,
                               password: userObj.password,
                               facultyId: parseInt(userObj.facultyId),
                               isBlocked: false,
@@ -473,14 +463,13 @@ export default function UserDashboard(props) {
                     setFaculty(e.target.value);
                     setCurPage(1);
                   }}>
-                  <option value=''>All faculties</option>
-                  {faculties.map((faculty, index) => {
-                    return (
-                      <option key={index} value={faculty.id}>
-                        {faculty.name}
-                      </option>
-                    );
-                  })}
+                  <option value=''>All Roles</option>
+                  <option value='ADMIN'>Admin</option>
+                  <option value='MARKETING_MANAGER'>Marketing Manager</option>
+                  <option value='MARKETING_CORDINATOR'>
+                    Marketing Coordinator
+                  </option>
+                  <option value='STUDENT'>Student</option>
                 </select>
               </div>
             </div>

@@ -72,8 +72,10 @@ export const fetchUsers = (limit, page, keyword, faculty) => {
     });
     try {
       let result = await Axios.get(
-        `https://greenplus-dev.herokuapp.com/users?offset=${(page - 1) * limit
-        }&limit=${limit}${keyword !== '' ? `&query=${keyword}` : ''}${faculty !== '' ? `&facultyId=${faculty}` : ''
+        `https://greenplus-dev.herokuapp.com/users?offset=${
+          (page - 1) * limit
+        }&limit=${limit}${keyword !== '' ? `&query=${keyword}` : ''}${
+          faculty !== '' ? `&role=${faculty}` : ''
         }`,
         {
           headers: {
