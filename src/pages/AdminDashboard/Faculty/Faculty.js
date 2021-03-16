@@ -7,6 +7,9 @@ import SearchIcon from '../../../assets/img/search-icon.png';
 import SettingIcon from '../../../assets/img/Vector.png'
 import moment from 'moment'
 import styles from '../Users/user.module.css'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { NavLink } from 'react-router-dom';
 export default function Faculty() {
     const faculties = useSelector(state => state.webEnterpriseReducer.faculties)
     const load = useSelector((state) => state.webEnterpriseReducer.load);
@@ -14,6 +17,8 @@ export default function Faculty() {
         (state) => state.webEnterpriseReducer.totalItems
     );
     const [curPage, setCurPage] = useState(1);
+    let [closureDate,setClosureDate]=useState(new Date())
+    let [finalClosure,setFinalClosure]=useState(new Date())
     const limit = 6;
     let dispatch = useDispatch()
     const getFacultyList = useCallback(() => dispatch(action.fetchFaculty(limit, curPage)),
@@ -40,7 +45,9 @@ export default function Faculty() {
                             <p className={styles.email}>Create at {moment(faculty.createAt).format('LT')}-{moment(faculty.createAt).format('L')}</p>
                         </td>
                         <td>
-                            <img className="setting-icon" src={SettingIcon} alt="setting"/>
+                            <NavLink to={`/admin/dashboard/faculty/setting/${faculty.id}`}className="btn">
+                               <img className="setting-icon" src={SettingIcon} alt="setting"/>
+                            </NavLink>
                         </td>
                     </tr>
                 )
@@ -72,7 +79,7 @@ export default function Faculty() {
                         type='button'
                         className={styles.setClosureBtn}
                         data-toggle='modal'
-                        data-target='#exampleModal'>
+                        data-target='#closureDate'>
                        Set closure date
                     </button>
                     <button
@@ -128,6 +135,64 @@ export default function Faculty() {
                                         className='btn btn__create'>
                                         Create
                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form
+                        className='modal fade'
+                        id='closureDate'
+                        tabIndex='-1'
+                        role='dialog'
+                        aria-labelledby='exampleModalLabel'
+                        aria-hidden='true'
+                    >
+                        <div className='modal-dialog' role='document'>
+                            <div className='modal-content'>
+                                <div className='modal-header'>
+                                    <h5 className='modal-title' id='exampleModalLabel'>
+                                   Set closure date
+                                    </h5>
+                                </div>
+                                <div className='modal-body'>
+                                    <div className='row'>
+                                        <div className='col-6'>
+                                            <div className='form-group'>
+                                                <label>Closure date</label>
+                                                <DatePicker  selected={closureDate} onChange={date => setClosureDate(date)} />
+                                                <i class="fa fa-calendar"></i>
+                                                <p className='err-message'>
+                                                    {/* {errors.fullName?.message} */}
+                                                </p>
+                                            </div>                                        
+                                        </div>
+                                        <div className='col-6'>
+                                            <div className='form-group'>
+                                                <label>Final closure date</label>
+                                                <DatePicker selected={finalClosure} onChange={date => setFinalClosure(date)} />
+                                                <i class="fa fa-calendar"></i>
+                                               
+                                               
+                                                <p className='err-message'>
+                                                    {/* {errors.fullName?.message} */}
+                                                </p>
+                                            </div>                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='modal-footer'>
+                                    <button
+                                        type='button'
+                                        className='btn btn__cancel'
+                                        data-dismiss='modal'>
+                                        Cancel
+                                   </button>
+                                    <button
+                                        data-dismiss='modal'
+                                        type='submit'
+                                        className='btn btn__create'>
+                                        Create
+                                    </button>
                                 </div>
                             </div>
                         </div>

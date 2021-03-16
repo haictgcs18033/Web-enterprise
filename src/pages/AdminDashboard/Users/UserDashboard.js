@@ -441,7 +441,6 @@ export default function UserDashboard(props) {
                     Cancel
                   </button>
                   <button
-                    data-dismiss='modal'
                     type='submit'
                     className='btn btn__create'>
                     Create

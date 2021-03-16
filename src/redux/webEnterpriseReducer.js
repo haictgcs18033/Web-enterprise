@@ -37,6 +37,7 @@ const stateDefault = {
         student: 'STUDENT',
     },
     faculties: [],
+    facultySetting:{},
     totalItems: 0,
     users: [],
     load: false,
@@ -68,6 +69,9 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
                 totalItems: action.payload.total,
                 load: false
             };
+        }
+        case 'GET_FACULTY_ID':{
+            return{...state,facultySetting:action.faculty,load:false}
         }
         case 'CREATE_USER': {
             if (state.users.length <= 6) {
