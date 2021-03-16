@@ -100,6 +100,8 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
                 load: false,
             };
         }
-
+        default: {
+            return { ...state };
+        }
     }
 };
