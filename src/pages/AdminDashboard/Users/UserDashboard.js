@@ -16,12 +16,6 @@ import { switchRole } from './helper/role';
 
 import SearchIcon from '../../../assets/img/search-icon.png';
 
-import { useForm } from 'react-hook-form';
-
-import { yupResolver } from '@hookform/resolvers/yup';
-
-import * as yup from 'yup';
-
 export default function UserDashboard(props) {
   const [userObj, setUserObj] = useState({});
 
@@ -29,25 +23,6 @@ export default function UserDashboard(props) {
 
   const [faculty, setFaculty] = useState('');
 
-  let schema = yup.object().shape({
-    fullName: yup.string().required('Full name is required'),
-    email: yup
-      .string()
-      .required('Email is required')
-      .email('Enter a valid email'),
-    password: yup
-      .string()
-      .required('Password is required')
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/,
-        'Password must have at least 8 characters, 1 uppercase character, 1 number'
-      ),
-  });
-
-  const { register, handleSubmit, errors } = useForm({
-    mode: 'onBlur',
-    resolver: yupResolver(schema),
-  });
   const dispatch = useDispatch();
 
   const [curPage, setCurPage] = useState(1);
@@ -115,7 +90,7 @@ export default function UserDashboard(props) {
     dispatch(action.DeleteUser(id));
   };
 
-  let onSubmit = () => {
+  const onSubmit = () => {
     let user = { ...createUser.values };
     dispatch(action.handleCreateUser(user));
     dispatch(action.handleSendMail(user.email));
@@ -195,11 +170,7 @@ export default function UserDashboard(props) {
                                 name='fullName'
                                 value={userObj.fullName}
                                 onChange={handleChangeInput}
-                                ref={register}
                               />
-                              <p className='err-message'>
-                                {errors.fullName?.message}
-                              </p>
                             </div>
                           </div>
                           <div className='col-6'>
@@ -211,11 +182,7 @@ export default function UserDashboard(props) {
                                 name='password'
                                 value={userObj.password}
                                 onChange={handleChangeInput}
-                                ref={register}
                               />
-                              <p className='err-message'>
-                                {errors.password?.message}
-                              </p>
                               <p></p>
                             </div>
                           </div>
@@ -257,7 +224,6 @@ export default function UserDashboard(props) {
                               fullName: userObj.fullName,
                               password: userObj.password,
                               facultyId: parseInt(userObj.facultyId),
-                              isBlocked: false,
                             })
                           }
                           type='button'
@@ -323,7 +289,7 @@ export default function UserDashboard(props) {
                           onClick={() => {
                             deleteUser(userDelete.id);
                           }}>
-                          Save changes
+                          Confirm
                         </button>
                       </div>
                     </div>
@@ -355,8 +321,7 @@ export default function UserDashboard(props) {
             tabIndex='-1'
             role='dialog'
             aria-labelledby='exampleModalLabel'
-            aria-hidden='true'
-            onSubmit={handleSubmit(onSubmit)}>
+            aria-hidden='true'>
             <div className='modal-dialog' role='document'>
               <div className='modal-content'>
                 <div className='modal-header'>
@@ -375,11 +340,7 @@ export default function UserDashboard(props) {
                           name='fullName'
                           value={fullName}
                           onChange={handleChangeInput}
-                          ref={register}
                         />
-                        <p className='err-message'>
-                          {errors.fullName?.message}
-                        </p>
                       </div>
                       <div className='form-group'>
                         <label>Role</label>
@@ -404,9 +365,7 @@ export default function UserDashboard(props) {
                           name='email'
                           value={email}
                           onChange={handleChangeInput}
-                          ref={register}
                         />
-                        <p className='err-message'>{errors.email?.message}</p>
                       </div>
                       <div className='form-group'>
                         <label>Faculty</label>
@@ -424,15 +383,12 @@ export default function UserDashboard(props) {
                   </div>
                 </div>
                 <div className='modal-footer'>
-                  <button
-                    type='button'
-                    className='btn btn__cancel'
-                    data-dismiss='modal'>
+                  <button className='btn btn__cancel' data-dismiss='modal'>
                     Cancel
                   </button>
                   <button
+                    onClick={onSubmit}
                     data-dismiss='modal'
-                    type='submit'
                     className='btn btn__create'>
                     Create
                   </button>

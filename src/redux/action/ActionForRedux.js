@@ -37,7 +37,7 @@ export const loginAction = (admin, props) => {
       props.history.push('/admin/dashboard/users');
       // }
     } catch (err) {
-      console.log(err.response?.data);
+      return err.response.data.message;
     }
   };
 };
@@ -61,7 +61,7 @@ export const loginHomePageAction = (admin, props) => {
       props.history.push('/');
       // }
     } catch (err) {
-      console.log(err.response?.data);
+      return err.response.data.message;
     }
   };
 };
@@ -88,7 +88,7 @@ export const fetchUsers = (limit, page, keyword, faculty) => {
         payload: result.data,
       });
     } catch (err) {
-      console.log(err.response?.data);
+      return err.response.data.message;
     }
   };
 };
@@ -109,12 +109,15 @@ export const fetchFaculty = (limit, offset, query, sort) => {
         payload: result.data,
       });
     } catch (err) {
-      console.log(err.response?.data);
+      return err.response.data.message;
     }
   };
 };
 export const handleCreateUser = (user) => {
   return async (dispatch) => {
+    dispatch({
+      type: 'GET_USERS_REQUEST',
+    });
     try {
       let result = await Axios({
         url: 'https://greenplus-dev.herokuapp.com/users',
@@ -129,15 +132,20 @@ export const handleCreateUser = (user) => {
         payload: result.data,
       });
       swal({
-        title: 'Thanh cong',
-        text: 'thành công là con thất bại',
+        title: 'Success',
+        text: `${user.fullName} is created`,
         icon: 'success',
         button: 'OK',
       });
     } catch (err) {
+      dispatch({
+        type: 'USER_ERROR',
+      });
       swal({
-        title: 'That bai',
-        text: 'Thất bại là mẹ thành công',
+        title: 'Error',
+        text: Array.isArray(err.response.data.message)
+          ? err.response.data.message[0]
+          : err.response.data.message,
         icon: 'warning',
         button: 'OK',
       });
@@ -147,16 +155,14 @@ export const handleCreateUser = (user) => {
 export const handleSendMail = (email) => {
   return async (dispatch) => {
     try {
-      let result = await Axios({
+      await Axios({
         url:
           'https://greenplus-dev.herokuapp.com/auth/send-reset-password-mail',
         method: 'POST',
         data: email,
       });
-      console.log(result.data);
-      console.log('Thanh cong');
     } catch (err) {
-      console.log(err.response?.data);
+      return err;
     }
   };
 };
@@ -166,23 +172,30 @@ export const DeleteUser = (id) => {
       type: 'GET_USERS_REQUEST',
     });
     try {
-      let result = await Axios({
+      await Axios({
         url: `https://greenplus-dev.herokuapp.com/users/${id}`,
         method: 'DELETE',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
         },
       });
-      console.log(result.data);
       dispatch({ type: 'DELETE_USER', id: id });
       swal({
-        title: 'Thanh cong',
-        text: 'thành công là con thất bại',
+        title: 'Success',
+        text: 'User removed',
         icon: 'success',
         button: 'OK',
       });
     } catch (err) {
-      console.log(err.response?.data);
+      dispatch({
+        type: 'USER_ERROR',
+      });
+      swal({
+        title: 'Error',
+        text: err.response.data.message,
+        icon: 'error',
+        button: 'OK',
+      });
     }
   };
 };
@@ -203,13 +216,23 @@ export const UpdateUser = (id, user) => {
       });
       dispatch({ type: 'UPDATE_USER', payload: result.data });
       swal({
-        title: 'Thanh cong',
-        text: 'thành công là con thất bại',
+        title: 'Success',
+        text: 'Update successfully',
         icon: 'success',
         button: 'OK',
       });
     } catch (err) {
-      console.log(err.response?.data);
+      dispatch({
+        type: 'USER_ERROR',
+      });
+      swal({
+        title: 'Error',
+        text: Array.isArray(err.response.data.message)
+          ? err.response.data.message[0]
+          : err.response.data.message,
+        icon: 'warning',
+        button: 'OK',
+      });
     }
   };
 };
