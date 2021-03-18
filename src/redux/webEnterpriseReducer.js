@@ -37,7 +37,9 @@ const stateDefault = {
     student: 'STUDENT',
   },
   faculties: [],
-  totalItems: 0,
+  facultySetting: {},
+  totalUsers: 0,
+  totalFaculties: 0,
   users: [],
   load: false,
 };
@@ -58,13 +60,21 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
       return {
         ...state,
         users: action.payload.results,
-        totalItems: action.payload.total,
+        totalUsers: action.payload.total,
         load: false,
       };
     }
     case 'GET_FACULTY': {
       state.createUser.values.facultyId = action.payload.results[0].id;
-      return { ...state, faculties: action.payload.results };
+      return {
+        ...state,
+        faculties: action.payload.results,
+        totalFaculties: action.payload.total,
+        load: false,
+      };
+    }
+    case 'GET_FACULTY_ID': {
+      return { ...state, facultySetting: action.faculty, load: false };
     }
     case 'CREATE_USER': {
       if (state.users.length <= 6) {

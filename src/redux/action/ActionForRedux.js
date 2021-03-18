@@ -41,13 +41,13 @@ export const loginAction = (admin, props) => {
     }
   };
 };
-export const loginHomePageAction = (admin, props) => {
+export const loginHomePageAction = (student, props) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
         url: 'https://greenplus-dev.herokuapp.com/auth/login',
         method: 'POST',
-        data: admin,
+        data: student,
       });
       // if (result.user.role === 'ADMIN') {
       localStorage.setItem('ACCESS_TOKEN', result.data.access_token);
@@ -58,7 +58,7 @@ export const loginHomePageAction = (admin, props) => {
         icon: 'success',
         button: 'OK',
       });
-      props.history.push('/');
+      props.history.push('/student/home');
       // }
     } catch (err) {
       return err.response.data.message;
@@ -94,6 +94,9 @@ export const fetchUsers = (limit, page, keyword, faculty) => {
 };
 export const fetchFaculty = (limit, offset, query, sort) => {
   return async (dispatch) => {
+    dispatch({
+      type: 'GET_USERS_REQUEST',
+    });
     try {
       let result = await Axios({
         url: `https://greenplus-dev.herokuapp.com/faculty?offset=${
@@ -110,6 +113,28 @@ export const fetchFaculty = (limit, offset, query, sort) => {
       });
     } catch (err) {
       return err.response.data.message;
+    }
+  };
+};
+export const fetchFacultyById = (id) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'GET_USERS_REQUEST',
+    });
+    try {
+      let result = await Axios({
+        url: `https://greenplus-dev.herokuapp.com/faculty/${id}`,
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+        },
+      });
+      dispatch({
+        type: 'GET_FACULTY_ID',
+        faculty: result.data,
+      });
+    } catch (err) {
+      console.log(err.response?.data);
     }
   };
 };
@@ -187,9 +212,9 @@ export const DeleteUser = (id) => {
         button: 'OK',
       });
     } catch (err) {
-      dispatch({
-        type: 'USER_ERROR',
-      });
+      if (err.response.data.error === 'Not Found') {
+        dispatch({ type: 'DELETE_USER', id: id });
+      }
       swal({
         title: 'Error',
         text: err.response.data.message,

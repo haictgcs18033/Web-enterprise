@@ -1103,3 +1103,27 @@ h3 {
         background-color: #6c5dd3;
     }
 }
+// Modal closure date
+.react-datepicker-wrapper{
+    display: block!important;
+    position: relative !important;
+    input{
+        background: none;
+        border:none;
+        border-bottom: 3px solid rgb(184, 182, 182);
+        padding :18px 0;
+        border-radius: unset;
+        &:focus{
+            outline:none;
+        }
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    
+}
+.fa-calendar{
+    position: absolute;
+    top:48%;
+    right:2rem;
+}

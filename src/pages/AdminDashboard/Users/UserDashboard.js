@@ -34,9 +34,10 @@ export default function UserDashboard(props) {
     [dispatch, curPage, keyword, faculty]
   );
 
-  const getFaculty = useCallback(() => dispatch(action.fetchFaculty(9999, 1)), [
-    dispatch,
-  ]);
+  const getFaculty = useCallback(
+    () => dispatch(action.fetchFaculty(limit, 1)),
+    [dispatch]
+  );
 
   const editUser = (id, user) => dispatch(action.UpdateUser(id, user));
 
@@ -48,8 +49,8 @@ export default function UserDashboard(props) {
     (state) => state.webEnterpriseReducer.faculties
   );
 
-  const totalItems = useSelector(
-    (state) => state.webEnterpriseReducer.totalItems
+  const totalUsers = useSelector(
+    (state) => state.webEnterpriseReducer.totalUsers
   );
 
   const createUser = useSelector(
@@ -70,7 +71,7 @@ export default function UserDashboard(props) {
   }, [getFaculty]);
   const pageNumber = [];
   if (users) {
-    for (let i = 1; i <= Math.ceil(totalItems / limit); i++) {
+    for (let i = 1; i <= Math.ceil(totalUsers / limit); i++) {
       pageNumber.push(i);
     }
   }
