@@ -1,4 +1,5 @@
 import Faculty from "./pages/AdminDashboard/Faculty/Faculty";
+import FacultySetting from "./pages/AdminDashboard/Faculty/FacultySetting";
 import UserDashboard from "./pages/AdminDashboard/Users/UserDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import ChangePassword from "./pages/ChangePassword";
@@ -39,17 +40,23 @@ export const admin = [
 ]
 export const adminDashboardRoute = [
     {
+        path:'/admin/dashboard/faculty/setting/:id',
+        component:FacultySetting
+     },
+    {
         path: '/admin/dashboard/users',
         component: UserDashboard
     },
+  
     {
         path: '/admin/dashboard/faculty',
         component: Faculty
-    }
+    },
+   
 ]
 export const studentDashboardRoute=[
     {
-        path:'student/home',
+        path:'/student/home',
         component:StudentLanding
     }
 ]

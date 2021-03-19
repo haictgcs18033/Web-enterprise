@@ -41,13 +41,13 @@ export const loginAction = (admin, props) => {
         }
     };
 };
-export const loginHomePageAction = (admin, props) => {
+export const loginHomePageAction = (student, props) => {
     return async (dispatch) => {
         try {
             let result = await Axios({
                 url: 'https://greenplus-dev.herokuapp.com/auth/login',
                 method: 'POST',
-                data: admin,
+                data: student,
             });
             // if (result.user.role === 'ADMIN') {
             localStorage.setItem('ACCESS_TOKEN', result.data.access_token);
@@ -58,14 +58,15 @@ export const loginHomePageAction = (admin, props) => {
                 icon: 'success',
                 button: 'OK',
             });
-            props.history.push('/');
+            props.history.push('/student/home');
             // }
         } catch (err) {
             console.log(err.response?.data);
         }
     };
 };
-export const fetchUsers = (limit, page) => {
+
+export const fetchUsers = (limit, page, keyword, faculty) => {
     return async (dispatch) => {
         dispatch({
             type: 'GET_USERS_REQUEST',
@@ -73,7 +74,8 @@ export const fetchUsers = (limit, page) => {
         try {
             let result = await Axios.get(
                 `https://greenplus-dev.herokuapp.com/users?offset=${(page - 1) * limit
-                }&limit=${limit}`,
+                }&limit=${limit}${keyword !== '' ? `&query=${keyword}` : ''}${faculty !== '' ? `&role=${faculty}` : ''
+                }`,
                 {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -91,6 +93,9 @@ export const fetchUsers = (limit, page) => {
 };
 export const fetchFaculty = (limit, offset, query, sort) => {
     return async (dispatch) => {
+        dispatch({
+            type: 'GET_USERS_REQUEST',
+        })
         try {
             let result = await Axios({
                 url: `https://greenplus-dev.herokuapp.com/faculty?offset=${offset - 1
@@ -109,6 +114,26 @@ export const fetchFaculty = (limit, offset, query, sort) => {
         }
     };
 };
+export const fetchFacultyById = (id) => {
+    return async dispatch => {
+        dispatch({
+            type: 'GET_USERS_REQUEST'
+        })
+        try {
+            let result = await Axios({
+                url: `https://greenplus-dev.herokuapp.com/faculty/${id}`,
+                method: 'GET',
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
+            })
+            dispatch({
+                type: 'GET_FACULTY_ID',
+                faculty: result.data
+            })
+        } catch (err) {
+            console.log(err.response?.data);
+        }
+    }
+}
 export const handleCreateUser = (user) => {
     return async (dispatch) => {
         try {
@@ -207,5 +232,5 @@ export const UpdateUser = (id, user) => {
         } catch (err) {
             console.log(err.response?.data);
         }
-    };
+    }
 };
