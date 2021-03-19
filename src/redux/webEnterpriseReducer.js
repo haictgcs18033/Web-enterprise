@@ -1,6 +1,9 @@
 /** @format */
 
 const stateDefault = {
+  // User Management
+  users: [],
+  totalUsers: 0,
   user: {
     values: {
       email: '',
@@ -26,7 +29,6 @@ const stateDefault = {
       isBlocked: false,
     },
   },
-
   userNameDelete: {
     name: '',
   },
@@ -36,20 +38,26 @@ const stateDefault = {
     marketingManager: 'MARKETING_MANAGER',
     student: 'STUDENT',
   },
+  // Faculty Management
   faculties: [],
   facultySetting: {},
-  totalUsers: 0,
   totalFaculties: 0,
-  users: [],
+  createFaculty:{
+    values:{
+      name:''
+    }
+  },
   load: false,
 };
 export const webEnterpriseReducer = (state = stateDefault, action) => {
   switch (action.type) {
+    // User
     case 'INPUT': {
       return {
         ...state,
         user: action.user,
         createUser: action.createUser,
+        createFaculty:action.createFaculty
       };
     }
     case 'GET_USERS_REQUEST':
@@ -63,18 +71,6 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
         totalUsers: action.payload.total,
         load: false,
       };
-    }
-    case 'GET_FACULTY': {
-      state.createUser.values.facultyId = action.payload.results[0].id;
-      return {
-        ...state,
-        faculties: action.payload.results,
-        totalFaculties: action.payload.total,
-        load: false,
-      };
-    }
-    case 'GET_FACULTY_ID': {
-      return { ...state, facultySetting: action.faculty, load: false };
     }
     case 'CREATE_USER': {
       if (state.users.length <= 6) {
@@ -112,6 +108,32 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
         load: false,
       };
     }
+    // Faculty
+    case 'GET_FACULTY': {
+      state.createUser.values.facultyId = action.payload.results[0].id;
+      return {
+        ...state,
+        faculties: action.payload.results,
+        totalFaculties: action.payload.total,
+        load: false,
+      };
+    }
+    case 'GET_FACULTY_ID': {
+      return { ...state, facultySetting: action.faculty, load: false };
+    }
+    case 'CREATE_FACULTY':{
+      if (state.faculties.length <= 6) {
+        state.faculties = [...state.faculties, action.faculty];
+        state.totalFaculties++;
+      } else {
+        state.totalFaculties++;
+      }
+      return {
+        ...state,
+        load: false,
+      };
+    }
+    
     default: {
       return { ...state };
     }

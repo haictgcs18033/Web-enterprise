@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 export const handleInput = (newValues) => {
   return {
     type: 'INPUT',
+    // User
     user: {
       values: newValues,
     },
@@ -14,6 +15,10 @@ export const handleInput = (newValues) => {
     userUpdate: {
       values: newValues,
     },
+    // Faculty
+    createFaculty: {
+      values: newValues
+    }
   };
 };
 
@@ -72,10 +77,8 @@ export const fetchUsers = (limit, page, keyword, faculty) => {
     });
     try {
       let result = await Axios.get(
-        `https://greenplus-dev.herokuapp.com/users?offset=${
-          (page - 1) * limit
-        }&limit=${limit}${keyword !== '' ? `&query=${keyword}` : ''}${
-          faculty !== '' ? `&role=${faculty}` : ''
+        `https://greenplus-dev.herokuapp.com/users?offset=${(page - 1) * limit
+        }&limit=${limit}${keyword !== '' ? `&query=${keyword}` : ''}${faculty !== '' ? `&role=${faculty}` : ''
         }`,
         {
           headers: {
@@ -89,52 +92,6 @@ export const fetchUsers = (limit, page, keyword, faculty) => {
       });
     } catch (err) {
       return err.response.data.message;
-    }
-  };
-};
-export const fetchFaculty = (limit, offset, query, sort) => {
-  return async (dispatch) => {
-    dispatch({
-      type: 'GET_USERS_REQUEST',
-    });
-    try {
-      let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/faculty?offset=${
-          offset - 1
-        }&limit=${limit}`,
-        method: 'GET',
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
-        },
-      });
-      dispatch({
-        type: 'GET_FACULTY',
-        payload: result.data,
-      });
-    } catch (err) {
-      return err.response.data.message;
-    }
-  };
-};
-export const fetchFacultyById = (id) => {
-  return async (dispatch) => {
-    dispatch({
-      type: 'GET_USERS_REQUEST',
-    });
-    try {
-      let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/faculty/${id}`,
-        method: 'GET',
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
-        },
-      });
-      dispatch({
-        type: 'GET_FACULTY_ID',
-        faculty: result.data,
-      });
-    } catch (err) {
-      console.log(err.response?.data);
     }
   };
 };
@@ -186,6 +143,7 @@ export const handleSendMail = (email) => {
         method: 'POST',
         data: email,
       });
+
     } catch (err) {
       return err;
     }
@@ -261,3 +219,77 @@ export const UpdateUser = (id, user) => {
     }
   };
 };
+export const fetchFaculty = (limit, offset, query, sort) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'GET_USERS_REQUEST',
+    });
+    try {
+      let result = await Axios({
+        url: `https://greenplus-dev.herokuapp.com/faculty?offset=${offset - 1
+          }&limit=${limit}`,
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+        },
+      });
+      dispatch({
+        type: 'GET_FACULTY',
+        payload: result.data,
+      });
+     
+    } catch (err) {
+      return err.response.data.message;
+    }
+  };
+};
+export const fetchFacultyById = (id) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'GET_USERS_REQUEST',
+    });
+    try {
+      let result = await Axios({
+        url: `https://greenplus-dev.herokuapp.com/faculty/${id}`,
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+        },
+      });
+      dispatch({
+        type: 'GET_FACULTY_ID',
+        faculty: result.data,
+      });
+    } catch (err) {
+      console.log(err.response?.data);
+    }
+  };
+};
+export const createFacultyAdmin = (faculty) => {
+  return async dispatch => {
+    dispatch({
+      type: 'GET_USERS_REQUEST',
+    });
+    try{
+      let result = await Axios({
+        url: 'https://greenplus-dev.herokuapp.com/faculty',
+        method: 'POST',
+        data: faculty,
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
+      })
+      dispatch({
+        type:'CREATE_FACULTY',
+        faculty:result.data
+      })
+      swal({
+        title: 'Success',
+        text: 'Update successfully',
+        icon: 'success',
+        button: 'OK',
+      });
+    }catch(err){
+      console.log(err.response?.data);
+    }
+  }
+}
+

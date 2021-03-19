@@ -12,6 +12,7 @@ import styles from '../Users/user.module.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { NavLink } from 'react-router-dom';
+
 export default function Faculty() {
   const faculties = useSelector(
     (state) => state.webEnterpriseReducer.faculties
@@ -20,6 +21,8 @@ export default function Faculty() {
   const totalFaculties = useSelector(
     (state) => state.webEnterpriseReducer.totalFaculties
   );
+  const createFaculty=useSelector(state=>state.webEnterpriseReducer.createFaculty)
+  let {name} = createFaculty.values
   const [curPage, setCurPage] = useState(1);
   let [closureDate, setClosureDate] = useState(new Date());
   let [finalClosure, setFinalClosure] = useState(new Date());
@@ -38,7 +41,7 @@ export default function Faculty() {
       pageNumber.push(i);
     }
   }
-  console.log(faculties);
+  
   let renderFaculties = () => {
     if (faculties.length > 0) {
       return faculties.map((faculty) => {
@@ -80,6 +83,18 @@ export default function Faculty() {
       );
     });
   };
+  let handleInputFaculty=(e)=>{
+        let {value,name}=e.target
+        let newValues={...createFaculty.values}
+        newValues[name]=value
+        console.log(newValues);
+        dispatch(action.handleInput(newValues)) 
+  }
+  let handleCreateFaculty=(e)=>{
+    e.preventDefault();
+    let faculty={...createFaculty.values}
+    dispatch(action.createFacultyAdmin(faculty))
+  }
   return (
     <div className={`container-fluid ${styles.wrapper}`}>
       <div className={clsx(styles.tableWrap, load && styles.load)}>
@@ -107,7 +122,8 @@ export default function Faculty() {
             tabIndex='-1'
             role='dialog'
             aria-labelledby='exampleModalLabel'
-            aria-hidden='true'>
+            aria-hidden='true'
+            onSubmit={handleCreateFaculty}>
             <div className='modal-dialog' role='document'>
               <div className='modal-content'>
                 <div className='modal-header'>
@@ -123,7 +139,9 @@ export default function Faculty() {
                         <input
                           type='text'
                           className='form-control'
-                          name='fullName'
+                          name='name'
+                          value={name}
+                          onChange={handleInputFaculty}
                         />
                         <p className='err-message'>
                           {/* {errors.fullName?.message} */}
@@ -140,7 +158,7 @@ export default function Faculty() {
                     Cancel
                   </button>
                   <button
-                    data-dismiss='modal'
+                 
                     type='submit'
                     className='btn btn__create'>
                     Create
@@ -202,7 +220,7 @@ export default function Faculty() {
                     Cancel
                   </button>
                   <button
-                    data-dismiss='modal'
+                   
                     type='submit'
                     className='btn btn__create'>
                     Create

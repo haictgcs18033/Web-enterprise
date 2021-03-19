@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 import StudentLanding from "./pages/StudentDashboard/StudentLanding";
+import UploadContribution from "./pages/StudentDashboard/UploadContribution";
 
 
 export const client = [
@@ -55,6 +56,10 @@ export const adminDashboardRoute = [
    
 ]
 export const studentDashboardRoute=[
+    {
+      path:'/student/upload-contribution',
+      component:UploadContribution
+    },
     {
         path:'/student/home',
         component:StudentLanding
