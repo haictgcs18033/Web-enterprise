@@ -1,34 +1,40 @@
+/** @format */
+
 import clsx from 'clsx';
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import * as action from '../../../redux/action/ActionForRedux'
+import { useDispatch, useSelector } from 'react-redux';
+import * as action from '../../../redux/action/ActionForRedux';
 import SearchIcon from '../../../assets/img/search-icon.png';
-import SettingIcon from '../../../assets/img/Vector.png'
-import moment from 'moment'
-import styles from '../Users/user.module.css'
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import SettingIcon from '../../../assets/img/Vector.png';
+import moment from 'moment';
+import styles from '../Users/user.module.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { NavLink } from 'react-router-dom';
 export default function Faculty() {
-    const faculties = useSelector(state => state.webEnterpriseReducer.faculties)
+    const faculties = useSelector(
+        (state) => state.webEnterpriseReducer.faculties
+    );
     const load = useSelector((state) => state.webEnterpriseReducer.load);
-    const totalItems = useSelector(
-        (state) => state.webEnterpriseReducer.totalItems
+    const totalFaculties = useSelector(
+        (state) => state.webEnterpriseReducer.totalFaculties
     );
     const [curPage, setCurPage] = useState(1);
-    let [closureDate, setClosureDate] = useState(new Date())
-    let [finalClosure, setFinalClosure] = useState(new Date())
+    let [closureDate, setClosureDate] = useState(new Date());
+    let [finalClosure, setFinalClosure] = useState(new Date());
     const limit = 6;
-    let dispatch = useDispatch()
-    const getFacultyList = useCallback(() => dispatch(action.fetchFaculty(limit, curPage)),
-        [dispatch, curPage])
+    let dispatch = useDispatch();
+    const getFacultyList = useCallback(
+        () => dispatch(action.fetchFaculty(limit, curPage)),
+        [dispatch, curPage]
+    );
     useEffect(() => {
-        getFacultyList()
-    }, [getFacultyList])
+        getFacultyList();
+    }, [getFacultyList]);
     const pageNumber = [];
     if (faculties) {
-        for (let i = 1; i <= Math.ceil(totalItems / limit); i++) {
+        for (let i = 1; i <= Math.ceil(totalFaculties / limit); i++) {
             pageNumber.push(i);
         }
     }
@@ -42,18 +48,23 @@ export default function Faculty() {
                             <p className={styles.username}>{faculty.name}</p>
                         </td>
                         <td className={styles.listColumn}>
-                            <p className={styles.email}>Create at {moment(faculty.createAt).format('LT')}-{moment(faculty.createAt).format('L')}</p>
+                            <p className={styles.email}>
+                                Create at {moment(faculty.createAt).format('LT')}-
+                                {moment(faculty.createAt).format('L')}
+                            </p>
                         </td>
                         <td>
-                            <NavLink to={`/admin/dashboard/faculty/setting/${faculty.id}`} className="btn">
-                                <img className="setting-icon" src={SettingIcon} alt="setting" />
+                            <NavLink
+                                to={`/admin/dashboard/faculty/setting/${faculty.id}`}
+                                className='btn'>
+                                <img className='setting-icon' src={SettingIcon} alt='setting' />
                             </NavLink>
                         </td>
                     </tr>
-                )
-            })
+                );
+            });
         }
-    }
+    };
     let renderPages = () => {
         return pageNumber.map((pageNumber, index) => {
             return (
@@ -68,27 +79,27 @@ export default function Faculty() {
                 </p>
             );
         });
-    }
+    };
     return (
         <div className={`container-fluid ${styles.wrapper}`}>
             <div className={clsx(styles.tableWrap, load && styles.load)}>
                 <div className='d-flex justify-content-between'>
                     <h3 className={styles.userTitle}>Faculties</h3>
-                    <div className="d-flex">
+                    <div className='d-flex'>
                         <button
                             type='button'
                             className={styles.setClosureBtn}
                             data-toggle='modal'
                             data-target='#closureDate'>
                             Set closure date
-                    </button>
+                        </button>
                         <button
                             type='button'
                             className={styles.createBtn}
                             data-toggle='modal'
                             data-target='#exampleModal'>
                             Create
-                    </button>
+                        </button>
                     </div>
                     <form
                         className='modal fade'
@@ -96,8 +107,7 @@ export default function Faculty() {
                         tabIndex='-1'
                         role='dialog'
                         aria-labelledby='exampleModalLabel'
-                        aria-hidden='true'
-                    >
+                        aria-hidden='true'>
                         <div className='modal-dialog' role='document'>
                             <div className='modal-content'>
                                 <div className='modal-header'>
@@ -128,13 +138,13 @@ export default function Faculty() {
                                         className='btn btn__cancel'
                                         data-dismiss='modal'>
                                         Cancel
-                    </button>
+                                    </button>
                                     <button
                                         data-dismiss='modal'
                                         type='submit'
                                         className='btn btn__create'>
                                         Create
-                    </button>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -145,8 +155,7 @@ export default function Faculty() {
                         tabIndex='-1'
                         role='dialog'
                         aria-labelledby='exampleModalLabel'
-                        aria-hidden='true'
-                    >
+                        aria-hidden='true'>
                         <div className='modal-dialog' role='document'>
                             <div className='modal-content'>
                                 <div className='modal-header'>
@@ -159,8 +168,11 @@ export default function Faculty() {
                                         <div className='col-6'>
                                             <div className='form-group'>
                                                 <label>Closure date</label>
-                                                <DatePicker selected={closureDate} onChange={date => setClosureDate(date)} />
-                                                <i className="fa fa-calendar"></i>
+                                                <DatePicker
+                                                    selected={closureDate}
+                                                    onChange={(date) => setClosureDate(date)}
+                                                />
+                                                <i class='fa fa-calendar'></i>
                                                 <p className='err-message'>
                                                     {/* {errors.fullName?.message} */}
                                                 </p>
@@ -169,9 +181,11 @@ export default function Faculty() {
                                         <div className='col-6'>
                                             <div className='form-group'>
                                                 <label>Final closure date</label>
-                                                <DatePicker selected={finalClosure} onChange={date => setFinalClosure(date)} />
-                                                <i class="fa fa-calendar"></i>
-
+                                                <DatePicker
+                                                    selected={finalClosure}
+                                                    onChange={(date) => setFinalClosure(date)}
+                                                />
+                                                <i class='fa fa-calendar'></i>
 
                                                 <p className='err-message'>
                                                     {/* {errors.fullName?.message} */}
@@ -186,7 +200,7 @@ export default function Faculty() {
                                         className='btn btn__cancel'
                                         data-dismiss='modal'>
                                         Cancel
-                                   </button>
+                                    </button>
                                     <button
                                         data-dismiss='modal'
                                         type='submit'
@@ -251,5 +265,5 @@ export default function Faculty() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

@@ -16,13 +16,8 @@ import { switchRole } from './helper/role';
 
 import SearchIcon from '../../../assets/img/search-icon.png';
 
-import { useForm } from 'react-hook-form';
-
-import { yupResolver } from '@hookform/resolvers/yup';
-
-import * as yup from 'yup';
-
 export default function UserDashboard(props) {
+<<<<<<< HEAD
     const [userObj, setUserObj] = useState({});
 
     const [keyword, setKeyword] = useState('');
@@ -47,6 +42,101 @@ export default function UserDashboard(props) {
     const { register, handleSubmit, errors } = useForm({
         mode: 'onBlur',
         resolver: yupResolver(schema),
+=======
+  const [userObj, setUserObj] = useState({});
+
+  const [keyword, setKeyword] = useState('');
+
+  const [faculty, setFaculty] = useState('');
+
+  const dispatch = useDispatch();
+
+  const [curPage, setCurPage] = useState(1);
+
+  const limit = 6;
+
+  const getUserList = useCallback(
+    () => dispatch(action.fetchUsers(limit, curPage, keyword, faculty)),
+    [dispatch, curPage, keyword, faculty]
+  );
+
+  const getFaculty = useCallback(
+    () => dispatch(action.fetchFaculty(limit, 1)),
+    [dispatch]
+  );
+
+  const editUser = (id, user) => dispatch(action.UpdateUser(id, user));
+
+  const users = useSelector((state) => state.webEnterpriseReducer.users);
+
+  const load = useSelector((state) => state.webEnterpriseReducer.load);
+
+  const faculties = useSelector(
+    (state) => state.webEnterpriseReducer.faculties
+  );
+
+  const totalUsers = useSelector(
+    (state) => state.webEnterpriseReducer.totalUsers
+  );
+
+  const createUser = useSelector(
+    (state) => state.webEnterpriseReducer.createUser
+  );
+  const userType = useSelector((state) => state.webEnterpriseReducer.userType);
+
+  let { fullName, email } = createUser.values;
+
+  let { admin, marketingCordinator, marketingManager, student } = userType;
+
+  const [userDelete, setUserDelete] = useState({ id: 0, fullName: '' });
+  useEffect(() => {
+    getUserList();
+  }, [getUserList, curPage]);
+  useEffect(() => {
+    getFaculty();
+  }, [getFaculty]);
+  const pageNumber = [];
+  if (users) {
+    for (let i = 1; i <= Math.ceil(totalUsers / limit); i++) {
+      pageNumber.push(i);
+    }
+  }
+
+  let handleChangeInput = (e) => {
+    let { name, value } = e.target;
+    let newValues = { ...createUser.values };
+    newValues[name] = value;
+    if (name === 'facultyId') {
+      newValues[name] = parseInt(value);
+    }
+    dispatch(action.handleInput(newValues));
+    setUserObj({ ...userObj, [name]: value });
+  };
+
+  let deleteUser = (id) => {
+    dispatch(action.DeleteUser(id));
+  };
+
+  const onSubmit = () => {
+    let user = { ...createUser.values };
+    dispatch(action.handleCreateUser(user));
+    dispatch(action.handleSendMail(user.email));
+  };
+
+  const renderPages = () => {
+    return pageNumber.map((pageNumber, index) => {
+      return (
+        <p
+          key={index}
+          onClick={() => setCurPage(pageNumber)}
+          className={clsx(
+            styles.page,
+            curPage === pageNumber && styles.current
+          )}>
+          {pageNumber}
+        </p>
+      );
+>>>>>>> bd8568c5f3ae9361347ae88b61891e3b9ba715eb
     });
     const dispatch = useDispatch();
 
@@ -369,6 +459,7 @@ export default function UserDashboard(props) {
                         data-target='#exampleModal'>
                         Create
                     </button>
+<<<<<<< HEAD
                     <form
                         className='modal fade'
                         id='exampleModal'
@@ -457,6 +548,55 @@ export default function UserDashboard(props) {
                                     </button>
                                 </div>
                             </div>
+=======
+                  </div>
+                ) : null}
+                <div
+                  className='modal fade'
+                  id='exampleModalUpdate'
+                  tabIndex={-1}
+                  role='dialog'
+                  aria-labelledby='exampleModalLabel'
+                  aria-hidden='true'>
+                  <div
+                    className={`modal-dialog ${styles.dialogUpdate}`}
+                    role='document'>
+                    <div className='modal-content'>
+                      <div className='modal-header'>
+                        <h5
+                          className='modal-title'
+                          id='exampleModalLabel update'>
+                          Update User
+                        </h5>
+                      </div>
+                      <div className='modal-body'>
+                        <div className='row'>
+                          <div className='col-6'>
+                            <div className='form-group'>
+                              <label>Full name</label>
+                              <input
+                                type='text'
+                                className='form-control'
+                                name='fullName'
+                                value={userObj.fullName}
+                                onChange={handleChangeInput}
+                              />
+                            </div>
+                          </div>
+                          <div className='col-6'>
+                            <div className='form-group'>
+                              <label>Password</label>
+                              <input
+                                type='text'
+                                className='form-control'
+                                name='password'
+                                value={userObj.password}
+                                onChange={handleChangeInput}
+                              />
+                              <p></p>
+                            </div>
+                          </div>
+>>>>>>> bd8568c5f3ae9361347ae88b61891e3b9ba715eb
                         </div>
                     </form>
                 </div>
@@ -492,6 +632,7 @@ export default function UserDashboard(props) {
                                     <option value='STUDENT'>Student</option>
                                 </select>
                             </div>
+<<<<<<< HEAD
                         </div>
                     </div>
                     <table className={styles.table}>
@@ -509,6 +650,192 @@ export default function UserDashboard(props) {
                         <tbody className={styles.body}>{renderUsers()}</tbody>
                     </table>
                     <div className={styles.pages}>{renderPages()}</div>
+=======
+                          </div>
+                        )}
+                      </div>
+                      <div className='modal-footer'>
+                        <button
+                          type='button'
+                          className={`btn btn__cancel`}
+                          data-dismiss='modal'>
+                          Close
+                        </button>
+                        <button
+                          onClick={() =>
+                            editUser(userObj.id, {
+                              fullName: userObj.fullName,
+                              password: userObj.password,
+                              facultyId: parseInt(userObj.facultyId),
+                            })
+                          }
+                          type='button'
+                          className={`btn btn__create`}
+                          data-dismiss='modal'>
+                          Save changes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {user.role === 'ADMIN' ? (
+                  ''
+                ) : (
+                  <div className={styles.del}>
+                    <button
+                      type='button'
+                      className={`btn ${styles.button}`}
+                      data-toggle='modal'
+                      data-target='#exampleModalDelete'
+                      onClick={() => {
+                        setUserDelete({ id: user.id, fullName: user.fullName });
+                      }}>
+                      <Delete />
+                    </button>
+                  </div>
+                )}
+                <div
+                  className='modal fade'
+                  id='exampleModalDelete'
+                  tabIndex={-1}
+                  role='dialog'
+                  aria-labelledby='exampleModalLabel'
+                  aria-hidden='true'>
+                  <div className='modal-dialog' role='document'>
+                    <div className='modal-content'>
+                      <div className='modal-header'>
+                        <h5 className='modal-title' id='exampleModalLabel'>
+                          Delete User
+                        </h5>
+                      </div>
+                      <div className='modal-body'>
+                        <p>
+                          <span>
+                            Do you want to delete{' '}
+                            <span className='font-weight-bold'>
+                              {userDelete.fullName}
+                            </span>{' '}
+                          </span>
+                        </p>
+                      </div>
+                      <div className='modal-footer'>
+                        <button
+                          type='button'
+                          className={`btn ${styles.modalDeleteClose}`}
+                          data-dismiss='modal'>
+                          Close
+                        </button>
+                        <button
+                          type='button'
+                          className={`btn ${styles.modalDelete}`}
+                          data-dismiss='modal'
+                          onClick={() => {
+                            deleteUser(userDelete.id);
+                          }}>
+                          Confirm
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        );
+      });
+    }
+  };
+
+  return (
+    <div className={`container-fluid ${styles.wrapper}`}>
+      <div className={clsx(styles.tableWrap, load && styles.load)}>
+        <div className='d-flex justify-content-between'>
+          <h3 className={styles.userTitle}>Users</h3>
+          <button
+            type='button'
+            className={styles.createBtn}
+            data-toggle='modal'
+            data-target='#exampleModal'>
+            Create
+          </button>
+          <form
+            className='modal fade'
+            id='exampleModal'
+            tabIndex='-1'
+            role='dialog'
+            aria-labelledby='exampleModalLabel'
+            aria-hidden='true'>
+            <div className='modal-dialog' role='document'>
+              <div className='modal-content'>
+                <div className='modal-header'>
+                  <h5 className='modal-title' id='exampleModalLabel'>
+                    Create User
+                  </h5>
+                </div>
+                <div className='modal-body'>
+                  <div className='row'>
+                    <div className='col-6'>
+                      <div className='form-group'>
+                        <label>Full name</label>
+                        <input
+                          type='text'
+                          className='form-control'
+                          name='fullName'
+                          value={fullName}
+                          onChange={handleChangeInput}
+                        />
+                      </div>
+                      <div className='form-group'>
+                        <label>Role</label>
+                        <select name='role' onChange={handleChangeInput}>
+                          <option value={admin}>Admin</option>
+                          <option value={marketingCordinator}>
+                            Marketing Coordinator
+                          </option>
+                          <option value={marketingManager}>
+                            Marketing Manager
+                          </option>
+                          <option value={student}>Student</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className='col-6'>
+                      <div className='form-group'>
+                        <label>Email</label>
+                        <input
+                          type='text'
+                          className='form-control'
+                          name='email'
+                          value={email}
+                          onChange={handleChangeInput}
+                        />
+                      </div>
+                      <div className='form-group'>
+                        <label>Faculty</label>
+                        <select name='facultyId' onChange={handleChangeInput}>
+                          {faculties.map((faculty, index) => {
+                            return (
+                              <option key={index} value={faculty.id}>
+                                {faculty.name}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='modal-footer'>
+                  <button className='btn btn__cancel' data-dismiss='modal'>
+                    Cancel
+                  </button>
+                  <button
+                    onClick={onSubmit}
+                    data-dismiss='modal'
+                    className='btn btn__create'>
+                    Create
+                  </button>
+>>>>>>> bd8568c5f3ae9361347ae88b61891e3b9ba715eb
                 </div>
             </div>
             <div className={'user-form'}>
