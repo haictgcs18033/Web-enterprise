@@ -271,7 +271,45 @@ export const fetchFacultyById = (id) => {
         }
     };
 };
-
+export const handleClosureDate = (closureDate) => {
+    return async dispatch => {
+        try {
+            await Axios({
+                url: 'https://greenplus-dev.herokuapp.com/global-config/closure-dates',
+                method: 'POST',
+                data: closureDate,
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
+            })
+            swal({
+                title: 'Success',
+                text: 'Update successfully',
+                icon: 'success',
+                button: 'OK',
+            });
+        } catch (err) {
+            console.log(err.response?.data);
+        }
+    }
+}
+export const fetchClosureDate = () => {
+    return async dispatch => {
+        dispatch({
+            type: 'GET_USERS_REQUEST',
+        });
+        try {
+            let result = await Axios({
+                url: 'https://greenplus-dev.herokuapp.com/global-config/closure-dates',
+                method: 'GET'
+            })
+            dispatch({
+                type: 'CLOSURE_DATE',
+                closureDate: result.data
+            })
+        } catch (err) {
+            console.log(err.response?.data);
+        }
+    }
+}
 export const createFacultyAdmin = (faculty) => {
     return async dispatch => {
         dispatch({
@@ -294,6 +332,30 @@ export const createFacultyAdmin = (faculty) => {
                 icon: 'success',
                 button: 'OK',
             });
+        } catch (err) {
+            console.log(err.response?.data);
+        }
+    }
+}
+export const handleDeleteFaculty = (id, props) => {
+    return async dispatch => {
+        try {
+            await Axios({
+                url: `https://greenplus-dev.herokuapp.com/faculty/${id}`,
+                method: 'DELETE',
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
+            })
+            dispatch({
+                type: 'DELETE_FACULTY',
+                facultyId: id
+            })
+            swal({
+                title: 'Success',
+                text: 'Delete successfully',
+                icon: 'success',
+                button: 'OK',
+            });
+            props.history.push('/admin/dashboard/faculty')
         } catch (err) {
             console.log(err.response?.data);
         }
