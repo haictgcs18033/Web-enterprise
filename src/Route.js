@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 import StudentLanding from "./pages/StudentDashboard/StudentLanding";
+import UploadContribution from "./pages/StudentDashboard/UploadContribution";
 
 
 export const client = [
@@ -40,23 +41,27 @@ export const admin = [
 ]
 export const adminDashboardRoute = [
     {
-        path:'/admin/dashboard/faculty/setting/:id',
-        component:FacultySetting
-     },
+        path: '/admin/dashboard/faculty/setting/:id',
+        component: FacultySetting
+    },
     {
         path: '/admin/dashboard/users',
         component: UserDashboard
     },
-  
+
     {
         path: '/admin/dashboard/faculty',
         component: Faculty
     },
-   
+
 ]
-export const studentDashboardRoute=[
+export const studentDashboardRoute = [
     {
-        path:'/student/home',
-        component:StudentLanding
+        path: '/student/upload-contribution',
+        component: UploadContribution
+    },
+    {
+        path: '/student/home',
+        component: StudentLanding
     }
 ]
