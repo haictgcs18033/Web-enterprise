@@ -315,6 +315,13 @@ margin-top: 30px;
   color: #808191;
 }
 .deleteButton button{
+  margin-top: 8rem;
+  border-radius: 50%;
   background: none;
   color: #be0e62;
+  transition: all 0.5s;
+}
+.deleteButton button:hover{
+  color: white;
+  background : #be0e62;
 }

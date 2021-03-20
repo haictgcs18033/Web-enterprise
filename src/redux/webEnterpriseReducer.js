@@ -39,6 +39,10 @@ const stateDefault = {
     student: 'STUDENT',
   },
   // Faculty Management
+  closureDateAdmin:{
+     firstClosureDate:'',
+    secondClosureDate:"",
+  },
   faculties: [],
   facultySetting: {},
   totalFaculties: 0,
@@ -121,6 +125,9 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
     case 'GET_FACULTY_ID': {
       return { ...state, facultySetting: action.faculty, load: false };
     }
+    case 'CLOSURE_DATE':{
+      return {...state,closureDateAdmin:action.closureDate,load : false}
+    }
     case 'CREATE_FACULTY':{
       if (state.faculties.length <= 6) {
         state.faculties = [...state.faculties, action.faculty];
@@ -133,7 +140,12 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
         load: false,
       };
     }
-    
+    case 'DELETE_FACULTY':{
+      let facultyDelete=[...state.faculties]
+      facultyDelete=facultyDelete.filter(faculty=>faculty.id !==action.facultyId);
+      state.faculties=facultyDelete
+      return {...state}
+    }
     default: {
       return { ...state };
     }

@@ -13,6 +13,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { NavLink } from 'react-router-dom';
 
+
 export default function Faculty() {
   const faculties = useSelector(
     (state) => state.webEnterpriseReducer.faculties
@@ -21,6 +22,8 @@ export default function Faculty() {
   const totalFaculties = useSelector(
     (state) => state.webEnterpriseReducer.totalFaculties
   );
+  const closureDateAdmin=useSelector(state=>state.webEnterpriseReducer.closureDateAdmin)
+
   const createFaculty=useSelector(state=>state.webEnterpriseReducer.createFaculty)
   let {name} = createFaculty.values
   const [curPage, setCurPage] = useState(1);
@@ -94,6 +97,12 @@ export default function Faculty() {
     e.preventDefault();
     let faculty={...createFaculty.values}
     dispatch(action.createFacultyAdmin(faculty))
+  }
+  closureDateAdmin.firstClosureDate=closureDate.toISOString() 
+  closureDateAdmin.secondClosureDate=finalClosure.toISOString()
+  let settingClosureDate=(e)=>{
+      e.preventDefault()
+      dispatch(action.handleClosureDate(closureDateAdmin))
   }
   return (
     <div className={`container-fluid ${styles.wrapper}`}>
@@ -173,7 +182,8 @@ export default function Faculty() {
             tabIndex='-1'
             role='dialog'
             aria-labelledby='exampleModalLabel'
-            aria-hidden='true'>
+            aria-hidden='true'
+            onSubmit={settingClosureDate}>
             <div className='modal-dialog' role='document'>
               <div className='modal-content'>
                 <div className='modal-header'>
@@ -220,7 +230,6 @@ export default function Faculty() {
                     Cancel
                   </button>
                   <button
-                   
                     type='submit'
                     className='btn btn__create'>
                     Create
