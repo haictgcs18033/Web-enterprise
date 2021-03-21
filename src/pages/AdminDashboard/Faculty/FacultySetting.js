@@ -1,8 +1,6 @@
 import clsx from 'clsx';
-// import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as action from '../../../redux/action/ActionForRedux'
-// import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Delete } from '../../../assets/icons'
@@ -12,7 +10,13 @@ export default function FacultySetting(props) {
     const load = useSelector(state => state.webEnterpriseReducer.load)
     const facultySetting = useSelector(state => state.webEnterpriseReducer.facultySetting)
     const closureDateAdmin = useSelector(state => state.webEnterpriseReducer.closureDateAdmin)
+  
     let dispatch = useDispatch()
+     let [facultyUpdate,setFacultyUpdate]=useState({
+        name:'',
+        firstClosureDate:'',
+        secondClosureDate:''
+     })
     const id = props.match.params.id
     useEffect(() => {
         dispatch(action.fetchFacultyById(id))
@@ -21,10 +25,21 @@ export default function FacultySetting(props) {
     let deleteFaculty = (id) => {
         dispatch(action.handleDeleteFaculty(id, props))
     }
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(action.fetchClosureDate())
-    },[dispatch,])
+    }, [dispatch,])
     console.log(closureDateAdmin);
+    let handleChangeName=(e)=>{
+        setFacultyUpdate({
+            name:e.target.value,
+            firstClosureDate:closureDateAdmin.firstClosureDate,
+            secondClosureDate:closureDateAdmin.secondClosureDate
+        })
+    }
+    let handleUpdateFaculty=(e)=>{
+         e.preventDefault()
+        dispatch(action.updateFaculty(id,facultyUpdate))
+    }
     return (
         <div className={clsx(styles.tableWrap, load && styles.load)}>
             <div className="d-flex justify-content-between">
@@ -34,8 +49,6 @@ export default function FacultySetting(props) {
                     <span>Go back</span>
                 </NavLink>
             </div>
-
-
             <div className={styles.settingContainer}>
                 <div className={styles.settingUpdate}>
                     <h3>Faculty</h3>
@@ -46,8 +59,64 @@ export default function FacultySetting(props) {
                         <p>{facultySetting.createAt}</p>
                     </div>
                     <div className={`${styles.updateButton} text-right`}>
-                        <button className="btn">Update</button>
+                        <button className="btn" data-toggle='modal'
+                            data-target='#exampleModal'
+                            onClick={()=>{
+                                setFacultyUpdate({
+                                    name:facultySetting.name,
+                                })
+                            }}>Update</button>                      
                     </div>
+                    <form
+                            className='modal fade'
+                            id='exampleModal'
+                            tabIndex='-1'
+                            role='dialog'
+                            aria-labelledby='exampleModalLabel'
+                            aria-hidden='true'
+                            onSubmit={handleUpdateFaculty}>
+                            <div className='modal-dialog' role='document'>
+                                <div className='modal-content'>
+                                    <div className='modal-header'>
+                                        <h5 className='modal-title' id='exampleModalLabel'>
+                                            Update Faculty
+                                       </h5>
+                                    </div>
+                                    <div className='modal-body'>
+                                        <div className='row'>
+                                            <div className='col-12'>
+                                                <div className='form-group'>
+                                                    <label className="text-left">Faculty name</label>
+                                                    <input
+                                                        type='text'
+                                                        className='form-control'
+                                                        value={facultyUpdate.name}
+                                                        onChange={handleChangeName}
+                                                    />
+                                                    <p className='err-message'>
+                                                        {/* {errors.fullName?.message} */}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='modal-footer'>
+                                        <button
+                                            type='button'
+                                            className='btn btn__cancel'
+                                            data-dismiss='modal'>
+                                            Cancel
+                                        </button>
+                                        <button
+
+                                            type='submit'
+                                            className='btn btn__create'>
+                                            Create
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                 </div>
                 <div className={styles.settingDelete}>
                     <h3>Closure date</h3>
