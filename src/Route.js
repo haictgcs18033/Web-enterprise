@@ -37,27 +37,27 @@ export const admin = [
 ]
 export const adminDashboardRoute = [
     {
-        path:'/admin/dashboard/faculty/setting/:id',
-        component:FacultySetting
-     },
+        path: '/admin/dashboard/faculty/setting/:id',
+        component: FacultySetting
+    },
     {
         path: '/admin/dashboard/users',
         component: UserDashboard
     },
-  
+
     {
         path: '/admin/dashboard/faculty',
         component: Faculty
     },
-   
+
 ]
-export const studentDashboardRoute=[
+export const studentDashboardRoute = [
     {
-      path:'/student/upload-contribution',
-      component:UploadContribution
+        path: '/student/upload-contribution',
+        component: UploadContribution
     },
     {
-        path:'/student/home',
-        component:StudentLanding
+        path: '/student/home',
+        component: StudentLanding
     }
 ]

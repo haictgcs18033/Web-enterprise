@@ -11,7 +11,7 @@ export default function ChangePassword() {
                     </div>
                 </div>
                 <div className="changepassword-wrapform">
-                    <form class="changepassword-form">
+                    <form className="changepassword-form">
                         <h3 className="text-center changepassword-title">Change password</h3>
                         <label className="changepassword-label">Current Password</label>
                         <input

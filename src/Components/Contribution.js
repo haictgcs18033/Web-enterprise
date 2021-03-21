@@ -1,17 +1,19 @@
 import React from 'react'
-import contributionImg from '../assets/img/contributionImg.jpg'
+import contribution from '../assets/img/contribution.png'
 import eyeIcon from '../assets/img/eye-icon.png'
 
 export default function Contribution() {
-
     return (
+        // {contributions.map((contribution)=> (
+
+        //  ))}
         <div className="card">
-            <img className="card-img-top" src={contributionImg} alt="123" />
-            <div class="overlay"></div>
+            <img className="card-img-top" src={contribution} alt="123" />
+            <div className="overlay"></div>
             <div className="text-center">
                 <button type="button" className="contribution-btn">
-                    <img src={eyeIcon} alt="123" /> See Contribution
-                </button>
+                    <img className="eye-icon" src={eyeIcon} alt="123" /> See Contribution
+                    </button>
             </div>
             <div className="card-body">
                 <h4 className="card-title">This is a contribution</h4>

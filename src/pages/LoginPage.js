@@ -26,7 +26,8 @@ export default function LoginPage(props) {
             .email('Enter a valid email'),
         password: yup.string()
             .required('Password is required')
-            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/, 'Password must have at least 8 characters, 1 uppercase character, 1 number'),
+            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/, 'Password must have at least 8 characters, 1 uppercase character, 1 number')
+
     })
 
     const { register, handleSubmit, errors } = useForm({
