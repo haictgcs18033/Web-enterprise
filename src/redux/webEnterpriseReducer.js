@@ -51,6 +51,7 @@ const stateDefault = {
             name: ''
         }
     },
+   
     load: false,
 };
 export const webEnterpriseReducer = (state = stateDefault, action) => {
@@ -146,6 +147,7 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
             state.faculties = facultyDelete
             return { ...state }
         }
+     
         default: {
             return { ...state };
         }

@@ -328,7 +328,7 @@ export const createFacultyAdmin = (faculty) => {
             })
             swal({
                 title: 'Success',
-                text: 'Update successfully',
+                text: 'Create successfully',
                 icon: 'success',
                 button: 'OK',
             });
@@ -359,6 +359,30 @@ export const handleDeleteFaculty = (id, props) => {
         } catch (err) {
             console.log(err.response?.data);
         }
+    }
+}
+export const updateFaculty=(id, facultyUpdate)=>{
+    return async dispatch=>{
+       try{
+          let result=await Axios({
+              url:`https://greenplus-dev.herokuapp.com/faculty/${id}`,
+              method:'PUT',
+              data:facultyUpdate,
+              headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+          })
+          dispatch({
+            type: 'GET_FACULTY_ID',
+            faculty: result.data,
+        });
+          swal({
+            title: 'Success',
+            text: 'Update successfully',
+            icon: 'success',
+            button: 'OK',
+        });
+       }catch(err){
+           console.log(err.response?.data);
+       }
     }
 }
 

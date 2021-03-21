@@ -56,7 +56,7 @@ export default function Faculty() {
                         <td className={styles.listColumn}>
                             <p className={styles.email}>
                                 Create at {moment(faculty.createAt).format('LT')}-
-                {moment(faculty.createAt).format('L')}
+                                {moment(faculty.createAt).format('L')}
                             </p>
                         </td>
                         <td>
