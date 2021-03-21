@@ -35,7 +35,7 @@ function App() {
       return (
         <AdminTemplate
           key={index}
-          path={route.path}
+          {...route}
           Component={route.component}></AdminTemplate>
       );
     });
@@ -45,7 +45,7 @@ function App() {
       return (
         <AdminDashboard
           key={index}
-          path={route.path}
+          {...route}
           Component={route.component}></AdminDashboard>
       );
     });
@@ -55,7 +55,7 @@ function App() {
       return (
         <StudentDashboard
           key={index}
-          path={route.path}
+          {...route}
           Component={route.component}></StudentDashboard>
       );
     });
