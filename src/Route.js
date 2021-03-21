@@ -12,10 +12,6 @@ import UploadContribution from "./pages/StudentDashboard/UploadContribution";
 
 export const client = [
     {
-        path: '/',
-        component: HomePage
-    },
-    {
         path: '/changepassword',
         component: ChangePassword
     },
@@ -27,6 +23,10 @@ export const client = [
     {
         path: '/forget-password',
         component: ForgotPassword
+    },
+    {
+        path: '/',
+        component: HomePage
     },
 ]
 export const admin = [
