@@ -1,0 +1,35 @@
+/* your contributions */
+
+.yourContributionIcon {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+/* new contributions */
+
+.contributionTitle {
+    margin-top: 32px;
+    width: 100%;
+    padding: 7px 0;
+    font-size: 24px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-style: normal;
+    display: inline-block;
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        background-color: #32b260;
+        width: 100% !important;
+        height: 2px;
+        bottom: 0;
+        left: 0rem;
+        margin-top: 6px;
+    }
+}
+
+.notifyIcon {
+    margin-bottom: 4px;
+    margin-right: 8px;
+}

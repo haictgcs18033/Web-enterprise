@@ -1,0 +1,43 @@
+.trendIntro {
+    display: flex;
+    align-items: center;
+}
+
+.number {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    letter-spacing: 0.12em;
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.author {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 0;
+    margin-left: 15px;
+}
+
+.trendContent {
+    padding-left: 59px;
+}
+
+.topic {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #000000;
+}
+
+.comment {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #000000;
+}
