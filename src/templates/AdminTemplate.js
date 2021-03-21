@@ -2,12 +2,10 @@
 
 import { Route } from 'react-router-dom';
 
-export const AdminTemplate = (props) => {
-  let { Component, path } = props;
+export const AdminTemplate = ({ Component, component, ...props }) => {
   return (
     <Route
-      path={path}
-      exact
+      {...props}
       render={(propsRoute) => {
         return <Component {...propsRoute}></Component>;
       }}></Route>

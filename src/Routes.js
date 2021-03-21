@@ -15,31 +15,37 @@ import UploadContribution from './pages/StudentDashboard/UploadContribution';
 export const admin = [
   {
     path: '/admin',
+    exact: true,
     component: AdminLogin,
   },
 ];
 export const adminDashboardRoute = [
   {
     path: '/admin/dashboard/faculty/setting/:id',
+    exact: false,
     component: FacultySetting,
   },
   {
     path: '/admin/dashboard/users',
+    exact: false,
     component: UserDashboard,
   },
 
   {
     path: '/admin/dashboard/faculty',
+    exact: false,
     component: Faculty,
   },
 ];
 export const studentDashboardRoute = [
   {
     path: '/student/upload-contribution',
+    exact: false,
     component: UploadContribution,
   },
   {
     path: '/student/home',
+    exact: false,
     component: StudentLanding,
   },
 ];
