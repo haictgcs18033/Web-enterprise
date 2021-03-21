@@ -18,7 +18,6 @@ export const StudentDashboard = ({ Component, component, ...props }) => {
             return (
               <>
                 <Navbar></Navbar>
-                <Background></Background>
                 <Component></Component>
                 <Footer></Footer>
               </>

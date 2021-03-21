@@ -44,6 +44,11 @@ export const studentDashboardRoute = [
     component: UploadContribution,
   },
   {
+    path: '/student/changepassword',
+    exact: false,
+    component: ChangePassword,
+  },
+  {
     path: '/student/home',
     exact: true,
     component: StudentLanding,
@@ -56,11 +61,7 @@ export const client = [
     exact: true,
     component: HomePage,
   },
-  {
-    path: '/changepassword',
-    exact: false,
-    component: ChangePassword,
-  },
+ 
 
   {
     path: '/login',

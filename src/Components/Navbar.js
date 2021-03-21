@@ -23,7 +23,7 @@ export default function Navbar() {
                             </p>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <NavLink className="dropdown-item" to="/student/upload-contribution">Upload Contribution</NavLink>
-                                <NavLink className="dropdown-item" to="/changepassword">Change Password</NavLink>
+                                <NavLink className="dropdown-item" to="/student/changepassword">Change Password</NavLink>
                                 <div className="dropdown-divider" />
                                 <NavLink className="dropdown-item" to="/login"
                                 onClick={()=>{
