@@ -1,15 +1,17 @@
 /** @format */
 
 import './App.css';
-import { Router, Switch } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import './sass/webEnterprise.scss';
 import { PrimaryTemplate } from './templates/PrimaryTemplate';
-import { admin, client ,adminDashboardRoute, studentDashboardRoute} from './Route';
+import { admin, client, adminDashboardRoute, studentDashboardRoute } from './Route';
 import { AdminTemplate } from './templates/AdminTemplate';
 import { AdminDashboard } from './templates/AdminDashboard';
 import { createBrowserHistory } from 'history';
 
 import { StudentDashboard } from './templates/StudentDashBoard/StudentDashboard';
+import NotFound from './pages/NotFound';
+
 
 
 export const history = createBrowserHistory();
@@ -36,30 +38,37 @@ function App() {
       );
     });
   };
-  const adminDashboard=routes=>{
-    return routes.map((route,index)=>{
+  const adminDashboard = routes => {
+    return routes.map((route, index) => {
       return (
-        <AdminDashboard key={index} 
-        path={route.path}
-         Component={route.component}></AdminDashboard>
+        <AdminDashboard key={index}
+          path={route.path}
+          Component={route.component}></AdminDashboard>
       )
     })
   }
-  const studentDashboard=routes=>{
-    return routes.map((route,index)=>{
-       return (
-         <StudentDashboard key={index} path={route.path}
-         Component={route.component}></StudentDashboard>
-       )
+  const studentDashboard = routes => {
+    return routes.map((route, index) => {
+      return (
+        <StudentDashboard key={index} path={route.path}
+          Component={route.component}></StudentDashboard>
+      )
     })
   }
   return (
-    <Router history={history}>
-      <Switch>{clientRoute(client)}</Switch>
-      <Switch>{adminRoute(admin)}</Switch>
-      <Switch>{adminDashboard(adminDashboardRoute)}</Switch>
-      <Switch>{studentDashboard(studentDashboardRoute)}</Switch>
-    </Router>
+    <>
+      <Router history={history}> 
+          <Switch>
+            {clientRoute(client)}
+            <Route component={NotFound}></Route>
+          </Switch>
+          <Switch>{adminRoute(admin)}</Switch>
+          <Switch>{adminDashboard(adminDashboardRoute)}</Switch>
+          <Switch>{studentDashboard(studentDashboardRoute)}</Switch>
+      </Router>
+
+
+    </>
   );
 }
 

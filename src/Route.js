@@ -6,20 +6,20 @@ import ChangePassword from "./pages/ChangePassword";
 import ForgotPassword from "./pages/ForgotPassword";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import NotFound from "./pages/NotFound";
 import StudentLanding from "./pages/StudentDashboard/StudentLanding";
 import UploadContribution from "./pages/StudentDashboard/UploadContribution";
 
 
 export const client = [
     {
+        path: '/',
+        component: HomePage
+    },
+    {
         path: '/changepassword',
         component: ChangePassword
     },
-    {
-        path: '/not',
-        component: NotFound
-    },
+  
     {
         path: '/login',
         component: LoginPage
@@ -27,10 +27,6 @@ export const client = [
     {
         path: '/forget-password',
         component: ForgotPassword
-    },
-    {
-        path: '/',
-        component: HomePage
     },
 ]
 export const admin = [
