@@ -2,8 +2,10 @@
 
 import { Redirect, Route } from 'react-router-dom';
 import swal from 'sweetalert';
+import Background from '../../Components/Background';
 import Footer from '../../Components/Footer';
 import Navbar from '../../Components/Navbar';
+
 
 export const StudentDashboard = ({ Component, component, ...props }) => {
   if (localStorage.getItem('USER_LOGIN')) {
@@ -16,6 +18,7 @@ export const StudentDashboard = ({ Component, component, ...props }) => {
             return (
               <>
                 <Navbar></Navbar>
+                <Background></Background>
                 <Component></Component>
                 <Footer></Footer>
               </>

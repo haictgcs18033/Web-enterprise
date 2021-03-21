@@ -225,7 +225,7 @@ export const UpdateUser = (id, user) => {
     };
 };
 
-export const fetchFaculty = (limit, offset, query, sort) => {
+export const fetchFaculty = (limit, offset, keyword, type) => {
     return async (dispatch) => {
         dispatch({
             type: 'GET_USERS_REQUEST',
@@ -233,7 +233,7 @@ export const fetchFaculty = (limit, offset, query, sort) => {
         try {
             let result = await Axios({
                 url: `https://greenplus-dev.herokuapp.com/faculty?offset=${offset - 1
-                    }&limit=${limit}`,
+                    }&limit=${limit}${keyword ? `&query=${keyword}`:''}${type ? `&createAtOrderType=${type}`:''}`,
                 method: 'GET',
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),

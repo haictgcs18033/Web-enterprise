@@ -409,7 +409,7 @@ export default function UserDashboard(props) {
                                         setKeyword(e.target.value);
                                         setCurPage(1);
                                     }}
-                                    placeholder='Search'
+                                    placeholder='Search user name'
                                 />
                                 <img className='search-icon' src={SearchIcon} alt='search' />
                             </div>

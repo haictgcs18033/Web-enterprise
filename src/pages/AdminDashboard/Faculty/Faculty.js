@@ -27,13 +27,16 @@ export default function Faculty() {
     const createFaculty = useSelector(state => state.webEnterpriseReducer.createFaculty)
     let { name } = createFaculty.values
     const [curPage, setCurPage] = useState(1);
+    let [keyword,setKeyword]=useState('')
+    let [type,setType]=useState('')
+    console.log(type);
     let [closureDate, setClosureDate] = useState(new Date());
     let [finalClosure, setFinalClosure] = useState(new Date());
     const limit = 6;
     let dispatch = useDispatch();
     const getFacultyList = useCallback(
-        () => dispatch(action.fetchFaculty(limit, curPage)),
-        [dispatch, curPage]
+        () => dispatch(action.fetchFaculty(limit, curPage,keyword,type)),
+        [dispatch, limit,curPage,keyword,type]
     );
     useEffect(() => {
         getFacultyList();
@@ -246,11 +249,11 @@ export default function Faculty() {
                             <div className='col-9'>
                                 <input
                                     type='text'
-                                    // onChange={(e) => {
-                                    //     setKeyword(e.target.value);
-                                    //     setCurPage(1);
-                                    // }}
-                                    placeholder='Search'
+                                    onChange={(e) => {
+                                        setKeyword(e.target.value);
+                                        setCurPage(1);
+                                    }}
+                                    placeholder='Search facullty name'
                                 />
                                 <img className='search-icon' src={SearchIcon} alt='search' />
                             </div>
@@ -259,17 +262,12 @@ export default function Faculty() {
                                     className='role-select'
                                     name='id'
                                     onChange={(e) => {
-                                        // setFaculty(e.target.value);
+                                        setType(e.target.value);
                                         setCurPage(1);
                                     }}>
-                                    <option value=''>All faculties</option>
-                                    {faculties.map((faculty, index) => {
-                                        return (
-                                            <option key={index} value={faculty.id}>
-                                                {faculty.name}
-                                            </option>
-                                        );
-                                    })}
+                                    <option value=''>Last Created</option>
+                                    <option value='ASC'>ASCENDING</option>
+                                    <option value='DESC'>DESCENDING</option>
                                 </select>
                             </div>
                         </div>

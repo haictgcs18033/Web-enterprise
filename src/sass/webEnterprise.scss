@@ -17,12 +17,36 @@
             margin-left: 42px;
             font-size: 16px;
             &:hover {
+                cursor: pointer;
                 color: #32b260;
             }
         }
     }
 }
-
+.dropdown-menu{
+    left:-120px;
+    border-radius: 8px 0px 8px 8px;
+    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);;
+    text-align: center;
+}
+.dropdown-divider{
+    display: none;
+}
+.dropdown-item{
+    transition: all 0.5s;
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+     &:hover{
+         background:#32b260;
+         color: white;
+     }
+}
+.dropdown-toggle{
+    &::after{
+        display: none;
+    }
+}
 @media screen and (max-width: 1280px) {
     .container {
         width: 1000px;

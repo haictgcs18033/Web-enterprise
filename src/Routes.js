@@ -45,7 +45,7 @@ export const studentDashboardRoute = [
   },
   {
     path: '/student/home',
-    exact: false,
+    exact: true,
     component: StudentLanding,
   },
 ];
