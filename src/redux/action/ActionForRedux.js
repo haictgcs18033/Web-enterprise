@@ -137,23 +137,6 @@ export const handleCreateUser = (user) => {
         }
     };
 };
-
-export const handleSendMail = (email) => {
-    return async (dispatch) => {
-        try {
-            await Axios({
-                url:
-                    'https://greenplus-dev.herokuapp.com/auth/send-reset-password-mail',
-                method: 'POST',
-                data: email,
-            });
-
-        } catch (err) {
-            return err;
-        }
-    };
-};
-
 export const DeleteUser = (id) => {
     return async (dispatch) => {
         dispatch({
@@ -385,4 +368,35 @@ export const updateFaculty=(id, facultyUpdate)=>{
        }
     }
 }
-
+export const handleSendMail = (email) => {
+   
+    return async (dispatch) => {
+        try {
+            await Axios({
+                url:
+                    'https://greenplus-dev.herokuapp.com/auth/send-reset-password-mail',
+                method: 'POST',
+                data: email,
+            });
+          alert('Vui long kiem tra mail')
+        } catch (err) {
+             console.log(err.response?.data);
+        }
+    };
+};
+export const handleResetPassword=(userCredential)=>{
+    return async dispatch=>{
+        try{
+           let result = await Axios({
+               url:'https://greenplus-dev.herokuapp.com/auth/reset-password',
+               method:'POST',
+               data:userCredential
+           })
+           console.log(result.data);
+           console.log('vui long dang nhap lai');
+           
+        }catch (err){
+            console.log(err.response?.data);
+        }
+    }
+}

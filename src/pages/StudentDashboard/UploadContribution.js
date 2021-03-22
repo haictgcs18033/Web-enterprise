@@ -9,7 +9,6 @@ import YourContribution from '../../Components/YourContributions/YourContributio
 export default function UploadContribution() {
     return (
         <div>
-
             <Background />
             <div className={classes.container}>
                 <div className={classes.gridContainer}>

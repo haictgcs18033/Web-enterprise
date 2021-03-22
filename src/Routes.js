@@ -9,6 +9,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import NotFound from './pages/NotFound';
+import ResetToken from './pages/ResetToken';
 import StudentLanding from './pages/StudentDashboard/StudentLanding';
 import UploadContribution from './pages/StudentDashboard/UploadContribution';
 
@@ -61,8 +62,6 @@ export const client = [
     exact: true,
     component: HomePage,
   },
- 
-
   {
     path: '/login',
     exact: false,
@@ -72,6 +71,11 @@ export const client = [
     path: '/forget-password',
     exact: false,
     component: ForgotPassword,
+  },
+  {
+    path: '/reset-password/:resetToken',
+    exact: false,
+    component: ResetToken,
   },
   {
     path: '',

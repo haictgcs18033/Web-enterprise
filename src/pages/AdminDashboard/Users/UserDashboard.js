@@ -94,7 +94,6 @@ export default function UserDashboard(props) {
     const onSubmit = () => {
         let user = { ...createUser.values };
         dispatch(action.handleCreateUser(user));
-        dispatch(action.handleSendMail(user.email));
     };
 
     const renderPages = () => {
