@@ -5,7 +5,7 @@ import { handleResetPassword } from '../redux/action/ActionForRedux'
 export default function ResetToken() {
     let [userReset, setUserReset] = useState({
         resetToken: '',
-        newPassword: ''
+        newPassword: '' 
     })
       let dispatch= useDispatch()
     let handleChange = (e) => {
