@@ -17,7 +17,7 @@ export default function ResetToken() {
         e.preventDefault();
         dispatch(handleResetPassword(userReset))
     }
-    return ( 
+    return (  
         <div className="container my-5" >
             <div className="change-password-container">
                 <form className="change-password text-left" onSubmit={handleSubmit}>
