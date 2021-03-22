@@ -4,12 +4,11 @@ import yourContributionIcon from '../../assets/img/people-icon.png'
 import uploadIcon from '../../assets/img/upload.png'
 import classes from './UploadContribution.module.scss'
 import Background from '../../Components/Background'
-import YourContribution from '../../Components/YourContributions/YourContribution/YourContribution'
+import UploadedContribution from '../../Components/UploadedContribution/UploadedContribution'
 
 export default function UploadContribution() {
     return (
         <div>
-
             <Background />
             <div className={classes.container}>
                 <div className={classes.gridContainer}>
@@ -48,8 +47,7 @@ export default function UploadContribution() {
                         <button className={classes.btnUpload}>
                             <span><img className={classes.uploadIcon} src={uploadIcon} alt="123" /></span>
                             Upload Contribution
-                    </button>
-
+                        </button>
                     </div>
 
                     <div className={classes.yourContributionsBox}>
@@ -57,7 +55,7 @@ export default function UploadContribution() {
                             <span><img className={classes.yourContributionIcon} src={yourContributionIcon} alt="123" /></span>
                         Your Contributions
                     </h2>
-                        <YourContribution />
+                        <UploadedContribution />
                     </div>
                 </div>
             </div>
