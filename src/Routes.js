@@ -68,7 +68,7 @@ export const client = [
     component: LoginPage,
   },
   {
-    path: '/forget-password',
+    path: '/forget-password', 
     exact: false,
     component: ForgotPassword,
   },
