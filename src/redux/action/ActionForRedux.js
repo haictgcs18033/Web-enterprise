@@ -26,7 +26,7 @@ export const loginAction = (admin, props) => {
     return async (dispatch) => {
         try {
             let result = await Axios({
-                url: 'https://greenplus-dev.herokuapp.com/auth/login',
+                url: 'http://34.68.194.194:3000/auth/login',
                 method: 'POST',
                 data: admin,
             });
@@ -51,7 +51,7 @@ export const loginHomePageAction = (student, props) => {
     return async (dispatch) => {
         try {
             let result = await Axios({
-                url: 'https://greenplus-dev.herokuapp.com/auth/login',
+                url: 'http://34.68.194.194:3000/auth/login',
                 method: 'POST',
                 data: student,
             });
@@ -79,7 +79,7 @@ export const fetchUsers = (limit, page, keyword, faculty) => {
         });
         try {
             let result = await Axios.get(
-                `https://greenplus-dev.herokuapp.com/users?offset=${(page - 1) * limit
+                `http://34.68.194.194:3000/users?offset=${(page - 1) * limit
                 }&limit=${limit}${keyword !== '' ? `&query=${keyword}` : ''}${faculty !== '' ? `&role=${faculty}` : ''
                 }`,
                 {
@@ -105,7 +105,7 @@ export const handleCreateUser = (user) => {
         });
         try {
             let result = await Axios({
-                url: 'https://greenplus-dev.herokuapp.com/users',
+                url: 'http://34.68.194.194:3000/users',
                 method: 'POST',
                 data: user,
                 headers: {
@@ -144,7 +144,7 @@ export const DeleteUser = (id) => {
         });
         try {
             await Axios({
-                url: `https://greenplus-dev.herokuapp.com/users/${id}`,
+                url: `http://34.68.194.194:3000/users/${id}`,
                 method: 'DELETE',
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -178,7 +178,7 @@ export const UpdateUser = (id, user) => {
         });
         try {
             let result = await Axios({
-                url: `https://greenplus-dev.herokuapp.com/users/${id}`,
+                url: `http://34.68.194.194:3000/users/${id}`,
                 method: 'PUT',
                 data: user,
                 headers: {
@@ -215,7 +215,7 @@ export const fetchFaculty = (limit, offset, keyword, type) => {
         });
         try {
             let result = await Axios({
-                url: `https://greenplus-dev.herokuapp.com/faculty?offset=${(offset - 1) * limit
+                url: `http://34.68.194.194:3000/faculty?offset=${(offset - 1) * limit
                     }&limit=${limit}${keyword ? `&query=${keyword}` : ''}${type ? `&createAtOrderType=${type}` : ''}`,
                 method: 'GET',
                 headers: {
@@ -239,7 +239,7 @@ export const fetchFacultyById = (id) => {
         });
         try {
             let result = await Axios({
-                url: `https://greenplus-dev.herokuapp.com/faculty/${id}`,
+                url: `http://34.68.194.194:3000/faculty/${id}`,
                 method: 'GET',
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -258,7 +258,7 @@ export const handleClosureDate = (closureDate) => {
     return async dispatch => {
         try {
             await Axios({
-                url: 'https://greenplus-dev.herokuapp.com/global-config/closure-dates',
+                url: 'http://34.68.194.194:3000/global-config/closure-dates',
                 method: 'POST',
                 data: closureDate,
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
@@ -281,7 +281,7 @@ export const fetchClosureDate = () => {
         });
         try {
             let result = await Axios({
-                url: 'https://greenplus-dev.herokuapp.com/global-config/closure-dates',
+                url: 'http://34.68.194.194:3000/global-config/closure-dates',
                 method: 'GET'
             })
             dispatch({
@@ -300,7 +300,7 @@ export const createFacultyAdmin = (faculty) => {
         });
         try {
             let result = await Axios({
-                url: 'https://greenplus-dev.herokuapp.com/faculty',
+                url: 'http://34.68.194.194:3000/faculty',
                 method: 'POST',
                 data: faculty,
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
@@ -324,7 +324,7 @@ export const handleDeleteFaculty = (id, props) => {
     return async dispatch => {
         try {
             await Axios({
-                url: `https://greenplus-dev.herokuapp.com/faculty/${id}`,
+                url: `http://34.68.194.194:3000/faculty/${id}`,
                 method: 'DELETE',
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
             })
@@ -344,11 +344,12 @@ export const handleDeleteFaculty = (id, props) => {
         }
     }
 }
+
 export const updateFaculty = (id, facultyUpdate) => {
     return async dispatch => {
         try {
             let result = await Axios({
-                url: `https://greenplus-dev.herokuapp.com/faculty/${id}`,
+                url: `http://34.68.194.194:3000/faculty/${id}`,
                 method: 'PUT',
                 data: facultyUpdate,
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
@@ -374,7 +375,7 @@ export const handleSendMail = (email) => {
         try {
             await Axios({
                 url:
-                    'https://greenplus-dev.herokuapp.com/auth/send-reset-password-mail',
+                    'http://34.68.194.194:3000/auth/send-reset-password-mail',
                 method: 'POST',
                 data: email,
             });
@@ -384,12 +385,11 @@ export const handleSendMail = (email) => {
         }
     };
 };
-
 export const handleResetPassword = (userCredential) => {
     return async dispatch => {
         try {
             let result = await Axios({
-                url: 'https://greenplus-dev.herokuapp.com/auth/reset-password',
+                url: 'http://34.68.194.194:3000/auth/reset-password',
                 method: 'POST',
                 data: userCredential
             })

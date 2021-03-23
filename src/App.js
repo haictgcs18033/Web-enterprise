@@ -9,12 +9,14 @@ import {
   client,
   adminDashboardRoute,
   studentDashboardRoute,
+  managerDashboardRoute,
 } from './Routes';
 import { AdminTemplate } from './templates/AdminTemplate';
 import { AdminDashboard } from './templates/AdminDashboard';
 import { createBrowserHistory } from 'history';
 
 import { StudentDashboard } from './templates/StudentDashBoard/StudentDashboard';
+import { ManagerDashboard } from './templates/ManagerDashboard';
 
 export const history = createBrowserHistory();
 function App() {
@@ -60,6 +62,13 @@ function App() {
       );
     });
   };
+  const managerDashboard=routes=>{
+    return routes.map((route,index)=>{
+      return( 
+        <ManagerDashboard key={index} {...route} Component={route.component}></ManagerDashboard>
+      )
+    })
+  }
   return (
     <>
       <BrowserRouter history={history}>
@@ -67,6 +76,7 @@ function App() {
           {adminRoute(admin)}
           {adminDashboard(adminDashboardRoute)}
           {studentDashboard(studentDashboardRoute)}
+          {managerDashboard(managerDashboardRoute)}
           {clientRoute(client)}
         </Switch>
       </BrowserRouter>

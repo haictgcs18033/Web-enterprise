@@ -24,6 +24,11 @@ export const StudentDashboard = ({ Component, component, ...props }) => {
           }}></Route>
       );
     }
+    swal({
+      title: 'You are not student!',
+      icon: 'warning',
+    });
+    return <Redirect to='/'></Redirect>;
   }
   swal({
     title: 'You are not login!',

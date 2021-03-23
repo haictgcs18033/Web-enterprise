@@ -4,8 +4,8 @@ import yourContributionIcon from '../../assets/img/people-icon.png'
 import notifyIcon from '../../assets/img/notifyIcon.png'
 import Background from '../../Components/Background'
 import classes from './StudentLanding.module.scss'
-import YourContributions from '../../Components/YourContributions/YourContributions'
 import NewContributions from '../../Components/NewContributions/NewContributions'
+import ContributionList from '../../Components/YourContributions/ContributionList'
 
 export default function StudentLanding() {
     return (
@@ -16,7 +16,7 @@ export default function StudentLanding() {
                     <span><img className={classes.yourContributionIcon} src={yourContributionIcon} alt="123" /></span>
                     Your Contributions
                 </h2>
-                <YourContributions />
+                <ContributionList />
             </div>
 
             <div className="container">

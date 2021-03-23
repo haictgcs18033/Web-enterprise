@@ -1,12 +1,12 @@
 import React from 'react'
 
-import classes from './YourContribution.module.scss'
+import classes from '../YourContribution/ContributionItems.module.scss'
 import contributionImg from '../../../assets/img/contributionImg.jpg'
 import eyeIcon from '../../../assets/img/eye-icon.png'
 import penIcon from '../../../assets/img/pen.png'
 import binIcon from '../../../assets/img/bin.png';
 
-export default function YourContribution() {
+export default function ContributionItems() {
     return (
         <div>
             <div className={`card ${classes.card}`}>

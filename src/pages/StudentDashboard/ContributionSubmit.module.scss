@@ -1,0 +1,85 @@
+.submitContainer{
+    margin: 35px auto;
+    h3{
+        border-bottom: 2px solid #32B260;
+        padding-bottom: 10px;
+    }
+    .submitContent{
+        margin:20px 110px;
+        label{
+            font-size: 16px;
+        }
+    }
+}
+.thumbnailContainer,.articleImage{
+    padding:10px 16px;
+    h4{
+        font-weight: normal;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    button{
+        width:130px;
+        height:38px;
+        background:white;
+        border:2px solid #32B260;
+        border-radius: 6px;
+        color:#32B260;
+        transition: all 0.5s;
+        &:hover{
+            background:#32B260;
+            color: white;
+            cursor: pointer;
+        }
+    }
+}
+.articleImage{
+    img{
+        width: 100%;
+        height: 174px;
+        margin-bottom: 20px;
+        &:hover{
+            cursor:pointer
+        }
+    }
+    button{
+        background:#32B260;
+        color: white;
+        transition: all 0.5s;
+        &:hover{
+            background: #05e055;
+            border: 2px solid #05e055;
+        }
+    }
+}
+@media screen and (min-width:768px) and (max-width:992px){
+    .submitContainer{
+        .submitContent{ 
+            margin:20px 0;
+            .formInput{
+                padding: 0;
+                input{
+                    width: 310px;
+                }
+            }
+        }
+    }
+    .thumbnailContainer,.articleImage{
+        padding:10px 0;
+    }
+
+}
+@media screen and (max-width:767px){
+    .submitContainer{
+        .submitContent{ 
+            margin:20px 0;
+            .formInput{
+                padding: 0;
+               
+            }
+        }
+    }
+    .thumbnailContainer,.articleImage{
+        padding:10px 0;
+    }
+}

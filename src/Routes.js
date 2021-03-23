@@ -8,8 +8,10 @@ import ChangePassword from './pages/ChangePassword';
 import ForgotPassword from './pages/ForgotPassword';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import ManagerLanding from './pages/ManagerDashboard/ManagerLanding';
 import NotFound from './pages/NotFound';
 import ResetToken from './pages/ResetToken';
+import ContributionSubmit from './pages/StudentDashboard/ContributionSubmit';
 import StudentLanding from './pages/StudentDashboard/StudentLanding';
 import UploadContribution from './pages/StudentDashboard/UploadContribution';
 
@@ -40,6 +42,11 @@ export const adminDashboardRoute = [
 ];
 export const studentDashboardRoute = [
   {
+    path:'/student/contribution-submit',
+    exact:false,
+    component:ContributionSubmit
+  },
+  {
     path: '/student/upload-contribution',
     exact: false,
     component: UploadContribution,
@@ -55,7 +62,13 @@ export const studentDashboardRoute = [
     component: StudentLanding,
   },
 ];
-
+export const managerDashboardRoute=[
+  {
+    path:'/manager/home',
+    exact:false,
+    component:ManagerLanding
+  }
+]
 export const client = [
   {
     path: '/',

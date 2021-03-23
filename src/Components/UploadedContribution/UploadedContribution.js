@@ -6,7 +6,7 @@ import eyeIcon from '../../assets/img/eye-icon.png'
 import penIcon from '../../assets/img/pen.png'
 import binIcon from '../../assets/img/bin.png';
 
-export default function YourContribution() {
+export default function UploadedContribution() {
     return (
         <div>
             <div className={`card ${classes.card}`}>

@@ -97,8 +97,16 @@
     border: none;
     cursor: pointer;
     color: #ffffff;
+    width: 230px;
+    text-align: center;
+    transition: all 0.5s;
+    &:hover{
+        text-decoration: none;
+        background: #05e055;
+        color: white;
+    }
 }
 
 .uploadIcon {
-    margin-right: 8.72px;
+    margin-right: 28px;
 }

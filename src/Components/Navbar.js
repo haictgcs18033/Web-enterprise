@@ -6,7 +6,7 @@ import navbarToggle from '../assets/img/navbarToggle.jpg'
 
 export default function Navbar() {
     let userLogin = JSON.parse(localStorage.getItem('USER_LOGIN'))
-    let logout=()=>{
+    let logout = () => {
         window.localStorage.clear()
     }
     let renderNavbar = (userRole) => {
@@ -26,9 +26,30 @@ export default function Navbar() {
                                 <NavLink className="dropdown-item" to="/student/changepassword">Change Password</NavLink>
                                 <div className="dropdown-divider" />
                                 <NavLink className="dropdown-item" to="/login"
-                                onClick={()=>{
-                                    logout()
-                                }}>Logout</NavLink>
+                                    onClick={() => {
+                                        logout()
+                                    }}>Logout</NavLink>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            }
+            case 'MARKETING_MANAGER': {
+                return <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item active">
+                            <NavLink className="nav-link" to="/">Home</NavLink>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <p className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {userLogin.user.fullName}
+                            </p>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <NavLink className="dropdown-item" to="/login"
+                                    onClick={() => {
+                                        logout()
+                                    }}>Logout</NavLink>
                             </div>
                         </li>
 
@@ -40,15 +61,15 @@ export default function Navbar() {
             }
             default: {
                 return <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item active">
-                        <NavLink className="nav-link" to="/">Home</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/login">Sign In</NavLink>
-                    </li>
-                </ul>
-            </div>
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item active">
+                            <NavLink className="nav-link" to="/">Home</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/login">Sign In</NavLink>
+                        </li>
+                    </ul>
+                </div>
             }
         }
 
