@@ -265,9 +265,8 @@ export default function Faculty() {
                                         setType(e.target.value);
                                         setCurPage(1);
                                     }}>
-                                    <option value=''>Last Created</option>
-                                    <option value='ASC'>ASCENDING</option>
-                                    <option value='DESC'>DESCENDING</option>
+                                    <option value='ASC'>Last Created </option>
+                                    <option value='DESC'>Latest</option>
                                 </select>
                             </div>
                         </div>

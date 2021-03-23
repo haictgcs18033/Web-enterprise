@@ -10,6 +10,9 @@ export const PrimaryTemplate = ({ Component, component, ...props }) => {
     if(userLogin.user.role==='STUDENT'){
      return <Redirect to="/student/home"/> 
     }
+    else if(userLogin.user.role==='MARKETING_MANAGER'){
+      return <Redirect to="/manager/home"/>
+    }
   }
   return (
     <Route

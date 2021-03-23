@@ -5,6 +5,7 @@ import uploadIcon from '../../assets/img/upload.png'
 import classes from './UploadContribution.module.scss'
 import Background from '../../Components/Background'
 import UploadedContribution from '../../Components/UploadedContribution/UploadedContribution'
+import { NavLink } from 'react-router-dom'
 
 export default function UploadContribution() {
     return (
@@ -44,10 +45,10 @@ export default function UploadContribution() {
                                 </tr>
                             </thead>
                         </table>
-                        <button className={classes.btnUpload}>
+                        <NavLink className={classes.btnUpload} to="/student/contribution-submit">
                             <span><img className={classes.uploadIcon} src={uploadIcon} alt="123" /></span>
                             Upload Contribution
-                        </button>
+                        </NavLink>
                     </div>
 
                     <div className={classes.yourContributionsBox}>
