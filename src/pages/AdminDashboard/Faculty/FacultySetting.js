@@ -10,13 +10,13 @@ export default function FacultySetting(props) {
     const load = useSelector(state => state.webEnterpriseReducer.load)
     const facultySetting = useSelector(state => state.webEnterpriseReducer.facultySetting)
     const closureDateAdmin = useSelector(state => state.webEnterpriseReducer.closureDateAdmin)
-  
+
     let dispatch = useDispatch()
-     let [facultyUpdate,setFacultyUpdate]=useState({
-        name:'',
-        firstClosureDate:'',
-        secondClosureDate:''
-     })
+    let [facultyUpdate, setFacultyUpdate] = useState({
+        name: '',
+        firstClosureDate: '',
+        secondClosureDate: ''
+    })
     const id = props.match.params.id
     useEffect(() => {
         dispatch(action.fetchFacultyById(id))
@@ -29,16 +29,16 @@ export default function FacultySetting(props) {
         dispatch(action.fetchClosureDate())
     }, [dispatch,])
     console.log(closureDateAdmin);
-    let handleChangeName=(e)=>{
+    let handleChangeName = (e) => {
         setFacultyUpdate({
-            name:e.target.value,
-            firstClosureDate:closureDateAdmin.firstClosureDate,
-            secondClosureDate:closureDateAdmin.secondClosureDate
+            name: e.target.value,
+            firstClosureDate: closureDateAdmin.firstClosureDate,
+            secondClosureDate: closureDateAdmin.secondClosureDate
         })
     }
-    let handleUpdateFaculty=(e)=>{
-         e.preventDefault()
-        dispatch(action.updateFaculty(id,facultyUpdate))
+    let handleUpdateFaculty = (e) => {
+        e.preventDefault()
+        dispatch(action.updateFaculty(id, facultyUpdate))
     }
     return (
         <div className={clsx(styles.tableWrap, load && styles.load)}>
@@ -61,62 +61,62 @@ export default function FacultySetting(props) {
                     <div className={`${styles.updateButton} text-right`}>
                         <button className="btn" data-toggle='modal'
                             data-target='#exampleModal'
-                            onClick={()=>{
+                            onClick={() => {
                                 setFacultyUpdate({
-                                    name:facultySetting.name,
+                                    name: facultySetting.name,
                                 })
-                            }}>Update</button>                      
+                            }}>Update</button>
                     </div>
                     <form
-                            className='modal fade'
-                            id='exampleModal'
-                            tabIndex='-1'
-                            role='dialog'
-                            aria-labelledby='exampleModalLabel'
-                            aria-hidden='true'
-                            onSubmit={handleUpdateFaculty}>
-                            <div className='modal-dialog' role='document'>
-                                <div className='modal-content'>
-                                    <div className='modal-header'>
-                                        <h5 className='modal-title' id='exampleModalLabel'>
-                                            Update Faculty
+                        className='modal fade'
+                        id='exampleModal'
+                        tabIndex='-1'
+                        role='dialog'
+                        aria-labelledby='exampleModalLabel'
+                        aria-hidden='true'
+                        onSubmit={handleUpdateFaculty}>
+                        <div className='modal-dialog' role='document'>
+                            <div className='modal-content'>
+                                <div className='modal-header'>
+                                    <h5 className='modal-title' id='exampleModalLabel'>
+                                        Update Faculty
                                        </h5>
-                                    </div>
-                                    <div className='modal-body'>
-                                        <div className='row'>
-                                            <div className='col-12'>
-                                                <div className='form-group'>
-                                                    <label className="text-left">Faculty name</label>
-                                                    <input
-                                                        type='text'
-                                                        className='form-control'
-                                                        value={facultyUpdate.name}
-                                                        onChange={handleChangeName}
-                                                    />
-                                                    <p className='err-message'>
-                                                        {/* {errors.fullName?.message} */}
-                                                    </p>
-                                                </div>
+                                </div>
+                                <div className='modal-body'>
+                                    <div className='row'>
+                                        <div className='col-12'>
+                                            <div className='form-group'>
+                                                <label className="text-left">Faculty name</label>
+                                                <input
+                                                    type='text'
+                                                    className='form-control'
+                                                    value={facultyUpdate.name}
+                                                    onChange={handleChangeName}
+                                                />
+                                                <p className='err-message'>
+                                                    {/* {errors.fullName?.message} */}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='modal-footer'>
-                                        <button
-                                            type='button'
-                                            className='btn btn__cancel'
-                                            data-dismiss='modal'>
-                                            Cancel
+                                </div>
+                                <div className='modal-footer'>
+                                    <button
+                                        type='button'
+                                        className='btn btn__cancel'
+                                        data-dismiss='modal'>
+                                        Cancel
                                         </button>
-                                        <button
+                                    <button
 
-                                            type='submit'
-                                            className='btn btn__create'>
-                                            Create
+                                        type='submit'
+                                        className='btn btn__create'>
+                                        Create
                                     </button>
-                                    </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                    </form>
                 </div>
                 <div className={styles.settingDelete}>
                     <h3>Closure date</h3>
@@ -135,9 +135,55 @@ export default function FacultySetting(props) {
                                 <p>Once you delete the faculty, there is no going back.</p>
                             </div>
                             <div className={styles.deleteButton}>
-                                <button className="btn" onClick={() => {
-                                    deleteFaculty(id)
-                                }}><Delete /></button>
+                                <button className="btn" 
+                                data-toggle='modal'
+                                data-target='#exampleModalDelete' >
+                                    <Delete />
+                                    </button>
+                            </div>
+                            <div
+                                className='modal fade'
+                                id='exampleModalDelete'
+                                tabIndex={-1}
+                                role='dialog'
+                                aria-labelledby='exampleModalLabel'
+                                aria-hidden='true'>
+                                <div className='modal-dialog' role='document'>
+                                    <div className='modal-content'>
+                                        <div className='modal-header'>
+                                            <h5 className='modal-title' id='exampleModalLabel'>
+                                                Delete Faculty
+                                                </h5>
+                                        </div>
+                                        <div className='modal-body'>
+                                            <p>
+                                                <span>
+                                                    Do you want to delete{' '}
+                                                </span>
+                                                <span className='font-weight-bold'>
+                                                      Faculty Name   
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div className='modal-footer'>
+                                            <button
+                                                type='button'
+                                                className={`btn ${styles.modalDeleteClose}`}
+                                                data-dismiss='modal'>
+                                                Close
+                                                </button>
+                                            <button
+                                                type='button'
+                                                className={`btn ${styles.modalDelete}`}
+                                                data-dismiss='modal'
+                                                onClick={() => {
+                                                    deleteFaculty(id)
+                                                }}>
+                                                Confirm
+                                                </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

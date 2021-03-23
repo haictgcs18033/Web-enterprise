@@ -2,7 +2,6 @@
 
 import { Redirect, Route } from 'react-router-dom';
 import swal from 'sweetalert';
-import Background from '../../Components/Background';
 import Footer from '../../Components/Footer';
 import Navbar from '../../Components/Navbar';
 

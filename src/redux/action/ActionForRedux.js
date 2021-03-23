@@ -215,7 +215,7 @@ export const fetchFaculty = (limit, offset, keyword, type) => {
         });
         try {
             let result = await Axios({
-                url: `https://greenplus-dev.herokuapp.com/faculty?offset=${offset - 1
+                url: `https://greenplus-dev.herokuapp.com/faculty?offset=${(offset - 1)*limit
                     }&limit=${limit}${keyword ? `&query=${keyword}`:''}${type ? `&createAtOrderType=${type}`:''}`,
                 method: 'GET',
                 headers: {
