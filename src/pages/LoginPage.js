@@ -22,11 +22,12 @@ export default function LoginPage(props) {
 
     let schema = yup.object().shape({
         email: yup.string()
-            .required('Email is required')
-            .email('Enter a valid email'),
+            .required('⚠ Email is required')
+            .email('⚠ Enter a valid email'),
         password: yup.string()
-            .required('Password is required')
-            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/, 'Password must have at least 8 characters, 1 uppercase character, 1 number')
+            .max(8, '⚠ Password must not be longer than 8 characters')
+            .required('⚠ Password is required')
+            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/, '⚠ Password must have at least 8 characters, 1 uppercase character, 1 number'),
 
     })
 
@@ -85,7 +86,7 @@ export default function LoginPage(props) {
                         </div>
                         <div className='login-action'>
                             <div className='signin-btn'>
-                                <button>SIGN IN</button>
+                                <button >SIGN IN</button>
                             </div>
                             <div className='forget-password'>
                                 <NavLink to='/forget-password'> Forgot your password ?</NavLink>

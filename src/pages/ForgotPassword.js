@@ -3,19 +3,19 @@ import { useDispatch } from 'react-redux'
 import { handleSendMail } from '../redux/action/ActionForRedux'
 
 export default function ForgotPassword() {
-    let [emailUser,setEmailUser]=useState({
-        email:''
+    let [emailUser, setEmailUser] = useState({
+        email: ''
     })
-     const dispatch = useDispatch()
-     let handleChange=(e)=>{
-         setEmailUser({
-             email:e.target.value
-         })
-     }
-     let sendEmailReset=()=>{
+    const dispatch = useDispatch()
+    let handleChange = (e) => {
+        setEmailUser({
+            email: e.target.value
+        })
+    }
+    let sendEmailReset = () => {
         dispatch(handleSendMail(emailUser))
-     }
-     console.log(emailUser);
+    }
+    console.log(emailUser);
     return (
         <div className="container-forget">
             <div className="row my-4">
@@ -28,8 +28,12 @@ export default function ForgotPassword() {
                     <div className="form-group p-4 forget-form">
                         <h3 className="text-center">FORGOT PASSWORD</h3>
                         <label className="py-3">Email</label>
-                        <input type="text" className="form-control my-3" value={emailUser.email} onChange={handleChange} />
-                        <button className="text-center mt-4" onClick={()=>{
+                        <input
+                            type="text"
+                            className="form-control my-3"
+                            value={emailUser.email}
+                            onChange={handleChange} />
+                        <button className="text-center mt-4" onClick={() => {
                             sendEmailReset()
                         }}>SEND EMAIL</button>
                     </div>

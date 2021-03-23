@@ -23,27 +23,27 @@
         }
     }
 }
-.dropdown-menu{
-    left:-120px;
+.dropdown-menu {
+    left: -120px;
     border-radius: 8px 0px 8px 8px;
-    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);;
+    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
-.dropdown-divider{
+.dropdown-divider {
     display: none;
 }
-.dropdown-item{
+.dropdown-item {
     transition: all 0.5s;
     font-size: 14px;
     color: black;
     font-weight: bold;
-     &:hover{
-         background:#32b260;
-         color: white;
-     }
+    &:hover {
+        background: #32b260;
+        color: white;
+    }
 }
-.dropdown-toggle{
-    &::after{
+.dropdown-toggle {
+    &::after {
         display: none;
     }
 }
@@ -474,6 +474,7 @@ ul {
     line-height: 14px;
     margin-top: 7.72px;
 }
+
 // Forget password page
 .container-forget {
     width: fit-content;
@@ -551,45 +552,45 @@ h3 {
     }
 }
 // Change Password page
-.change-password-container{
-    height:100%;
+.change-password-container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.change-password{
-    padding:40px 20px;
-    width:360px;
+.change-password {
+    padding: 40px 20px;
+    width: 360px;
     height: 382px;
     box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
-    h3{
+    h3 {
         text-align: center;
         font-size: 24px;
         margin-bottom: 25px;
         font-weight: bold;
     }
-    label{
+    label {
         margin-bottom: 15px;
         font-size: 14px;
         font-weight: bold;
     }
-    button{
+    button {
         margin-top: 15px;
         width: 138px;
         background: #32b260;
-        border:2px solid #32b260 !important; 
+        border: 2px solid #32b260 !important;
         transition: all 0.5s;
         font-weight: bold;
-        &:hover{
+        &:hover {
             background: white;
             color: #32b260;
         }
     }
 }
-@media screen and (min-width:375px) and(max-width:414px){
-    .form-group{
-        width:320px;
+@media screen and (min-width: 375px) and(max-width:414px) {
+    .form-group {
+        width: 320px;
     }
 }
 // Admin Login

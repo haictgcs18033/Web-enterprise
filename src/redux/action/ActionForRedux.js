@@ -215,8 +215,8 @@ export const fetchFaculty = (limit, offset, keyword, type) => {
         });
         try {
             let result = await Axios({
-                url: `https://greenplus-dev.herokuapp.com/faculty?offset=${(offset - 1)*limit
-                    }&limit=${limit}${keyword ? `&query=${keyword}`:''}${type ? `&createAtOrderType=${type}`:''}`,
+                url: `https://greenplus-dev.herokuapp.com/faculty?offset=${(offset - 1) * limit
+                    }&limit=${limit}${keyword ? `&query=${keyword}` : ''}${type ? `&createAtOrderType=${type}` : ''}`,
                 method: 'GET',
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -344,32 +344,32 @@ export const handleDeleteFaculty = (id, props) => {
         }
     }
 }
-export const updateFaculty=(id, facultyUpdate)=>{
-    return async dispatch=>{
-       try{
-          let result=await Axios({
-              url:`https://greenplus-dev.herokuapp.com/faculty/${id}`,
-              method:'PUT',
-              data:facultyUpdate,
-              headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
-          })
-          dispatch({
-            type: 'GET_FACULTY_ID',
-            faculty: result.data,
-        });
-          swal({
-            title: 'Success',
-            text: 'Update successfully',
-            icon: 'success',
-            button: 'OK',
-        });
-       }catch(err){
-           console.log(err.response?.data);
-       }
+export const updateFaculty = (id, facultyUpdate) => {
+    return async dispatch => {
+        try {
+            let result = await Axios({
+                url: `https://greenplus-dev.herokuapp.com/faculty/${id}`,
+                method: 'PUT',
+                data: facultyUpdate,
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
+            })
+            dispatch({
+                type: 'GET_FACULTY_ID',
+                faculty: result.data,
+            });
+            swal({
+                title: 'Success',
+                text: 'Update successfully',
+                icon: 'success',
+                button: 'OK',
+            });
+        } catch (err) {
+            console.log(err.response?.data);
+        }
     }
 }
 export const handleSendMail = (email) => {
-   
+
     return async (dispatch) => {
         try {
             await Axios({
@@ -378,24 +378,25 @@ export const handleSendMail = (email) => {
                 method: 'POST',
                 data: email,
             });
-          alert('Vui long kiem tra mail')
+            alert('Vui long kiem tra mail')
         } catch (err) {
-             console.log(err.response?.data);
+            console.log(err.response?.data);
         }
     };
 };
-export const handleResetPassword=(userCredential)=>{
-    return async dispatch=>{
-        try{
-           let result = await Axios({
-               url:'https://greenplus-dev.herokuapp.com/auth/reset-password',
-               method:'POST',
-               data:userCredential
-           })
-           console.log(result.data);
-           console.log('vui long dang nhap lai');
-           
-        }catch (err){
+
+export const handleResetPassword = (userCredential) => {
+    return async dispatch => {
+        try {
+            let result = await Axios({
+                url: 'https://greenplus-dev.herokuapp.com/auth/reset-password',
+                method: 'POST',
+                data: userCredential
+            })
+            console.log(result.data);
+            console.log('vui long dang nhap lai');
+
+        } catch (err) {
             console.log(err.response?.data);
         }
     }
