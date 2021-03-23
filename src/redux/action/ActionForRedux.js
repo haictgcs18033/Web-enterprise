@@ -379,7 +379,12 @@ export const handleSendMail = (email) => {
                 method: 'POST',
                 data: email,
             });
-            alert('Vui long kiem tra mail')
+            swal({
+                title: '',
+                text: 'Please check your email',
+                icon: 'success',
+                button: 'OK',
+            });
         } catch (err) {
             console.log(err.response?.data);
         }
