@@ -10,15 +10,15 @@ export default function ContributionSubmit() {
             <h3 className="">Contribution submission</h3>
             <div className={`  ${classes.submitContent}`}>
                 <div className="row m-0">
-                    <div className="col-6">
+                    <div className={`col-md-12 col-lg-6 col-xl-6 ${classes.formInput}`}>
                         <div className="form-group">
                             <label>Title</label>
                             <input className="form-control"/>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className={`col-md-12 col-lg-6 col-xl-6 ${classes.formInput}`}>
                         <div className="form-group">
-                            <label>Title</label>
+                            <label>Short Description</label>
                             <input className="form-control"/>
                         </div>
                     </div>
@@ -30,6 +30,9 @@ export default function ContributionSubmit() {
                 <div className={`${classes.articleImage}`}> 
                     <h4>Article</h4>
                     <img src={articleImage} alt="123"/>
+                    <div className="d-block text-center">
+                         <button>Submit</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -55,7 +55,7 @@ export default function UploadContribution() {
                         <h2 className={classes.yourContribution}>
                             <span><img className={classes.yourContributionIcon} src={yourContributionIcon} alt="123" /></span>
                         Your Contributions
-                    </h2>
+                        </h2>
                         <UploadedContribution />
                     </div>
                 </div>
