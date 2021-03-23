@@ -1,7 +1,8 @@
 import React from 'react'
 import changepasswordImg from '../assets/img/change-password-img.png'
 
-export default function ChangePassword() {
+export default function ChangePassword(props) {
+   
     return (
         <div className="changepassword-container">
             <div className="row my-4">
