@@ -5,7 +5,7 @@ import notifyIcon from '../../assets/img/notifyIcon.png'
 import Background from '../../Components/Background'
 import classes from './StudentLanding.module.scss'
 import NewContributions from '../../Components/NewContributions/NewContributions'
-import ContributionList from '../../Components/YourContributions/ContributionList'
+import ContributionList from '../../Components/ContributionList/ContributionList'
 
 export default function StudentLanding() {
     return (
