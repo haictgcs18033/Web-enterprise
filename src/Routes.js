@@ -5,6 +5,7 @@ import FacultySetting from './pages/AdminDashboard/Faculty/FacultySetting';
 import UserDashboard from './pages/AdminDashboard/Users/UserDashboard';
 import AdminLogin from './pages/AdminLogin';
 import ChangePassword from './pages/ChangePassword';
+import CoordinatorLanding from './pages/CoordinatorDashboard/CoordinatorLanding';
 import ForgotPassword from './pages/ForgotPassword';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -40,6 +41,20 @@ export const adminDashboardRoute = [
         component: Faculty,
     },
 ];
+export const managerDashboardRoute = [
+    {
+        path: '/manager/home',
+        exact: true,
+        component: ManagerLanding
+    }
+]
+export const coordinatorDashboardRoute=[
+    {
+        path:'/coordinator/home',
+        exact:false,
+        component:CoordinatorLanding
+    }
+]
 export const studentDashboardRoute = [
     {
         path: '/student/contribution-submit',
@@ -62,13 +77,7 @@ export const studentDashboardRoute = [
         component: StudentLanding,
     },
 ];
-export const managerDashboardRoute = [
-    {
-        path: '/manager/home',
-        exact: false,
-        component: ManagerLanding
-    }
-]
+
 export const client = [
     {
         path: '/',

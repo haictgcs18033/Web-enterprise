@@ -13,6 +13,9 @@ export const PrimaryTemplate = ({ Component, component, ...props }) => {
     else if(userLogin.user.role==='MARKETING_MANAGER'){
       return <Redirect to="/manager/home"/>
     }
+    else if(userLogin.user.role==='MARKETING_CORDINATOR'){
+      return <Redirect to="/coordinator/home"/>
+    }
   }
   return (
     <Route

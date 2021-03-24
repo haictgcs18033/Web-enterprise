@@ -7,19 +7,19 @@ export const ManagerDashboard=({ Component, component, ...props })=>{
     if (localStorage.getItem('USER_LOGIN')) {
         let userLogin = JSON.parse(localStorage.getItem('USER_LOGIN'));
         if (userLogin.user.role === 'MARKETING_MANAGER') {
-            return (
-                <Route
-                  {...props}
-                  render={(propsRoute) => {
-                    return (
-                      <>
-                        <Navbar></Navbar>
-                        <Component></Component>
-                        <Footer></Footer>
-                      </>
-                    );
-                  }}></Route>
-              );
+          return (
+            <Route
+              {...props}
+              render={(propsRoute) => {
+                return (
+                  <>
+                    <Navbar></Navbar>
+                    <Component></Component>
+                    <Footer></Footer>
+                  </>
+                );
+              }}></Route>
+          );
         }
         swal({
             title: 'You are not manager',

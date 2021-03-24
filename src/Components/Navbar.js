@@ -57,7 +57,25 @@ export default function Navbar() {
                 </div>
             }
             case 'MARKETING_CORDINATOR': {
-                return <p>Hello cordinator</p>
+                return <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav ml-auto">
+                    <li className="nav-item active">
+                        <NavLink className="nav-link" to="/">Home</NavLink>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <p className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {userLogin.user.fullName}
+                        </p>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <NavLink className="dropdown-item" to="/login"
+                                onClick={() => {
+                                    logout()
+                                }}>Logout</NavLink>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
             }
             default: {
                 return <div className="collapse navbar-collapse" id="navbarSupportedContent">

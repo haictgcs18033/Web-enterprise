@@ -28,7 +28,7 @@ export const StudentDashboard = ({ Component, component, ...props }) => {
       title: 'You are not student!',
       icon: 'warning',
     });
-    return <Redirect to='/'></Redirect>;
+    return <Redirect to='/' />;
   }
   swal({
     title: 'You are not login!',

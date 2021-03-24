@@ -21,7 +21,7 @@ export default function UploadContribution() {
                             <thead>
                                 <tr>
                                     <td>
-                                        <p className={classes.content}>cl</p>
+                                        <p className={classes.content}>Submission status</p>
                                     </td>
                                     <td>
                                         <p className={classes.content}>cc</p>
@@ -29,7 +29,7 @@ export default function UploadContribution() {
                                 </tr>
                                 <tr >
                                     <td>
-                                        <p className={classes.content}>cl</p>
+                                        <p className={classes.content}>Closure date</p>
                                     </td>
                                     <td>
                                         <p className={classes.content}>cc</p>
@@ -37,7 +37,23 @@ export default function UploadContribution() {
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p className={classes.content}>cl</p>
+                                        <p className={classes.content}>Final closure date</p>
+                                    </td>
+                                    <td>
+                                        <p className={classes.content}>cc</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p className={classes.content}>Last modified</p>
+                                    </td>
+                                    <td>
+                                        <p className={classes.content}>cc</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p className={classes.content}>Submission comments</p>
                                     </td>
                                     <td>
                                         <p className={classes.content}>cc</p>
