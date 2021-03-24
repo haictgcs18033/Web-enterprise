@@ -16,83 +16,83 @@ import StudentLanding from './pages/StudentDashboard/StudentLanding';
 import UploadContribution from './pages/StudentDashboard/UploadContribution';
 
 export const admin = [
-  {
-    path: '/admin',
-    exact: true,
-    component: AdminLogin,
-  },
+    {
+        path: '/admin',
+        exact: true,
+        component: AdminLogin,
+    },
 ];
 export const adminDashboardRoute = [
-  {
-    path: '/admin/dashboard/faculty/setting/:id',
-    exact: false,
-    component: FacultySetting,
-  },
-  {
-    path: '/admin/dashboard/users',
-    exact: false,
-    component: UserDashboard,
-  },
+    {
+        path: '/admin/dashboard/faculty/setting/:id',
+        exact: false,
+        component: FacultySetting,
+    },
+    {
+        path: '/admin/dashboard/users',
+        exact: false,
+        component: UserDashboard,
+    },
 
-  {
-    path: '/admin/dashboard/faculty',
-    exact: false,
-    component: Faculty,
-  },
+    {
+        path: '/admin/dashboard/faculty',
+        exact: false,
+        component: Faculty,
+    },
 ];
 export const studentDashboardRoute = [
-  {
-    path:'/student/contribution-submit',
-    exact:false,
-    component:ContributionSubmit
-  },
-  {
-    path: '/student/upload-contribution',
-    exact: false,
-    component: UploadContribution,
-  },
-  {
-    path: '/student/changepassword',
-    exact: false,
-    component: ChangePassword,
-  },
-  {
-    path: '/student/home',
-    exact: true,
-    component: StudentLanding,
-  },
+    {
+        path: '/student/contribution-submit',
+        exact: false,
+        component: ContributionSubmit
+    },
+    {
+        path: '/student/upload-contribution',
+        exact: false,
+        component: UploadContribution,
+    },
+    {
+        path: '/student/changepassword',
+        exact: false,
+        component: ChangePassword,
+    },
+    {
+        path: '/student/home',
+        exact: true,
+        component: StudentLanding,
+    },
 ];
-export const managerDashboardRoute=[
-  {
-    path:'/manager/home',
-    exact:false,
-    component:ManagerLanding
-  }
+export const managerDashboardRoute = [
+    {
+        path: '/manager/home',
+        exact: false,
+        component: ManagerLanding
+    }
 ]
 export const client = [
-  {
-    path: '/',
-    exact: true,
-    component: HomePage,
-  },
-  {
-    path: '/login',
-    exact: false,
-    component: LoginPage,
-  },
-  {
-    path: '/forget-password', 
-    exact: false,
-    component: ForgotPassword,
-  },
-  {
-    path: '/reset-password/:resetToken',
-    exact: false,
-    component: ResetToken,
-  },
-  {
-    path: '',
-    exact: false,
-    component: NotFound,
-  },
+    {
+        path: '/',
+        exact: true,
+        component: HomePage,
+    },
+    {
+        path: '/login',
+        exact: false,
+        component: LoginPage,
+    },
+    {
+        path: '/forget-password',
+        exact: false,
+        component: ForgotPassword,
+    },
+    {
+        path: '/reset-password/:resetToken',
+        exact: false,
+        component: ResetToken,
+    },
+    {
+        path: '',
+        exact: false,
+        component: NotFound,
+    },
 ];

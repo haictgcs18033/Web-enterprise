@@ -1,6 +1,6 @@
 import React from 'react'
 
-import classes from '../YourContribution/ContributionItems.module.scss'
+import classes from '../ContributionItems/ContributionItems.module.scss'
 import contributionImg from '../../../assets/img/contributionImg.jpg'
 import eyeIcon from '../../../assets/img/eye-icon.png'
 import penIcon from '../../../assets/img/pen.png'
