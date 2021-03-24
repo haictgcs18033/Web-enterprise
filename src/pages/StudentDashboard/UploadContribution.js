@@ -16,7 +16,7 @@ export default function UploadContribution() {
                     <div className={classes.submitArticleBox}>
                         <h2 className={classes.submitArticle}>
                             Submit article
-                    </h2>
+                        </h2>
                         <table className={classes.table}>
                             <thead>
                                 <tr>
