@@ -3,8 +3,8 @@ import React from 'react'
 import Background from '../Components/Background'
 import notifyIcon from '../assets/img/notifyIcon.png'
 import trendingIcon from '../assets/img/trending-icon.png'
-import NewContributions from '../Components/NewContributions/NewContributions'
-import Trendings from '../Components/Trendings/Trendings'
+import NewContributionList from '../Components/NewContributionList/NewContributionList'
+import TrendingList from '../Components/TrendingList/TrendingList'
 
 export default function HomePage(props) {
 
@@ -16,14 +16,14 @@ export default function HomePage(props) {
                     <span><img className="trend-icon" src={trendingIcon} alt="123" /></span>
                     Now Treding
                 </h2>
-                <Trendings />
+                <TrendingList />
             </div>
             <div className="container">
                 <h2 className="contribution-title">
                     <span><img className="notify-icon" src={notifyIcon} alt="123" /></span>
                     New Contributions
                 </h2>
-                <NewContributions />
+                <NewContributionList />
                 <div className="text-center">
                     <button type="button" className="show-btn">show more</button>
                 </div>

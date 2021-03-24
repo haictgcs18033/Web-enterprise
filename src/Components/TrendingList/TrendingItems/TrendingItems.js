@@ -1,8 +1,8 @@
 import React from 'react'
 
-import classes from './Trending.module.scss'
+import classes from './TrendingItems.module.scss'
 
-export default function Trending() {
+export default function TrendingItems() {
     return (
         <div>
             <div className="trend-contribute">
