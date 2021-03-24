@@ -5,11 +5,11 @@ import ArrowRight from '../../assets/img/caret-right.png'
 
 export default function ManagerLanding() {
     return (
-        <div className={classes.container}>
+        <div className="container">
             <h2 className={classes.facultyListTitle}>
                 Faculty list
             </h2>
-            <div className={classes.container}>
+            <div className={classes.gridContainer}>
                 <div className={classes.grid}>
                     <button className={classes.facultyBtn}>
                         Information Technology
@@ -31,10 +31,8 @@ export default function ManagerLanding() {
                         Art
                     <img src={ArrowRight} alt="123" />
                     </button>
-
                 </div>
             </div>
-
         </div>
     )
 }

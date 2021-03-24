@@ -1,27 +1,3 @@
-.container {
-    width: 1140px;
-    @media screen and (max-width: 1280px) {
-        width: 1000px;
-        padding: 0;
-    }
-    @media screen and (max-width: 1024px) {
-        width: 918px;
-    }
-    @media screen and (max-width: 768px) {
-        width: 658px;
-    }
-    @media screen and (max-width: 656px) {
-        width: 420px;
-    }
-
-    @media screen and (min-width: 375px) and (max-width: 414px) {
-        width: 317px;
-    }
-    @media screen and (max-width: 374px) {
-        width: 317px;
-    }
-}
-
 .gridContainer {
     width: 1140px;
     margin: 0 auto;
@@ -29,13 +5,10 @@
         width: 1000px;
     }
     @media screen and (max-width: 1280px) {
-        width: 1000px;
+        width: 100%;
     }
     @media screen and (max-width: 1024px) {
-        width: 658px;
-    }
-    @media screen and (max-width: 656px) {
-        width: 316.8px;
+        width: 100%;
     }
 }
 
@@ -67,6 +40,12 @@
     grid-column-gap: 20px;
 }
 
+@media screen and (max-width: 1024px) {
+    .grid {
+        display: block;
+    }
+}
+
 .facultyBtn {
     background-color: #f4f4f4;
     border-radius: 8px;
@@ -82,11 +61,5 @@
     font-size: 14px;
     &:not(:last-child) {
         margin-bottom: 1rem;
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    .grid {
-        display: block;
     }
 }
