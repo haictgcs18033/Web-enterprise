@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Trending from './Trending/Trending'
-import classes from './Trendings.module.scss'
+import Trending from './Trending/TrendingItems'
+import classes from './TrendingList.module.scss'
 
-export default function Trendings() {
+export default function TrendingList() {
     return (
         <div className={classes.gridContainer}>
             <div className={classes.grid}>

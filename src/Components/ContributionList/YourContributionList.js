@@ -1,7 +1,7 @@
 import React from 'react'
-import ContributionItems from './ContributionItems/ContributionItems'
+import ContributionItems from './ContributionItems/YourContributionItems'
 
-import classes from './ContributionList.module.scss'
+import classes from './YourContributionList.module.scss'
 
 export default function ContributionList() {
     return (
