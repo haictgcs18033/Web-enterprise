@@ -16,7 +16,7 @@ export default function NewContributionItems(props) {
                 <button type="button" className={classes.contributionBtn}>
                     <img className={classes.icon} src={eyeIcon} alt="123" />
                     See Contribution
-            </button>
+                </button>
                 <div className="card-body">
                     <h4 className={classes.cardTitle}>{contribute.name}</h4>
                     <p className={classes.cardText}>{contribute.description}</p>

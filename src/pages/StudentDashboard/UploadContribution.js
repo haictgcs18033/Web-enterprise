@@ -20,44 +20,24 @@ export default function UploadContribution() {
                         <table className={classes.table}>
                             <thead>
                                 <tr>
-                                    <td>
-                                        <p className={classes.content}>Submission status</p>
-                                    </td>
-                                    <td>
-                                        <p className={classes.content}>cc</p>
-                                    </td>
+                                    <th>Submission status</th>
+                                    <td>Not yet</td>
                                 </tr>
                                 <tr >
-                                    <td>
-                                        <p className={classes.content}>Closure date</p>
-                                    </td>
-                                    <td>
-                                        <p className={classes.content}>cc</p>
-                                    </td>
+                                    <th>Closure date</th>
+                                    <td>cc</td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <p className={classes.content}>Final closure date</p>
-                                    </td>
-                                    <td>
-                                        <p className={classes.content}>cc</p>
-                                    </td>
+                                    <th>Final closure date</th>
+                                    <td>cc</td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <p className={classes.content}>Last modified</p>
-                                    </td>
-                                    <td>
-                                        <p className={classes.content}>cc</p>
-                                    </td>
+                                    <th>Last modified</th>
+                                    <td>cc</td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <p className={classes.content}>Submission comments</p>
-                                    </td>
-                                    <td>
-                                        <p className={classes.content}>cc</p>
-                                    </td>
+                                    <th>Submission comments</th>
+                                    <td>Not yet</td>
                                 </tr>
                             </thead>
                         </table>

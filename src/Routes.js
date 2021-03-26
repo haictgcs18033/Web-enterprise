@@ -1,5 +1,6 @@
 /** @format */
 
+import UploadedTable from './Components/UploadedTable/UploadedTable';
 import Faculty from './pages/AdminDashboard/Faculty/Faculty';
 import FacultySetting from './pages/AdminDashboard/Faculty/FacultySetting';
 import UserDashboard from './pages/AdminDashboard/Users/UserDashboard';
@@ -48,11 +49,11 @@ export const managerDashboardRoute = [
         component: ManagerLanding
     }
 ]
-export const coordinatorDashboardRoute=[
+export const coordinatorDashboardRoute = [
     {
-        path:'/coordinator/home',
-        exact:false,
-        component:CoordinatorLanding
+        path: '/coordinator/home',
+        exact: false,
+        component: CoordinatorLanding
     }
 ]
 export const studentDashboardRoute = [
@@ -70,6 +71,11 @@ export const studentDashboardRoute = [
         path: '/student/changepassword',
         exact: false,
         component: ChangePassword,
+    },
+    {
+        path: '/sudent/uploaded-table',
+        exact: false,
+        component: UploadedTable,
     },
     {
         path: '/student/home',
