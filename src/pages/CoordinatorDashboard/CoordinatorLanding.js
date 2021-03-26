@@ -8,23 +8,23 @@ import bin from '../../assets/img/bin.png'
 import * as actionContribution from '../../redux/action/ActionContribution'
 import { useDispatch, useSelector } from 'react-redux'
 export default function CoordinatorLanding() {
-    const contributionList = useSelector(state => state.contributionReducer.contributionList)
+    const contributionPublishList = useSelector(state => state.contributionReducer.contributionPublishList)
     let [curPage] = useState(1);
     let dispatch = useDispatch()
     let limit = 10
-    const getContribution = useCallback(
-        () => dispatch(actionContribution.getContributionList(curPage, limit)),
+    const getContributionPublish = useCallback(
+        () => dispatch(actionContribution.getContributionPublishList(curPage, limit)),
         [dispatch, curPage, limit]
     );
     useEffect(() => {
-        getContribution()
-    }, [getContribution])
-    console.log(contributionList);
+        getContributionPublish()
+    }, [getContributionPublish])
+    console.log(contributionPublishList);
     let renderPublishContribution = () => {
-        return contributionList.map((contribution, index) => {
+        return contributionPublishList.map((contribution, index) => {
             return <div key={index} className={`col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2`}>
                 <div className={`card ${classes.cardWaiting}`}>
-                    <img className="card-img-top" src={contributionImg} alt="123" />
+                    <img className="card-img-top" src={`https://34.68.194.194:3000/${contribution.thumbnail}`} alt="123" height="216px" />
                     <div className={classes.overlay}></div>
                     <div className={classes.groupButton}>
                         <button type="button" className={`${classes.contributionBtn}`}>

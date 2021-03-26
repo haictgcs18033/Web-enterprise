@@ -1,7 +1,7 @@
 import React from 'react'
 
 import classes from './NewContributionItems.module.scss'
-import contributionImg from '../../../assets/img/contribution.png'
+
 import eyeIcon from '../../../assets/img/eye-icon.png'
 
 
@@ -11,7 +11,7 @@ export default function NewContributionItems(props) {
     let renderNewContributionItems = () => {
         return contribution.map((contribute, index) => {
             return <div className={`card ${classes.card}`}>
-                <img className="card-img-top" src={contributionImg} alt="123" />
+                <img className="card-img-top" src={`https://34.68.194.194:3000/${contribute.thumbnail}`} alt="123" height="216px" />
                 <div className={classes.overlay}></div>
                 <button type="button" className={classes.contributionBtn}>
                     <img className={classes.icon} src={eyeIcon} alt="123" />
@@ -25,8 +25,8 @@ export default function NewContributionItems(props) {
         })
     }
     return (
-        <>
+        <div className={classes.grid}>
             {renderNewContributionItems()}
-        </>
+        </div>
     )
 }

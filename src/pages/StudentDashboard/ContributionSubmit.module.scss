@@ -18,20 +18,25 @@
         font-size: 16px;
         margin-bottom: 20px;
     }
-    button{
-        width:130px;
-        height:38px;
-        background:white;
-        border:2px solid #32B260;
-        border-radius: 6px;
-        color:#32B260;
-        transition: all 0.5s;
-        &:hover{
-            background:#32B260;
-            color: white;
-            cursor: pointer;
-        }
-    }
+    // label{
+    //     input[type=file]{
+    //        display: none
+    //     }
+    //     width:130px;
+    //     text-align: center;
+    //     height:38px;
+    //     background:white;
+    //     border:2px solid #32B260;
+    //     border-radius: 6px;
+    //     color:#32B260;
+    //     transition: all 0.5s;
+    //     &:hover{
+    //         background:#32B260;
+    //         color: white;
+    //         cursor: pointer;
+    //     }
+    // }
+    
 }
 .articleImage{
     img{
