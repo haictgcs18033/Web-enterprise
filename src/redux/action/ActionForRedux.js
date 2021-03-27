@@ -26,7 +26,7 @@ export const loginAction = (admin, props) => {
     return async (dispatch) => {
         try {
             let result = await Axios({
-                url: 'https://34.68.194.194:3000/auth/login',
+                url: 'https://35.224.120.132/auth/login',
                 method: 'POST',
                 data: admin,
             });
@@ -51,7 +51,7 @@ export const loginHomePageAction = (student, props) => {
     return async (dispatch) => {
         try {
             let result = await Axios({
-                url: 'https://34.68.194.194:3000/auth/login',
+                url: 'https://35.224.120.132/auth/login',
                 method: 'POST',
                 data: student,
             });
@@ -79,7 +79,7 @@ export const fetchUsers = (limit, page, keyword, faculty) => {
         });
         try {
             let result = await Axios.get(
-                `https://34.68.194.194:3000/users?offset=${(page - 1) * limit
+                `https://35.224.120.132/users?offset=${(page - 1) * limit
                 }&limit=${limit}${keyword !== '' ? `&query=${keyword}` : ''}${faculty !== '' ? `&role=${faculty}` : ''
                 }`,
                 {
@@ -105,7 +105,7 @@ export const handleCreateUser = (user) => {
         });
         try {
             let result = await Axios({
-                url: 'https://34.68.194.194:3000/users',
+                url: 'https://35.224.120.132/users',
                 method: 'POST',
                 data: user,
                 headers: {
@@ -144,7 +144,7 @@ export const DeleteUser = (id) => {
         });
         try {
             await Axios({
-                url: `https://34.68.194.194:3000/users/${id}`,
+                url: `https://35.224.120.132/users/${id}`,
                 method: 'DELETE',
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -178,7 +178,7 @@ export const UpdateUser = (id, user) => {
         });
         try {
             let result = await Axios({
-                url: `https://34.68.194.194:3000/users/${id}`,
+                url: `https://35.224.120.132/users/${id}`,
                 method: 'PUT',
                 data: user,
                 headers: {
@@ -215,7 +215,7 @@ export const fetchFaculty = (limit, offset, keyword, type) => {
         });
         try {
             let result = await Axios({
-                url: `https://34.68.194.194:3000/faculty?offset=${(offset - 1) * limit
+                url: `https://35.224.120.132/faculty?offset=${(offset - 1) * limit
                     }&limit=${limit}${keyword ? `&query=${keyword}` : ''}${type ? `&createAtOrderType=${type}` : ''}`,
                 method: 'GET',
                 headers: {
@@ -239,7 +239,7 @@ export const fetchFacultyById = (id) => {
         });
         try {
             let result = await Axios({
-                url: `https://34.68.194.194:3000/faculty/${id}`,
+                url: `https://35.224.120.132/faculty/${id}`,
                 method: 'GET',
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -258,7 +258,7 @@ export const handleClosureDate = (closureDate) => {
     return async dispatch => {
         try {
             await Axios({
-                url: 'https://34.68.194.194:3000/global-config/closure-dates',
+                url: 'https://35.224.120.132/global-config/closure-dates',
                 method: 'POST',
                 data: closureDate,
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
@@ -281,7 +281,7 @@ export const fetchClosureDate = () => {
         });
         try {
             let result = await Axios({
-                url: 'https://34.68.194.194:3000/global-config/closure-dates',
+                url: 'https://35.224.120.132/global-config/closure-dates',
                 method: 'GET'
             })
             dispatch({
@@ -300,7 +300,7 @@ export const createFacultyAdmin = (faculty) => {
         });
         try {
             let result = await Axios({
-                url: 'https://34.68.194.194:3000/faculty',
+                url: 'https://35.224.120.132/faculty',
                 method: 'POST',
                 data: faculty,
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
@@ -324,7 +324,7 @@ export const handleDeleteFaculty = (id, props) => {
     return async dispatch => {
         try {
             await Axios({
-                url: `https://34.68.194.194:3000/faculty/${id}`,
+                url: `https://35.224.120.132/faculty/${id}`,
                 method: 'DELETE',
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
             })
@@ -349,7 +349,7 @@ export const updateFaculty = (id, facultyUpdate) => {
     return async dispatch => {
         try {
             let result = await Axios({
-                url: `https://34.68.194.194:3000/faculty/${id}`,
+                url: `https://35.224.120.132/faculty/${id}`,
                 method: 'PUT',
                 data: facultyUpdate,
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
@@ -375,7 +375,7 @@ export const handleSendMail = (email) => {
         try {
             await Axios({
                 url:
-                    'https://34.68.194.194:3000/auth/send-reset-password-mail',
+                    'https://35.224.120.132/auth/send-reset-password-mail',
                 method: 'POST',
                 data: email,
             });
@@ -394,7 +394,7 @@ export const handleResetPassword = (userCredential) => {
     return async dispatch => {
         try {
             let result = await Axios({
-                url: 'https://34.68.194.194:3000/auth/reset-password',
+                url: 'https://35.224.120.132/auth/reset-password',
                 method: 'POST',
                 data: userCredential
             })

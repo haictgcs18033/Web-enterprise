@@ -21,6 +21,16 @@ export const  contributionReducer=(state=stateContribution,action)=>{
         case 'INPUT_CONTRIBUTION':{
             return {...state,contribution:action.contribution}
         }
+        case 'CREATE_CONTRIBUTION':{
+            state.contributionList=[...state.contributionList,action.contribution]
+            return{...state}
+        }
+        case 'DELETE_CONTRIBUTION':{
+            let contributionUpdate=[...state.contributionList]
+            contributionUpdate=contributionUpdate.filter(contribute=>contribute.id!==action.id)
+            state.contributionList=contributionUpdate
+            return{...state}
+        }
         default:{
             return{...state}
         }

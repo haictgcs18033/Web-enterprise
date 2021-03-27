@@ -52,20 +52,48 @@ export const submitContribution=(formInput)=>{
      
     return async dispatch=>{
          try{
-           await Axios({
-               url:'https://34.68.194.194:3000/contributions',
+           let result=await Axios({
+               url:'https://35.224.120.132/contributions',
                method:'POST',
                data:formData,
                headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
            })
+           dispatch({
+            type:'CREATE_CONTRIBUTION',
+            contribution:result.data
+        })
            swal({
             title: 'Success',
             text: 'Contribution added successfully',
             icon: 'success',
             button: 'OK',
         });
+      
          }catch(err){
              console.log(err.response?.data);
          }
     }
+}
+export const handleDeleteContribution=(id)=>{
+      return async dispatch=>{
+          try{
+             await Axios({
+                 url: `https://greenplus-dev.herokuapp.com/contributions/${id}`,
+                 method:'DELETE',
+                 headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+             })
+             dispatch({
+                 type:"DELETE_CONTRIBUTION",
+                 id:id
+             })
+             swal({
+                title: 'Success',
+                text: 'Contribution deleted successfully',
+                icon: 'success',
+                button: 'OK',
+            });
+          }catch(err){
+              console.log(err.response?.data);
+          }
+      }
 }
