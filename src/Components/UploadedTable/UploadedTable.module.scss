@@ -27,7 +27,7 @@
     table-layout: fixed;
 }
 
-th {
+.tableHeader {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -39,7 +39,7 @@ th {
     background-color: #f8fdf9;
 }
 
-td {
+.tableData {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;

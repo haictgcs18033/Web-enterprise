@@ -14,24 +14,24 @@ export default function UploadedTable() {
             <table className={classes.table}>
                 <thead>
                     <tr>
-                        <th>Submission status</th>
-                        <td>Not yet</td>
+                        <th className={classes.tableHeader}>Submission status</th>
+                        <td className={classes.tableData}>Not yet</td>
                     </tr>
                     <tr >
-                        <th>Closure date</th>
-                        <td>cc</td>
+                        <th className={classes.tableHeader}>Closure date</th>
+                        <td className={classes.tableData}>cc</td>
                     </tr>
                     <tr>
-                        <th>Final closure date</th>
-                        <td>cc</td>
+                        <th className={classes.tableHeader}>Final closure date</th>
+                        <td className={classes.tableData}>cc</td>
                     </tr>
                     <tr>
-                        <th>Last modified</th>
-                        <td>cc</td>
+                        <th className={classes.tableHeader}>Last modified</th>
+                        <td className={classes.tableData}>cc</td>
                     </tr>
                     <tr>
-                        <th>Submission comments</th>
-                        <td>Not yet</td>
+                        <th className={classes.tableHeader}>Submission comments</th>
+                        <td className={classes.tableData}>Not yet</td>
                     </tr>
                 </thead>
             </table>

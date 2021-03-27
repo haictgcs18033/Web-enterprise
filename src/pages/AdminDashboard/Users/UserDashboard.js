@@ -183,7 +183,6 @@ export default function UserDashboard(props) {
                                                                 value={userObj.password}
                                                                 onChange={handleChangeInput}
                                                             />
-                                                            <p></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -448,6 +447,6 @@ export default function UserDashboard(props) {
                     <div className={styles.pages}>{renderPages()}</div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
