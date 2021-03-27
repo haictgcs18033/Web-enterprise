@@ -85,8 +85,8 @@ export default function CoordinatorLanding() {
                             </div>
                         </button>
                         <button type="button" className={classes.contributionBtn}
-                        data-toggle='modal'
-                        data-target='#exampleModalUpdate'>
+                            data-toggle='modal'
+                            data-target='#exampleModalUpdate'>
                             <div className="d-flex">
                                 <img className={classes.icon} src={pen} alt="123" />
                                 <p className="mb-0"> Edit Contribution</p>
@@ -101,7 +101,12 @@ export default function CoordinatorLanding() {
                             </div>
                         </button>
                     </div>
-                    <div
+                    <div className="card-body">
+                        <h4 className={classes.cardTitle}>{contribution.name}</h4>
+                        <p className={classes.cardText}>{contribution.description}</p>
+                    </div>
+                </div>
+                <div
                         className='modal fade'
                         id='exampleModalDelete'
                         tabIndex={-1}
@@ -113,7 +118,7 @@ export default function CoordinatorLanding() {
                                 <div className='modal-header'>
                                     <h5 className='modal-title' id='exampleModalLabel'>
                                         Delete Contribution
-                                                </h5>
+                                    </h5>
                                 </div>
                                 <div className='modal-body'>
                                     <p>
@@ -131,7 +136,7 @@ export default function CoordinatorLanding() {
                                         className={`btn ${styles.modalDeleteClose}`}
                                         data-dismiss='modal'>
                                         Close
-                                                </button>
+                                    </button>
                                     <button
                                         type='button'
                                         className={`btn ${styles.modalDelete}`}
@@ -140,58 +145,53 @@ export default function CoordinatorLanding() {
                                             deleteContribution(contribution.id)
                                         }}>
                                         Confirm
-                                                </button>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div
-                        className={`modal fade `}
-                        id='exampleModalUpdate'
-                        tabIndex={-1}
-                        role='dialog'
-                        aria-labelledby='exampleModalLabel'
-                        aria-hidden='true'>
-                        <div className='modal-dialog' role='document'>
-                            <div className='modal-content'>
-                                <div className='modal-header'>
-                                    <h5 className='modal-title ' id='exampleModalLabel'>
-                                        Edit Contribution
+                <div
+                    className={`modal fade ${classes.modalUpdate}`}
+                    id='exampleModalUpdate'
+                    tabIndex={-1}
+                    role='dialog'
+                    aria-labelledby='exampleModalLabel'
+                    aria-hidden='true'>
+                    <div className='modal-dialog' role='document'>
+                        <div className='modal-content'>
+                            <div className='modal-header text-center'>
+                                <h5 className='modal-title ' id='exampleModalLabel'>
+                                    Edit Contribution
                                     </h5>
+                            </div>
+                            <div className='modal-body'>
+                                <div className="form-group">
+                                    <label>Name</label>
+                                    <input className="form-control" />
                                 </div>
-                                <div className='modal-body'>
-                                   <div className="form-group">
-                                       <label>Name</label>
-                                       <input className="form-control"/>
-                                   </div>
-                                   <div className="form-group">
-                                       <label>Description</label>
-                                       <input className="form-control"/>
-                                   </div>
-                                </div>
-                                <div className='modal-footer'>
-                                    <button
-                                        type='button'
-                                       
-                                        data-dismiss='modal'>
-                                        Cancel
-                                    </button>
-                                    <button
-                                        type='button'
-                                       
-                                        data-dismiss='modal'
-                                        onClick={() => {
-                                            deleteContribution(contribution.id)
-                                        }}>
-                                        Confirm
-                                    </button>
+                                <div className="form-group">
+                                    <label>Description</label>
+                                    <input className="form-control" />
                                 </div>
                             </div>
+                            <div className='modal-footer'>
+                                <button
+                                    type='button'
+                                    className={classes.cancelButton}
+                                    data-dismiss='modal'>
+                                    Cancel
+                                    </button>
+                                <button
+                                    type='button'
+                                    className={classes.updateButton}
+                                    data-dismiss='modal'
+                                    onClick={() => {
+                                        deleteContribution(contribution.id)
+                                    }}>
+                                    Confirm
+                                    </button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="card-body">
-                        <h4 className={classes.cardTitle}>{contribution.name}</h4>
-                        <p className={classes.cardText}>{contribution.description}</p>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ import Navbar from '../../Components/Navbar';
 export const StudentDashboard = ({ Component, component, ...props }) => {
   if (localStorage.getItem('USER_LOGIN')) {
     let userLogin = JSON.parse(localStorage.getItem('USER_LOGIN'));
-    if (userLogin.user.role === 'STUDENT') {
+    if ( userLogin.user.role === 'STUDENT') {
       return (
         <Route
           {...props}

@@ -53,7 +53,9 @@ function App() {
       );
     });
   };
+  // let userLogin=JSON.parse(localStorage.getItem('USER_LOGIN'))
   const studentDashboard = (routes) => {
+   
     return routes.map((route, index) => {
       return (
         <StudentDashboard

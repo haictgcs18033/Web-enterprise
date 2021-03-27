@@ -6,6 +6,7 @@ import FacultySetting from './pages/AdminDashboard/Faculty/FacultySetting';
 import UserDashboard from './pages/AdminDashboard/Users/UserDashboard';
 import AdminLogin from './pages/AdminLogin';
 import ChangePassword from './pages/ChangePassword';
+import ChangePasswordFirst from './pages/ChangePasswordFirst';
 import CoordinatorLanding from './pages/CoordinatorDashboard/CoordinatorLanding';
 import ForgotPassword from './pages/ForgotPassword';
 import HomePage from './pages/HomePage';
@@ -67,6 +68,7 @@ export const studentDashboardRoute = [
         exact: false,
         component: UploadContribution,
     },
+   
     {
         path: '/student/changepassword',
         exact: false,
@@ -94,6 +96,11 @@ export const client = [
         path: '/login',
         exact: false,
         component: LoginPage,
+    },
+    {
+        path: '/change-password-first',
+        exact: false,
+        component: ChangePasswordFirst,
     },
     {
         path: '/forget-password',
