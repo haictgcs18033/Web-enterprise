@@ -14,7 +14,6 @@ export default function LoginPage(props) {
     let { email, password } = user.values
     let handleChangeInput = (e) => {
         let { value, name } = e.target
-        console.log(value, name);
         let newValues = { ...user.values }
         newValues[name] = value;
         dispatch(handleInput(newValues));
