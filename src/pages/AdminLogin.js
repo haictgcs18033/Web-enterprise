@@ -31,7 +31,6 @@ export default function AdminLogin(props) {
     });
 
     const { register, handleSubmit, errors } = useForm({
-        mode: 'onBlur',
         resolver: yupResolver(schema),
     });
 

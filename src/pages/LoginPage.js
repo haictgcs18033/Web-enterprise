@@ -31,7 +31,6 @@ export default function LoginPage(props) {
     })
 
     const { register, handleSubmit, errors } = useForm({
-        mode: 'onBlur',
         resolver: yupResolver(schema),
     });
 

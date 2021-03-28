@@ -19,9 +19,9 @@ export default function ContributionSubmit() {
         }
         dispatch(action.handleInput(newValues))
     }
-    let handleSubmit=(e)=>{
+    let handleSubmit = (e) => {
         e.preventDefault();
-        let formInput=contribution.values;
+        let formInput = contribution.values;
         dispatch(action.submitContribution(formInput))
     }
     return (
