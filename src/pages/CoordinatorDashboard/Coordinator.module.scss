@@ -83,6 +83,46 @@
         
     }
 }
+.modalUpdate{
+    max-width: 510px;
+   transform: translateX(90%);
+      h5{
+          margin: 0 auto;
+          font-size: 24px !important;
+          color: black !important;
+      }
+      label{
+          font-size: 14px;
+          color: black;
+      }
+      input{
+          background: white;
+          border: 1px solid black;
+      }
+      .cancelButton,.updateButton,.publishButton{
+             width:123px;
+             height:52px;
+             border-radius: 6px;
+             border:none;
+             background:white;
+             &:hover{
+                 cursor:pointer;
+             }
+      }
+      .publishButton{
+          border: 1px solid #BE0E62; 
+          color: #BE0E62;
+      }
+       .cancelButton{
+           border:1px solid #32B260;
+           color: #32B260;
+           margin-right: 10px;
+       }
+       .updateButton{
+           background: #32B260;
+           color: white;
+       }
+  }
 @media screen and (min-width:768px) and (max-width:992px){
      .publishContainer{
          padding: 0 30px;

@@ -53,7 +53,9 @@ function App() {
       );
     });
   };
+
   const studentDashboard = (routes) => {
+   
     return routes.map((route, index) => {
       return (
         <StudentDashboard

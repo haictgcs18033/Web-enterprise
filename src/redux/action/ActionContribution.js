@@ -19,7 +19,7 @@ export const getContributionPublishList=(offset,limit)=>{
       
     }
 }
-export const getContributionList=(offset,limit)=>{
+export const getContributionList=(offset,limit,isPublish)=>{
     return async dispatch=>{
          try{
            let result=await Axios({
@@ -96,4 +96,52 @@ export const handleDeleteContribution=(id)=>{
               console.log(err.response?.data);
           }
       }
+}
+export const handleUpdateContribution=(id, contribtuionUpdate)=>{
+     return async dispatch=>{
+         try{
+             let result= await Axios({
+                 url:`https://greenplus-dev.herokuapp.com/contributions/${id}`,
+                 method:'PUT',
+                 data:contribtuionUpdate,
+                 headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+             })
+             swal({
+                title: 'Success',
+                text: 'Contribution updated successfully',
+                icon: 'success',
+                button: 'OK',
+            });
+            dispatch({
+                type:'UPDATE_CONTRIBUTION',
+                contribution:result.data
+            })
+         }catch(err){
+             console.log(err.response?.data);
+         }
+     }
+}
+export const handlePublishContribution=(id,contribution)=>{
+    return async dispatch=>{
+        try{
+            await Axios({
+                url:`https://greenplus-dev.herokuapp.com/contributions/${id}/publish`,
+                method:'POST',
+                headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+            })
+            swal({
+                title: 'Success',
+                text: 'Contribution published successfully',
+                icon: 'success',
+                button: 'OK',
+            });
+            dispatch({
+                type:'PUBLISH_CONTRIBUTION',
+                contribution:contribution
+            })
+        }catch(err){
+            console.log(err.response?.data);
+        }
+       
+    }
 }

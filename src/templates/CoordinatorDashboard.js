@@ -24,10 +24,10 @@ export const CordinatorDashboard = ({ Component, component, ...props }) => {
         );
       }
       swal({
-        title: 'You are not coordinator!',
+        title: 'You are not coordinator',
         icon: 'warning',
       });
-      return <Redirect to='/' />;
+      return <Redirect to="/"/>
     }
     swal({
       title: 'You are not login!',

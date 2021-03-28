@@ -25,11 +25,31 @@ export const  contributionReducer=(state=stateContribution,action)=>{
             state.contributionList=[...state.contributionList,action.contribution]
             return{...state}
         }
+        case 'UPDATE_CONTRIBUTION':{
+            const newContributionList = state.contributionList.map((contribution,index) => {
+                if (contribution.id === action.contribution.id) {
+                    return {
+                        ...contribution,
+                        name: action.contribution.name,
+                        description: action.contribution.description,
+                    };
+                }
+                return contribution;
+            });
+           return{ ...state,contributionList:newContributionList}
+        }
         case 'DELETE_CONTRIBUTION':{
             let contributionUpdate=[...state.contributionList]
             contributionUpdate=contributionUpdate.filter(contribute=>contribute.id!==action.id)
             state.contributionList=contributionUpdate
             return{...state}
+        }
+        case 'PUBLISH_CONTRIBUTION':{
+          state.contributionPublishList=[...state.contributionPublishList,action.contribution]
+           let newContributionList=[...state.contributionList]
+           newContributionList=newContributionList.filter(contribute=>contribute.id!==action.contribution.id)
+           state.contributionList=newContributionList
+          return{...state} 
         }
         default:{
             return{...state}
