@@ -64,7 +64,7 @@ export const loginHomePageAction = (student, props) => {
                 icon: 'success',
                 button: 'OK',
             });
-                props.history.push('/');
+            props.history.push('/');
             // }
         } catch (err) {
             return err.response.data.message;

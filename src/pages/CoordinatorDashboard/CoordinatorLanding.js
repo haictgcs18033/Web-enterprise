@@ -11,15 +11,20 @@ export default function CoordinatorLanding() {
     const contributionPublishList = useSelector(state => state.contributionReducer.contributionPublishList)
     const contributionList = useSelector(state => state.contributionReducer.contributionList)
     let [curPage] = useState(1);
+    let [contributionUpdate, setContributionUpdate] = useState({
+        name: '',
+        description: ''
+    })
+    let [publish,setPublish]=useState('')
     let dispatch = useDispatch()
     let limit = 10
     const getContributionPublish = useCallback(
-        () => dispatch(actionContribution.getContributionPublishList(curPage, limit)),
-        [dispatch, curPage, limit]
+        () => dispatch(actionContribution.getContributionPublishList(curPage, limit,publish)),
+        [dispatch, curPage, limit,publish]
     );
     const getContribution = useCallback(
-        () => dispatch(actionContribution.getContributionList(curPage, limit)),
-        [dispatch, curPage, limit]
+        () => dispatch(actionContribution.getContributionList(curPage, limit,publish)),
+        [dispatch, curPage, limit,publish]
     );
     useEffect(() => {
         getContributionPublish()
@@ -28,7 +33,7 @@ export default function CoordinatorLanding() {
         getContribution()
     }, [getContribution])
     console.log(contributionPublishList);
-
+    console.log(publish);
     let renderPublishContribution = () => {
         return contributionPublishList.map((contribution, index) => {
             return <div key={index} className={`col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2`}>
@@ -86,7 +91,11 @@ export default function CoordinatorLanding() {
                         </button>
                         <button type="button" className={classes.contributionBtn}
                             data-toggle='modal'
-                            data-target='#exampleModalUpdate'>
+                            data-target='#exampleModalUpdate'
+                            onClick={() => setContributionUpdate({
+                                name: contribution.name,
+                                description: contribution.description
+                            })}>
                             <div className="d-flex">
                                 <img className={classes.icon} src={pen} alt="123" />
                                 <p className="mb-0"> Edit Contribution</p>
@@ -107,49 +116,49 @@ export default function CoordinatorLanding() {
                     </div>
                 </div>
                 <div
-                        className='modal fade'
-                        id='exampleModalDelete'
-                        tabIndex={-1}
-                        role='dialog'
-                        aria-labelledby='exampleModalLabel'
-                        aria-hidden='true'>
-                        <div className='modal-dialog' role='document'>
-                            <div className='modal-content'>
-                                <div className='modal-header'>
-                                    <h5 className='modal-title' id='exampleModalLabel'>
-                                        Delete Contribution
+                    className='modal fade'
+                    id='exampleModalDelete'
+                    tabIndex={-1}
+                    role='dialog'
+                    aria-labelledby='exampleModalLabel'
+                    aria-hidden='true'>
+                    <div className='modal-dialog' role='document'>
+                        <div className='modal-content'>
+                            <div className='modal-header'>
+                                <h5 className='modal-title' id='exampleModalLabel'>
+                                    Delete Contribution
                                     </h5>
-                                </div>
-                                <div className='modal-body'>
-                                    <p>
-                                        <span>
-                                            Are you sure you want to delete{' '}
+                            </div>
+                            <div className='modal-body'>
+                                <p>
+                                    <span>
+                                        Are you sure you want to delete{' '}
+                                    </span>
+                                    <span className='font-weight-bold'>
+                                        " This is a contribution "
                                         </span>
-                                        <span className='font-weight-bold'>
-                                            " This is a contribution "
-                                                </span>
-                                    </p>
-                                </div>
-                                <div className='modal-footer'>
-                                    <button
-                                        type='button'
-                                        className={`btn ${styles.modalDeleteClose}`}
-                                        data-dismiss='modal'>
-                                        Close
+                                </p>
+                            </div>
+                            <div className='modal-footer'>
+                                <button
+                                    type='button'
+                                    className={`btn ${styles.modalDeleteClose}`}
+                                    data-dismiss='modal'>
+                                    Close
                                     </button>
-                                    <button
-                                        type='button'
-                                        className={`btn ${styles.modalDelete}`}
-                                        data-dismiss='modal'
-                                        onClick={() => {
-                                            deleteContribution(contribution.id)
-                                        }}>
-                                        Confirm
+                                <button
+                                    type='button'
+                                    className={`btn ${styles.modalDelete}`}
+                                    data-dismiss='modal'
+                                    onClick={() => {
+                                        deleteContribution(contribution.id)
+                                    }}>
+                                    Confirm
                                     </button>
-                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 <div
                     className={`modal fade ${classes.modalUpdate}`}
                     id='exampleModalUpdate'
@@ -167,29 +176,43 @@ export default function CoordinatorLanding() {
                             <div className='modal-body'>
                                 <div className="form-group">
                                     <label>Name</label>
-                                    <input className="form-control" />
+                                    <input className="form-control" name="name" value={contributionUpdate.name}
+                                        onChange={handleChangeInput} />
                                 </div>
                                 <div className="form-group">
                                     <label>Description</label>
-                                    <input className="form-control" />
+                                    <input className="form-control" name="description" value={contributionUpdate.description}
+                                        onChange={handleChangeInput} />
                                 </div>
                             </div>
-                            <div className='modal-footer'>
-                                <button
-                                    type='button'
-                                    className={classes.cancelButton}
-                                    data-dismiss='modal'>
-                                    Cancel
-                                    </button>
-                                <button
-                                    type='button'
-                                    className={classes.updateButton}
-                                    data-dismiss='modal'
-                                    onClick={() => {
-                                        deleteContribution(contribution.id)
-                                    }}>
-                                    Confirm
-                                    </button>
+                            <div className='modal-footer '>
+                                <div className="row mx-0 w-100">
+                                    <div className="col-3 text-left px-0">
+                                        <button className={classes.publishButton}
+                                        onClick={()=>{
+                                            publishContribution(contribution.id,contribution)
+                                            setPublish(false)
+                                        }}>Publish</button>
+                                    </div>
+                                    <div className="col-9 text-right px-0">
+                                        <button
+                                            type='button'
+                                            className={classes.cancelButton}
+                                            data-dismiss='modal'>
+                                            Cancel
+                                </button>
+                                        <button
+                                            type='button'
+                                            className={classes.updateButton}
+
+                                            onClick={() => {
+                                                updateContribution(contribution.id)
+                                            }}>
+                                            Confirm
+                                </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -201,6 +224,19 @@ export default function CoordinatorLanding() {
     let deleteContribution = (id) => {
         dispatch(actionContribution.handleDeleteContribution(id))
     }
+    let handleChangeInput = (e) => {
+        let { value, name } = e.target
+        let newsValue = { ...contributionUpdate }
+        newsValue[name] = value;
+        setContributionUpdate(newsValue)
+    }
+    let updateContribution = (id) => {
+        dispatch(actionContribution.handleUpdateContribution(id, contributionUpdate))
+    }
+    let publishContribution=(id,contribution)=>{
+         dispatch(actionContribution.handlePublishContribution(id,contribution))
+    }
+    console.log(contributionUpdate);
     return (
         <div className="container">
             <div className={classes.waitingPublic}>

@@ -99,7 +99,7 @@
           background: white;
           border: 1px solid black;
       }
-      .cancelButton,.updateButton{
+      .cancelButton,.updateButton,.publishButton{
              width:123px;
              height:52px;
              border-radius: 6px;
@@ -109,9 +109,14 @@
                  cursor:pointer;
              }
       }
+      .publishButton{
+          border: 1px solid #BE0E62; 
+          color: #BE0E62;
+      }
        .cancelButton{
            border:1px solid #32B260;
            color: #32B260;
+           margin-right: 10px;
        }
        .updateButton{
            background: #32B260;
