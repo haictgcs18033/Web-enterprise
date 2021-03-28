@@ -23,8 +23,7 @@ export const getContributionList=(offset,limit,isPublish)=>{
     return async dispatch=>{
          try{
            let result=await Axios({
-               url:`https://greenplus-dev.herokuapp.com/contributions?offset=${(offset-1)*limit}&limit=${limit}
-               ${isPublish?`&isPublished=${isPublish}`:''}`,
+               url:`https://greenplus-dev.herokuapp.com/contributions?offset=${(offset-1)*limit}&limit=${limit}`,
                method:'GET',
                headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
            })

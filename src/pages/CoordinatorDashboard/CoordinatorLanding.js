@@ -15,16 +15,16 @@ export default function CoordinatorLanding() {
         name: '',
         description: ''
     })
-    let [publish,setPublish]=useState('')
+   
     let dispatch = useDispatch()
     let limit = 10
     const getContributionPublish = useCallback(
-        () => dispatch(actionContribution.getContributionPublishList(curPage, limit,publish)),
-        [dispatch, curPage, limit,publish]
+        () => dispatch(actionContribution.getContributionPublishList(curPage, limit)),
+        [dispatch, curPage, limit]
     );
     const getContribution = useCallback(
-        () => dispatch(actionContribution.getContributionList(curPage, limit,publish)),
-        [dispatch, curPage, limit,publish]
+        () => dispatch(actionContribution.getContributionList(curPage, limit)),
+        [dispatch, curPage, limit]
     );
     useEffect(() => {
         getContributionPublish()
@@ -33,7 +33,7 @@ export default function CoordinatorLanding() {
         getContribution()
     }, [getContribution])
     console.log(contributionPublishList);
-    console.log(publish);
+   
     let renderPublishContribution = () => {
         return contributionPublishList.map((contribution, index) => {
             return <div key={index} className={`col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2`}>
@@ -71,7 +71,7 @@ export default function CoordinatorLanding() {
     }
 
     let waitingContribution = () => {
-        return contributionList.map((contribution, index) => {
+        return contributionList.filter(contribution=>contribution.isPublished===false).map((contribution, index) => {
             return <div className={`col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2`}>
                 <div key={index} className={`card ${classes.cardWaiting}`}>
                     <img className="card-img-top" src={`https://35.224.120.132/${contribution.thumbnail}`} alt="123" />
@@ -191,8 +191,8 @@ export default function CoordinatorLanding() {
                                         <button className={classes.publishButton}
                                         onClick={()=>{
                                             publishContribution(contribution.id,contribution)
-                                            setPublish(false)
-                                        }}>Publish</button>
+                                        }}
+                                        data-dismiss='modal'>Publish</button>
                                     </div>
                                     <div className="col-9 text-right px-0">
                                         <button

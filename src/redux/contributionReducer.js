@@ -46,7 +46,10 @@ export const  contributionReducer=(state=stateContribution,action)=>{
         }
         case 'PUBLISH_CONTRIBUTION':{
           state.contributionPublishList=[...state.contributionPublishList,action.contribution]
-          return{...state}
+           let newContributionList=[...state.contributionList]
+           newContributionList=newContributionList.filter(contribute=>contribute.id!==action.contribution.id)
+           state.contributionList=newContributionList
+          return{...state} 
         }
         default:{
             return{...state}
