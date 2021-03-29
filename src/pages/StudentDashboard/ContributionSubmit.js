@@ -26,14 +26,16 @@ export default function ContributionSubmit() {
     let schema = yup.object().shape({
         name: yup.string().required('⚠ Title is required'),
         description: yup.string().required('⚠ Description is required'),
+        thumbnail: yup.string().required('⚠ This field allows uploading jpg, jpeg, doc, docx'),
+        files: yup.string().required('⚠ This field allows uploading jpg, jpeg'),
     })
 
-    const { register, errors } = useForm({
+    const { register, errors, handleSubmit } = useForm({
         mode: 'onTouched',
         resolver: yupResolver(schema),
     });
 
-    let handleSubmit = (e) => {
+    let onSubmit = (e) => {
         e.preventDefault();
         let formInput = contribution.values;
         dispatch(action.submitContribution(formInput))
@@ -43,7 +45,7 @@ export default function ContributionSubmit() {
             <Background />
             <div className={`container  ${classes.submitContainer}`}>
                 <h3 className="">Contribution submission</h3>
-                <form className={`  ${classes.submitContent}`} onSubmit={handleSubmit}>
+                <form className={`  ${classes.submitContent}`} onSubmit={handleSubmit(onSubmit)}>
                     <div className="row m-0">
                         <div className={`col-md-12 col-lg-6 col-xl-6 ${classes.formInput}`}>
                             <div className="form-group">
@@ -75,8 +77,14 @@ export default function ContributionSubmit() {
                     <div className={`${classes.thumbnailContainer}`}>
                         <h4>Thumbnails</h4>
                         <label>
-                            <input type="file" className="form-control-file" name="thumbnail"
-                                onChange={handleChangeInput} />
+                            <input
+                                type="file"
+                                className="form-control-file"
+                                name="thumbnail"
+                                onChange={handleChangeInput}
+                                ref={register}
+                            />
+                            <p className='err-message'>{errors.thumbnail?.message}</p>
                             {/* Upload Image */}
                         </label>
 
@@ -84,8 +92,14 @@ export default function ContributionSubmit() {
                     <div className={`${classes.articleImage}`}>
                         <h4>Article</h4>
                         {/* <img src={articleImage} alt="123" /> */}
-                        <input type="file" className="form-control-file" name="files"
-                            onChange={handleChangeInput} />
+                        <input
+                            type="file"
+                            className="form-control-file"
+                            name="files"
+                            onChange={handleChangeInput}
+                            ref={register}
+                        />
+                        <p className='err-message'>{errors.files?.message}</p>
                         <div className="d-block text-center">
                             <button>Submit</button>
                         </div>
