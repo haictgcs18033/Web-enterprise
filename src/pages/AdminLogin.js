@@ -25,7 +25,7 @@ export default function AdminLogin(props) {
             .required('⚠ Email is required')
             .email('⚠ Enter a valid email'),
         password: yup.string()
-            .max(8, '⚠ Password must not be longer than 8 characters')
+            // .max(8, '⚠ Password must not be longer than 8 characters')
             .required('⚠ Password is required')
             .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/, '⚠ Password must have at least 8 characters, 1 uppercase character, 1 number'),
     });
