@@ -68,14 +68,14 @@ export const studentDashboardRoute = [
         exact: false,
         component: UploadContribution,
     },
-   
+
     {
         path: '/student/changepassword',
         exact: false,
         component: ChangePassword,
     },
     {
-        path: '/sudent/uploaded-table',
+        path: '/student/uploaded-table',
         exact: false,
         component: UploadedTable,
     },

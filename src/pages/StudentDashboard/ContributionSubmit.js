@@ -4,6 +4,9 @@ import classes from './ContributionSubmit.module.scss'
 // import articleImage from '../../assets/img/image-8.png'
 import { useDispatch, useSelector } from 'react-redux'
 import * as action from '../../redux/action/ActionContribution'
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as  yup from 'yup';
 export default function ContributionSubmit() {
     const contribution = useSelector(state => state.contributionReducer.contribution)
     let { name, description } = contribution.values
@@ -19,6 +22,17 @@ export default function ContributionSubmit() {
         }
         dispatch(action.handleInput(newValues))
     }
+
+    let schema = yup.object().shape({
+        name: yup.string().required('⚠ Title is required'),
+        description: yup.string().required('⚠ Description is required'),
+    })
+
+    const { register, errors } = useForm({
+        mode: 'onTouched',
+        resolver: yupResolver(schema),
+    });
+
     let handleSubmit = (e) => {
         e.preventDefault();
         let formInput = contribution.values;
@@ -34,13 +48,27 @@ export default function ContributionSubmit() {
                         <div className={`col-md-12 col-lg-6 col-xl-6 ${classes.formInput}`}>
                             <div className="form-group">
                                 <label>Title</label>
-                                <input className="form-control" name="name" value={name} onChange={handleChangeInput} />
+                                <input
+                                    className="form-control"
+                                    name="name"
+                                    value={name}
+                                    onChange={handleChangeInput}
+                                    ref={register}
+                                />
+                                <p className='err-message'>{errors.name?.message}</p>
                             </div>
                         </div>
                         <div className={`col-md-12 col-lg-6 col-xl-6 ${classes.formInput}`}>
                             <div className="form-group">
                                 <label>Short Description</label>
-                                <input className="form-control" name="description" value={description} onChange={handleChangeInput} />
+                                <input
+                                    className="form-control"
+                                    name="description"
+                                    value={description}
+                                    onChange={handleChangeInput}
+                                    ref={register}
+                                />
+                                <p className='err-message'>{errors.description?.message}</p>
                             </div>
                         </div>
                     </div>
