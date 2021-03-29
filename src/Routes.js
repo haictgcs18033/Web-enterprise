@@ -7,6 +7,7 @@ import UserDashboard from './pages/AdminDashboard/Users/UserDashboard';
 import AdminLogin from './pages/AdminLogin';
 import ChangePassword from './pages/ChangePassword';
 import ChangePasswordFirst from './pages/ChangePasswordFirst';
+import CoordinatorComment from './pages/CoordinatorDashboard/CoordinatorComment';
 import CoordinatorLanding from './pages/CoordinatorDashboard/CoordinatorLanding';
 import ForgotPassword from './pages/ForgotPassword';
 import HomePage from './pages/HomePage';
@@ -53,9 +54,14 @@ export const managerDashboardRoute = [
 export const coordinatorDashboardRoute = [
     {
         path: '/coordinator/home',
-        exact: false,
+        exact: true,
         component: CoordinatorLanding
-    }
+    },
+    {
+        path: '/coordinator/comment/:id',
+        exact: false,
+        component: CoordinatorComment
+    },
 ]
 export const studentDashboardRoute = [
     {
