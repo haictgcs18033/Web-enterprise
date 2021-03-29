@@ -8,7 +8,8 @@ const stateContribution={
             name:'',
             description:''
         }
-    }
+    },
+    contributionComment:[]
 }
 export const  contributionReducer=(state=stateContribution,action)=>{
     switch (action.type) {
@@ -50,6 +51,13 @@ export const  contributionReducer=(state=stateContribution,action)=>{
            newContributionList=newContributionList.filter(contribute=>contribute.id!==action.contribution.id)
            state.contributionList=newContributionList
           return{...state} 
+        }
+        case 'GET_CONTRIBUTION_BY_ID':{
+            return{...state.contributionComment,contributionComment:action.contribution}
+        }
+        case 'ADD_COMMENT':{
+            state.contributionComment=[...state.contributionComment,action.contributionComment]
+            return{...state}
         }
         default:{
             return{...state}

@@ -38,6 +38,7 @@ export default function AdminLogin(props) {
 
     const onSubmit = (data) => {
         data = { ...user.values };
+        console.log('Hello');
         dispatch(loginAction(data, props));
     };
 

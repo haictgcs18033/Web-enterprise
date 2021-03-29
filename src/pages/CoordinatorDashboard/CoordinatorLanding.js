@@ -7,6 +7,7 @@ import talk from '../../assets/img/talk.png'
 import bin from '../../assets/img/bin.png'
 import * as actionContribution from '../../redux/action/ActionContribution'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 export default function CoordinatorLanding() {
     const contributionPublishList = useSelector(state => state.contributionReducer.contributionPublishList)
     const contributionList = useSelector(state => state.contributionReducer.contributionList)
@@ -83,12 +84,12 @@ export default function CoordinatorLanding() {
                                 <p className="mb-0"> See Contribution</p>
                             </div>
                         </button>
-                        <button type="button" className={classes.contributionBtn}>
+                        <NavLink  to={`/coordinator/comment/${contribution.id}`} type="button" className={classes.contributionBtn}>
                             <div className="d-flex">
                                 <img className={classes.icon} src={talk} alt="123" />
                                 <p className="mb-0"> Comment</p>
                             </div>
-                        </button>
+                        </NavLink>
                         <button type="button" className={classes.contributionBtn}
                             data-toggle='modal'
                             data-target='#exampleModalUpdate'

@@ -36,7 +36,7 @@
         transform:translate(-50%,-50%);
         z-index: 3;
         transition: all 0.5s;
-        button{
+        button,a{
             width:172px;
             height:52px ;
             margin-bottom: 16px;
@@ -56,6 +56,15 @@
             }
             &:hover{
                 cursor:pointer
+            }
+        }
+        a{
+            line-height: 50px;
+            img{
+                margin-top: 15px;
+            }
+            &:hover{
+                text-decoration: none;
             }
         }
     }
@@ -135,4 +144,75 @@
             margin-left: 0;
         }
     }
+}
+// Coordinator Comment
+.commentContainer{
+   margin: 40px auto;
+}
+.boxComment{
+    position: relative;
+    label{
+        position: absolute;
+        top: -13px;
+        background: white;
+       
+        left: 20px;
+    }
+    textarea{
+        top:0;
+        padding: 10px 20px;
+        left:0;
+        resize: none;
+        width: 100%;
+        height: 90px;
+       
+    }
+    button{
+        position:absolute;
+        bottom: -18px;
+        right: 20px;
+        border: none;
+        background: #32B260;
+        border-radius: 50%;
+         width: 40px;
+         padding: 0;
+         height: 40px;
+         transition: all 0.5s;
+         img{
+             margin-left: 5px;
+             margin-bottom: 3px;
+         }
+         &:hover{
+           background: #09ec5d;
+           cursor: pointer;
+         }
+    }
+}
+.boxMessage{
+    margin-top: 40px;
+    .mySelf,.another{
+        display: flex;
+        img{
+             width: 38px;
+             height: 38px;
+        }
+        .commentContent{
+            margin-left: 20px;
+            h5{
+                font-size: 14px;
+            }
+            p{
+                border: 1px solid black;
+                border-radius:  0px 12px 12px 12px;
+                padding: 16px 16px;
+                margin-bottom: 0;
+            }
+        }
+    }
+    .another{
+        margin-top: 20px;
+        justify-content: flex-end;
+       
+    }
+    
 }
