@@ -30,12 +30,12 @@ export default function ContributionSubmit() {
         files: yup.string().required('⚠ This field allows uploading jpg, jpeg'),
     })
 
-    const { register, errors, handleSubmit } = useForm({
+    const { register, errors } = useForm({
         mode: 'onTouched',
         resolver: yupResolver(schema),
     });
 
-    let onSubmit = (e) => {
+    let handleSubmit = (e) => {
         e.preventDefault();
         let formInput = contribution.values;
         dispatch(action.submitContribution(formInput))
@@ -45,7 +45,7 @@ export default function ContributionSubmit() {
             <Background />
             <div className={`container  ${classes.submitContainer}`}>
                 <h3 className="">Contribution submission</h3>
-                <form className={`  ${classes.submitContent}`} onSubmit={handleSubmit(onSubmit)}>
+                <form className={`  ${classes.submitContent}`} onSubmit={handleSubmit}>
                     <div className="row m-0">
                         <div className={`col-md-12 col-lg-6 col-xl-6 ${classes.formInput}`}>
                             <div className="form-group">
