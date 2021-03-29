@@ -18,6 +18,7 @@ export default function FacultySetting(props) {
         secondClosureDate: ''
     })
     const id = props.match.params.id
+    console.log(id);
     useEffect(() => {
         dispatch(action.fetchFacultyById(id))
     }, [dispatch, id])

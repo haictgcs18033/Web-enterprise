@@ -53,14 +53,14 @@ export const managerDashboardRoute = [
 ]
 export const coordinatorDashboardRoute = [
     {
-        path: '/coordinator/home',
-        exact: true,
-        component: CoordinatorLanding
-    },
-    {
-        path: '/coordinator/comment/:id',
+        path: '/coordinator/comment/:idContribution',
         exact: false,
         component: CoordinatorComment
+    },
+    {
+        path: '/coordinator/home',
+        exact: false,
+        component: CoordinatorLanding
     },
 ]
 export const studentDashboardRoute = [

@@ -36,7 +36,7 @@ export default function ContributionSubmit() {
     });
 
     let onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         let formInput = contribution.values;
         dispatch(action.submitContribution(formInput))
     }
