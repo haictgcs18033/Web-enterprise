@@ -24,10 +24,14 @@ export default function ContributionSubmit() {
     }
 
     let schema = yup.object().shape({
-        name: yup.string().required('⚠ Title is required'),
-        description: yup.string().required('⚠ Description is required'),
-        thumbnail: yup.string().required('⚠ This field allows uploading jpg, jpeg, doc, docx'),
-        files: yup.string().required('⚠ This field allows uploading jpg, jpeg'),
+        name: yup.string()
+            .required('⚠ Title is required'),
+        description: yup.string()
+            .required('⚠ Description is required'),
+        thumbnail: yup.string()
+            .required('⚠ This field allows uploading jpg, jpeg, doc, docx'),
+        files: yup.string()
+            .required('⚠ This field allows uploading jpg, jpeg'),
     })
 
     const { register, errors } = useForm({
@@ -38,7 +42,7 @@ export default function ContributionSubmit() {
     let handleSubmit = (e) => {
         e.preventDefault();
         let formInput = contribution.values;
-        dispatch(action.submitContribution(formInput))
+        dispatch(action.submitContribution(formInput));
     }
     return (
         <>

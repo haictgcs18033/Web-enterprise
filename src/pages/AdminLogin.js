@@ -22,10 +22,11 @@ export default function AdminLogin(props) {
 
     let schema = yup.object().shape({
         email: yup.string()
+            .max(64, '⚠ Email is too long')
             .required('⚠ Email is required')
             .email('⚠ Enter a valid email'),
         password: yup.string()
-            // .max(8, '⚠ Password must not be longer than 8 characters')
+            .max(255, '⚠ Password is too long')
             .required('⚠ Password is required')
             .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/, '⚠ Password must have at least 8 characters, 1 uppercase character, 1 number'),
     });
