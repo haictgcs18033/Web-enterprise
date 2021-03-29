@@ -31,6 +31,7 @@ export default function AdminLogin(props) {
     });
 
     const { register, handleSubmit, errors } = useForm({
+        mode: 'onTouched',
         resolver: yupResolver(schema),
     });
 

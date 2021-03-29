@@ -6,7 +6,7 @@ import classes from './NewContributionList.module.scss'
 
 export default function NewContributionList() {
     const contributionPublishList = useSelector(state => state.contributionReducer.contributionPublishList)
-    let [curPage] = useState(1); 
+    let [curPage] = useState(1);
     let dispatch = useDispatch()
     let limit = 10
     const getContributionPublish = useCallback(
@@ -18,9 +18,8 @@ export default function NewContributionList() {
     }, [getContributionPublish])
     console.log(contributionPublishList);
     return (
-            <div className={classes.gridContainer}>
-                    <NewContributionItems contribution={contributionPublishList} />
-            </div>
-     
+        <div className={classes.gridContainer}>
+            <NewContributionItems contribution={contributionPublishList} />
+        </div>
     )
 }

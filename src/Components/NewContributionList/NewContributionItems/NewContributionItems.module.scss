@@ -1,9 +1,10 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(auto-fill, minmax(19rem, 19.8rem));
     row-gap: 0;
     column-gap: 24px;
 }
+
 .card {
     box-shadow: 2px 2px 13px -3px rgba(0, 0, 0, 0.25);
     margin-top: 24px;

@@ -31,6 +31,7 @@ export default function LoginPage(props) {
     })
 
     const { register, handleSubmit, errors } = useForm({
+        mode: 'onTouched',
         resolver: yupResolver(schema),
     });
 
