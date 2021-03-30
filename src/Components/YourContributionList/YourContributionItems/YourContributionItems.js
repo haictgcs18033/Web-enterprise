@@ -14,9 +14,11 @@ export default function YourContributionItems(props) {
     let { contribution } = props
     const dispatch = useDispatch()
     let [contributionUpdate, setContributionUpdate] = useState({
+        id:0,
         name: '',
         description: ''
     })
+    let [contributionDelete,setContributionDelete]=useState({id:0})
     let handleChangeInput = (e) => {
         let { value, name } = e.target
         let newsValue = { ...contributionUpdate }
@@ -25,11 +27,11 @@ export default function YourContributionItems(props) {
     }
     console.log(contribution);
     let renderContributionItem = () => {
-        return contribution.filter(contribute => contribute.isPublished === false).map((contribution, index) => {
+        return contribution?.filter(contribute => contribute.isPublished === false).map((contribution, index) => {
             return <div key={index} className={`card ${classes.card}`}>
                 <img className="card-img-top" src={`https://35.224.120.132/${contribution.thumbnail}`} alt="123" height="216px" />
                 <div className={classes.overlay}></div>
-                <NavLink to={`/student/upload-contribution/${contribution.id}`} type="button" className={`${classes.btn} ${classes.seeBtn}`}>
+                <NavLink to={`/student/uploaded-contribution/${contribution.id}`} type="button" className={`${classes.btn} ${classes.seeBtn}`}>
                     <img className={classes.icon} src={eyeIcon} alt="123" />
                             See Contribution
                 </NavLink>
@@ -37,15 +39,19 @@ export default function YourContributionItems(props) {
                     data-toggle='modal'
                     data-target='#exampleModalUpdate'
                     onClick={() => setContributionUpdate({
+                        id:contribution.id,
                         name: contribution.name,
                         description: contribution.description
                     })}>
                     <img className={classes.icon} src={penIcon} alt="123" />
                             Edit Contribution
-                        </button>
+                </button>
                 <button type="button" className={`${classes.btn} ${classes.deleteBtn}`}
                     data-toggle='modal'
-                    data-target='#exampleModalDelete'>
+                    data-target='#exampleModalDelete'
+                    onClick={()=>{
+                        setContributionDelete({id:contribution.id})
+                    }}>
                     <img className={classes.icon} src={binIcon} alt="123" />
                             Delete Article
                 </button>
@@ -69,7 +75,7 @@ export default function YourContributionItems(props) {
                                         Are you sure you want to delete{' '}
                                     </span>
                                     <span className='font-weight-bold'>
-                                        " This is a contribution "
+                                        " This is a contribution {contribution.name}"
                                         </span>
                                 </p>
                             </div>
@@ -84,7 +90,9 @@ export default function YourContributionItems(props) {
                                     type='button'
                                     className={`btn ${styles.modalDelete}`}
                                     data-dismiss='modal'
-                                    onClick={() => { deleteContribution(contribution.id) }}>
+                                    onClick={()=>{
+                                        deleteContribution(contributionDelete.id)
+                                    }}>
                                     Confirm
                                     </button>
                             </div>
@@ -132,7 +140,7 @@ export default function YourContributionItems(props) {
                                             className={classCoordinator.updateButton}
 
                                             onClick={() => {
-                                                updateContribution(contribution.id)
+                                                updateContribution(contributionUpdate.id)
                                             }}>
                                             Confirm
                                      </button>

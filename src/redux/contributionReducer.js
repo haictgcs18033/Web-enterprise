@@ -52,7 +52,7 @@ export const  contributionReducer=(state=stateContribution,action)=>{
            state.contributionList=newContributionList
           return{...state} 
         }
-        case 'GET_CONTRIBUTION_BY_ID':{
+        case 'GET_CONTRIBUTION_COMMENT':{
             return{...state.contributionComment,contributionComment:action.contribution}
         }
         case 'ADD_COMMENT':{

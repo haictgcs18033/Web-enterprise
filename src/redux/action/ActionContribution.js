@@ -163,17 +163,16 @@ export const handleSendComment = (id, comment) => {
         }
     }
 }
-export const getContributionById = (id) => {
+export const getContributionComment = (id) => {
     return async dispatch => {
         try{
             let result = await Axios({
-                url: `https://greenplus-dev.herokuapp.com/contributions/${id}`,
+                url: `https://greenplus-dev.herokuapp.com/contributions/${id}/comments`,
                 method: 'GET',
-                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
             })
             dispatch({
-                type:'GET_CONTRIBUTION_BY_ID',
-                contribution:result.data.comments
+                type:'GET_CONTRIBUTION_COMMENT',
+                contribution:result.data
             })
         }catch(err){
             console.log(err.response?.data);

@@ -65,6 +65,11 @@ export const coordinatorDashboardRoute = [
 ]
 export const studentDashboardRoute = [
     {
+        path: '/student/comment/:idContribution',
+        exact: false,
+        component: CoordinatorComment
+    },
+    {
         path: '/student/contribution-submit',
         exact: false,
         component: ContributionSubmit
@@ -74,7 +79,11 @@ export const studentDashboardRoute = [
         exact: false,
         component: UploadContribution,
     },
-
+    {
+        path: '/student/uploaded-contribution/:id',
+        exact: false,
+        component: UploadContribution,
+    },
     {
         path: '/student/changepassword',
         exact: false,

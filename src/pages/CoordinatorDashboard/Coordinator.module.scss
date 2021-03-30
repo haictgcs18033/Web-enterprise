@@ -1,218 +1,235 @@
-.waitingPublic,.contributePublish{
+.waitingPublic,
+.contributePublish {
     margin: 40px 0;
-    h3{
+    h3 {
         margin-left: 15px;
         font-size: 24px;
-        border-bottom: 2px solid #32B260;
+        border-bottom: 2px solid #32b260;
         padding-bottom: 20px;
         margin-bottom: 20px;
     }
 }
-.cardWaiting{
-    border:none;
+.cardWaiting {
+    border: none;
     box-shadow: 2px 2px 13px -3px rgba(0, 0, 0, 0.25);
-   
-    position:relative;
-    img{
+
+    position: relative;
+    img {
         width: 100%;
         height: 216px;
-    };
-    .overlay{
+    }
+    .overlay {
         position: absolute;
-      opacity: 0;
-        top:0;
-        left:0;
-        width:100%;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.603);
         z-index: 2;
         transition: all 0.5s;
     }
-    .groupButton{
-        position:absolute;
+    .groupButton {
+        position: absolute;
         opacity: 0;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         z-index: 3;
         transition: all 0.5s;
-        button,a{
-            width:172px;
-            height:52px ;
+        button,
+        a {
+            width: 172px;
+            height: 52px;
             margin-bottom: 16px;
             text-align: center;
             font-size: 14px;
-              padding: 0 10px;
+            padding: 0 10px;
             line-height: 30px;
-            background:#32B260;
-            color:white;
-            border:none;
+            background: #32b260;
+            color: white;
+            border: none;
             border-radius: 6px;
-            img{
-                width:28px;
+            img {
+                width: 28px;
                 height: 22px;
                 margin-top: 4px;
                 margin-right: 10px;
             }
-            &:hover{
-                cursor:pointer
+            &:hover {
+                cursor: pointer;
             }
         }
-        a{
+        a {
             line-height: 50px;
-            img{
+            img {
                 margin-top: 15px;
             }
-            &:hover{
+            &:hover {
                 text-decoration: none;
             }
         }
     }
-    &:hover{
-        cursor:pointer;
-        .groupButton{
-           opacity: 1;
+    &:hover {
+        cursor: pointer;
+        .groupButton {
+            opacity: 1;
         }
-        .overlay{
-          opacity: 1;
+        .overlay {
+            opacity: 1;
         }
     }
 }
-.contributePublish{
-    button{
-        width:140px;
-        height:40px;
+.contributePublish {
+    button {
+        width: 140px;
+        height: 40px;
         font-size: 18px;
-        background:#32B260;
-       margin:20px 0;
-       border: none;
-       border-radius: 6px;
-       color: white;
-      
-        
+        background: #32b260;
+        margin: 20px 0;
+        border: none;
+        border-radius: 6px;
+        color: white;
     }
 }
-.modalUpdate{
+.modalUpdate {
     max-width: 510px;
-   transform: translateX(90%);
-      h5{
-          margin: 0 auto;
-          font-size: 24px !important;
-          color: black !important;
-      }
-      label{
-          font-size: 14px;
-          color: black;
-      }
-      input{
-          background: white;
-          border: 1px solid black;
-      }
-      .cancelButton,.updateButton,.publishButton{
-             width:123px;
-             height:52px;
-             border-radius: 6px;
-             border:none;
-             background:white;
-             &:hover{
-                 cursor:pointer;
-             }
-      }
-      .publishButton{
-          border: 1px solid #BE0E62; 
-          color: #BE0E62;
-      }
-       .cancelButton{
-           border:1px solid #32B260;
-           color: #32B260;
-           margin-right: 10px;
-       }
-       .updateButton{
-           background: #32B260;
-           color: white;
-       }
-  }
-@media screen and (min-width:768px) and (max-width:992px){
-     .publishContainer{
-         padding: 0 30px;
-     }
-    
+    transform: translateX(90%);
+    h5 {
+        margin: 0 auto;
+        font-size: 24px !important;
+        color: black !important;
+    }
+    label {
+        font-size: 14px;
+        color: black;
+    }
+    input {
+        background: white;
+        border: 1px solid black;
+    }
+    .cancelButton,
+    .updateButton,
+    .publishButton {
+        width: 123px;
+        height: 52px;
+        border-radius: 6px;
+        border: none;
+        background: white;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .publishButton {
+        border: 1px solid #be0e62;
+        color: #be0e62;
+    }
+    .cancelButton {
+        border: 1px solid #32b260;
+        color: #32b260;
+        margin-right: 10px;
+    }
+    .updateButton {
+        background: #32b260;
+        color: white;
+    }
 }
-@media screen and (max-width:414px){
-    .waitingPublic,.contributePublish{
-        h3{
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .publishContainer {
+        padding: 0 30px;
+    }
+}
+@media screen and (max-width: 414px) {
+    .waitingPublic,
+    .contributePublish {
+        h3 {
             margin-left: 0;
         }
     }
 }
 // Coordinator Comment
-.commentContainer{
-   margin: 40px auto;
+.commentContainer {
+    margin: 40px auto;
 }
-.boxComment{
+.boxComment {
     position: relative;
-    label{
+    label {
         position: absolute;
         top: -13px;
         background: white;
-       
+
         left: 20px;
     }
-    textarea{
-        top:0;
+    textarea {
+        top: 0;
         padding: 10px 20px;
-        left:0;
+        left: 0;
         resize: none;
         width: 100%;
         height: 90px;
-       
     }
-    button{
-        position:absolute;
+    button {
+        position: absolute;
         bottom: -18px;
         right: 20px;
         border: none;
-        background: #32B260;
+        background: #32b260;
         border-radius: 50%;
-         width: 40px;
-         padding: 0;
-         height: 40px;
-         transition: all 0.5s;
-         img{
-             margin-left: 5px;
-             margin-bottom: 3px;
-         }
-         &:hover{
-           background: #09ec5d;
-           cursor: pointer;
-         }
+        width: 40px;
+        padding: 0;
+        height: 40px;
+        transition: all 0.5s;
+        img {
+            margin-left: 5px;
+            margin-bottom: 3px;
+        }
+        &:hover {
+            background: #09ec5d;
+            cursor: pointer;
+        }
     }
 }
-.boxMessage{
-    margin-top: 40px;
-    .mySelf,.another{
+.boxMessage {
+    margin: 40px 0 30px 200px;
+    height: 300px;
+    overflow: auto;
+    .mySelf {
         display: flex;
-        img{
-             width: 38px;
-             height: 38px;
+        img {
+            width: 38px;
+            height: 38px;
         }
-        .commentContent{
+        .commentContent {
             margin-left: 20px;
-            h5{
+            h5 {
                 font-size: 14px;
             }
-            p{
+            p {
                 border: 1px solid black;
-                border-radius:  0px 12px 12px 12px;
+                border-radius: 0px 12px 12px 12px;
                 padding: 16px 16px;
                 margin-bottom: 0;
             }
         }
     }
-    .another{
-        margin-top: 20px;
-        justify-content: flex-end;
-       
+    &::-webkit-scrollbar {
+        width: 10px;
+        
     }
-    
+    &::-webkit-scrollbar-thumb {
+        background: #32b260;
+        border-radius: 20px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+@media screen and (max-width: 768px){
+   .boxMessage{
+       margin: 40px 0 30px;
+       &::-webkit-scrollbar {
+        width: 5px;
+        
+    }
+   }
 }

@@ -1,22 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 import yourContributionIcon from '../../assets/img/people-icon.png'
 import uploadIcon from '../../assets/img/upload.png'
 import classes from './UploadContribution.module.scss'
 import Background from '../../Components/Background'
 import UploadedContribution from '../../Components/UploadedContribution/UploadedContribution'
+import * as action from '../../redux/action/ActionContribution'
 import { NavLink, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {fetchClosureDate} from '../../redux/action/ActionForRedux'
+import { fetchClosureDate } from '../../redux/action/ActionForRedux'
 import moment from 'moment'
 export default function UploadContribution(props) {
-    let{id}=useParams()
+    let { id } = useParams()
     console.log(id);
-    let closureDateAdmin=useSelector(state=>state.webEnterpriseReducer.closureDateAdmin)
-    console.log(closureDateAdmin);
-    const dispatch = useDispatch()
+    let closureDateAdmin = useSelector(state => state.webEnterpriseReducer.closureDateAdmin)
+    const contributionComment = useSelector(state => state.contributionReducer.contributionComment)
+    console.log(contributionComment);
+    let dispatch = useDispatch()
+    const getComment = useCallback(
+        () => dispatch(action.getContributionComment(id)),
+        [dispatch, id]
+    );
     useEffect(() => {
-       dispatch(fetchClosureDate())
+        getComment()
+    }, [getComment])
+    let count = contributionComment.length
+    useEffect(() => {
+        dispatch(fetchClosureDate())
     }, [dispatch])
     return (
         <div>
@@ -36,13 +46,13 @@ export default function UploadContribution(props) {
                                 <tr >
                                     <th className={classes.tableHeader}>Closure date</th>
                                     <td className={classes.tableData}>
-                                    {moment(closureDateAdmin.firstClosureDate).format('L')}-{moment(closureDateAdmin.firstClosureDate).format('LT')}
+                                        {moment(closureDateAdmin.firstClosureDate).format('L')}-{moment(closureDateAdmin.firstClosureDate).format('LT')}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th className={classes.tableHeader}>Final closure date</th>
                                     <td className={classes.tableData}>
-                                    {moment(closureDateAdmin.secondClosureDate).format('L')}-{moment(closureDateAdmin.secondClosureDate).format('LT')}
+                                        {moment(closureDateAdmin.secondClosureDate).format('L')}-{moment(closureDateAdmin.secondClosureDate).format('LT')}
                                     </td>
                                 </tr>
                                 <tr>
@@ -51,7 +61,13 @@ export default function UploadContribution(props) {
                                 </tr>
                                 <tr>
                                     <th className={classes.tableHeader}>Submission comments</th>
-                                    <td className={classes.tableData}>Not yet</td>
+                                    <td className={classes.tableData}>
+                                        {contributionComment.length === 0 ? 'Not yet' :
+                                        <NavLink to={`/student/comment/${id}`}>
+                                            {`${count} comment`}
+                                        </NavLink>
+                                        }
+                                    </td>
                                 </tr>
                             </thead>
                         </table>
