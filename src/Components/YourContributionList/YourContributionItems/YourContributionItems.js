@@ -42,7 +42,7 @@ export default function YourContributionItems(props) {
                     })}>
                     <img className={classes.icon} src={penIcon} alt="123" />
                             Edit Contribution
-                        </button>
+                </button>
                 <button type="button" className={`${classes.btn} ${classes.deleteBtn}`}
                     data-toggle='modal'
                     data-target='#exampleModalDelete'>
@@ -61,7 +61,7 @@ export default function YourContributionItems(props) {
                             <div className='modal-header'>
                                 <h5 className='modal-title' id='exampleModalLabel'>
                                     Delete Contribution
-                                    </h5>
+                                </h5>
                             </div>
                             <div className='modal-body'>
                                 <p>
@@ -70,7 +70,7 @@ export default function YourContributionItems(props) {
                                     </span>
                                     <span className='font-weight-bold'>
                                         " This is a contribution "
-                                        </span>
+                                    </span>
                                 </p>
                             </div>
                             <div className='modal-footer'>
@@ -79,14 +79,14 @@ export default function YourContributionItems(props) {
                                     className={`btn ${styles.modalDeleteClose}`}
                                     data-dismiss='modal'>
                                     Close
-                                    </button>
+                                </button>
                                 <button
                                     type='button'
                                     className={`btn ${styles.modalDelete}`}
                                     data-dismiss='modal'
                                     onClick={() => { deleteContribution(contribution.id) }}>
                                     Confirm
-                                    </button>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@ export default function YourContributionItems(props) {
                             </div>
                             <div className='modal-footer '>
                                 <div className="row mx-0 w-100">
-                                  
+
                                     <div className="col-12 text-right px-0">
                                         <button
                                             type='button'

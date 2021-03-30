@@ -16,7 +16,6 @@ export const getContributionPublishList = (offset, limit) => {
         } catch (err) {
             console.log(err.response?.data);
         }
-
     }
 }
 export const getContributionList = (offset, limit, isPublish) => {
@@ -154,10 +153,10 @@ export const handleSendComment = (id, comment) => {
                 data: comment,
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
             })
-          dispatch({
-              type:'ADD_COMMENT',
-              contributionComment:comment
-          })
+            dispatch({
+                type: 'ADD_COMMENT',
+                contributionComment: comment
+            })
         } catch (err) {
             console.log(err.response?.data);
         }
@@ -165,19 +164,19 @@ export const handleSendComment = (id, comment) => {
 }
 export const getContributionById = (id) => {
     return async dispatch => {
-        try{
+        try {
             let result = await Axios({
                 url: `https://greenplus-dev.herokuapp.com/contributions/${id}`,
                 method: 'GET',
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
             })
             dispatch({
-                type:'GET_CONTRIBUTION_BY_ID',
-                contribution:result.data.comments
+                type: 'GET_CONTRIBUTION_BY_ID',
+                contribution: result.data.comments
             })
-        }catch(err){
+        } catch (err) {
             console.log(err.response?.data);
         }
-        
+
     }
 }
