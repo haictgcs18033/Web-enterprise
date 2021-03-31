@@ -3,7 +3,7 @@ import React from 'react'
 import classes from './TrendingItems.module.scss'
 
 export default function TrendingItems(props) {
-    let { trending, number } = props;
+    let { trending } = props;
 
     let renderTrendingItems = () => {
         return trending.map((trend, index) => {
