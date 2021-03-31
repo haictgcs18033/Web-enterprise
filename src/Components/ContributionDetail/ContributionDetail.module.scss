@@ -1,0 +1,75 @@
+.ContributionDetailContainer {
+    margin-top: 7.75rem;
+    margin-bottom: 7.75rem;
+}
+
+.ContributionDetailCard {
+    max-width: 497px;
+    background: #ffffff;
+    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    margin: 0 auto;
+}
+.tableContainer {
+    padding: 1rem;
+}
+.contributeTable {
+    table-layout: fixed;
+    width: 100%;
+}
+.contributionContent {
+    width: 70%;
+}
+.title,
+.content {
+    // text-align: center;
+    vertical-align: middle;
+}
+.title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 0.75rem;
+}
+.content {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+.cardBody {
+    background: #ffffff;
+    box-shadow: inset 0px 1px 0px #e4e4e4;
+    padding: 1rem;
+}
+.fileName {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-left: 1rem;
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 376px) {
+    .ContributionDetailCard {
+        max-width: 322px;
+    }
+    .tableCell > * {
+        display: block;
+    }
+    .tableCell {
+        display: table-cell;
+    }
+    .contributionImg {
+        text-align: center;
+    }
+    .contributionContent {
+        margin-top: 1rem;
+    }
+}

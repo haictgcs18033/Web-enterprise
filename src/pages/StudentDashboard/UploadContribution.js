@@ -12,7 +12,7 @@ export default function UploadContribution(props) {
     console.log(id);
     let closureDateAdmin = useSelector(state => state.webEnterpriseReducer.closureDateAdmin)
     console.log(closureDateAdmin);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchClosureDate())
     }, [dispatch])

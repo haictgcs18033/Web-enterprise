@@ -1,5 +1,6 @@
 /** @format */
 
+import ContributionDetail from './Components/ContributionDetail/ContributionDetail';
 import UploadedTable from './Components/UploadedTable/UploadedTable';
 import Faculty from './pages/AdminDashboard/Faculty/Faculty';
 import FacultySetting from './pages/AdminDashboard/Faculty/FacultySetting';
@@ -117,6 +118,11 @@ export const client = [
         path: '/reset-password/:resetToken',
         exact: false,
         component: ResetToken,
+    },
+    {
+        path: '/contribution-detail',
+        exact: false,
+        component: ContributionDetail,
     },
     {
         path: '',

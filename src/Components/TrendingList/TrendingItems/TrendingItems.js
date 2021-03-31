@@ -9,12 +9,12 @@ export default function TrendingItems(props) {
         return trending.map((trend, index) => {
             return <div className="trend-contribute">
                 <div className={classes.trendIntro}>
-                    <span className={classes.number}>{index + 1}</span>
+                    <span className={classes.number}>0{index + 1}</span>
                     <p className={classes.author}>{trend.authorName}</p>
                 </div>
                 <div className={classes.trendContent}>
                     <h4 className={classes.topic}>{trend.description}</h4>
-                    <p className={classes.comment}>{trend.views}</p>
+                    <p className={classes.comment}>{trend.createAt} - {trend.views} views</p>
                 </div>
             </div>
         })

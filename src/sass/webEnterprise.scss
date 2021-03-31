@@ -4,11 +4,6 @@
 .bg-light {
     background-color: #fff !important;
 }
-
-.container {
-    width: 1140px;
-}
-
 .navbar-light {
     .navbar-nav {
         .nav-link {
@@ -47,6 +42,10 @@
         display: none;
     }
 }
+
+.container {
+    width: 1140px;
+}
 @media screen and (max-width: 1280px) {
     .container {
         width: 1000px;
@@ -74,13 +73,11 @@
         height: 110px;
     }
 }
-
 @media screen and (max-width: 656px) {
     .container {
         width: 420px;
     }
 }
-
 @media screen and (min-width: 375px) and (max-width: 414px) {
     .container {
         width: 317px;
@@ -125,7 +122,6 @@
     color: #fff;
     padding: 43px 70px;
 }
-
 @media screen and (max-width: 768px) {
     .background {
         display: none;
@@ -137,7 +133,6 @@
     margin-bottom: 4px;
     margin-right: 8px;
 }
-
 .trend-title {
     margin-top: 32px;
     width: 100%;
@@ -151,7 +146,6 @@
     &::after {
         content: "";
         position: absolute;
-
         background-color: #32b260;
         width: 100% !important;
         height: 2px;
@@ -214,19 +208,17 @@
     align-items: center;
     justify-content: space-between;
     background: #f8fdf9;
+    margin: 0 auto;
 }
-
 .footer {
     background-color: #f8fdf9;
     max-width: 100%;
     padding: 18px 130px;
 }
-
 ul {
     list-style: none;
 }
-
-.contact-style a {
+.contact-style p {
     text-decoration: none;
     font-family: Roboto;
     font-weight: 400;
@@ -255,7 +247,7 @@ ul {
 }
 
 .contact {
-    width: 65%;
+    width: 62%;
 }
 
 .social-media {
