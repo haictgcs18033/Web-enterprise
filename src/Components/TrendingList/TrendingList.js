@@ -19,9 +19,6 @@ export default function TrendingList() {
         getTrending()
     }, [getTrending])
 
-    console.log(Trendings);
-
-
     return (
         <div className={classes.gridContainer}>
             <TrendingItems trending={Trendings} />
