@@ -46,6 +46,7 @@ export default function Navbar() {
                                 {userLogin.user.fullName}
                             </p>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <NavLink className="dropdown-item" to="/manager/changepassword">Change Password</NavLink>
                                 <NavLink className="dropdown-item" to="/login"
                                     onClick={() => {
                                         logout()
@@ -67,6 +68,7 @@ export default function Navbar() {
                             {userLogin.user.fullName}
                         </p>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <NavLink className="dropdown-item" to="/coordinator/changepassword">Change Password</NavLink>
                             <NavLink className="dropdown-item" to="/login"
                                 onClick={() => {
                                     logout()

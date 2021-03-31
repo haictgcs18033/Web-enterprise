@@ -6,12 +6,13 @@ import FacultySetting from './pages/AdminDashboard/Faculty/FacultySetting';
 import UserDashboard from './pages/AdminDashboard/Users/UserDashboard';
 import AdminLogin from './pages/AdminLogin';
 import ChangePassword from './pages/ChangePassword';
-import ChangePasswordFirst from './pages/ChangePasswordFirst';
+
 import CoordinatorComment from './pages/CoordinatorDashboard/CoordinatorComment';
 import CoordinatorLanding from './pages/CoordinatorDashboard/CoordinatorLanding';
 import ForgotPassword from './pages/ForgotPassword';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import FacultyContribution from './pages/ManagerDashboard/FacultyContribution';
 import ManagerLanding from './pages/ManagerDashboard/ManagerLanding';
 import NotFound from './pages/NotFound';
 import ResetToken from './pages/ResetToken';
@@ -46,6 +47,16 @@ export const adminDashboardRoute = [
 ];
 export const managerDashboardRoute = [
     {
+        path: '/manager/faculty/contribution/:idFaculty',
+        exact: false,
+        component: FacultyContribution
+    },
+    {
+        path: '/manager/changepassword',
+        exact: false,
+        component: ChangePassword,
+    },
+    {
         path: '/manager/home',
         exact: true,
         component: ManagerLanding
@@ -56,6 +67,11 @@ export const coordinatorDashboardRoute = [
         path: '/coordinator/comment/:idContribution',
         exact: false,
         component: CoordinatorComment
+    },
+    {
+        path: '/coordinator/changepassword',
+        exact: false,
+        component: ChangePassword,
     },
     {
         path: '/coordinator/home',
@@ -111,11 +127,6 @@ export const client = [
         path: '/login',
         exact: false,
         component: LoginPage,
-    },
-    {
-        path: '/change-password-first',
-        exact: false,
-        component: ChangePasswordFirst,
     },
     {
         path: '/forget-password',

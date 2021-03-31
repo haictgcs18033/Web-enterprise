@@ -26,7 +26,7 @@ export default function ResetToken(props) {
 
     let validationSchema = yup.object().shape({
         newPassword: yup.string()
-            .max(8, '⚠ Password must not be longer than 8 characters')
+            // .max(8, '⚠ Password must not be longer than 8 characters')
             .required('⚠ Password is required')
             .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/, '⚠ Password must have at least 8 characters, 1 uppercase character, 1 number'),
         confirmPassword: yup.string()

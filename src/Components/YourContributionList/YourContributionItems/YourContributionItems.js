@@ -67,7 +67,7 @@ export default function YourContributionItems(props) {
                             <div className='modal-header'>
                                 <h5 className='modal-title' id='exampleModalLabel'>
                                     Delete Contribution
-                                    </h5>
+                                </h5>
                             </div>
                             <div className='modal-body'>
                                 <p>
@@ -75,8 +75,8 @@ export default function YourContributionItems(props) {
                                         Are you sure you want to delete{' '}
                                     </span>
                                     <span className='font-weight-bold'>
-                                        " This is a contribution {contribution.name}"
-                                        </span>
+                                        " This is a contribution "
+                                    </span>
                                 </p>
                             </div>
                             <div className='modal-footer'>
@@ -85,7 +85,7 @@ export default function YourContributionItems(props) {
                                     className={`btn ${styles.modalDeleteClose}`}
                                     data-dismiss='modal'>
                                     Close
-                                    </button>
+                                </button>
                                 <button
                                     type='button'
                                     className={`btn ${styles.modalDelete}`}
@@ -94,7 +94,7 @@ export default function YourContributionItems(props) {
                                         deleteContribution(contributionDelete.id)
                                     }}>
                                     Confirm
-                                    </button>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -127,7 +127,7 @@ export default function YourContributionItems(props) {
                             </div>
                             <div className='modal-footer '>
                                 <div className="row mx-0 w-100">
-                                  
+
                                     <div className="col-12 text-right px-0">
                                         <button
                                             type='button'

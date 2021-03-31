@@ -67,7 +67,12 @@ export const loginHomePageAction = (student, props) => {
             props.history.push('/');
             // }
         } catch (err) {
-            return err.response.data.message;
+            swal({
+                title: '',
+                text: 'Username or password is incorrect',
+                icon: 'warning',
+                button: 'OK',
+            });
         }
     };
 };
@@ -402,6 +407,27 @@ export const handleResetPassword = (userCredential) => {
             console.log('vui long dang nhap lai');
 
         } catch (err) {
+            console.log(err.response?.data);
+        }
+    }
+}
+export const handleChangePassword = (newPassword,props)=>{
+    return async dispatch=>{
+        try{
+           await Axios({
+               url:'https://greenplus-dev.herokuapp.com/auth/change-password',
+               method:'POST',
+               data:newPassword,
+               headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+           })
+           swal({
+            title: '',
+            text: 'Update password successfully',
+            icon: 'success',
+            button: 'OK',
+        });
+        
+        }catch(err){
             console.log(err.response?.data);
         }
     }

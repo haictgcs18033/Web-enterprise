@@ -41,3 +41,10 @@
     font-size: 14px;
     color: #000000;
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(0, 19.8rem));
+    row-gap: 0;
+    column-gap: 24px;
+}

@@ -1,12 +1,12 @@
 import Axios from "axios"
 import swal from "sweetalert";
 
-export const getContributionPublishList = (offset, limit) => {
-    console.log(offset, limit);
+export const getContributionPublishList = (offset, limit,idFaculty) => {
+    console.log(offset, limit,idFaculty);
     return async dispatch => {
         try {
             let result = await Axios({
-                url: `https://greenplus-dev.herokuapp.com/contributions/published?offset=${(offset - 1) * limit}&limit=${limit}`,
+                url: `https://greenplus-dev.herokuapp.com/contributions/published?offset=${(offset - 1) * limit}&limit=${limit}${idFaculty?`&facultyId=${idFaculty}`:''}`,
                 method: 'GET'
             })
             dispatch({
@@ -16,7 +16,6 @@ export const getContributionPublishList = (offset, limit) => {
         } catch (err) {
             console.log(err.response?.data);
         }
-
     }
 }
 export const getContributionList = (offset, limit, isPublish) => {
@@ -154,10 +153,10 @@ export const handleSendComment = (id, comment) => {
                 data: comment,
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
             })
-          dispatch({
-              type:'ADD_COMMENT',
-              contributionComment:comment
-          })
+            dispatch({
+                type: 'ADD_COMMENT',
+                contributionComment: comment
+            })
         } catch (err) {
             console.log(err.response?.data);
         }
@@ -165,7 +164,7 @@ export const handleSendComment = (id, comment) => {
 }
 export const getContributionComment = (id) => {
     return async dispatch => {
-        try{
+        try {
             let result = await Axios({
                 url: `https://greenplus-dev.herokuapp.com/contributions/${id}/comments`,
                 method: 'GET',
@@ -174,9 +173,29 @@ export const getContributionComment = (id) => {
                 type:'GET_CONTRIBUTION_COMMENT',
                 contribution:result.data
             })
+        } catch (err) {
+            console.log(err.response?.data);
+        }
+
+    }
+}
+export const handleDownloadContribution=(contribution)=>{
+    return async dispatch=>{
+        try{
+          await Axios({
+            url:'https://35.224.120.132/contributions/published/download',
+            method:'POST',
+            data:contribution,
+            headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+          })
+          swal({
+            title: 'Success',
+            text: 'Please check your email',
+            icon: 'success',
+            button: 'OK',
+        });
         }catch(err){
             console.log(err.response?.data);
         }
-        
     }
 }
