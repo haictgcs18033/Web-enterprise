@@ -64,12 +64,14 @@
 .deleteBtn {
     border-radius: 6px;
     background: #ffffff;
-    padding: 19px 70px 19px 28px;
+    padding: 19px 62px 19px 28px;
     outline: none;
     border: none;
     cursor: pointer;
     color: #32b260;
     margin-left: 16.25px;
+    border: 1px solid #32b260;
+    box-sizing: border-box;
 }
 
 .icon {
@@ -85,14 +87,17 @@
     margin-bottom: 9.875rem;
 }
 
+@media screen and (max-width: 656px) {
+    .deleteBtn {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+}
+
 @media screen and (max-width: 375px) {
     .flexBtn {
         display: flex;
         flex-direction: column;
-    }
-    .deleteBtn {
-        margin-left: 0;
-        margin-top: 1rem;
     }
     .uploadedTableContainer {
         margin-bottom: 3.875rem;

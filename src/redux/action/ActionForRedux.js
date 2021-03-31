@@ -30,7 +30,7 @@ export const loginAction = (admin, props) => {
                 method: 'POST',
                 data: admin,
             });
-            // if (result.user.role === 'ADMIN') {
+           
             localStorage.setItem('ACCESS_TOKEN', result.data.access_token);
             localStorage.setItem('USER_LOGIN', JSON.stringify(result.data));
             swal({
@@ -40,7 +40,7 @@ export const loginAction = (admin, props) => {
                 button: 'OK',
             });
             props.history.push('/admin/dashboard/users');
-            // }
+            
         } catch (err) {
             return err.response.data.message;
         }
@@ -65,14 +65,8 @@ export const loginHomePageAction = (student, props) => {
                 button: 'OK',
             });
             props.history.push('/');
-            // }
         } catch (err) {
-            swal({
-                title: '',
-                text: 'Username or password is incorrect',
-                icon: 'warning',
-                button: 'OK',
-            });
+           console.log(err.response?.data);
         }
     };
 };

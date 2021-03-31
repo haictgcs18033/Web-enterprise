@@ -9,7 +9,7 @@ export default function TrendingItems(props) {
         return trending.map((trend, index) => {
             return <div className="trend-contribute">
                 <div className={classes.trendIntro}>
-                    <span className={classes.number}>{index}</span>
+                    <span className={classes.number}>{index + 1}</span>
                     <p className={classes.author}>{trend.authorName}</p>
                 </div>
                 <div className={classes.trendContent}>

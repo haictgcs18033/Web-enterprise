@@ -2,7 +2,6 @@ import React from 'react'
 
 import yourContributionIcon from '../../assets/img/people-icon.png'
 import notifyIcon from '../../assets/img/notifyIcon.png'
-import Background from '../../Components/Background'
 import classes from './StudentLanding.module.scss'
 import NewContributionList from '../../Components/NewContributionList/NewContributionList'
 import YourContributionList from '../../Components/YourContributionList/YourContributionList'
@@ -10,7 +9,7 @@ import YourContributionList from '../../Components/YourContributionList/YourCont
 export default function StudentLanding() {
     return (
         <div>
-            <Background />
+          
             <div className="container">
                 <h2 className={classes.contributionTitle}>
                     <span><img className={classes.yourContributionIcon} src={yourContributionIcon} alt="123" /></span>

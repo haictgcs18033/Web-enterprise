@@ -41,7 +41,7 @@ export default function UploadedTable() {
                     Edit Contribution
                 </button>
                 <button type="button" className={classes.deleteBtn}>
-                    <img src={binIcon} alt="123" className={classes.icon} />
+                    <img src={binIcon} alt="123" className={classes.icon} width="20px" height="19px" />
                     Delete Article
                 </button>
             </div>
