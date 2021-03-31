@@ -1,5 +1,5 @@
 import React from 'react'
-import Background from '../../Components/Background'
+
 import classes from './ContributionSubmit.module.scss'
 // import articleImage from '../../assets/img/image-8.png'
 import { useDispatch, useSelector } from 'react-redux'
@@ -46,7 +46,7 @@ export default function ContributionSubmit() {
     }
     return (
         <>
-            <Background />
+           
             <div className={`container  ${classes.submitContainer}`}>
                 <h3 className="">Contribution submission</h3>
                 <form className={`  ${classes.submitContent}`} onSubmit={handleSubmit}>

@@ -30,7 +30,7 @@ export const loginAction = (admin, props) => {
                 method: 'POST',
                 data: admin,
             });
-            // if (result.user.role === 'ADMIN') {
+           
             localStorage.setItem('ACCESS_TOKEN', result.data.access_token);
             localStorage.setItem('USER_LOGIN', JSON.stringify(result.data));
             swal({
@@ -40,7 +40,7 @@ export const loginAction = (admin, props) => {
                 button: 'OK',
             });
             props.history.push('/admin/dashboard/users');
-            // }
+            
         } catch (err) {
             return err.response.data.message;
         }
@@ -65,9 +65,8 @@ export const loginHomePageAction = (student, props) => {
                 button: 'OK',
             });
             props.history.push('/');
-            // }
         } catch (err) {
-            return err.response.data.message;
+           console.log(err.response?.data);
         }
     };
 };
@@ -402,6 +401,27 @@ export const handleResetPassword = (userCredential) => {
             console.log('vui long dang nhap lai');
 
         } catch (err) {
+            console.log(err.response?.data);
+        }
+    }
+}
+export const handleChangePassword = (newPassword,props)=>{
+    return async dispatch=>{
+        try{
+           await Axios({
+               url:'https://greenplus-dev.herokuapp.com/auth/change-password',
+               method:'POST',
+               data:newPassword,
+               headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+           })
+           swal({
+            title: '',
+            text: 'Update password successfully',
+            icon: 'success',
+            button: 'OK',
+        });
+        
+        }catch(err){
             console.log(err.response?.data);
         }
     }

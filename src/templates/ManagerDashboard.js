@@ -1,5 +1,6 @@
 import { Redirect, Route } from "react-router";
 import swal from "sweetalert";
+import Background from "../Components/Background";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 
@@ -14,6 +15,7 @@ export const ManagerDashboard=({ Component, component, ...props })=>{
                 return (
                   <>
                     <Navbar></Navbar>
+                    <Background></Background>
                     <Component></Component>
                     <Footer></Footer>
                   </>

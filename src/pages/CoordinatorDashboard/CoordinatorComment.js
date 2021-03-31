@@ -12,50 +12,45 @@ export default function CoordinatorComment() {
          comment:''
      })
      const  contributionComment = useSelector(state => state.contributionReducer.contributionComment)
-     console.log(contributionComment);
      let dispatch=useDispatch()
-     const getContributionById = useCallback(
-        () => dispatch(action.getContributionById(idContribution)),
+     const getComment = useCallback(
+        () => dispatch(action.getContributionComment(idContribution)),
         [dispatch,idContribution]
     );
      useEffect( () => {
-          getContributionById()
-     }, [getContributionById])
+        getComment()
+     }, [getComment])
     
      let handleChange=(e)=>{
          setInteract({comment:e.target.value})
      }
      let sendComment=()=>{
+         console.log(interact);
         dispatch(action.handleSendComment(idContribution,interact))
      }
+    
+
     return (
         <div className={`container ${classes.commentContainer}`}>
-             <div className={`${classes.boxComment}`}>  
-                 <label>Comment</label>
-                 <textarea className={`form-control`} rows="10" value={interact.comment} onChange={handleChange}/>
-                 <button onClick={()=>sendComment()}><img src={sendIcon} alt="123"/></button>
-             </div>
-             <div className={`${classes.boxMessage}`}>
+             <div className={`${classes.boxMessage}`}> 
                  {contributionComment?.map((comment,index)=>{
                      return  <div key={index} className={` mb-4 ${classes.mySelf}`}>
                      <img src={userChat} alt="123"/>
                      <div className={`${classes.commentContent}`}>
-                         <h5>You</h5>
+                         <h5>{comment.authorName}</h5>
                          <p>{comment.comment}</p>
                      </div>
                  </div>
                  })}
                 
-                 <div className={`${classes.another}`}>
-                     <div className={`${classes.commentContent}`}>
-                         <h5 className="text-right">Other Name</h5>
-                         <p>This isvtopix</p>
-                     </div>
-                     <div className={`${classes.commentContent}`}>
-                     <img src={userChat} alt="123"/>
-                     </div>
-                 </div>
+               
              </div>
+             <div className={`${classes.boxComment}`}>  
+                 <label>Comment</label>
+                 <textarea className={`form-control`} rows="10" value={interact.comment} onChange={handleChange}/>
+                 <button onClick={async()=>{await sendComment();setInteract({comment:''})}}><img src={sendIcon} alt="123"/></button>
+             </div>
+            
         </div>
     )
 }

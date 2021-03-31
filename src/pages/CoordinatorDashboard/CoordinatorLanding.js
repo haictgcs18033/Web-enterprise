@@ -13,10 +13,11 @@ export default function CoordinatorLanding() {
     const contributionList = useSelector(state => state.contributionReducer.contributionList)
     let [curPage] = useState(1);
     let [contributionUpdate, setContributionUpdate] = useState({
+        id:0,
         name: '',
         description: ''
     })
-   
+    let [contributionDelete,setContributionDelete]=useState({id:0})
     let dispatch = useDispatch()
     let limit = 10
     const getContributionPublish = useCallback(
@@ -94,6 +95,7 @@ export default function CoordinatorLanding() {
                             data-toggle='modal'
                             data-target='#exampleModalUpdate'
                             onClick={() => setContributionUpdate({
+                                id:contribution.id,
                                 name: contribution.name,
                                 description: contribution.description
                             })}>
@@ -104,7 +106,10 @@ export default function CoordinatorLanding() {
                         </button>
                         <button type="button" className={`btn ${classes.contributionBtn}`}
                             data-toggle='modal'
-                            data-target='#exampleModalDelete'>
+                            data-target='#exampleModalDelete'
+                            onClick={()=>{
+                                setContributionDelete({id:contribution.id})
+                            }}>
                             <div className="d-flex">
                                 <img className={classes.icon} src={bin} alt="123" />
                                 <p className="mb-0"> Delete Article</p>
@@ -152,7 +157,7 @@ export default function CoordinatorLanding() {
                                     className={`btn ${styles.modalDelete}`}
                                     data-dismiss='modal'
                                     onClick={() => {
-                                        deleteContribution(contribution.id)
+                                        deleteContribution(contributionDelete.id)
                                     }}>
                                     Confirm
                                     </button>
@@ -207,7 +212,7 @@ export default function CoordinatorLanding() {
                                             className={classes.updateButton}
 
                                             onClick={() => {
-                                                updateContribution(contribution.id)
+                                                updateContribution(contributionUpdate.id)
                                             }}>
                                             Confirm
                                 </button>

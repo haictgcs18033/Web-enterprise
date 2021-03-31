@@ -1,12 +1,12 @@
 import Axios from "axios"
 import swal from "sweetalert";
 
-export const getContributionPublishList = (offset, limit) => {
-    console.log(offset, limit);
+export const getContributionPublishList = (offset, limit,idFaculty) => {
+    console.log(offset, limit,idFaculty);
     return async dispatch => {
         try {
             let result = await Axios({
-                url: `https://greenplus-dev.herokuapp.com/contributions/published?offset=${(offset - 1) * limit}&limit=${limit}`,
+                url: `https://greenplus-dev.herokuapp.com/contributions/published?offset=${(offset - 1) * limit}&limit=${limit}${idFaculty?`&facultyId=${idFaculty}`:''}`,
                 method: 'GET'
             })
             dispatch({
@@ -162,21 +162,40 @@ export const handleSendComment = (id, comment) => {
         }
     }
 }
-export const getContributionById = (id) => {
+export const getContributionComment = (id) => {
     return async dispatch => {
         try {
             let result = await Axios({
-                url: `https://greenplus-dev.herokuapp.com/contributions/${id}`,
+                url: `https://greenplus-dev.herokuapp.com/contributions/${id}/comments`,
                 method: 'GET',
-                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') }
             })
             dispatch({
-                type: 'GET_CONTRIBUTION_BY_ID',
-                contribution: result.data.comments
+                type:'GET_CONTRIBUTION_COMMENT',
+                contribution:result.data
             })
         } catch (err) {
             console.log(err.response?.data);
         }
 
+    }
+}
+export const handleDownloadContribution=(contribution)=>{
+    return async dispatch=>{
+        try{
+          await Axios({
+            url:'https://35.224.120.132/contributions/published/download',
+            method:'POST',
+            data:contribution,
+            headers:{'Authorization':'Bearer '+localStorage.getItem('ACCESS_TOKEN')}
+          })
+          swal({
+            title: 'Success',
+            text: 'Please check your email',
+            icon: 'success',
+            button: 'OK',
+        });
+        }catch(err){
+            console.log(err.response?.data);
+        }
     }
 }
