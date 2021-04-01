@@ -6,8 +6,7 @@ export default function TrendingItems(props) {
     let { trending } = props;
 
     let renderTrendingItems = () => {
-        return trending.map((trend, index) => {
-
+        return trending?.map((trend, index) => {
             const options = { month: 'long', day: 'numeric' };
             let date = new Date(trend.createAt).toLocaleDateString('en-US', options);
             return <div className="trend-contribute">

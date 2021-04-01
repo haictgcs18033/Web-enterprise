@@ -48,18 +48,15 @@ export default function ContributionDetail() {
                                 return <p className={classes.fileName}>{contribute.file}</p>
                             })
                         }
-                       
+
                     </div>
                     {
                         contribution.files?.map((contribute, index) => {
                             return <iframe title="file word" key={index} src={`https://docs.google.com/gview?url=https://35.224.120.132/${contribute.file}&embedded=true`}></iframe>
                         })
                     }
-
                 </div>
             </div>
         </div>
-
-
     )
 }
