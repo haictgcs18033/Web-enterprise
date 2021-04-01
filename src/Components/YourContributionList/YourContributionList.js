@@ -6,7 +6,6 @@ import classes from './YourContributionList.module.scss'
 
 export default function YourContributionList() {
     const contributionList = useSelector(state => state.contributionReducer.contributionList)
-    console.log(contributionList);
     let [curPage] = useState(1);
     let dispatch = useDispatch()
     let limit = 10

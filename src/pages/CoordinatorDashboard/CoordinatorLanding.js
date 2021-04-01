@@ -244,6 +244,7 @@ export default function CoordinatorLanding() {
     }
     console.log(contributionUpdate);
     return (
+        
         <div className="container">
             <div className={classes.waitingPublic}>
                 <h3>Waiting for public</h3>

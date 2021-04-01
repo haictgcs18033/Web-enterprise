@@ -25,7 +25,6 @@ export default function YourContributionItems(props) {
         newsValue[name] = value;
         setContributionUpdate(newsValue)
     }
-    console.log(contribution);
     let renderContributionItem = () => {
         return contribution?.filter(contribute => contribute.isPublished === false).map((contribution, index) => {
             return <div key={index} className={`card ${classes.card}`}>

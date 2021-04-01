@@ -47,9 +47,9 @@ export default function FacultyContribution() {
         <div className={`container ${classes.contributionContainer}`}>
             <h3>All contribution</h3>
             <div className={`${classes.contributionList}`}>
-                <div className="row">
+                <div className={`row`}>
                     {contributionPublishList.map((contribution, index) => {
-                        return <div key={index} className="col-4">
+                        return <div key={index} className="col-xs-12 col-md-6 col-lg-6 col-xl-4 my-3">
                             <div className={`card text-left px-0 ${classes.cardContribution}`}>
                                 <img className="card-img-top" src={`https://35.224.120.132/${contribution.thumbnail}`} alt="123" height="216px" />
                                 <div className="card-body">
@@ -74,8 +74,8 @@ export default function FacultyContribution() {
                     })}
 
                 </div>
-                <div className="d-block text-center my-4" >
-                    <button>Show more</button>
+                <div className={`d-block text-center my-4 ${classes.showmore}`} >
+                    <button>SHOW MORE</button>
                 </div>
                 <div className={`${contributionDownload.downloadItem.length !== 0 ? `${classes.selectedItem}` : `${classes.selectedItemHide}`}`}>
                     <p>{contributionDownload.downloadItem.length} items</p>

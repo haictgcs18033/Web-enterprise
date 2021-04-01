@@ -8,10 +8,8 @@ import { fetchClosureDate } from '../../redux/action/ActionForRedux'
 import moment from 'moment'
 export default function UploadContribution(props) {
     let { id } = useParams()
-    console.log(id);
     let closureDateAdmin = useSelector(state => state.webEnterpriseReducer.closureDateAdmin)
     const contributionComment = useSelector(state => state.contributionReducer.contributionComment)
-    console.log(contributionComment);
     let dispatch = useDispatch()
     const getComment = useCallback(
         () => dispatch(action.getContributionComment(id)),
@@ -24,8 +22,6 @@ export default function UploadContribution(props) {
         dispatch(fetchClosureDate())
     }, [dispatch,])
     let count = contributionComment.length
-
-    console.log(contributionComment);
     return (
         <div>
 
@@ -37,7 +33,7 @@ export default function UploadContribution(props) {
                                 Submit article
                                 </h2>
                             <table className={classes.table}>
-                                <thead>
+                                <tbody>
                                     <tr>
                                         <th className={classes.tableHeader}>Submission status</th>
                                         <td className={classes.tableData}>Not yet</td>
@@ -60,14 +56,16 @@ export default function UploadContribution(props) {
                                     </tr>
                                     <tr>
                                         <th className={classes.tableHeader}>Submission comments</th>
-                                        <NavLink to={`/student/comment/${id}`} className={classes.tableData}>{count === 0 ? 'Not yet' : `${count} comment`}</NavLink>
+                                        <td className={classes.tableData}>{count === 0 ? 'Not yet' :
+                                         <NavLink to={`/student/comment/${id}`} >{count} comment</NavLink> }</td>
+                                       
                                     </tr>
-                                </thead>
+                                </tbody>
                             </table>
                             <NavLink className={classes.btnUpload} to="/student/contribution-submit">
                                 <span><img className={classes.uploadIcon} src={uploadIcon} alt="123" /></span>
                                     Upload Contribution
-                                </NavLink>
+                            </NavLink>
                         </div>
                     </div>
                 </div>

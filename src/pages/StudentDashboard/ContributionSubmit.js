@@ -9,11 +9,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as  yup from 'yup';
 export default function ContributionSubmit() {
     const contribution = useSelector(state => state.contributionReducer.contribution)
-    let { name, description } = contribution.values
+    // let { name, description } = contribution.values
     const dispatch = useDispatch()
     let handleChangeInput = (e) => {
         let { value, name } = e.target
-        let newValues = { ...contribution.values }
+        let newValues = { ...contribution?.values }
         newValues[name] = value
         if (name === "thumbnail") {
             newValues[name] = e.target.files[0]
@@ -57,7 +57,7 @@ export default function ContributionSubmit() {
                                 <input
                                     className="form-control"
                                     name="name"
-                                    value={name}
+                                    value={contribution?.values.name}
                                     onChange={handleChangeInput}
                                     ref={register}
                                 />
@@ -70,7 +70,7 @@ export default function ContributionSubmit() {
                                 <input
                                     className="form-control"
                                     name="description"
-                                    value={description}
+                                    value={contribution?.values.description}
                                     onChange={handleChangeInput}
                                     ref={register}
                                 />
