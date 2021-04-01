@@ -140,7 +140,7 @@ export const client = [
         component: ResetToken,
     },
     {
-        path: '/contribution-detail',
+        path: '/contribution-detail/:id',
         exact: false,
         component: ContributionDetail,
     },

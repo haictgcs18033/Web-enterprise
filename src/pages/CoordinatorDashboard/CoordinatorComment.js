@@ -32,25 +32,24 @@ export default function CoordinatorComment() {
 
     return (
         <div className={`container ${classes.commentContainer}`}>
-             <div className={`${classes.boxMessage}`}> 
-                 {contributionComment?.map((comment,index)=>{
-                     return  <div key={index} className={` mb-4 ${classes.mySelf}`}>
-                     <img src={userChat} alt="123"/>
-                     <div className={`${classes.commentContent}`}>
-                         <h5>{comment.authorName}</h5>
-                         <p>{comment.comment}</p>
-                     </div>
-                 </div>
-                 })}
-                
-               
-             </div>
+            
              <div className={`${classes.boxComment}`}>  
                  <label>Comment</label>
                  <textarea className={`form-control`} rows="10" value={interact.comment} onChange={handleChange}/>
                  <button onClick={async()=>{await sendComment();setInteract({comment:''})}}><img src={sendIcon} alt="123"/></button>
              </div>
-            
+             <div className={`${classes.boxMessage}`}> 
+                 {contributionComment?.map((comment,index)=>{
+                     console.log(comment);
+                     return  <div key={index} className={` mb-4 ${classes.mySelf}`}>
+                     <img src={userChat} alt="123"/>
+                     <div className={`${classes.commentContent}`}>     
+                         <h5>{comment.authorName}</h5>
+                         <p>{comment.comment}</p>
+                     </div>
+                 </div>
+                 })}
+             </div>
         </div>
     )
 }

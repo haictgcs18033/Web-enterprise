@@ -9,7 +9,6 @@ import YourContributionList from '../../Components/YourContributionList/YourCont
 export default function StudentLanding() {
     return (
         <div>
-          
             <div className="container">
                 <h2 className={classes.contributionTitle}>
                     <span><img className={classes.yourContributionIcon} src={yourContributionIcon} alt="123" /></span>

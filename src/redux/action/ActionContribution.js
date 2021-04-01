@@ -2,7 +2,6 @@ import Axios from "axios"
 import swal from "sweetalert";
 
 export const getContributionPublishList = (offset, limit,idFaculty) => {
-    console.log(offset, limit,idFaculty);
     return async dispatch => {
         try {
             let result = await Axios({
