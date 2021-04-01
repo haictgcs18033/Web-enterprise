@@ -7,6 +7,7 @@ export default function TrendingItems(props) {
 
     let renderTrendingItems = () => {
         return trending.map((trend, index) => {
+            let date = new Date(trend.createAt).toLocaleDateString('en-CA');
             return <div className="trend-contribute">
                 <div className={classes.trendIntro}>
                     <span className={classes.number}>0{index + 1}</span>
@@ -14,7 +15,7 @@ export default function TrendingItems(props) {
                 </div>
                 <div className={classes.trendContent}>
                     <h4 className={classes.topic}>{trend.description}</h4>
-                    <p className={classes.comment}>{trend.createAt} - {trend.views} views</p>
+                    <p className={classes.comment}>{date} - {trend.views} views</p>
                 </div>
             </div>
         })
