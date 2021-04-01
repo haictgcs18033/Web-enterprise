@@ -54,13 +54,24 @@
     font-weight: normal;
     font-size: 13px;
     color: rgba(0, 0, 0, 0.5);
+    background-color: #ffffff;
     margin-left: 1rem;
     margin-bottom: 0;
+    border: none;
 }
 iframe {
-    margin-top: 1rem;
-    position: static;
     width: 100%;
+    height: 100%;
+}
+.modalBody {
+    width: 100%;
+    height: 500px;
+}
+.modalDialog {
+    max-width: 1000px;
+}
+.modalContent {
+    max-width: 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -88,5 +99,8 @@ iframe {
     }
     .contributionContent {
         margin-top: 1rem;
+    }
+    .modalBody {
+        height: 450px;
     }
 }

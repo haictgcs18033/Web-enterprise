@@ -24,6 +24,9 @@ export default function ContributionDetail() {
         fetchData()
     }, [id])
     console.log(contribution);
+    // const contributionDetailModalStyle = {
+    //     paddingRight: "0px",
+    // }
     return (
         <div className={classes.ContributionDetailContainer}>
             <div className={`card ${classes.ContributionDetailCard}`}>
@@ -46,18 +49,39 @@ export default function ContributionDetail() {
                         <img src={docFile} alt="123" />
                         {
                             contribution.files?.map((contribute, index) => {
-                                return <p className={classes.fileName}>{contribute.file}</p>
+                                // return <p className={classes.fileName}>{contribute.file}</p>
+                                return <input
+                                    type="button"
+                                    className={classes.fileName}
+                                    value={contribute.file}
+                                    data-toggle="modal"
+                                    data-target="#contributionDetailModal" />
                             })
                         }
 
                     </div>
-                    {
-                        contribution.files?.map((contribute, index) => {
-                            return <iframe title="file word" key={index} src={`https://docs.google.com/gview?url=https://35.224.120.132/${contribute.file}&embedded=true`}></iframe>
-                        })
-                    }
+
+                    <div class="modal fade" id="contributionDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+                        <div class={`modal-dialog ${classes.modalDialog}`} role="document">
+                            <div class={`modal-content ${classes.modalContent}`}>
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class={`modal-body ${classes.modalBody}`}>
+                                    {contribution.files?.map((contribute, index) => {
+                                        return <iframe title="file word" key={index} src={`https://docs.google.com/gview?url=https://35.224.120.132/${contribute.file}&embedded=true`}></iframe>
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* contribution.files?.map((contribute, index) => {
+                         return <iframe title="file word" key={index} src={`https://docs.google.com/gview?url=https://35.224.120.132/${contribute.file}&embedded=true`}></iframe>
+                         }) */}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
