@@ -1,6 +1,7 @@
 /** @format */
 
 import ContributionDetail from './Components/ContributionDetail/ContributionDetail';
+// import ContributionDetailIframe from './Components/ContributionDetailIframe/ContributionDetailIframe';
 import UploadedTable from './Components/UploadedTable/UploadedTable';
 import Faculty from './pages/AdminDashboard/Faculty/Faculty';
 import FacultySetting from './pages/AdminDashboard/Faculty/FacultySetting';
@@ -140,10 +141,15 @@ export const client = [
         component: ResetToken,
     },
     {
-        path: '/contribution-detail/:id',
+        path: '/contribution-detail',
         exact: false,
         component: ContributionDetail,
     },
+    // {
+    //     path: '/contribution-detail/detail',
+    //     exact: false,
+    //     component: ContributionDetailIframe,
+    // },
     {
         path: '',
         exact: false,

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
-import classes from './ContributionDetail.module.scss'
 
+
+import classes from './ContributionDetail.module.scss'
 import docFile from '../../assets/img/doc-file.png'
 import { useParams } from 'react-router-dom'
 export default function ContributionDetail() {

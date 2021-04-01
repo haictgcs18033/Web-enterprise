@@ -30,7 +30,7 @@
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 20px;
     color: #000000;
     margin-bottom: 0.75rem;
 }
@@ -38,20 +38,21 @@
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     color: rgba(0, 0, 0, 0.5);
     margin: 0;
 }
 .cardBody {
     background: #ffffff;
     box-shadow: inset 0px 1px 0px #e4e4e4;
-    padding: 1rem;
+    margin: 1rem;
+    padding: 1rem 0;
 }
 .fileName {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 13px;
     color: rgba(0, 0, 0, 0.5);
     margin-left: 1rem;
     margin-bottom: 0;
