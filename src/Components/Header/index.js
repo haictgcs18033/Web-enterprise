@@ -175,7 +175,47 @@ const Header = () => {
           </div>
         );
       default:
-        return 'Invalid';
+        return (
+          <div>
+            <div className={styles.desktopNav}>
+              <NavLink
+                to='/'
+                exact
+                className={styles.home}
+                activeClassName={styles.active}>
+                Home
+              </NavLink>
+              <NavLink
+                to='/login'
+                className={styles.signin}
+                activeClassName={styles.active}>
+                Sign in
+              </NavLink>
+            </div>
+            <div ref={ref} className={styles.mobileNav}>
+              <img
+                onClick={() => setShowHeader(!showHeader)}
+                src={Navbar}
+                alt='Navbar'
+              />
+              <div className={clsx(styles.navMenu, showHeader && styles.show)}>
+                <NavLink
+                  to='/'
+                  exact
+                  className={styles.navMenuItem}
+                  activeClassName={styles.active}>
+                  Home
+                </NavLink>
+                <NavLink
+                  to='/login'
+                  className={styles.navMenuItem}
+                  activeClassName={styles.active}>
+                  Sign in
+                </NavLink>
+              </div>
+            </div>
+          </div>
+        );
     }
   };
 

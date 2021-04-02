@@ -28,7 +28,7 @@ export default function CoordinatorComment() {
          console.log(interact);
         dispatch(action.handleSendComment(idContribution,interact))
      }
-    
+     console.log(contributionComment);
 
     return (
         <div className={`container ${classes.commentContainer}`}>

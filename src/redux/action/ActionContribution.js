@@ -7,11 +7,9 @@ export const getContributionPublishList = (offset, limit, idFaculty) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/published?offset=${
-          (offset - 1) * limit
-        }&limit=${limit}${
-          idFaculty ? `&facultyId=${idFaculty}` : ''
-        }&viewOrderType=DESC`,
+        url: `https://greenplus-dev.herokuapp.com/contributions/published?offset=${(offset - 1) * limit
+          }&limit=${limit}${idFaculty ? `&facultyId=${idFaculty}` : ''
+          }&viewOrderType=DESC`,
         method: 'GET',
       });
       dispatch({
@@ -27,9 +25,8 @@ export const getContributionList = (offset, limit, isPublish) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions?offset=${
-          (offset - 1) * limit
-        }&limit=${limit}`,
+        url: `https://greenplus-dev.herokuapp.com/contributions?offset=${(offset - 1) * limit
+          }&limit=${limit}`,
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -79,7 +76,12 @@ export const submitContribution = (formInput) => {
         button: 'OK',
       });
     } catch (err) {
-      console.log(err.response?.data);
+      swal({
+        title: 'Error',
+        text: err.response.data.message,
+        icon: 'error',
+        button: 'OK',
+      });
     }
   };
 };
@@ -162,7 +164,7 @@ export const handlePublishContribution = (id, contribution) => {
 export const handleSendComment = (id, comment) => {
   return async (dispatch) => {
     try {
-      await Axios({
+      let result = await Axios({
         url: `https://greenplus-dev.herokuapp.com/contributions/${id}/comments`,
         method: 'POST',
         data: comment,
@@ -172,7 +174,7 @@ export const handleSendComment = (id, comment) => {
       });
       dispatch({
         type: 'ADD_COMMENT',
-        contributionComment: comment,
+        contributionComment: result.data,
       });
     } catch (err) {
       console.log(err.response?.data);
