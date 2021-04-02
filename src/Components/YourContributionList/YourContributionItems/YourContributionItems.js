@@ -14,11 +14,11 @@ export default function YourContributionItems(props) {
     let { contribution } = props
     const dispatch = useDispatch()
     let [contributionUpdate, setContributionUpdate] = useState({
-        id:0,
+        id: 0,
         name: '',
         description: ''
     })
-    let [contributionDelete,setContributionDelete]=useState({id:0})
+    let [contributionDelete, setContributionDelete] = useState({ id: 0 })
     let handleChangeInput = (e) => {
         let { value, name } = e.target
         let newsValue = { ...contributionUpdate }
@@ -30,28 +30,28 @@ export default function YourContributionItems(props) {
             return <div key={index} className={`card ${classes.card}`}>
                 <img className="card-img-top" src={`https://35.224.120.132/${contribution.thumbnail}`} alt="123" height="216px" />
                 <div className={classes.overlay}></div>
-                <NavLink to={`/student/uploaded-contribution/${contribution.id}`} type="button" className={`${classes.btn} ${classes.seeBtn}`}>
-                    <img className={classes.icon} src={eyeIcon} alt="123" />
+                <NavLink to={`/student/uploaded-contribution/${contribution.id}`} type="button" className={classes.seeBtn}>
+                    <img className={classes.icon} src={eyeIcon} alt="123" width="22px" height="20px" />
                             See Contribution
                 </NavLink>
-                <button type="button" className={`${classes.btn} ${classes.editBtn}`}
+                <button type="button" className={classes.editBtn}
                     data-toggle='modal'
                     data-target='#exampleModalUpdate'
                     onClick={() => setContributionUpdate({
-                        id:contribution.id,
+                        id: contribution.id,
                         name: contribution.name,
                         description: contribution.description
                     })}>
-                    <img className={classes.icon} src={penIcon} alt="123" />
+                    <img className={classes.icon} src={penIcon} alt="123" width="20px" height="20px" />
                             Edit Contribution
                 </button>
                 <button type="button" className={`${classes.btn} ${classes.deleteBtn}`}
                     data-toggle='modal'
                     data-target='#exampleModalDelete'
-                    onClick={()=>{
-                        setContributionDelete({id:contribution.id})
+                    onClick={() => {
+                        setContributionDelete({ id: contribution.id })
                     }}>
-                    <img className={classes.icon} src={binIcon} alt="123" />
+                    <img className={classes.icon} src={binIcon} alt="123" width="20px" height="20px" />
                             Delete Article
                 </button>
                 <div
@@ -89,7 +89,7 @@ export default function YourContributionItems(props) {
                                     type='button'
                                     className={`btn ${styles.modalDelete}`}
                                     data-dismiss='modal'
-                                    onClick={()=>{
+                                    onClick={() => {
                                         deleteContribution(contributionDelete.id)
                                     }}>
                                     Confirm
@@ -164,8 +164,6 @@ export default function YourContributionItems(props) {
         dispatch(action.handleUpdateContribution(id, contributionUpdate))
     }
     return (
-        <div className={classes.grid}>
-            {renderContributionItem()}
-        </div>
+        <div className={classes.grid}>{renderContributionItem()}</div>
     )
 }
