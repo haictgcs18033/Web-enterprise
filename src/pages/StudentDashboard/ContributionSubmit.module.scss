@@ -1,23 +1,19 @@
-.submitContainer{
+.submitContainer {
     margin: 35px auto;
-    h3{
-        border-bottom: 2px solid #32B260;
+    h3 {
+        border-bottom: 2px solid #32b260;
         padding-bottom: 10px;
     }
-    .submitContent{
-        margin:20px 110px;
-        label{
+    .submitContent {
+        margin: 20px 110px;
+        label {
             font-size: 16px;
         }
     }
 }
-.thumbnailContainer,.articleImage{
-    padding:10px 16px;
-    h4{
-        font-weight: normal;
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
+.thumbnailContainer,
+.articleImage {
+    padding: 10px 16px;
     // label{
     //     input[type=file]{
     //        display: none
@@ -36,55 +32,66 @@
     //         cursor: pointer;
     //     }
     // }
-    
 }
-.articleImage{
-    img{
-        width: 100%;
-        height: 174px;
-        margin-bottom: 20px;
-        &:hover{
-            cursor:pointer
-        }
-    }
-    button{
-        background:#32B260;
-        color: white;
-        transition: all 0.5s;
-        &:hover{
-            background: #05e055;
-            border: 2px solid #05e055;
-        }
+.articleTitle,
+.thumbnailTitle {
+    font-weight: normal;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+// .articleImage {
+//     img {
+//         width: 100%;
+//         height: 174px;
+//         margin-bottom: 20px;
+//         &:hover {
+//             cursor: pointer;
+//         }
+//     }
+// }
+.submitBtn {
+    background: #32b260;
+    border-radius: 6px;
+    color: #ffffff;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    padding: 13px 36px;
+    cursor: pointer;
+    transition: all 0.5s;
+    &:hover {
+        background-color: #258548;
     }
 }
-@media screen and (min-width:768px) and (max-width:992px){
-    .submitContainer{
-        .submitContent{ 
-            margin:20px 0;
-            .formInput{
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .submitContainer {
+        .submitContent {
+            margin: 20px 0;
+            .formInput {
                 padding: 0;
-                input{
+                input {
                     width: 310px;
                 }
             }
         }
     }
-    .thumbnailContainer,.articleImage{
-        padding:10px 0;
+    .thumbnailContainer,
+    .articleImage {
+        padding: 10px 0;
     }
-
 }
-@media screen and (max-width:767px){
-    .submitContainer{
-        .submitContent{ 
-            margin:20px 0;
-            .formInput{
+@media screen and (max-width: 767px) {
+    .submitContainer {
+        .submitContent {
+            margin: 20px 0;
+            .formInput {
                 padding: 0;
-               
             }
         }
     }
-    .thumbnailContainer,.articleImage{
-        padding:10px 0;
+    .thumbnailContainer,
+    .articleImage {
+        padding: 10px 0;
     }
 }

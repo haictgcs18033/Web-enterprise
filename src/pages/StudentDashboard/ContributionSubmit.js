@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom';
 export default function ContributionSubmit() {
     const contribution = useSelector(state => state.contributionReducer.contribution)
     // let { name, description } = contribution.values
-    let [term,setTerm]=useState(false)
+    let [term, setTerm] = useState(false)
     console.log(term);
     const dispatch = useDispatch()
     let handleChangeInput = (e) => {
@@ -25,7 +25,7 @@ export default function ContributionSubmit() {
         }
         dispatch(action.handleInput(newValues))
     }
-    let handleChangeTerm=()=>{
+    let handleChangeTerm = () => {
         setTerm(!term)
     }
     let schema = yup.object().shape({
@@ -33,23 +33,24 @@ export default function ContributionSubmit() {
             .required('⚠ Title is required'),
         description: yup.string()
             .required('⚠ Description is required'),
-        thumbnail: yup.string()
-            .required('⚠ This field allows uploading jpg, jpeg, doc, docx'),
-        files: yup.string()
-            .required('⚠ This field allows uploading jpg, jpeg'),
+        thumbnail: yup.mixed().test("thumbnail", "⚠ This field allows uploading jpg, jpeg", (value) => {
+            return value && value[0]?.type === "image/jpeg";
+        }),
+        // files: yup.string().matches(/^[A-Za-z]{9,}\.(?:doc)$/, '⚠ This field allows uploading jpg, jpeg, doc, docx'),
+        // .matches(, '⚠ This field allows uploading jpg, jpeg, doc, docx'),
     })
 
-    const { register, errors } = useForm({
-        mode: 'onTouched',
+    const { register, handleSubmit, errors } = useForm({
+        mode: 'onChange',
         resolver: yupResolver(schema),
     });
-    
-    let handleSubmit = (e) => {
-        e.preventDefault();
+
+    let onSubmit = () => {
+        // e.preventDefault();
         let formInput = contribution.values;
-        if(term){
+        if (term) {
             dispatch(action.submitContribution(formInput));
-        }else if(term===false){
+        } else if (term === false) {
             alert('You need to agree term and privacy')
         }
     }
@@ -58,7 +59,7 @@ export default function ContributionSubmit() {
 
             <div className={`container  ${classes.submitContainer}`}>
                 <h3 className="">Contribution submission</h3>
-                <form className={`  ${classes.submitContent}`} onSubmit={handleSubmit}>
+                <form className={`  ${classes.submitContent}`} onSubmit={handleSubmit(onSubmit)}>
                     <div className="row m-0">
                         <div className={`col-md-12 col-lg-6 col-xl-6 ${classes.formInput}`}>
                             <div className="form-group">
@@ -66,7 +67,7 @@ export default function ContributionSubmit() {
                                 <input
                                     className="form-control"
                                     name="name"
-                                    value={contribution?.values.name}
+                                    defaultValue={contribution?.values.name}
                                     onChange={handleChangeInput}
                                     ref={register}
                                 />
@@ -79,7 +80,7 @@ export default function ContributionSubmit() {
                                 <input
                                     className="form-control"
                                     name="description"
-                                    value={contribution?.values.description}
+                                    defaultValue={contribution?.values.description}
                                     onChange={handleChangeInput}
                                     ref={register}
                                 />
@@ -88,7 +89,7 @@ export default function ContributionSubmit() {
                         </div>
                     </div>
                     <div className={`${classes.thumbnailContainer}`}>
-                        <h4>Thumbnails</h4>
+                        <h4 className={classes.thumbnailTitle}>Thumbnails</h4>
                         <label>
                             <input
                                 type="file"
@@ -103,7 +104,7 @@ export default function ContributionSubmit() {
 
                     </div>
                     <div className={`${classes.articleImage}`}>
-                        <h4>Article</h4>
+                        <h4 className={classes.articleTitle}>Article</h4>
                         {/* <img src={articleImage} alt="123" /> */}
                         <input
                             type="file"
@@ -118,17 +119,17 @@ export default function ContributionSubmit() {
                     <div>
                         <h4>Term and privacy</h4>
                         <input type="checkbox" value={term} onChange={handleChangeTerm} />
-                        <label htmlFor="vehicle1"> 
-                        <span>I agree to</span> 
-                        <span>
-                            <NavLink to="/student/term-privacy">
-                            term and privacy
-                            </NavLink>
-                        </span>
+                        <label htmlFor="vehicle1">
+                            <span>&nbsp;I agree to</span>
+                            <span>&nbsp;
+                                <NavLink to="/student/term-privacy">
+                                    term and privacy
+                                </NavLink>
+                            </span>
                         </label><br />
                     </div>
                     <div className="d-block text-center">
-                        <button>Submit</button>
+                        <button className={classes.submitBtn}>Submit</button>
                     </div>
                 </form>
             </div>

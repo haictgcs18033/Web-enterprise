@@ -81,6 +81,9 @@
     transition: all 0.5s;
     opacity: 0;
     width: 180px;
+    &:hover {
+        background-color: #258548;
+    }
 }
 
 .editBtn {
@@ -103,6 +106,9 @@
     transition: all 0.5s;
     opacity: 0;
     width: 180px;
+    &:hover {
+        background-color: #258548;
+    }
 }
 
 .deleteBtn {
@@ -125,6 +131,9 @@
     transition: all 0.5s;
     opacity: 0;
     width: 180px;
+    &:hover {
+        background-color: #258548;
+    }
 }
 
 .icon {

@@ -1,8 +1,9 @@
+import classes from './StudentCommitment.module.scss'
 import React from 'react'
 
 export default function StudentCommitment() {
     return (
-        <div>
+        <div className={`container ${classes.TermCommitmentContainer}`}>
             <h3>Terms & Conditions</h3>
             <p>Updated at 2021-04-02</p>
             <h3>General Terms</h3>
