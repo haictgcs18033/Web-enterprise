@@ -1,106 +1,129 @@
+/** @format */
+
 .ContributionDetailContainer {
-    margin-top: 7.75rem;
-    margin-bottom: 7.75rem;
+  margin-top: 7.75rem;
+  margin-bottom: 7.75rem;
+  padding: 0 1.375rem;
+}
+
+.contributionImg {
+  width: 7.75rem;
+  height: 7.75rem;
+  text-align: center;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.tableCell {
+  display: flex;
+  align-items: center;
 }
 
 .ContributionDetailCard {
-    max-width: 650px;
-    background: #ffffff;
-    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    margin: 0 auto;
+  max-width: 650px;
+  background: #ffffff;
+  box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  margin: 0 auto;
 }
+
+.contribution {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 .tableContainer {
-    padding: 1rem;
+  padding: 1rem;
 }
 .contributeTable {
-    table-layout: fixed;
-    width: 100%;
+  table-layout: fixed;
+  width: 100%;
 }
 .contributionContent {
-    width: 70%;
+  margin-left: 1rem;
 }
 
 .title,
 .content {
-    // text-align: center;
-    vertical-align: middle;
+  // text-align: center;
+  vertical-align: middle;
 }
 .title {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    color: #000000;
-    margin-bottom: 0.75rem;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 0.75rem;
 }
 .content {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    color: rgba(0, 0, 0, 0.5);
-    margin: 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
 }
 .cardBody {
-    background: #ffffff;
-    box-shadow: inset 0px 1px 0px #e4e4e4;
-    margin: 1rem;
-    padding: 1rem 0;
+  background: #ffffff;
+  box-shadow: inset 0px 1px 0px #e4e4e4;
+  margin: 1rem;
+  padding: 1rem 0;
 }
 .fileName {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    color: rgba(0, 0, 0, 0.5);
-    background-color: #ffffff;
-    margin-left: 1rem;
-    margin-bottom: 0;
-    border: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+  margin-left: 1rem;
+  margin-bottom: 0;
+  border: none;
 }
 iframe {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .modalBody {
-    width: 100%;
-    height: 500px;
+  width: 100%;
+  height: 70vh;
 }
 .modalDialog {
-    max-width: 1000px;
-}
-.modalContent {
-    max-width: 100%;
+  max-width: 1000px;
 }
 
 @media screen and (max-width: 768px) {
-    .ContributionDetailCard {
-        max-width: 497px;
-        background: #ffffff;
-        box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
-        border-radius: 6px;
-        margin: 0 auto;
-    }
+  .ContributionDetailCard {
+    max-width: 497px;
+    background: #ffffff;
+    box-shadow: 0px 4px 18px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (max-width: 376px) {
-    .ContributionDetailCard {
-        max-width: 322px;
-    }
-    .tableCell > * {
-        display: block;
-    }
-    .tableCell {
-        display: table-cell;
-    }
-    .contributionImg {
-        text-align: center;
-    }
-    .contributionContent {
-        margin-top: 1rem;
-    }
-    .modalBody {
-        height: 450px;
-    }
+  .ContributionDetailCard {
+    max-width: 322px;
+  }
+
+  .contributionImg {
+    margin: 0 auto;
+  }
+  .tableCell {
+    display: block;
+  }
+  .contributionContent {
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+  .modalBody {
+    height: 450px;
+  }
 }
