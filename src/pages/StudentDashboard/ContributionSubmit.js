@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import classes from './ContributionSubmit.module.scss'
 // import articleImage from '../../assets/img/image-8.png'
@@ -10,6 +10,8 @@ import * as  yup from 'yup';
 export default function ContributionSubmit() {
     const contribution = useSelector(state => state.contributionReducer.contribution)
     // let { name, description } = contribution.values
+    let [term,setTerm]=useState(false)
+    console.log(term);
     const dispatch = useDispatch()
     let handleChangeInput = (e) => {
         let { value, name } = e.target
@@ -22,7 +24,9 @@ export default function ContributionSubmit() {
         }
         dispatch(action.handleInput(newValues))
     }
-
+    let handleChangeTerm=()=>{
+        setTerm(!term)
+    }
     let schema = yup.object().shape({
         name: yup.string()
             .required('⚠ Title is required'),
@@ -38,15 +42,19 @@ export default function ContributionSubmit() {
         mode: 'onTouched',
         resolver: yupResolver(schema),
     });
-
+    
     let handleSubmit = (e) => {
         e.preventDefault();
         let formInput = contribution.values;
-        dispatch(action.submitContribution(formInput));
+        if(term){
+            dispatch(action.submitContribution(formInput));
+        }else if(term===false){
+            alert('You need to agree term and privacy')
+        }
     }
     return (
         <>
-           
+
             <div className={`container  ${classes.submitContainer}`}>
                 <h3 className="">Contribution submission</h3>
                 <form className={`  ${classes.submitContent}`} onSubmit={handleSubmit}>
@@ -104,9 +112,15 @@ export default function ContributionSubmit() {
                             ref={register}
                         />
                         <p className='err-message'>{errors.files?.message}</p>
-                        <div className="d-block text-center">
-                            <button>Submit</button>
-                        </div>
+
+                    </div>
+                    <div>
+                        <h4>Term and privacy</h4>
+                        <input type="checkbox" value={term} onChange={handleChangeTerm} />
+                        <label htmlFor="vehicle1"> I agree to term and privacy</label><br />
+                    </div>
+                    <div className="d-block text-center">
+                        <button>Submit</button>
                     </div>
                 </form>
             </div>
