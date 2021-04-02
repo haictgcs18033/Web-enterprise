@@ -18,6 +18,7 @@ import ManagerLanding from './pages/ManagerDashboard/ManagerLanding';
 import NotFound from './pages/NotFound';
 import ResetToken from './pages/ResetToken';
 import ContributionSubmit from './pages/StudentDashboard/ContributionSubmit';
+import StudentCommitment from './pages/StudentDashboard/StudentCommitment';
 import StudentLanding from './pages/StudentDashboard/StudentLanding';
 import UploadContribution from './pages/StudentDashboard/UploadContribution';
 
@@ -87,9 +88,19 @@ export const studentDashboardRoute = [
         component: CoordinatorComment
     },
     {
+        path: '/contribution-detail/:id',
+        exact: false,
+        component: ContributionDetail,
+    },
+    {
         path: '/student/contribution-submit',
         exact: false,
         component: ContributionSubmit
+    },
+    {
+        path: '/student/term-privacy',
+        exact: false,
+        component: StudentCommitment
     },
     {
         path: '/student/upload-contribution',

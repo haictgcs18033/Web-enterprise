@@ -7,6 +7,7 @@ import * as action from '../../redux/action/ActionContribution'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as  yup from 'yup';
+import { NavLink } from 'react-router-dom';
 export default function ContributionSubmit() {
     const contribution = useSelector(state => state.contributionReducer.contribution)
     // let { name, description } = contribution.values
@@ -117,7 +118,14 @@ export default function ContributionSubmit() {
                     <div>
                         <h4>Term and privacy</h4>
                         <input type="checkbox" value={term} onChange={handleChangeTerm} />
-                        <label htmlFor="vehicle1"> I agree to term and privacy</label><br />
+                        <label htmlFor="vehicle1"> 
+                        <span>I agree to</span> 
+                        <span>
+                            <NavLink to="/student/term-privacy">
+                            term and privacy
+                            </NavLink>
+                        </span>
+                        </label><br />
                     </div>
                     <div className="d-block text-center">
                         <button>Submit</button>
