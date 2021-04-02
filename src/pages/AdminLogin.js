@@ -32,7 +32,7 @@ export default function AdminLogin(props) {
     });
 
     const { register, handleSubmit, errors } = useForm({
-        mode: 'onTouched',
+        mode: 'onBlur',
         resolver: yupResolver(schema),
     });
 
@@ -58,7 +58,7 @@ export default function AdminLogin(props) {
                     id='email'
                     type='text'
                     name='email'
-                    value={email}
+                    defaultValue={email}
                     onChange={handleChangeInput}
                     ref={register}
                 />
@@ -72,7 +72,7 @@ export default function AdminLogin(props) {
                         name='password'
                         id='password'
                         type='password'
-                        value={password}
+                        defaultValue={password}
                         onChange={handleChangeInput}
                         ref={register}
                     />

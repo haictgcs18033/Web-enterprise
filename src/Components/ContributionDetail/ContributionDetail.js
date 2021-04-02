@@ -45,7 +45,9 @@ export default function ContributionDetail() {
                 </div>
 
                 <div className={`card-body ${classes.cardBody}`}>
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center"
+                        data-toggle="modal"
+                        data-target="#contributionDetailModal">
                         <img src={docFile} alt="123" />
                         {
                             contribution.files?.map((contribute, index) => {
@@ -54,8 +56,7 @@ export default function ContributionDetail() {
                                     type="button"
                                     className={classes.fileName}
                                     value={contribute.file}
-                                    data-toggle="modal"
-                                    data-target="#contributionDetailModal" />
+                                />
                             })
                         }
 

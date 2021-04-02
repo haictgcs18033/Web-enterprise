@@ -32,7 +32,7 @@ export default function LoginPage(props) {
     })
 
     const { register, handleSubmit, errors } = useForm({
-        mode: 'onTouched',
+        mode: 'onBlur',
         resolver: yupResolver(schema),
     });
 
@@ -64,7 +64,7 @@ export default function LoginPage(props) {
                                 id='email'
                                 type='text'
                                 name='email'
-                                value={email}
+                                defaultValue={email}
                                 className='form-control'
                                 ref={register}
                                 onChange={handleChangeInput}
@@ -77,7 +77,7 @@ export default function LoginPage(props) {
                                 id='password'
                                 type='password'
                                 name='password'
-                                value={password}
+                                defaultValue={password}
                                 className='form-control'
                                 ref={register}
                                 onChange={handleChangeInput}
