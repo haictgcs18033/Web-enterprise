@@ -9,7 +9,6 @@ import { NavLink } from 'react-router-dom';
 
 export default function NewContributionItems(props) {
   let { contribution } = props;
-  console.log(contribution);
   let renderNewContributionItems = () => {
     return contribution?.map((contribute, index) => {
       return (
