@@ -25,11 +25,8 @@ export default function CoordinatorComment() {
          setInteract({comment:e.target.value})
      }
      let sendComment=()=>{
-         console.log(interact);
         dispatch(action.handleSendComment(idContribution,interact))
      }
-     console.log(contributionComment);
-
     return (
         <div className={`container ${classes.commentContainer}`}>
             
@@ -40,7 +37,6 @@ export default function CoordinatorComment() {
              </div>
              <div className={`${classes.boxMessage}`}> 
                  {contributionComment?.map((comment,index)=>{
-                     console.log(comment);
                      return  <div key={index} className={` mb-4 ${classes.mySelf}`}>
                      <img src={userChat} alt="123"/>
                      <div className={`${classes.commentContent}`}>     

@@ -18,7 +18,6 @@ export default function ManagerLanding() {
     useEffect(() => {
         getFacultyList()
     }, [getFacultyList])
-    console.log(faculties);
     return (
         <div className="container">
             <h2 className={classes.facultyListTitle}>

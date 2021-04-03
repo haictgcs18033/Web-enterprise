@@ -16,7 +16,7 @@ export default function NewContributionList() {
     useEffect(() => {
         getContributionPublish()
     }, [getContributionPublish])
-    console.log(contributionPublishList);
+   
     return (
         <div className={classes.gridContainer}>
             <NewContributionItems contribution={contributionPublishList} />

@@ -34,7 +34,7 @@ export default function CoordinatorLanding() {
     useEffect(() => {
         getContribution()
     }, [getContribution])
-    console.log(contributionPublishList);
+
    
     let renderPublishContribution = () => {
         return contributionPublishList.map((contribution, index) => {
@@ -242,7 +242,6 @@ export default function CoordinatorLanding() {
     let publishContribution=(id,contribution)=>{
          dispatch(actionContribution.handlePublishContribution(id,contribution))
     }
-    console.log(contributionUpdate);
     return (
         
         <div className="container">

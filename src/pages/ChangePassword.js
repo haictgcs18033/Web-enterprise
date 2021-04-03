@@ -40,7 +40,6 @@ export default function ChangePassword(props) {
         let { value, name } = e.target;
         setChangePassword({ ...changePassword, [name]: value });
     };
-    console.log(changePassword);
     let onSubmit = (data, e) => {
         dispatch(handleChangePassword(changePassword, props));
         e.target.reset();

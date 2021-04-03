@@ -28,8 +28,7 @@ export default function Faculty() {
     let { name } = createFaculty.values
     const [curPage, setCurPage] = useState(1);
     let [keyword,setKeyword]=useState('')
-    let [type,setType]=useState('')
-    console.log(type);
+    let [type,setType]=useState('') 
     let [closureDate, setClosureDate] = useState(new Date());
     let [finalClosure, setFinalClosure] = useState(new Date());
     const limit = 6;
@@ -93,7 +92,6 @@ export default function Faculty() {
         let { value, name } = e.target
         let newValues = { ...createFaculty.values }
         newValues[name] = value
-        console.log(newValues);
         dispatch(action.handleInput(newValues))
     }
     let handleCreateFaculty = (e) => {

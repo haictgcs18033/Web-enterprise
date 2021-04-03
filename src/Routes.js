@@ -83,14 +83,14 @@ export const coordinatorDashboardRoute = [
 ]
 export const studentDashboardRoute = [
     {
+        path: '/student/detail/:id',
+        exact: false,
+        component: ContributionDetail,
+    },
+    {
         path: '/student/comment/:idContribution',
         exact: false,
         component: CoordinatorComment
-    },
-    {
-        path: '/contribution-detail/:id',
-        exact: false,
-        component: ContributionDetail,
     },
     {
         path: '/student/contribution-submit',

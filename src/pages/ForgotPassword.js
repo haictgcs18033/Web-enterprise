@@ -15,7 +15,6 @@ export default function ForgotPassword() {
     let sendEmailReset = () => {
         dispatch(handleSendMail(emailUser))
     }
-    console.log(emailUser);
     return (
         <div className="container-forget">
             <div className="row my-4">
