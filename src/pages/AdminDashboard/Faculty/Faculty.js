@@ -247,6 +247,7 @@ export default function Faculty() {
                             <div className='col-9'>
                                 <input
                                     type='text'
+                                    autocomplete="off"
                                     onChange={(e) => {
                                         setKeyword(e.target.value);
                                         setCurPage(1);
