@@ -51,7 +51,7 @@ export default function ResetToken(props) {
                                 type="text"
                                 className="form-control"
                                 name="newPassword"
-                                value={userReset.newPassword}
+                                defaultValue={userReset.newPassword}
                                 onChange={handleChange}
                                 ref={register} />
                             <p className='err-message'>{errors.newPassword?.message}</p>
@@ -63,7 +63,7 @@ export default function ResetToken(props) {
                                 type="text"
                                 className="form-control"
                                 name="confirmPassword"
-                                value={userReset.confirmPassword}
+                                defaultValue={userReset.confirmPassword}
                                 onChange={handleChange}
                                 ref={register} />
                             <p className='err-message'>{errors.confirmPassword?.message}</p>

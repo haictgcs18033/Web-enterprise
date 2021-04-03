@@ -33,9 +33,13 @@ export default function ContributionSubmit() {
             .required('⚠ Title is required'),
         description: yup.string()
             .required('⚠ Description is required'),
-        thumbnail: yup.mixed().test("thumbnail", "⚠ This field allows uploading jpg, jpeg", (value) => {
-            return value && value[0]?.type === "image/jpeg";
-        }),
+        // thumbnail: yup.mixed().test("thumbnail", "⚠ This field allows uploading jpg, jpeg", (value) => {
+        // if(value[0]){
+        //     return value && value[0].type === "image/jpeg";
+        // }
+
+        // }),
+        // thumbnail: yup.string().required('⚠ This field allows uploading jpg, jpeg'),
         // files: yup.string().matches(/^[A-Za-z]{9,}\.(?:doc)$/, '⚠ This field allows uploading jpg, jpeg, doc, docx'),
         // .matches(, '⚠ This field allows uploading jpg, jpeg, doc, docx'),
     })
@@ -56,7 +60,6 @@ export default function ContributionSubmit() {
     }
     return (
         <>
-
             <div className={`container  ${classes.submitContainer}`}>
                 <h3 className="">Contribution submission</h3>
                 <form className={`  ${classes.submitContent}`} onSubmit={handleSubmit(onSubmit)}>
@@ -98,7 +101,7 @@ export default function ContributionSubmit() {
                                 onChange={handleChangeInput}
                                 ref={register}
                             />
-                            <p className='err-message'>{errors.thumbnail?.message}</p>
+                            {/* <p className='err-message'>{errors.thumbnail?.message}</p> */}
                             {/* Upload Image */}
                         </label>
 
@@ -113,7 +116,7 @@ export default function ContributionSubmit() {
                             onChange={handleChangeInput}
                             ref={register}
                         />
-                        <p className='err-message'>{errors.files?.message}</p>
+                        {/* <p className='err-message'>{errors.files?.message}</p> */}
 
                     </div>
                     <div>
