@@ -8,7 +8,7 @@ import docFile from '../../assets/img/doc-file.png';
 import { useParams } from 'react-router-dom';
 export default function ContributionDetail() {
     let { id } = useParams();
-    console.log(id);
+
     let [contribution, setContribution] = useState({});
     useEffect(() => {
         async function fetchData() {

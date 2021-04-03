@@ -1,5 +1,6 @@
 /** @format */
 
+
 import React from 'react';
 import NewContributionItems from './NewContributionItems/NewContributionItems';
 import classes from './NewContributionList.module.scss';

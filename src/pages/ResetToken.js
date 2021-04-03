@@ -18,9 +18,9 @@ export default function ResetToken(props) {
         let { value, name } = e.target
         setUserReset({ ...userReset, [name]: value })
     }
-    console.log(userReset);
+ 
     let onSubmit = (data) => {
-        console.log(data);
+      
         dispatch(handleResetPassword(userReset))
     }
 
