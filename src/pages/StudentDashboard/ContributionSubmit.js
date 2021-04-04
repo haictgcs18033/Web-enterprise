@@ -33,15 +33,6 @@ export default function ContributionSubmit() {
             .required('⚠ Title is required'),
         description: yup.string()
             .required('⚠ Description is required'),
-        // thumbnail: yup.mixed().test("thumbnail", "⚠ This field allows uploading jpg, jpeg", (value) => {
-        // if(value[0]){
-        //     return value && value[0].type === "image/jpeg";
-        // }
-
-        // }),
-        // thumbnail: yup.string().required('⚠ This field allows uploading jpg, jpeg'),
-        // files: yup.string().matches(/^[A-Za-z]{9,}\.(?:doc)$/, '⚠ This field allows uploading jpg, jpeg, doc, docx'),
-        // .matches(, '⚠ This field allows uploading jpg, jpeg, doc, docx'),
     })
 
     const { register, handleSubmit, errors } = useForm({
