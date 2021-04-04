@@ -7,16 +7,19 @@ import swal from 'sweetalert';
 export const getContributionPublishList = (offset, limit, idFaculty) => {
   return async (dispatch) => {
     try {
-      let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/published?offset=${(offset - 1) * limit
-          }&limit=${limit}${idFaculty ? `&facultyId=${idFaculty}` : ''
-          }&viewOrderType=DESC`,
+      const result = await Axios({
+        url: `https://greenplus-dev.herokuapp.com/contributions/published?offset=${
+          (offset - 1) * limit
+        }&limit=${limit}${
+          idFaculty ? `&facultyId=${idFaculty}` : ''
+        }&viewOrderType=DESC`,
         method: 'GET',
       });
       dispatch({
         type: 'GET_CONTRIBUTION_PUBLISH',
         contribution: result.data,
       });
+      return result;
     } catch (err) {
       console.log(err.response?.data);
     }
@@ -26,8 +29,9 @@ export const getContributionList = (offset, limit, isPublish) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions?offset=${(offset - 1) * limit
-          }&limit=${limit}`,
+        url: `https://greenplus-dev.herokuapp.com/contributions?offset=${
+          (offset - 1) * limit
+        }&limit=${limit}`,
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),

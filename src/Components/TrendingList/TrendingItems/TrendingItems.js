@@ -11,7 +11,7 @@ export default function TrendingItems(props) {
   const history = useHistory();
 
   let renderTrendingItems = () => {
-    return trending?.map((trend, index) => {
+    return trending.slice(0, 6)?.map((trend, index) => {
       const options = { month: 'long', day: 'numeric' };
       let date = new Date(trend.createAt).toLocaleDateString('en-US', options);
       return (
