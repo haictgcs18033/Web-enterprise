@@ -41,7 +41,7 @@ export default function StudentLanding() {
   useEffect(() => {
     getPublishedContribution();
   }, [getPublishedContribution, curPage, limit]);
-
+ console.log(contributionList);
   return (
     <div>
       <div className='container'>

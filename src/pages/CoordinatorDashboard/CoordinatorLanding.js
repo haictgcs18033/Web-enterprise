@@ -25,8 +25,8 @@ export default function CoordinatorLanding() {
         [dispatch, curPage, limit]
     );
     const getContribution = useCallback(
-        () => dispatch(actionContribution.getContributionList(curPage, limit)),
-        [dispatch, curPage, limit]
+        () => dispatch(actionContribution.getContributionList(1,10)),
+        [dispatch,]
     );
     useEffect(() => {
         getContributionPublish()
@@ -35,7 +35,7 @@ export default function CoordinatorLanding() {
         getContribution()
     }, [getContribution])
 
-
+   console.log(contributionList);
     let renderPublishContribution = () => {
         return contributionPublishList.map((contribution, index) => {
             return <div key={index} className={`col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2`}>
