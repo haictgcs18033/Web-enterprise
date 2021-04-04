@@ -7,12 +7,11 @@ import * as action from '../../redux/action/ActionContribution'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as  yup from 'yup';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 export default function ContributionSubmit() {
     const contribution = useSelector(state => state.contributionReducer.contribution)
-    // let { name, description } = contribution.values
     let [term, setTerm] = useState(false)
-    console.log(term);
+    const history=useHistory()
     const dispatch = useDispatch()
     let handleChangeInput = (e) => {
         let { value, name } = e.target
@@ -44,7 +43,7 @@ export default function ContributionSubmit() {
         // e.preventDefault();
         let formInput = contribution.values;
         if (term) {
-            dispatch(action.submitContribution(formInput));
+            dispatch(action.submitContribution(formInput,history));
         } else if (term === false) {
             alert('You need to agree term and privacy')
         }

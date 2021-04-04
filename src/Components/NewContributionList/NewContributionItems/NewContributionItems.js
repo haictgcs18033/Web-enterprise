@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function NewContributionItems(props) {
   let { contribution } = props;
-  console.log(contribution);
+  let userLogin = JSON.parse(localStorage.getItem('USER_LOGIN'));
   let renderNewContributionItems = () => {
     return contribution?.map((contribute, index) => {
       return (
@@ -21,12 +21,22 @@ export default function NewContributionItems(props) {
             height='216px'
           />
           <div className={classes.overlay}></div>
-          <NavLink
-            to={`/contribution-detail/${contribute.id}`}
-            className={classes.contributionBtn}>
-            <img className={classes.icon} src={eyeIcon} alt='123' />
-            <p className={classes.seeContr}>See Contribution</p>
-          </NavLink>
+          {userLogin === null ? (
+            <NavLink
+              to={`/contribution-detail/${contribute.id}`}
+              className={classes.contributionBtn}>
+              <img className={classes.icon} src={eyeIcon} alt='123' />
+              <p className={classes.seeContr}>See Contribution</p>
+            </NavLink>
+          ) : (
+            <NavLink
+              to={`/student/detail/${contribute.id}`}
+              className={classes.contributionBtn}>
+              <img className={classes.icon} src={eyeIcon} alt='123' />
+              <p className={classes.seeContr}>See Contribution</p>
+            </NavLink>
+          )}
+
           <div className='card-body'>
             <h4 className={classes.cardTitle}>{contribute.name}</h4>
             <p className={classes.cardText}>{contribute.description}</p>

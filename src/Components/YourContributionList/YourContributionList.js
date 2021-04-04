@@ -1,25 +1,13 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import YourContributionItems from './YourContributionItems/YourContributionItems'
-import * as action from '../../redux/action/ActionContribution'
-import classes from './YourContributionList.module.scss'
+/** @format */
 
-export default function YourContributionList() {
-    const contributionList = useSelector(state => state.contributionReducer.contributionList)
-    let [curPage] = useState(1);
-    let dispatch = useDispatch()
-    let limit = 10
-    const getContribution = useCallback(
-        () => dispatch(action.getContributionList(curPage, limit)),
-        [dispatch, curPage, limit]
-    );
-    useEffect(() => {
-        getContribution()
-    }, [getContribution])
+import React from 'react';
+import YourContributionItems from './YourContributionItems/YourContributionItems';
+import classes from './YourContributionList.module.scss';
 
-    return (
-        <div className={classes.gridContainer}>
-                <YourContributionItems contribution={contributionList}/>
-        </div>
-    )
+export default function YourContributionList({ contributionList }) {
+  return (
+    <div className={classes.gridContainer}>
+      <YourContributionItems contribution={contributionList} />
+    </div>
+  );
 }

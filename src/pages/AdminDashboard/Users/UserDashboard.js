@@ -432,6 +432,7 @@ export default function UserDashboard(props) {
                             <div className='col-9'>
                                 <input
                                     type='text'
+                                    autocomplete="off"
                                     onChange={(e) => {
                                         setKeyword(e.target.value);
                                         setCurPage(1);
@@ -451,9 +452,7 @@ export default function UserDashboard(props) {
                                     <option value=''>All Roles</option>
                                     <option value='ADMIN'>Admin</option>
                                     <option value='MARKETING_MANAGER'>Marketing Manager</option>
-                                    <option value='MARKETING_CORDINATOR'>
-                                        Marketing Coordinator
-                  </option>
+                                    <option value='MARKETING_CORDINATOR'>Marketing Coordinator</option>
                                     <option value='STUDENT'>Student</option>
                                 </select>
                             </div>

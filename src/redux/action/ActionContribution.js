@@ -1,21 +1,25 @@
 /** @format */
 
 import Axios from 'axios';
+
 import swal from 'sweetalert';
 
 export const getContributionPublishList = (offset, limit, idFaculty) => {
   return async (dispatch) => {
     try {
-      let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/published?offset=${(offset - 1) * limit
-          }&limit=${limit}${idFaculty ? `&facultyId=${idFaculty}` : ''
-          }&viewOrderType=DESC`,
+      const result = await Axios({
+        url: `https://35.224.120.132/contributions/published?offset=${
+          (offset - 1) * limit
+        }&limit=${limit}${
+          idFaculty ? `&facultyId=${idFaculty}` : ''
+        }&viewOrderType=DESC`,
         method: 'GET',
       });
       dispatch({
         type: 'GET_CONTRIBUTION_PUBLISH',
         contribution: result.data,
       });
+      return result;
     } catch (err) {
       console.log(err.response?.data);
     }
@@ -25,8 +29,9 @@ export const getContributionList = (offset, limit, isPublish) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions?offset=${(offset - 1) * limit
-          }&limit=${limit}`,
+        url: `https://35.224.120.132/contributions?&offset=${
+          (offset - 1) * limit
+        }&limit=${limit}`,
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -49,12 +54,12 @@ export const handleInput = (newValues) => {
     },
   };
 };
-export const submitContribution = (formInput) => {
+export const submitContribution = (formInput, history) => {
   const formData = new FormData();
+
   for (let item in formInput) {
     formData.append(item, formInput[item]);
   }
-
   return async (dispatch) => {
     try {
       let result = await Axios({
@@ -69,6 +74,7 @@ export const submitContribution = (formInput) => {
         type: 'CREATE_CONTRIBUTION',
         contribution: result.data,
       });
+      history.push('/');
       swal({
         title: 'Success',
         text: 'Contribution added successfully',
@@ -76,12 +82,13 @@ export const submitContribution = (formInput) => {
         button: 'OK',
       });
     } catch (err) {
-      swal({
-        title: 'Error',
-        text: err.response.data.message,
-        icon: 'error',
-        button: 'OK',
-      });
+      console.log(err.response?.data);
+      // swal({
+      //   title: 'Error',
+      //   text: err.response.data.message,
+      //   icon: 'error',
+      //   button: 'OK',
+      // });
     }
   };
 };
@@ -89,7 +96,7 @@ export const handleDeleteContribution = (id) => {
   return async (dispatch) => {
     try {
       await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/${id}`,
+        url: `https://35.224.120.132/contributions/${id}`,
         method: 'DELETE',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -114,7 +121,7 @@ export const handleUpdateContribution = (id, contribtuionUpdate) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/${id}`,
+        url: `https://35.224.120.132/contributions/${id}`,
         method: 'PUT',
         data: contribtuionUpdate,
         headers: {
@@ -132,7 +139,12 @@ export const handleUpdateContribution = (id, contribtuionUpdate) => {
         contribution: result.data,
       });
     } catch (err) {
-      console.log(err.response?.data);
+      swal({
+        title: 'Error',
+        text: err.response.data.message,
+        icon: 'error',
+        button: 'OK',
+      });
     }
   };
 };
@@ -140,7 +152,7 @@ export const handlePublishContribution = (id, contribution) => {
   return async (dispatch) => {
     try {
       await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/${id}/publish`,
+        url: `https://35.224.120.132/contributions/${id}/publish`,
         method: 'POST',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -165,7 +177,7 @@ export const handleSendComment = (id, comment) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/${id}/comments`,
+        url: `https://35.224.120.132/contributions/${id}/comments`,
         method: 'POST',
         data: comment,
         headers: {
@@ -185,7 +197,7 @@ export const getContributionComment = (id) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/${id}/comments`,
+        url: `https://35.224.120.132/contributions/${id}/comments`,
         method: 'GET',
       });
       dispatch({

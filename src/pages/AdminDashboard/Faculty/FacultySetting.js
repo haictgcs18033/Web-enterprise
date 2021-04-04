@@ -18,18 +18,16 @@ export default function FacultySetting(props) {
         secondClosureDate: ''
     })
     const id = props.match.params.id
-    console.log(id);
     useEffect(() => {
         dispatch(action.fetchFacultyById(id))
     }, [dispatch, id])
-    console.log(facultySetting);
+
     let deleteFaculty = (id) => {
         dispatch(action.handleDeleteFaculty(id, props))
     }
     useEffect(() => {
         dispatch(action.fetchClosureDate())
     }, [dispatch,])
-    console.log(closureDateAdmin);
     let handleChangeName = (e) => {
         setFacultyUpdate({
             name: e.target.value,

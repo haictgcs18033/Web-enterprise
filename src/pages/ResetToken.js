@@ -18,9 +18,9 @@ export default function ResetToken(props) {
         let { value, name } = e.target
         setUserReset({ ...userReset, [name]: value })
     }
-    console.log(userReset);
+ 
     let onSubmit = (data) => {
-        console.log(data);
+      
         dispatch(handleResetPassword(userReset))
     }
 
@@ -48,7 +48,7 @@ export default function ResetToken(props) {
                         <div className="form-group">
                             <label>Password</label>
                             <input
-                                type="text"
+                                type="password"
                                 className="form-control"
                                 name="newPassword"
                                 defaultValue={userReset.newPassword}
@@ -60,7 +60,7 @@ export default function ResetToken(props) {
                         <div className="form-group">
                             <label>Confirm Password</label>
                             <input
-                                type="text"
+                                type="password"
                                 className="form-control"
                                 name="confirmPassword"
                                 defaultValue={userReset.confirmPassword}
