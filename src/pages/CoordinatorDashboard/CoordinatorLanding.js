@@ -261,9 +261,9 @@ export default function CoordinatorLanding() {
                     <div className={`row mx-0`}>
                         {renderPublishContribution()}
                     </div>
-                    <div className="d-block text-center">
+                    {/* <div className="d-block text-center">
                         <button>SHOW MORE</button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
