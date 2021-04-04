@@ -29,7 +29,7 @@ export const getContributionList = (offset, limit, isPublish) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://35.224.120.132/contributions?offset=${
+        url: `https://35.224.120.132/contributions?&offset=${
           (offset - 1) * limit
         }&limit=${limit}`,
         method: 'GET',
