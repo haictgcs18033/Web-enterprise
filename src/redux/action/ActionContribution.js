@@ -96,7 +96,7 @@ export const handleDeleteContribution = (id) => {
   return async (dispatch) => {
     try {
       await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/${id}`,
+        url: `https://35.224.120.132/contributions/${id}`,
         method: 'DELETE',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -121,7 +121,7 @@ export const handleUpdateContribution = (id, contribtuionUpdate) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/${id}`,
+        url: `https://35.224.120.132/contributions/${id}`,
         method: 'PUT',
         data: contribtuionUpdate,
         headers: {
@@ -152,7 +152,7 @@ export const handlePublishContribution = (id, contribution) => {
   return async (dispatch) => {
     try {
       await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/${id}/publish`,
+        url: `https://35.224.120.132/contributions/${id}/publish`,
         method: 'POST',
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
@@ -177,7 +177,7 @@ export const handleSendComment = (id, comment) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/${id}/comments`,
+        url: `https://35.224.120.132/contributions/${id}/comments`,
         method: 'POST',
         data: comment,
         headers: {
@@ -197,7 +197,7 @@ export const getContributionComment = (id) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/${id}/comments`,
+        url: `https://35.224.120.132/contributions/${id}/comments`,
         method: 'GET',
       });
       dispatch({
