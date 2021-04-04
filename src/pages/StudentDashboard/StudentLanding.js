@@ -23,9 +23,6 @@ export default function StudentLanding() {
                     New Contributions
                 </h2>
                 <NewContributionList />
-                <div className="text-center">
-                    <button type="button" className="show-btn">show more</button>
-                </div>
             </div>
         </div >
     )

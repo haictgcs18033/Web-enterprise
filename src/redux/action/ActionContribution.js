@@ -60,7 +60,6 @@ export const submitContribution = (formInput,history) => {
   for (let item in formInput) {
     formData.append(item, formInput[item]);
   }
-
   return async (dispatch) => {
     try {
       let result = await Axios({
@@ -83,12 +82,13 @@ export const submitContribution = (formInput,history) => {
         button: 'OK',
       });
     } catch (err) {
-      swal({
-        title: 'Error',
-        text: err.response.data.message,
-        icon: 'error',
-        button: 'OK',
-      });
+      console.log(err.response?.data);
+      // swal({
+      //   title: 'Error',
+      //   text: err.response.data.message,
+      //   icon: 'error',
+      //   button: 'OK',
+      // });
     }
   };
 };
