@@ -1,6 +1,4 @@
 /** @format */
-
-
 import React from 'react';
 import NewContributionItems from './NewContributionItems/NewContributionItems';
 import classes from './NewContributionList.module.scss';
@@ -10,13 +8,12 @@ export default function NewContributionList({
   nextPage,
   total,
 }) {
-  console.log(contributionPublishList.length);
   return (
     <>
       <div className={classes.gridContainer}>
         <NewContributionItems contribution={contributionPublishList} />
       </div>
-      {contributionPublishList.length === total ? null : (
+      {contributionPublishList?.length === total ? null : (
         <div className='text-center'>
           <button onClick={nextPage} type='button' className='show-btn'>
             show more

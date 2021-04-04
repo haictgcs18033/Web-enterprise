@@ -26,6 +26,13 @@ export default function HomePage(props) {
     () => dispatch(action.getContributionPublishList(curPage, limit)),
     [dispatch, curPage, limit]
   );
+
+  useEffect(() => {
+    dispatch({
+      type: 'RESET_PUBLISH_STATE',
+    });
+  }, [dispatch]);
+
   useEffect(() => {
     getContributionPublish();
   }, [getContributionPublish, curPage, limit]);

@@ -8,7 +8,7 @@ export const getContributionPublishList = (offset, limit, idFaculty) => {
   return async (dispatch) => {
     try {
       const result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions/published?offset=${
+        url: `https://35.224.120.132/contributions/published?offset=${
           (offset - 1) * limit
         }&limit=${limit}${
           idFaculty ? `&facultyId=${idFaculty}` : ''
@@ -29,7 +29,7 @@ export const getContributionList = (offset, limit, isPublish) => {
   return async (dispatch) => {
     try {
       let result = await Axios({
-        url: `https://greenplus-dev.herokuapp.com/contributions?offset=${
+        url: `https://35.224.120.132/contributions?offset=${
           (offset - 1) * limit
         }&limit=${limit}`,
         method: 'GET',
@@ -54,7 +54,7 @@ export const handleInput = (newValues) => {
     },
   };
 };
-export const submitContribution = (formInput,history) => {
+export const submitContribution = (formInput, history) => {
   const formData = new FormData();
 
   for (let item in formInput) {
@@ -75,7 +75,7 @@ export const submitContribution = (formInput,history) => {
         type: 'CREATE_CONTRIBUTION',
         contribution: result.data,
       });
-      history.push('/')
+      history.push('/');
       swal({
         title: 'Success',
         text: 'Contribution added successfully',
@@ -144,7 +144,7 @@ export const handleUpdateContribution = (id, contribtuionUpdate) => {
         text: err.response.data.message,
         icon: 'error',
         button: 'OK',
-    });
+      });
     }
   };
 };
