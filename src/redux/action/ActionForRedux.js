@@ -428,7 +428,7 @@ export const handleChangePassword = (newPassword, props) => {
   return async (dispatch) => {
     try {
       await Axios({
-        url: 'https://greenplus-dev.herokuapp.com/auth/change-password',
+        url: 'https://35.224.120.132/auth/change-password',
         method: 'POST',
         data: newPassword,
         headers: {
