@@ -16,6 +16,12 @@ const stateContribution = {
 };
 export const contributionReducer = (state = stateContribution, action) => {
   switch (action.type) {
+    case 'RESET_PUBLISH_STATE': {
+      return {
+        ...state,
+        contributionPublishList: [...stateContribution.contributionList],
+      };
+    }
     case 'GET_CONTRIBUTION_PUBLISH': {
       return {
         ...state,
