@@ -1,6 +1,7 @@
 /** @format */
 
 import Axios from 'axios';
+
 import swal from 'sweetalert';
 
 export const getContributionPublishList = (offset, limit, idFaculty) => {
@@ -49,8 +50,9 @@ export const handleInput = (newValues) => {
     },
   };
 };
-export const submitContribution = (formInput) => {
+export const submitContribution = (formInput,history) => {
   const formData = new FormData();
+
   for (let item in formInput) {
     formData.append(item, formInput[item]);
   }
@@ -69,6 +71,7 @@ export const submitContribution = (formInput) => {
         type: 'CREATE_CONTRIBUTION',
         contribution: result.data,
       });
+      history.push('/')
       swal({
         title: 'Success',
         text: 'Contribution added successfully',
@@ -132,7 +135,12 @@ export const handleUpdateContribution = (id, contribtuionUpdate) => {
         contribution: result.data,
       });
     } catch (err) {
-      console.log(err.response?.data);
+      swal({
+        title: 'Error',
+        text: err.response.data.message,
+        icon: 'error',
+        button: 'OK',
+    });
     }
   };
 };

@@ -644,6 +644,75 @@ h3 {
     opacity: 1;
     max-width: 73rem;
     margin-left: 19rem;
+    display: flex;
+    // align-items: center;
+    justify-content: flex-end;
+}
+.user-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 26px;
+    padding: 1.5rem 0 1.5rem 1.5rem;
+    .user-name {
+        margin: 0;
+        font-family: "Open Sans";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+    }
+    .user-avt {
+        margin-left: 0.5rem;
+    }
+    .admin-function,.admin-hidden {
+        position: absolute;
+        width: 100%;
+        top: 60px;
+      border-radius: 10px;
+      padding: 10px 0;
+        background: white;
+        box-shadow: 0 0 15px -5px;
+        left: -70px;
+        transition: all 0.5s;
+       transform: scaleX(1);
+       ul{
+           padding-left: 0;
+           margin-bottom: 0;
+           text-align: center;
+       }
+       li{
+           transition: all 0.5s;
+           margin: 10px 0;
+           &:hover{
+            background: #32b260;
+            .link-navigate{
+                color: white;
+            }
+           }
+       }
+       .link-navigate{
+          width: 100%;
+        color: black;
+          border: none;
+          font-size: 15px;
+          font-weight: bold;
+          transition: all 0.5s;
+          cursor: pointer;
+          &:hover{
+              text-decoration: none;
+             
+              color: white;
+          }
+        }
+    }
+    .admin-hidden{
+      transform: scaleX(0);
+    }
+    &:hover{
+        cursor: pointer;
+    }
 }
 //Not found
 .title-span {
@@ -876,24 +945,7 @@ h3 {
     background: #e5e5e5;
     margin-left: 261px;
 }
-.user-info {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 26px;
-    padding: 1.5rem 0 1.5rem 1.5rem;
-    .user-name {
-        margin: 0;
-        font-family: "Open Sans";
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 19px;
-    }
-    .user-avt {
-        margin-left: 0.5rem;
-    }
-}
+
 .users-management {
     display: flex;
     justify-content: space-between;

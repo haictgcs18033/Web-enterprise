@@ -28,6 +28,11 @@ export const admin = [
         exact: true,
         component: AdminLogin,
     },
+    {
+        path: '/admin/changepassword',
+        exact: false,
+        component: ChangePassword,
+    },
 ];
 export const adminDashboardRoute = [
     {

@@ -59,14 +59,21 @@ export const loginHomePageAction = (student, props) => {
             localStorage.setItem('ACCESS_TOKEN', result.data.access_token);
             localStorage.setItem('USER_LOGIN', JSON.stringify(result.data));
             swal({
-                title: 'Dang nhap thành công',
-                text: 'Hãy bấm OK để tiếp tục hành động',
+                title: 'Login successfully',
+                text: 'Please click OK for continue',
                 icon: 'success',
                 button: 'OK',
             });
             props.history.push('/');
         } catch (err) {
-           console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: Array.isArray(err.response.data.message)
+                    ? err.response.data.message[0]
+                    : err.response.data.message,
+                icon: 'warning',
+                button: 'OK',
+            });
         }
     };
 };
@@ -392,14 +399,17 @@ export const handleSendMail = (email) => {
 export const handleResetPassword = (userCredential) => {
     return async dispatch => {
         try {
-            let result = await Axios({
+            await Axios({
                 url: 'https://35.224.120.132/auth/reset-password',
                 method: 'POST',
                 data: userCredential
             })
-            console.log(result.data);
-            console.log('vui long dang nhap lai');
-
+            swal({
+                title: '',
+                text: 'Please login again',
+                icon: 'success',
+                button: 'OK',
+            });
         } catch (err) {
             console.log(err.response?.data);
         }
