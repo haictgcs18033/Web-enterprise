@@ -109,8 +109,7 @@ export default function CoordinatorLanding() {
                     </div>
                   </button>
                   <NavLink
-                    to={`/coordinator/comment/${contribution.id}`}
-                    type='button'
+                    to={`/coordinator/comment/${contribution.id}`}          
                     className={classes.contributionBtn}>
                     <div className='d-flex'>
                       <img className={classes.icon} src={talk} alt='123' />
