@@ -43,7 +43,7 @@ export default function CoordinatorLanding() {
   }, [getContribution]);
 
   let renderPublishContribution = () => {
-    return contributionPublishList.map((contribution, index) => {
+    return contributionPublishList?.map((contribution, index) => {
       return (
         <div key={index} className={`col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2`}>
           <div className={`card ${classes.cardWaiting}`}>
@@ -86,7 +86,6 @@ export default function CoordinatorLanding() {
   };
 
   let waitingContribution = () => {
-    console.log(contributionList);
     return contributionList
       ?.filter((contribution) => contribution.isPublished === false)
       .map((contribution, index) => {
