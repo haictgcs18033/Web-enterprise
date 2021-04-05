@@ -61,7 +61,7 @@ export default function CoordinatorLanding() {
                   <p className='mb-0'> See Contribution</p>
                 </div>
               </button>
-              <button type='button' className={classes.contributionBtn}>
+              <button className={classes.contributionBtn}>
                 <div className='d-flex'>
                   <img className={classes.icon} src={talk} alt='123' />
                   <p className='mb-0'> Comment</p>
