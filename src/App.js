@@ -18,6 +18,7 @@ import { createBrowserHistory } from 'history';
 import { StudentDashboard } from './templates/StudentDashBoard/StudentDashboard';
 import { ManagerDashboard } from './templates/ManagerDashboard';
 import { CordinatorDashboard } from './templates/CoordinatorDashboard';
+import { Suspense } from 'react';
 
 export const history = createBrowserHistory();
 function App() {
@@ -55,7 +56,6 @@ function App() {
   };
 
   const studentDashboard = (routes) => {
-   
     return routes.map((route, index) => {
       return (
         <StudentDashboard
@@ -65,20 +65,26 @@ function App() {
       );
     });
   };
-  const managerDashboard=routes=>{
-    return routes.map((route,index)=>{
-      return( 
-        <ManagerDashboard key={index} {...route} Component={route.component}></ManagerDashboard>
-      )
-    })
-  }
-  const coordinatorDashboard=routes=>{
-    return routes.map((route,index)=>{
-      return( 
-        <CordinatorDashboard key={index} {...route} Component={route.component}></CordinatorDashboard>
-      )
-    })
-  }
+  const managerDashboard = (routes) => {
+    return routes.map((route, index) => {
+      return (
+        <ManagerDashboard
+          key={index}
+          {...route}
+          Component={route.component}></ManagerDashboard>
+      );
+    });
+  };
+  const coordinatorDashboard = (routes) => {
+    return routes.map((route, index) => {
+      return (
+        <CordinatorDashboard
+          key={index}
+          {...route}
+          Component={route.component}></CordinatorDashboard>
+      );
+    });
+  };
   return (
     <>
       <BrowserRouter history={history}>
