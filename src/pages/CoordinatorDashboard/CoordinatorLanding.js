@@ -9,8 +9,9 @@ import talk from '../../assets/img/talk.png';
 import bin from '../../assets/img/bin.png';
 import * as actionContribution from '../../redux/action/ActionContribution';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 export default function CoordinatorLanding() {
+  const history = useHistory();
   const contributionPublishList = useSelector(
     (state) => state.contributionReducer.contributionPublishList
   );
@@ -36,53 +37,70 @@ export default function CoordinatorLanding() {
     [dispatch]
   );
   useEffect(() => {
+    dispatch({
+      type: 'RESET_PUBLISH_STATE',
+    });
+  }, [dispatch]);
+
+  useEffect(() => {
     getContributionPublish();
   }, [getContributionPublish]);
+
   useEffect(() => {
     getContribution();
   }, [getContribution]);
 
-  let renderPublishContribution = () => {
-    return contributionPublishList?.map((contribution, index) => {
-      return (
-        <div key={index} className={`col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2`}>
-          <div className={`card ${classes.cardWaiting}`}>
-            <img
-              className='card-img-top'
-              src={`https://35.224.120.132/${contribution.thumbnail}`}
-              alt='123'
-              height='216px'
-            />
-            <div className={classes.overlay}></div>
-            <div className={classes.groupButton}>
-              <button type='button' className={`${classes.contributionBtn}`}>
-                <div className='d-flex'>
-                  <img className={classes.icon} src={eyeIcon} alt='123' />
-                  <p className='mb-0'> See Contribution</p>
-                </div>
-              </button>
-              <button className={classes.contributionBtn}>
-                <div className='d-flex'>
-                  <img className={classes.icon} src={talk} alt='123' />
-                  <p className='mb-0'> Comment</p>
-                </div>
-              </button>
-              <button type='button' className={classes.contributionBtn}>
-                <div className='d-flex'>
-                  <img className={classes.icon} src={bin} alt='123' />
-                  <p className='mb-0'> Delete Article</p>
-                </div>
-              </button>
-            </div>
+  const handleRedirectToComment = (contribution) => {
+    history.push(`/coordinator/comment/${contribution.id}`);
+  };
 
-            <div className='card-body'>
-              <h4 className={classes.cardTitle}>{contribution.name}</h4>
-              <p className={classes.cardText}>{contribution.description}</p>
+  let renderPublishContribution = () => {
+    if (contributionPublishList) {
+      return contributionPublishList.map((contribution, index) => {
+        return (
+          <div
+            key={index}
+            className={`col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2`}>
+            <div className={`card ${classes.cardWaiting}`}>
+              <img
+                className='card-img-top'
+                src={`https://35.224.120.132/${contribution.thumbnail}`}
+                alt='123'
+                height='216px'
+              />
+              <div className={classes.overlay}></div>
+              <div className={classes.groupButton}>
+                <button className={`${classes.contributionBtn}`}>
+                  <div className='d-flex'>
+                    <img className={classes.icon} src={eyeIcon} alt='123' />
+                    <p className='mb-0'> See Contribution</p>
+                  </div>
+                </button>
+                <button
+                  onClick={() => handleRedirectToComment(contribution)}
+                  className={classes.contributionBtn}>
+                  <div className='d-flex'>
+                    <img className={classes.icon} src={talk} alt='123' />
+                    <p className='mb-0'> Comment</p>
+                  </div>
+                </button>
+                <button className={classes.contributionBtn}>
+                  <div className='d-flex'>
+                    <img className={classes.icon} src={bin} alt='123' />
+                    <p className='mb-0'> Delete Article</p>
+                  </div>
+                </button>
+              </div>
+
+              <div className='card-body'>
+                <h4 className={classes.cardTitle}>{contribution.name}</h4>
+                <p className={classes.cardText}>{contribution.description}</p>
+              </div>
             </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
+    }
   };
 
   let waitingContribution = () => {
@@ -90,184 +108,171 @@ export default function CoordinatorLanding() {
       ?.filter((contribution) => contribution.isPublished === false)
       .map((contribution, index) => {
         return (
-          <>
-            <div className={`col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2`}>
-              <div key={index} className={`card ${classes.cardWaiting}`}>
-                <img
-                  className='card-img-top'
-                  src={`https://35.224.120.132/${contribution.thumbnail}`}
-                  alt='123'
-                />
-                <div className={classes.overlay}></div>
-                <div className={classes.groupButton}>
-                  <button
-                    type='button'
-                    className={`${classes.contributionBtn}`}>
-                    <div className='d-flex'>
-                      <img className={classes.icon} src={eyeIcon} alt='123' />
-                      <p className='mb-0'> See Contribution</p>
-                    </div>
-                  </button>
-                  <NavLink
-                    to={`/coordinator/comment/${contribution.id}`}          
-                    className={classes.contributionBtn}>
-                    <div className='d-flex'>
-                      <img className={classes.icon} src={talk} alt='123' />
-                      <p className='mb-0'> Comment</p>
-                    </div>
-                  </NavLink>
-                  <button
-                    type='button'
-                    className={classes.contributionBtn}
-                    data-toggle='modal'
-                    data-target='#exampleModalUpdate'
-                    onClick={() =>
-                      setContributionUpdate({
-                        id: contribution.id,
-                        name: contribution.name,
-                        description: contribution.description,
-                      })
-                    }>
-                    <div className='d-flex'>
-                      <img className={classes.icon} src={pen} alt='123' />
-                      <p className='mb-0'> Edit Contribution</p>
-                    </div>
-                  </button>
-                  <button
-                    type='button'
-                    className={`btn ${classes.contributionBtn}`}
-                    data-toggle='modal'
-                    data-target='#exampleModalDelete'
-                    onClick={() => {
-                      setContributionDelete({ id: contribution.id });
-                    }}>
-                    <div className='d-flex'>
-                      <img className={classes.icon} src={bin} alt='123' />
-                      <p className='mb-0'> Delete Article</p>
-                    </div>
-                  </button>
-                </div>
-                <div className='card-body'>
-                  <h4 className={classes.cardTitle}>{contribution.name}</h4>
-                  <p className={classes.cardText}>{contribution.description}</p>
-                </div>
+          <div className={`col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2`}>
+            <div key={index} className={`card ${classes.cardWaiting}`}>
+              <img
+                className='card-img-top'
+                src={`https://35.224.120.132/${contribution.thumbnail}`}
+                alt='123'
+              />
+              <div className={classes.overlay}></div>
+              <div className={classes.groupButton}>
+                <button className={`${classes.contributionBtn}`}>
+                  <div className='d-flex'>
+                    <img className={classes.icon} src={eyeIcon} alt='123' />
+                    <p className='mb-0'> See Contribution</p>
+                  </div>
+                </button>
+                <button
+                  onClick={() => handleRedirectToComment(contribution)}
+                  className={classes.contributionBtn}>
+                  <div className='d-flex'>
+                    <img className={classes.icon} src={talk} alt='123' />
+                    <p className='mb-0'> Comment</p>
+                  </div>
+                </button>
+                <button
+                  className={classes.contributionBtn}
+                  data-toggle='modal'
+                  data-target='#exampleModalUpdate'
+                  onClick={() =>
+                    setContributionUpdate({
+                      id: contribution.id,
+                      name: contribution.name,
+                      description: contribution.description,
+                    })
+                  }>
+                  <div className='d-flex'>
+                    <img className={classes.icon} src={pen} alt='123' />
+                    <p className='mb-0'> Edit Contribution</p>
+                  </div>
+                </button>
+                <button
+                  className={`btn ${classes.contributionBtn}`}
+                  data-toggle='modal'
+                  data-target='#exampleModalDelete'
+                  onClick={() => {
+                    setContributionDelete({ id: contribution.id });
+                  }}>
+                  <div className='d-flex'>
+                    <img className={classes.icon} src={bin} alt='123' />
+                    <p className='mb-0'> Delete Article</p>
+                  </div>
+                </button>
               </div>
-              <div
-                className='modal fade'
-                id='exampleModalDelete'
-                tabIndex={-1}
-                role='dialog'
-                aria-labelledby='exampleModalLabel'
-                aria-hidden='true'>
-                <div className='modal-dialog' role='document'>
-                  <div className='modal-content'>
-                    <div className='modal-header'>
-                      <h5 className='modal-title' id='exampleModalLabel'>
-                        Delete Contribution
-                      </h5>
-                    </div>
-                    <div className='modal-body'>
-                      <p>
-                        <span>Are you sure you want to delete </span>
-                        <span className='font-weight-bold'>
-                          " This is a contribution "
-                        </span>
-                      </p>
-                    </div>
-                    <div className='modal-footer'>
-                      <button
-                        type='button'
-                        className={`btn ${styles.modalDeleteClose}`}
-                        data-dismiss='modal'>
-                        Close
-                      </button>
-                      <button
-                        type='button'
-                        className={`btn ${styles.modalDelete}`}
-                        data-dismiss='modal'
-                        onClick={() => {
-                          deleteContribution(contributionDelete.id);
-                        }}>
-                        Confirm
-                      </button>
-                    </div>
+              <div className='card-body'>
+                <h4 className={classes.cardTitle}>{contribution.name}</h4>
+                <p className={classes.cardText}>{contribution.description}</p>
+              </div>
+            </div>
+            <div
+              className='modal fade'
+              id='exampleModalDelete'
+              tabIndex={-1}
+              role='dialog'
+              aria-labelledby='exampleModalLabel'
+              aria-hidden='true'>
+              <div className='modal-dialog' role='document'>
+                <div className='modal-content'>
+                  <div className='modal-header'>
+                    <h5 className='modal-title' id='exampleModalLabel'>
+                      Delete Contribution
+                    </h5>
+                  </div>
+                  <div className='modal-body'>
+                    <p>
+                      <span>Are you sure you want to delete </span>
+                      <span className='font-weight-bold'>
+                        " This is a contribution "
+                      </span>
+                    </p>
+                  </div>
+                  <div className='modal-footer'>
+                    <button
+                      className={`btn ${styles.modalDeleteClose}`}
+                      data-dismiss='modal'>
+                      Close
+                    </button>
+                    <button
+                      className={`btn ${styles.modalDelete}`}
+                      data-dismiss='modal'
+                      onClick={() => {
+                        deleteContribution(contributionDelete.id);
+                      }}>
+                      Confirm
+                    </button>
                   </div>
                 </div>
               </div>
+            </div>
+            <div
+              className={`modal fade ${classes.modalUpdate}`}
+              id='exampleModalUpdate'
+              tabIndex={-1}
+              role='dialog'
+              aria-labelledby='exampleModalLabel'
+              aria-hidden='true'>
               <div
-                className={`modal fade ${classes.modalUpdate}`}
-                id='exampleModalUpdate'
-                tabIndex={-1}
-                role='dialog'
-                aria-labelledby='exampleModalLabel'
-                aria-hidden='true'>
-                <div
-                  className={`modal-dialog ${classes.modalDiaglog}`}
-                  role='document'>
-                  <div className='modal-content'>
-                    <div className='modal-header text-center'>
-                      <h5 className='modal-title ' id='exampleModalLabel'>
-                        Edit Contribution
-                      </h5>
+                className={`modal-dialog ${classes.modalDiaglog}`}
+                role='document'>
+                <div className='modal-content'>
+                  <div className='modal-header text-center'>
+                    <h5 className='modal-title ' id='exampleModalLabel'>
+                      Edit Contribution
+                    </h5>
+                  </div>
+                  <div className='modal-body'>
+                    <div className='form-group'>
+                      <label>Name</label>
+                      <input
+                        className='form-control'
+                        name='name'
+                        value={contributionUpdate.name}
+                        onChange={handleChangeInput}
+                      />
                     </div>
-                    <div className='modal-body'>
-                      <div className='form-group'>
-                        <label>Name</label>
-                        <input
-                          className='form-control'
-                          name='name'
-                          value={contributionUpdate.name}
-                          onChange={handleChangeInput}
-                        />
-                      </div>
-                      <div className='form-group'>
-                        <label>Description</label>
-                        <input
-                          className='form-control'
-                          name='description'
-                          value={contributionUpdate.description}
-                          onChange={handleChangeInput}
-                        />
-                      </div>
+                    <div className='form-group'>
+                      <label>Description</label>
+                      <input
+                        className='form-control'
+                        name='description'
+                        value={contributionUpdate.description}
+                        onChange={handleChangeInput}
+                      />
                     </div>
-                    <div className='modal-footer '>
-                      <div className='row mx-0 w-100'>
-                        <div className='col-3 text-left px-0'>
-                          <button
-                            className={classes.publishButton}
-                            onClick={() => {
-                              publishContribution(
-                                contribution.id,
-                                contribution
-                              );
-                            }}
-                            data-dismiss='modal'>
-                            Publish
-                          </button>
-                        </div>
-                        <div className='col-9 text-right px-0'>
-                          <button
-                            type='button'
-                            className={classes.cancelButton}
-                            data-dismiss='modal'>
-                            Cancel
-                          </button>
-                          <button
-                            type='button'
-                            className={classes.updateButton}
-                            onClick={() => {
-                              updateContribution(contributionUpdate.id);
-                            }}>
-                            Confirm
-                          </button>
-                        </div>
+                  </div>
+                  <div className='modal-footer '>
+                    <div className='row mx-0 w-100'>
+                      <div className='col-3 text-left px-0'>
+                        <button
+                          className={classes.publishButton}
+                          onClick={() => {
+                            publishContribution(contribution.id, contribution);
+                          }}
+                          data-dismiss='modal'>
+                          Publish
+                        </button>
+                      </div>
+                      <div className='col-9 text-right px-0'>
+                        <button
+                          className={classes.cancelButton}
+                          data-dismiss='modal'>
+                          Cancel
+                        </button>
+                        <button
+                          className={classes.updateButton}
+                          onClick={() => {
+                            updateContribution(contributionUpdate.id);
+                          }}>
+                          Confirm
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </>
+          </div>
         );
       });
   };

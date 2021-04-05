@@ -21,7 +21,7 @@ export default function StudentLanding() {
   let dispatch = useDispatch();
   let limit = 6;
   const getContribution = useCallback(
-    () => dispatch(action.getContributionList(1, 10)),
+    () => dispatch(action.getContributionList(1, 99)),
     [dispatch]
   );
   const getPublishedContribution = useCallback(
@@ -40,8 +40,7 @@ export default function StudentLanding() {
 
   useEffect(() => {
     getPublishedContribution();
-  }, [getPublishedContribution, curPage, limit]);
- console.log(contributionList);
+  }, [getPublishedContribution]);
   return (
     <div>
       <div className='container'>

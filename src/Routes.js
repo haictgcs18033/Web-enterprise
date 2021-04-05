@@ -1,5 +1,6 @@
 /** @format */
 
+import { lazy } from 'react';
 import ContributionDetail from './Components/ContributionDetail/ContributionDetail';
 import UploadedTable from './Components/UploadedTable/UploadedTable';
 import Faculty from './pages/AdminDashboard/Faculty/Faculty';
@@ -23,146 +24,146 @@ import StudentLanding from './pages/StudentDashboard/StudentLanding';
 import UploadContribution from './pages/StudentDashboard/UploadContribution';
 
 export const admin = [
-    {
-        path: '/admin',
-        exact: true,
-        component: AdminLogin,
-    },
-    {
-        path: '/admin/changepassword',
-        exact: false,
-        component: ChangePassword,
-    },
+  {
+    path: '/admin',
+    exact: true,
+    component: AdminLogin,
+  },
+  {
+    path: '/admin/changepassword',
+    exact: false,
+    component: ChangePassword,
+  },
 ];
 export const adminDashboardRoute = [
-    {
-        path: '/admin/dashboard/faculty/setting/:id',
-        exact: false,
-        component: FacultySetting,
-    },
-    {
-        path: '/admin/dashboard/users',
-        exact: false,
-        component: UserDashboard,
-    },
+  {
+    path: '/admin/dashboard/faculty/setting/:id',
+    exact: false,
+    component: FacultySetting,
+  },
+  {
+    path: '/admin/dashboard/users',
+    exact: false,
+    component: UserDashboard,
+  },
 
-    {
-        path: '/admin/dashboard/faculty',
-        exact: false,
-        component: Faculty,
-    },
+  {
+    path: '/admin/dashboard/faculty',
+    exact: false,
+    component: Faculty,
+  },
 ];
 export const managerDashboardRoute = [
-    {
-        path: '/manager/faculty/contribution/:idFaculty',
-        exact: false,
-        component: FacultyContribution
-    },
-    {
-        path: '/manager/changepassword',
-        exact: false,
-        component: ChangePassword,
-    },
-    {
-        path: '/manager/home',
-        exact: true,
-        component: ManagerLanding
-    }
-]
+  {
+    path: '/manager/faculty/contribution/:idFaculty',
+    exact: false,
+    component: FacultyContribution,
+  },
+  {
+    path: '/manager/changepassword',
+    exact: false,
+    component: ChangePassword,
+  },
+  {
+    path: '/manager/home',
+    exact: true,
+    component: ManagerLanding,
+  },
+];
 export const coordinatorDashboardRoute = [
-    {
-        path: '/coordinator/comment/:idContribution',
-        exact: false,
-        component: CoordinatorComment
-    },
-    {
-        path: '/coordinator/changepassword',
-        exact: false,
-        component: ChangePassword,
-    },
-    {
-        path: '/coordinator/home',
-        exact: false,
-        component: CoordinatorLanding
-    },
-]
+  {
+    path: '/coordinator/comment/:idContribution',
+    exact: false,
+    component: CoordinatorComment,
+  },
+  {
+    path: '/coordinator/changepassword',
+    exact: false,
+    component: ChangePassword,
+  },
+  {
+    path: '/coordinator/home',
+    exact: false,
+    component: CoordinatorLanding,
+  },
+];
 export const studentDashboardRoute = [
-    {
-        path: '/student/detail/:id',
-        exact: false,
-        component: ContributionDetail,
-    },
-    {
-        path: '/student/comment/:idContribution',
-        exact: false,
-        component: CoordinatorComment
-    },
-    {
-        path: '/student/contribution-submit',
-        exact: false,
-        component: ContributionSubmit
-    },
-    {
-        path: '/student/term-privacy',
-        exact: false,
-        component: StudentCommitment
-    },
-    {
-        path: '/student/upload-contribution',
-        exact: false,
-        component: UploadContribution,
-    },
-    {
-        path: '/student/uploaded-contribution/:id',
-        exact: false,
-        component: UploadContribution,
-    },
-    {
-        path: '/student/changepassword',
-        exact: false,
-        component: ChangePassword,
-    },
-    {
-        path: '/student/uploaded-table',
-        exact: false,
-        component: UploadedTable,
-    },
-    {
-        path: '/student/home',
-        exact: true,
-        component: StudentLanding,
-    },
+  {
+    path: '/student/detail/:id',
+    exact: false,
+    component: ContributionDetail,
+  },
+  {
+    path: '/student/comment/:idContribution',
+    exact: false,
+    component: CoordinatorComment,
+  },
+  {
+    path: '/student/contribution-submit',
+    exact: false,
+    component: ContributionSubmit,
+  },
+  {
+    path: '/student/term-privacy',
+    exact: false,
+    component: StudentCommitment,
+  },
+  {
+    path: '/student/upload-contribution',
+    exact: false,
+    component: UploadContribution,
+  },
+  {
+    path: '/student/uploaded-contribution/:id',
+    exact: false,
+    component: UploadContribution,
+  },
+  {
+    path: '/student/changepassword',
+    exact: false,
+    component: ChangePassword,
+  },
+  {
+    path: '/student/uploaded-table',
+    exact: false,
+    component: UploadedTable,
+  },
+  {
+    path: '/student/home',
+    exact: true,
+    component: StudentLanding,
+  },
 ];
 
 export const client = [
-    {
-        path: '/',
-        exact: true,
-        component: HomePage,
-    },
-    {
-        path: '/login',
-        exact: false,
-        component: LoginPage,
-    },
-    {
-        path: '/forget-password',
-        exact: false,
-        component: ForgotPassword,
-    },
-    {
-        path: '/reset-password/:resetToken',
-        exact: false,
-        component: ResetToken,
-    },
-    {
-        path: '/contribution-detail/:id',
-        exact: false,
-        component: ContributionDetail,
-    },
-    {
-        path: '',
-        exact: false,
-        component: NotFound,
-    },
+  {
+    path: '/',
+    exact: true,
+    component: HomePage,
+  },
+  {
+    path: '/login',
+    exact: false,
+    component: LoginPage,
+  },
+  {
+    path: '/forget-password',
+    exact: false,
+    component: ForgotPassword,
+  },
+  {
+    path: '/reset-password/:resetToken',
+    exact: false,
+    component: ResetToken,
+  },
+  {
+    path: '/contribution-detail/:id',
+    exact: false,
+    component: ContributionDetail,
+  },
+  {
+    path: '',
+    exact: false,
+    component: NotFound,
+  },
 ];
