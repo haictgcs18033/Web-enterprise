@@ -115,7 +115,7 @@ export default function UserDashboard(props) {
             .email('⚠ Enter a valid email'),
     })
 
-    const { register, errors } = useForm({
+    const { register, handleSubmit, errors } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -347,6 +347,7 @@ export default function UserDashboard(props) {
                         role='dialog'
                         aria-labelledby='exampleModalLabel'
                         aria-hidden='true'
+                        onSubmit={handleSubmit(onSubmit)}
                     >
                         <div className='modal-dialog' role='document'>
                             <div className='modal-content'>
@@ -417,8 +418,8 @@ export default function UserDashboard(props) {
                                         Cancel
                                     </button>
                                     <button
-                                        onClick={onSubmit}
-                                        data-dismiss='modal'
+                                        // onClick={onSubmit}
+                                        // data-dismiss='modal'
                                         className='btn btn__create'>
                                         Create
                                     </button>
