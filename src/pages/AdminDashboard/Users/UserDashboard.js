@@ -104,9 +104,9 @@ export default function UserDashboard(props) {
 
     let schema = yup.object().shape({
         fullName: yup.string()
+            .required('⚠ Full name is required')
             .strict(true)
-            .trim('⚠ This field cannot contain spaces')
-            .required('⚠ Full name is required'),
+            .trim('⚠ This field cannot contain spaces'),
         email: yup.string()
             .strict(true)
             .trim('⚠ This field cannot contain spaces')
@@ -115,10 +115,12 @@ export default function UserDashboard(props) {
             .email('⚠ Enter a valid email'),
     })
 
-    const { register, handleSubmit, errors } = useForm({
+    const { register, errors } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
+
+    // console.log((userObj['fullName']));
 
     const renderPages = () => {
         return pageNumber.map((pageNumber, index) => {
@@ -345,7 +347,7 @@ export default function UserDashboard(props) {
                         role='dialog'
                         aria-labelledby='exampleModalLabel'
                         aria-hidden='true'
-                        onSubmit={handleSubmit}>
+                    >
                         <div className='modal-dialog' role='document'>
                             <div className='modal-content'>
                                 <div className='modal-header'>
