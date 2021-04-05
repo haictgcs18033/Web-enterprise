@@ -38,7 +38,7 @@
         z-index: 3;
         transition: all 0.5s;
         button,
-        a {
+        a,.contributionBtn {
             width: 172px;
             height: 52px;
             margin-bottom: 16px;
@@ -81,7 +81,7 @@
     }
 }
 .contributePublish {
-    .contributionBtn {
+    button {
         width: 140px;
         height: 40px;
         font-size: 18px;
