@@ -28,8 +28,8 @@ export default function YourContributionItems(props) {
     setContributionUpdate(newsValue);
   };
   let renderContributionItem = () => {
-    return contribution
-      .map((contribution, index) => {
+    if (contribution) {
+      return contribution.map((contribution, index) => {
         return (
           <div key={index} className={`card ${classes.card}`}>
             <img
@@ -193,6 +193,7 @@ export default function YourContributionItems(props) {
           </div>
         );
       });
+    }
   };
   let deleteContribution = (id) => {
     dispatch(action.handleDeleteContribution(id));
