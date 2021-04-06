@@ -12,6 +12,9 @@ import styles from '../Users/user.module.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { NavLink } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as  yup from 'yup';
 
 
 export default function Faculty() {
@@ -27,15 +30,15 @@ export default function Faculty() {
     const createFaculty = useSelector(state => state.webEnterpriseReducer.createFaculty)
     let { name } = createFaculty.values
     const [curPage, setCurPage] = useState(1);
-    let [keyword,setKeyword]=useState('')
-    let [type,setType]=useState('') 
+    let [keyword, setKeyword] = useState('')
+    let [type, setType] = useState('')
     let [closureDate, setClosureDate] = useState(new Date());
     let [finalClosure, setFinalClosure] = useState(new Date());
     const limit = 6;
     let dispatch = useDispatch();
     const getFacultyList = useCallback(
-        () => dispatch(action.fetchFaculty(limit, curPage,keyword,type)),
-        [dispatch, limit,curPage,keyword,type]
+        () => dispatch(action.fetchFaculty(limit, curPage, keyword, type)),
+        [dispatch, limit, curPage, keyword, type]
     );
     useEffect(() => {
         getFacultyList();
@@ -46,6 +49,18 @@ export default function Faculty() {
             pageNumber.push(i);
         }
     }
+
+    let schema = yup.object().shape({
+        name: yup.string()
+            .strict(true)
+            .trim('⚠ This field cannot contain spaces')
+            .required('⚠ Faculty name is required'),
+    })
+
+    const { register, handleSubmit, errors } = useForm({
+        mode: 'onChange',
+        resolver: yupResolver(schema),
+    });
 
     let renderFaculties = () => {
         if (faculties.length > 0) {
@@ -95,7 +110,6 @@ export default function Faculty() {
         dispatch(action.handleInput(newValues))
     }
     let handleCreateFaculty = (e) => {
-        e.preventDefault();
         let faculty = { ...createFaculty.values }
         dispatch(action.createFacultyAdmin(faculty))
     }
@@ -133,7 +147,7 @@ export default function Faculty() {
                         role='dialog'
                         aria-labelledby='exampleModalLabel'
                         aria-hidden='true'
-                        onSubmit={handleCreateFaculty}>
+                        onSubmit={handleSubmit(handleCreateFaculty)}>
                         <div className='modal-dialog' role='document'>
                             <div className='modal-content'>
                                 <div className='modal-header'>
@@ -150,11 +164,12 @@ export default function Faculty() {
                                                     type='text'
                                                     className='form-control'
                                                     name='name'
-                                                    value={name}
+                                                    defaultValue={name}
                                                     onChange={handleInputFaculty}
+                                                    ref={register}
                                                 />
                                                 <p className='err-message'>
-                                                    {/* {errors.fullName?.message} */}
+                                                    {errors.name?.message}
                                                 </p>
                                             </div>
                                         </div>
@@ -168,9 +183,9 @@ export default function Faculty() {
                                         Cancel
                                     </button>
                                     <button
-
                                         type='submit'
-                                        className='btn btn__create'>
+                                        className='btn btn__create'
+                                    >
                                         Create
                                     </button>
                                 </div>

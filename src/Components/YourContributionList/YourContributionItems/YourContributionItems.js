@@ -29,7 +29,6 @@ export default function YourContributionItems(props) {
   };
   let renderContributionItem = () => {
     return contribution
-      ?.filter((contribute) => contribute.isPublished === false)
       .map((contribution, index) => {
         return (
           <div key={index} className={`card ${classes.card}`}>

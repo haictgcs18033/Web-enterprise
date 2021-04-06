@@ -17,11 +17,14 @@ export default function StudentLanding() {
   const contributionPublishList = useSelector(
     (state) => state.contributionReducer.contributionPublishList
   );
+  const totalContribution = useSelector(
+    (state) => state.contributionReducer.totalContribution
+  );
   let [curPage, setCurPage] = useState(1);
   let dispatch = useDispatch();
   let limit = 6;
   const getContribution = useCallback(
-    () => dispatch(action.getContributionList(1, 10)),
+    () => dispatch(action.getContributionList(1, 99)),
     [dispatch]
   );
   const getPublishedContribution = useCallback(
@@ -40,8 +43,7 @@ export default function StudentLanding() {
 
   useEffect(() => {
     getPublishedContribution();
-  }, [getPublishedContribution, curPage, limit]);
- console.log(contributionList);
+  }, [getPublishedContribution]);
   return (
     <div>
       <div className='container'>
@@ -67,6 +69,7 @@ export default function StudentLanding() {
         </h2>
         <NewContributionList
           nextPage={() => setCurPage(curPage + 1)}
+          total={totalContribution}
           contributionPublishList={contributionPublishList}
         />
       </div>
