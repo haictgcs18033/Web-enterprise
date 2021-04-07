@@ -69,7 +69,7 @@ export default function FacultyContribution() {
   }
   return (
     <div className={`container ${classes.contributionContainer}`}>
-      <h3>All contribution</h3>
+      <h3>All contribution </h3>
       <div className={`${classes.contributionList}`}>
         <div className={`row`}>
           {contributionPublishList.map((contribution, index) => {

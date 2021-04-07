@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import classes from './ManagerLanding.module.scss';
-import ArrowRight from '../../assets/img/caret-right.png';
+// import ArrowRight from '../../assets/img/caret-right.png';
 import { useDispatch, useSelector } from 'react-redux';
 import * as action from '../../redux/action/ActionForRedux';
 import { NavLink } from 'react-router-dom';
@@ -13,7 +13,7 @@ export default function ManagerLanding() {
   );
   const dispatch = useDispatch();
   const [curPage] = useState(1);
-  let limit = 10;
+  let limit = 99;
   let getFacultyList = useCallback(() => {
     dispatch(action.fetchFaculty(limit, curPage));
   }, [dispatch, limit, curPage]);
@@ -38,7 +38,8 @@ export default function ManagerLanding() {
                 to={`/manager/faculty/contribution/${faculty.id}`}
                 className={classes.facultyBtn}>
                 {faculty.name}
-                <img src={ArrowRight} alt='123' />
+                {/* <img src={ArrowRight} alt='123' /> */}
+                <i className="fa fa-angle-right"></i>
               </NavLink>
             );
           })}

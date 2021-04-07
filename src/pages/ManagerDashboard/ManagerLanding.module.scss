@@ -64,9 +64,18 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
+  transition: all 0.5s;
   font-size: 14px;
+  i{
+    font-size: 25px;
+  }
   &:not(:last-child) {
     margin-bottom: 1rem;
+  }
+  &:hover{
+    background: #32b260;
+    text-decoration: none;
+    color: white;
   }
 }
 // Contribution
