@@ -88,7 +88,7 @@ export default function CoordinatorLanding() {
                 <button
                   className={`btn ${classes.contributionBtn}`}
                   data-toggle='modal'
-                  data-target='#exampleModalDelete'
+                  data-target='#exampleModalDeletePublish'
                   onClick={() => {
                     setContributionDelete({ id: contribution.id });
                   }}>
@@ -97,8 +97,48 @@ export default function CoordinatorLanding() {
                     <p className='mb-0'> Delete Article</p>
                   </div>
                 </button>
+                
               </div>
-
+              <div
+              className='modal fade'
+              id='exampleModalDeletePublish'
+              tabIndex={-1}
+              role='dialog'
+              aria-labelledby='exampleModalLabel'
+              aria-hidden='true'>
+              <div className='modal-dialog' role='document'>
+                <div className='modal-content'>
+                  <div className='modal-header'>
+                    <h5 className='modal-title' id='exampleModalLabel'>
+                      Delete Contribution
+                    </h5>
+                  </div>
+                  <div className='modal-body'>
+                    <p>
+                      <span>Are you sure you want to delete </span>
+                      <span className='font-weight-bold'>
+                        " This is a contribution "
+                      </span>
+                    </p>
+                  </div>
+                  <div className='modal-footer'>
+                    <button
+                      className={`btn ${classes.modalDeleteClose}`}
+                      data-dismiss='modal'>
+                      Close
+                    </button>
+                    <button
+                      className={`btn ${classes.modalDelete}`}
+                      data-dismiss='modal'
+                      onClick={() => {
+                        deleteContributionPublish(contributionDelete.id);
+                      }}>
+                      Confirm
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
               <div className='card-body'>
                 <h4 className={classes.cardTitle}>{contribution.name}</h4>
                 <p className={classes.cardText}>{contribution.description}</p>
@@ -286,6 +326,9 @@ export default function CoordinatorLanding() {
   let deleteContribution = (id) => {
     dispatch(actionContribution.handleDeleteContribution(id));
   };
+  let deleteContributionPublish=(id)=>{
+    dispatch(actionContribution.handleDeleteContributionPublish(id));
+  }
   let handleChangeInput = (e) => {
     let { value, name } = e.target;
     let newsValue = { ...contributionUpdate };

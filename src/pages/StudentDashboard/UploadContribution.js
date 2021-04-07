@@ -117,7 +117,7 @@ export default function UploadContribution() {
                       className={`btn ${styles.modalDelete}`}
                       data-dismiss='modal'
                       onClick={async() => {
-                        await deleteContribution(id);await redirectStudentHome();
+                        await deleteContribution(contributionList[0].id);await redirectStudentHome();
                       }}>
                       Confirm
                     </button>
@@ -174,7 +174,7 @@ export default function UploadContribution() {
                       className={`btn ${styles.modalDelete}`}
                       data-dismiss='modal'
                       onClick={async() => {
-                            await deleteContribution(id); redirectStudentHome();
+                            await deleteContribution(contributionList[0].id);await redirectStudentHome();
                       }}>
                       Confirm
                     </button>
@@ -187,12 +187,13 @@ export default function UploadContribution() {
       }
     }
   };
-  let redirectStudentHome=()=>{
-      history.push('/')
-  }
+
   let deleteContribution = (id) => {
     dispatch(actionContribution.handleDeleteContribution(id));
   };
+  let redirectStudentHome=()=>{
+    history.push('/')
+}
   return (
     <div>
       <div className={classes.container}>
