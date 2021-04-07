@@ -85,7 +85,13 @@ export default function CoordinatorLanding() {
                     <p className='mb-0'> Comment</p>
                   </div>
                 </button>
-                <button className={classes.contributionBtn}>
+                <button
+                  className={`btn ${classes.contributionBtn}`}
+                  data-toggle='modal'
+                  data-target='#exampleModalDelete'
+                  onClick={() => {
+                    setContributionDelete({ id: contribution.id });
+                  }}>
                   <div className='d-flex'>
                     <img className={classes.icon} src={bin} alt='123' />
                     <p className='mb-0'> Delete Article</p>
@@ -248,7 +254,7 @@ export default function CoordinatorLanding() {
                         <button
                           className={classes.publishButton}
                           onClick={() => {
-                            publishContribution(contribution.id, contribution);
+                            publishContribution(contributionUpdate.id, contribution);
                           }}
                           data-dismiss='modal'>
                           Publish

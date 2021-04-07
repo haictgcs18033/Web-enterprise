@@ -5,14 +5,16 @@ import uploadIcon from '../../assets/img/upload.png';
 import DeleteIcon from '../../assets/icons/Delete';
 import EditIcon from '../../assets/icons/Edit';
 import classes from './UploadContribution.module.scss';
+import styles from '../AdminDashboard/Users/user.module.css';
 import * as action from '../../redux/action/ActionContribution';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchClosureDate } from '../../redux/action/ActionForRedux';
 import * as actionContribution from '../../redux/action/ActionContribution';
 import moment from 'moment';
 export default function UploadContribution() {
   let { id } = useParams();
+  const history = useHistory();
   const contributionList = useSelector(
     (state) => state.contributionReducer.contributionList
   );
@@ -76,28 +78,121 @@ export default function UploadContribution() {
         );
       } else if (contributionList?.length > 0 && isPublished === true) {
         return (
-          <button className={classes.btnDelete}>
+            <>
+          <button className={classes.btnDelete}
+          data-toggle='modal'
+          data-target='#exampleModalDeleteUpload'>
             <DeleteIcon />
             <p>Delete Contribution</p>
           </button>
+          <div
+              className='modal fade'
+              id='exampleModalDeleteUpload'
+              tabIndex={-1}
+              role='dialog'
+              aria-labelledby='exampleModalLabel'
+              aria-hidden='true'>
+              <div className='modal-dialog' role='document'>
+                <div className='modal-content'>
+                  <div className='modal-header'>
+                    <h5 className='modal-title' id='exampleModalLabel'>
+                      Delete Contribution
+                    </h5>
+                  </div>
+                  <div className='modal-body'>
+                    <p>
+                      <span>Are you sure you want to delete </span>
+                      <span className='font-weight-bold'>
+                        " This is a contribution "
+                      </span>
+                    </p>
+                  </div>
+                  <div className='modal-footer'>
+                    <button
+                      className={`btn ${styles.modalDeleteClose}`}
+                      data-dismiss='modal'>
+                      Close
+                    </button>
+                    <button
+                      className={`btn ${styles.modalDelete}`}
+                      data-dismiss='modal'
+                      onClick={async() => {
+                        await deleteContribution(id);await redirectStudentHome();
+                      }}>
+                      Confirm
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
         );
       } else if (contributionList?.length > 0) {
         return (
+            <>
           <div className={classes.controlWrap}>
             <button className={classes.btnEdit}>
               <EditIcon />
               <p>Edit Contribution</p>
             </button>
-            <button className={classes.btnDelete}>
+            <button className={classes.btnDelete}
+               data-toggle='modal'
+               data-target='#exampleModalDelete'>
               <DeleteIcon />
               <p>Delete Contribution</p>
             </button>
           </div>
+          <div
+              className='modal fade'
+              id='exampleModalDelete'
+              tabIndex={-1}
+              role='dialog'
+              aria-labelledby='exampleModalLabel'
+              aria-hidden='true'>
+              <div className='modal-dialog' role='document'>
+                <div className='modal-content'>
+                  <div className='modal-header'>
+                    <h5 className='modal-title' id='exampleModalLabel'>
+                      Delete Contribution
+                    </h5>
+                  </div>
+                  <div className='modal-body'>
+                    <p>
+                      <span>Are you sure you want to delete </span>
+                      <span className='font-weight-bold'>
+                        " This is a contribution "
+                      </span>
+                    </p>
+                  </div>
+                  <div className='modal-footer'>
+                    <button
+                      className={`btn ${styles.modalDeleteClose}`}
+                      data-dismiss='modal'>
+                      Close
+                    </button>
+                    <button
+                      className={`btn ${styles.modalDelete}`}
+                      data-dismiss='modal'
+                      onClick={async() => {
+                            await deleteContribution(id); redirectStudentHome();
+                      }}>
+                      Confirm
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
         );
       }
     }
   };
-
+  let redirectStudentHome=()=>{
+      history.push('/')
+  }
+  let deleteContribution = (id) => {
+    dispatch(actionContribution.handleDeleteContribution(id));
+  };
   return (
     <div>
       <div className={classes.container}>
