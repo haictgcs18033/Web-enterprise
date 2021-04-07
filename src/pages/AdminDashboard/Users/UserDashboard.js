@@ -105,8 +105,9 @@ export default function UserDashboard(props) {
     let schema = yup.object().shape({
         fullName: yup.string()
             .required('⚠ Full name is required')
-            .strict(true)
-            .trim('⚠ This field cannot contain spaces'),
+            // .strict(true)
+            // .trim('⚠ This field cannot contain spaces')
+            .matches(/^\S+(\s\S+)+$/, '⚠ This field cannot contain spaces'),
         email: yup.string()
             .strict(true)
             .trim('⚠ This field cannot contain spaces')
@@ -120,7 +121,7 @@ export default function UserDashboard(props) {
         resolver: yupResolver(schema),
     });
 
-    // console.log((userObj['fullName']));
+    console.log((userObj['fullName']));
 
     const renderPages = () => {
         return pageNumber.map((pageNumber, index) => {
@@ -194,9 +195,11 @@ export default function UserDashboard(props) {
                                                                 type='text'
                                                                 className='form-control'
                                                                 name='fullName'
-                                                                value={userObj.fullName}
+                                                                defaultValue={userObj.fullName}
                                                                 onChange={handleChangeInput}
+                                                            // ref={register}
                                                             />
+                                                            {/* <p className='err-message'>{errors.userObj['fullName']?.message}</p> */}
                                                         </div>
                                                     </div>
                                                     <div className='col-6'>
@@ -206,9 +209,11 @@ export default function UserDashboard(props) {
                                                                 type='password'
                                                                 className='form-control'
                                                                 name='password'
-                                                                value={userObj.password}
+                                                                defaultValue={userObj.password}
                                                                 onChange={handleChangeInput}
+                                                            // ref={register}
                                                             />
+                                                            {/* <p className='err-message'>{errors.password?.message}</p> */}
                                                         </div>
                                                     </div>
                                                 </div>

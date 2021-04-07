@@ -92,9 +92,9 @@ export default function FacultySetting(props) {
                                                     value={facultyUpdate.name}
                                                     onChange={handleChangeName}
                                                 />
-                                                <p className='err-message'>
-                                                    {/* {errors.fullName?.message} */}
-                                                </p>
+                                                {/* <p className='err-message'>
+                                                    {errors.fullName?.message}
+                                                </p> */}
                                             </div>
                                         </div>
                                     </div>
@@ -134,11 +134,11 @@ export default function FacultySetting(props) {
                                 <p>Once you delete the faculty, there is no going back.</p>
                             </div>
                             <div className={styles.deleteButton}>
-                                <button className="btn" 
-                                data-toggle='modal'
-                                data-target='#exampleModalDelete' >
+                                <button className="btn"
+                                    data-toggle='modal'
+                                    data-target='#exampleModalDelete' >
                                     <Delete />
-                                    </button>
+                                </button>
                             </div>
                             <div
                                 className='modal fade'
@@ -160,7 +160,7 @@ export default function FacultySetting(props) {
                                                     Do you want to delete{' '}
                                                 </span>
                                                 <span className='font-weight-bold'>
-                                                      Faculty Name   
+                                                    Faculty Name
                                                 </span>
                                             </p>
                                         </div>
@@ -185,7 +185,6 @@ export default function FacultySetting(props) {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

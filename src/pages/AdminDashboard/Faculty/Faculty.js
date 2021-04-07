@@ -52,9 +52,10 @@ export default function Faculty() {
 
     let schema = yup.object().shape({
         name: yup.string()
-            .strict(true)
-            .trim('⚠ This field cannot contain spaces')
-            .required('⚠ Faculty name is required'),
+            // .strict(true)
+            // .trim('⚠ This field cannot contain spaces')
+            .required('⚠ Faculty name is required')
+            .matches(/^\S+(\s\S+)+$/, '⚠ This field cannot contain spaces'),
     })
 
     const { register, handleSubmit, errors } = useForm({
