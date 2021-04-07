@@ -13,14 +13,17 @@ export default function FacultyContribution() {
   let contributionPublishList = useSelector(
     (state) => state.contributionReducer.contributionPublishList
   );
-  let [curPage] = useState(1);
+  let totalContribution = useSelector(
+    (state) => state.contributionReducer.totalContribution
+  );
+  let [curPage, setCurpage] = useState(1);
   let [contributionDownload, setContributionDownload] = useState({
     downloadItem: [],
   });
   let [connectApi, setConnectApi] = useState({
     contributionIds: [],
   });
-  let limit = 10;
+  let limit = 6;
   let dispatch = useDispatch();
   let { idFaculty } = useParams();
   const getContributionPublish = useCallback(
@@ -61,10 +64,12 @@ export default function FacultyContribution() {
   let download = (contribution) => {
     dispatch(actionContribution.handleDownloadContribution(contribution));
   };
-
+  let showMore = () => {
+    setCurpage(curPage + 1)
+  }
   return (
     <div className={`container ${classes.contributionContainer}`}>
-      <h3>All contribution</h3>
+      <h3>All contribution </h3>
       <div className={`${classes.contributionList}`}>
         <div className={`row`}>
           {contributionPublishList.map((contribution, index) => {
@@ -95,15 +100,18 @@ export default function FacultyContribution() {
             );
           })}
         </div>
-        <div className={`d-block text-center my-4 ${classes.showmore}`}>
-          <button>SHOW MORE</button>
-        </div>
+        {
+          contributionPublishList.length === totalContribution ? null :
+            <div className={`d-block text-center my-4 ${classes.showmore}`}>
+              <button onClick={() => showMore()} >SHOW MORE</button>
+            </div>
+        }
+
         <div
-          className={`${
-            contributionDownload.downloadItem.length !== 0
+          className={`${contributionDownload.downloadItem.length !== 0
               ? `${classes.selectedItem}`
               : `${classes.selectedItemHide}`
-          }`}>
+            }`}>
           <p>{contributionDownload.downloadItem.length} items</p>
           <div className={`${classes.groupButton}`}>
             <button
@@ -112,19 +120,17 @@ export default function FacultyContribution() {
               <img src={fileDown} alt={123} />
             </button>
             <button
-              className={`${classes.arrow} ${
-                rotate ? `${classes.rotate}` : null
-              }`}
+              className={`${classes.arrow} ${rotate ? `${classes.rotate}` : null
+                }`}
               onClick={animate}>
               <img src={arrow} alt={123} />
             </button>
           </div>
           <div
-            className={`${
-              rotate
+            className={`${rotate
                 ? `${classes.dropdownContainer}`
                 : `${classes.dropdownContainerHide}`
-            }`}>
+              }`}>
             <h4>Drowdown Items</h4>
             <div className={`${classes.dropdownItemContainer}`}>
               {contributionDownload.downloadItem.map((downloadItem, index) => {

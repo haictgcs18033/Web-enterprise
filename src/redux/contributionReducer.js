@@ -65,6 +65,14 @@ export const contributionReducer = (state = stateContribution, action) => {
       state.contributionList = contributionUpdate;
       return { ...state };
     }
+    case 'DELETE_CONTRIBUTION_PUBLISH':{
+      let contributionPublishUpdate = [...state.contributionPublishList];
+      contributionPublishUpdate = contributionPublishUpdate.filter(
+        (contribute) => contribute.id !== action.id
+      );
+      state.contributionPublishList=contributionPublishUpdate
+      return {...state}
+    }
     case 'PUBLISH_CONTRIBUTION': {
       state.contributionPublishList = [
         ...state.contributionPublishList,

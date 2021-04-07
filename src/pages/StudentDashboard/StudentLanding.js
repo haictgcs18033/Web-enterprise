@@ -17,6 +17,9 @@ export default function StudentLanding() {
   const contributionPublishList = useSelector(
     (state) => state.contributionReducer.contributionPublishList
   );
+  const totalContribution = useSelector(
+    (state) => state.contributionReducer.totalContribution
+  );
   let [curPage, setCurPage] = useState(1);
   let dispatch = useDispatch();
   let limit = 6;
@@ -66,6 +69,7 @@ export default function StudentLanding() {
         </h2>
         <NewContributionList
           nextPage={() => setCurPage(curPage + 1)}
+          total={totalContribution}
           contributionPublishList={contributionPublishList}
         />
       </div>

@@ -34,7 +34,9 @@
   .groupButton {
     position: absolute;
     opacity: 0;
-    top: 50%;
+    top: 42%;
+    height: 200px;
+    padding-top: 65px;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 3;
@@ -50,7 +52,17 @@
       }
     }
   }
-  .contributionBtn {
+  .seeContribution{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index:1000;
+    p{
+      margin-top: 2px;
+    }
+  }
+  .contributionBtn ,.seeContribution{
     width: 172px;
     height: 52px;
     margin-bottom: 16px;
@@ -94,6 +106,19 @@
     color: white;
   }
 }
+.modalDelete,.modalDeleteClose{
+  width: 120px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  border: 1px solid #be0e62 !important;
+  font-size: 15px !important;
+  background: #be0e62 !important;
+}
+.modalDeleteClose{
+  background: white !important;
+  color: #be0e62 !important;
+}
+
 .modalUpdate {
   width: 510px;
   height: 100%;
@@ -152,6 +177,17 @@
   .contributePublish {
     h3 {
       margin-left: 0;
+    }
+  }
+  .modalUpdate {
+    width: 360px;
+  
+    .cancelButton,
+    .updateButton,
+    .publishButton {
+          width: 75px;
+          height: 35px;
+          font-size: 15px;
     }
   }
 }

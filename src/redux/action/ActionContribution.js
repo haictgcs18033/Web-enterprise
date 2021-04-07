@@ -117,6 +117,31 @@ export const handleDeleteContribution = (id) => {
     }
   };
 };
+export const handleDeleteContributionPublish = (id) => {
+  return async (dispatch) => {
+    try {
+      await Axios({
+        url: `https://35.224.120.132/contributions/${id}`,
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+        },
+      });
+      dispatch({
+        type: 'DELETE_CONTRIBUTION_PUBLISH',
+        id: id,
+      });
+      swal({
+        title: 'Success',
+        text: 'Contribution deleted successfully',
+        icon: 'success',
+        button: 'OK',
+      });
+    } catch (err) {
+      console.log(err.response?.data);
+    }
+  };
+};
 export const handleUpdateContribution = (id, contribtuionUpdate) => {
   return async (dispatch) => {
     try {

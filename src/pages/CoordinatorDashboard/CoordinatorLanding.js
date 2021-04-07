@@ -9,7 +9,7 @@ import talk from '../../assets/img/talk.png';
 import bin from '../../assets/img/bin.png';
 import * as actionContribution from '../../redux/action/ActionContribution';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory} from 'react-router-dom';
 export default function CoordinatorLanding() {
   const history = useHistory();
   const contributionPublishList = useSelector(
@@ -18,7 +18,8 @@ export default function CoordinatorLanding() {
   const contributionList = useSelector(
     (state) => state.contributionReducer.contributionList
   );
-  let [curPage] = useState(1);
+  const totalContribution=useSelector(state=>state.contributionReducer.totalContribution)
+  let [curPage,setCurpage] = useState(1);
   let [contributionUpdate, setContributionUpdate] = useState({
     id: 0,
     name: '',
@@ -26,7 +27,7 @@ export default function CoordinatorLanding() {
   });
   let [contributionDelete, setContributionDelete] = useState({ id: 0 });
   let dispatch = useDispatch();
-  let limit = 10;
+  let limit = 6;
   const getContributionPublish = useCallback(
     () =>
       dispatch(actionContribution.getContributionPublishList(curPage, limit)),
@@ -70,12 +71,12 @@ export default function CoordinatorLanding() {
               />
               <div className={classes.overlay}></div>
               <div className={classes.groupButton}>
-                <button className={`${classes.contributionBtn}`}>
+              <NavLink to={`/coordinator/contribution-detail/${contribution.id}`} className={`${classes.seeContribution}`}>
                   <div className='d-flex'>
                     <img className={classes.icon} src={eyeIcon} alt='123' />
                     <p className='mb-0'> See Contribution</p>
                   </div>
-                </button>
+                </NavLink>
                 <button
                   onClick={() => handleRedirectToComment(contribution)}
                   className={classes.contributionBtn}>
@@ -84,14 +85,60 @@ export default function CoordinatorLanding() {
                     <p className='mb-0'> Comment</p>
                   </div>
                 </button>
-                <button className={classes.contributionBtn}>
+                <button
+                  className={`btn ${classes.contributionBtn}`}
+                  data-toggle='modal'
+                  data-target='#exampleModalDeletePublish'
+                  onClick={() => {
+                    setContributionDelete({ id: contribution.id });
+                  }}>
                   <div className='d-flex'>
                     <img className={classes.icon} src={bin} alt='123' />
                     <p className='mb-0'> Delete Article</p>
                   </div>
                 </button>
+                
               </div>
-
+              <div
+              className='modal fade'
+              id='exampleModalDeletePublish'
+              tabIndex={-1}
+              role='dialog'
+              aria-labelledby='exampleModalLabel'
+              aria-hidden='true'>
+              <div className='modal-dialog' role='document'>
+                <div className='modal-content'>
+                  <div className='modal-header'>
+                    <h5 className='modal-title' id='exampleModalLabel'>
+                      Delete Contribution
+                    </h5>
+                  </div>
+                  <div className='modal-body'>
+                    <p>
+                      <span>Are you sure you want to delete </span>
+                      <span className='font-weight-bold'>
+                        " This is a contribution "
+                      </span>
+                    </p>
+                  </div>
+                  <div className='modal-footer'>
+                    <button
+                      className={`btn ${classes.modalDeleteClose}`}
+                      data-dismiss='modal'>
+                      Close
+                    </button>
+                    <button
+                      className={`btn ${classes.modalDelete}`}
+                      data-dismiss='modal'
+                      onClick={() => {
+                        deleteContributionPublish(contributionDelete.id);
+                      }}>
+                      Confirm
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
               <div className='card-body'>
                 <h4 className={classes.cardTitle}>{contribution.name}</h4>
                 <p className={classes.cardText}>{contribution.description}</p>
@@ -117,12 +164,12 @@ export default function CoordinatorLanding() {
               />
               <div className={classes.overlay}></div>
               <div className={classes.groupButton}>
-                <button className={`${classes.contributionBtn}`}>
+                <NavLink to={`/coordinator/contribution-detail/${contribution.id}`} className={`${classes.seeContribution}`}>
                   <div className='d-flex'>
                     <img className={classes.icon} src={eyeIcon} alt='123' />
                     <p className='mb-0'> See Contribution</p>
                   </div>
-                </button>
+                </NavLink>
                 <button
                   onClick={() => handleRedirectToComment(contribution)}
                   className={classes.contributionBtn}>
@@ -247,7 +294,7 @@ export default function CoordinatorLanding() {
                         <button
                           className={classes.publishButton}
                           onClick={() => {
-                            publishContribution(contribution.id, contribution);
+                            publishContribution(contributionUpdate.id, contribution);
                           }}
                           data-dismiss='modal'>
                           Publish
@@ -279,6 +326,9 @@ export default function CoordinatorLanding() {
   let deleteContribution = (id) => {
     dispatch(actionContribution.handleDeleteContribution(id));
   };
+  let deleteContributionPublish=(id)=>{
+    dispatch(actionContribution.handleDeleteContributionPublish(id));
+  }
   let handleChangeInput = (e) => {
     let { value, name } = e.target;
     let newsValue = { ...contributionUpdate };
@@ -293,6 +343,9 @@ export default function CoordinatorLanding() {
   let publishContribution = (id, contribution) => {
     dispatch(actionContribution.handlePublishContribution(id, contribution));
   };
+  let showMore=()=>{
+    setCurpage(curPage+1)
+  }
   return (
     <div className='container'>
       <div className={classes.waitingPublic}>
@@ -305,9 +358,12 @@ export default function CoordinatorLanding() {
         <h3>Published Contributions</h3>
         <div className={`container-fluid ${classes.publishContainer}`}>
           <div className={`row mx-0`}>{renderPublishContribution()}</div>
-          <div className='d-block text-center'>
-            <button>SHOW MORE</button>
-          </div>
+          {contributionPublishList?.length === totalContribution ? null :
+           <div className='d-block text-center'>
+           <button onClick={()=>showMore()}>SHOW MORE</button>
+         </div>
+          }
+            
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 /** @format */
 
-import { lazy } from 'react';
+
 import ContributionDetail from './Components/ContributionDetail/ContributionDetail';
 import UploadedTable from './Components/UploadedTable/UploadedTable';
 import Faculty from './pages/AdminDashboard/Faculty/Faculty';
@@ -75,6 +75,11 @@ export const coordinatorDashboardRoute = [
     path: '/coordinator/comment/:idContribution',
     exact: false,
     component: CoordinatorComment,
+  },
+  {
+    path:'/coordinator/contribution-detail/:id',
+    exact: false,
+    component: ContributionDetail,
   },
   {
     path: '/coordinator/changepassword',

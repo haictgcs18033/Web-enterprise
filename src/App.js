@@ -18,7 +18,7 @@ import { createBrowserHistory } from 'history';
 import { StudentDashboard } from './templates/StudentDashBoard/StudentDashboard';
 import { ManagerDashboard } from './templates/ManagerDashboard';
 import { CordinatorDashboard } from './templates/CoordinatorDashboard';
-import { Suspense } from 'react';
+
 
 export const history = createBrowserHistory();
 function App() {
