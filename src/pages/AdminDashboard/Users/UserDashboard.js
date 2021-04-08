@@ -105,9 +105,9 @@ export default function UserDashboard(props) {
     let schema = yup.object().shape({
         fullName: yup.string()
             .required('⚠ Full name is required')
-            // .strict(true)
-            // .trim('⚠ This field cannot contain spaces')
-            .matches(/^\S+(\s\S+)+$/, '⚠ This field cannot contain spaces'),
+            .strict(true)
+            .trim('⚠ This field cannot contain spaces')
+            .matches(/\b[^\d\W]+\b/, '⚠ This field cannot contain number'),
         email: yup.string()
             .strict(true)
             .trim('⚠ This field cannot contain spaces')
