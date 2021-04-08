@@ -32,6 +32,8 @@ export default function CoordinatorComment() {
     }
     let schema = yup.object().shape({
         comment: yup.string()
+            .strict(true)
+            .trim('⚠ This field cannot contain spaces')
             .max(255, '⚠ Comment must not exceed 255 characters')
     })
     const { register, errors } = useForm({

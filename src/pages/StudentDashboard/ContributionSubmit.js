@@ -11,7 +11,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 export default function ContributionSubmit() {
     const contribution = useSelector(state => state.contributionReducer.contribution)
     let [term, setTerm] = useState(false)
-    const history=useHistory()
+    const history = useHistory()
     const dispatch = useDispatch()
     let handleChangeInput = (e) => {
         let { value, name } = e.target
@@ -29,9 +29,14 @@ export default function ContributionSubmit() {
     }
     let schema = yup.object().shape({
         name: yup.string()
+            .strict(true)
+            .trim('⚠ This field cannot contain spaces')
             .required('⚠ Title is required'),
         description: yup.string()
-            .required('⚠ Description is required'),
+            .strict(true)
+            .trim('⚠ This field cannot contain spaces')
+            .required('⚠ Description is required')
+            .max(255, '⚠ Description must not exceed 255 characters'),
     })
 
     const { register, handleSubmit, errors } = useForm({
@@ -43,7 +48,7 @@ export default function ContributionSubmit() {
         // e.preventDefault();
         let formInput = contribution.values;
         if (term) {
-            dispatch(action.submitContribution(formInput,history));
+            dispatch(action.submitContribution(formInput, history));
         } else if (term === false) {
             alert('You need to agree term and privacy')
         }
