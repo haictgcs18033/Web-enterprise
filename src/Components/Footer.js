@@ -16,8 +16,13 @@ export default function Footer() {
                         <li className="contact-style"><p>Green.plus@gmail.com</p></li>
                     </ul>
                     <div className="social-media">
-                        <img className="social-media__item" src={fbLogo} width="28px" height="33px" alt="123" />
+                        <a href="https://www.facebook.com/le.congminh.564">
+                            <img className="social-media__item" src={fbLogo} width="28px" height="33px" alt="123" />
+                        </a>
+                        <a href="https://twitter.com/HaiCao28747776">
                         <img className="social-media__item" src={twitterLogo} width="28px" height="33px" alt="123" />
+                        </a>
+                        
                         <img className="social-media__item" src={insLogo} width="28px" height="33px" alt="123" />
                     </div>
                 </div>
