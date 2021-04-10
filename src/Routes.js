@@ -1,6 +1,7 @@
 /** @format */
 
 
+import ChatApplication from './Chat/ChatApplication';
 import ContributionDetail from './Components/ContributionDetail/ContributionDetail';
 import UploadedTable from './Components/UploadedTable/UploadedTable';
 import Faculty from './pages/AdminDashboard/Faculty/Faculty';
@@ -104,6 +105,11 @@ export const studentDashboardRoute = [
     component: CoordinatorComment,
   },
   {
+    path:'/student/chat-app',
+    exact:false,
+    component:ChatApplication
+  },
+  {
     path: '/student/contribution-submit',
     exact: false,
     component: ContributionSubmit,
@@ -146,6 +152,7 @@ export const client = [
     exact: true,
     component: HomePage,
   },
+
   {
     path: '/login',
     exact: false,
