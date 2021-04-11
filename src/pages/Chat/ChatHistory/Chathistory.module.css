@@ -1,0 +1,38 @@
+/** @format */
+.container {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    display: block;
+    position: relative;
+    max-height: 21.875rem;
+    overflow: hidden auto;
+  }
+
+  .chatHistory {
+    display: flex;
+    border-top: 1px solid #949494;
+    padding: 0.5rem;
+  }
+
+  .chatHistory:first-child {
+    border-top: none;
+  }
+
+  .avatar {
+    width: 2.8125rem;
+    height: 2.8125rem;
+    margin-right: 0.5rem;
+  }
+
+  .name {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .message {
+    font-size: 1.25rem;
+  }
+}

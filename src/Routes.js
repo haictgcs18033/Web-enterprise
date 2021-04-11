@@ -1,7 +1,6 @@
 /** @format */
 
-
-import ChatApplication from './Chat/ChatApplication';
+import ChatApplication from './pages/Chat';
 import ContributionDetail from './Components/ContributionDetail/ContributionDetail';
 import UploadedTable from './Components/UploadedTable/UploadedTable';
 import Faculty from './pages/AdminDashboard/Faculty/Faculty';
@@ -78,7 +77,12 @@ export const coordinatorDashboardRoute = [
     component: CoordinatorComment,
   },
   {
-    path:'/coordinator/contribution-detail/:id',
+    path: '/coordinator/chat',
+    exact: false,
+    component: ChatApplication,
+  },
+  {
+    path: '/coordinator/contribution-detail/:id',
     exact: false,
     component: ContributionDetail,
   },
@@ -105,9 +109,9 @@ export const studentDashboardRoute = [
     component: CoordinatorComment,
   },
   {
-    path:'/student/chat-app',
-    exact:false,
-    component:ChatApplication
+    path: '/student/chat',
+    exact: false,
+    component: ChatApplication,
   },
   {
     path: '/student/contribution-submit',
