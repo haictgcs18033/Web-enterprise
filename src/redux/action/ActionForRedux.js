@@ -77,7 +77,7 @@ export const loginHomePageAction = (student, props) => {
   };
 };
 
-export const fetchUsers = (limit, page, keyword, faculty) => {
+export const fetchUsers = (limit, page, keyword, role) => {
   return async (dispatch) => {
     dispatch({
       type: 'GET_USERS_REQUEST',
@@ -87,7 +87,7 @@ export const fetchUsers = (limit, page, keyword, faculty) => {
         `https://35.224.120.132/users?offset=${
           (page - 1) * limit
         }&limit=${limit}${keyword !== '' ? `&query=${keyword}` : ''}${
-          faculty !== '' ? `&role=${faculty}` : ''
+          role !== '' ? `&role=${role}` : ''
         }`,
         {
           headers: {

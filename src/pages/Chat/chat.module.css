@@ -1,0 +1,13 @@
+/** @format */
+
+.container {
+  max-width: 46.75rem;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .mainChat {
+    display: flex;
+  }
+}

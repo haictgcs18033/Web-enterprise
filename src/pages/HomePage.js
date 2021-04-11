@@ -40,7 +40,6 @@ export default function HomePage(props) {
   const nextPage = () => {
     setCurPage(curPage + 1);
   };
-  console.log(contributionPublishList);
   return (
     <div>
       <Background></Background>

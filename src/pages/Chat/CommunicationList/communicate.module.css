@@ -1,0 +1,47 @@
+/** @format */
+
+.container {
+  position: relative;
+  padding: 0 1.5rem;
+  width: 26.125rem;
+  height: 25.375rem;
+  overflow: hidden auto;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  width: 2.8125rem;
+  height: 2.8125rem;
+}
+
+.communication {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.communication:last-child {
+  margin-bottom: none;
+}
+
+.content {
+  margin-left: 0.5rem;
+}
+
+.author {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.message {
+  font-size: 1rem;
+  padding: 1rem 1.125rem;
+  border: 1px solid black;
+  border-radius: 0 0.75rem 0.75rem 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    border-left: 1px solid #949494;
+  }
+}
