@@ -8,6 +8,7 @@ import notifyIcon from '../../assets/img/notifyIcon.png';
 import classes from './StudentLanding.module.scss';
 import NewContributionList from '../../Components/NewContributionList/NewContributionList';
 import YourContributionList from '../../Components/YourContributionList/YourContributionList';
+import Background from '../../Components/Background';
 import * as action from '../../redux/action/ActionContribution';
 
 export default function StudentLanding() {
@@ -46,6 +47,7 @@ export default function StudentLanding() {
   }, [getPublishedContribution]);
   return (
     <div>
+      <Background />
       <div className='container'>
         <h2 className={classes.contributionTitle}>
           <span>
