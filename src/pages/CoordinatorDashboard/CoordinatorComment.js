@@ -31,11 +31,6 @@ export default function CoordinatorComment() {
         dispatch(action.handleSendComment(idContribution, interact))
     }
 
-    // onSubmit = async () => {
-    //     await sendComment();
-    //     setInteract({ comment: '' })
-    // }
-
     let schema = yup.object().shape({
         comment: yup.string()
             .max(255, '⚠ Comment must not exceed 255 characters')
@@ -48,9 +43,7 @@ export default function CoordinatorComment() {
 
     return (
         <div className={`container ${classes.commentContainer}`}>
-
             <div className={`${classes.boxComment}`}>
-
                 <label>Comment</label>
                 <textarea
                     className={`form-control`}
@@ -70,7 +63,6 @@ export default function CoordinatorComment() {
                     })}
                 ><img src={sendIcon} alt="123" />
                 </button>
-
             </div>
             <div className={`${classes.boxMessage}`}>
                 {contributionComment?.map((comment, index) => {
