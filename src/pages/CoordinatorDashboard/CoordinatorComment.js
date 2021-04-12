@@ -48,7 +48,7 @@ export default function CoordinatorComment() {
 
     })
 
-    const { register, handleSubmit, errors, formState } = useForm({
+    const { register, handleSubmit, errors } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -69,7 +69,7 @@ export default function CoordinatorComment() {
                 />
                 <p className='err-message'>{errors?.comment?.message}</p>
                 <button
-                    disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
+                    // disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                     onClick={handleSubmit(async () => {
                         await sendComment();
                         setInteract({ comment: '' })
