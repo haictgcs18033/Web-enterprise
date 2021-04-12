@@ -105,9 +105,10 @@ export default function UserDashboard(props) {
     let schema = yup.object().shape({
         fullName: yup.string()
             .required('⚠ Full name is required')
-            .strict(true)
-            .trim('⚠ This field cannot contain spaces')
-            .matches(/\b[^\d\W]+\b/, '⚠ This field cannot contain number'),
+            // .strict(true)
+            // .trim('⚠ This field cannot contain spaces')
+            .max(50, '⚠ Full name must not exceed 50 characters')
+            .matches(/^[a-zA-Z ]*$/, '⚠ This field allows entering string values'),
         email: yup.string()
             .strict(true)
             .trim('⚠ This field cannot contain spaces')
@@ -116,12 +117,11 @@ export default function UserDashboard(props) {
             .email('⚠ Enter a valid email'),
     })
 
+
     const { register, handleSubmit, errors } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
-
-    console.log((userObj['fullName']));
 
     const renderPages = () => {
         return pageNumber.map((pageNumber, index) => {
@@ -174,7 +174,8 @@ export default function UserDashboard(props) {
                                     tabIndex={-1}
                                     role='dialog'
                                     aria-labelledby='exampleModalLabel'
-                                    aria-hidden='true'>
+                                    aria-hidden='true'
+                                >
                                     <div
                                         className={`modal-dialog ${styles.dialogUpdate}`}
                                         role='document'>
@@ -195,11 +196,14 @@ export default function UserDashboard(props) {
                                                                 type='text'
                                                                 className='form-control'
                                                                 name='fullName'
-                                                                defaultValue={userObj.fullName}
+
+                                                                // defaultValue={userObj.fullName}
+                                                                value={userObj.fullName}
                                                                 onChange={handleChangeInput}
                                                             // ref={register}
                                                             />
-                                                            {/* <p className='err-message'>{errors.userObj['fullName']?.message}</p> */}
+                                                            {/* <p className='err-message'>{errors.fullName?.message}</p> */}
+                                                            {/* <p className='err-message'>{errors[userObj.fullName]?.message}</p> */}
                                                         </div>
                                                     </div>
                                                     <div className='col-6'>
@@ -209,11 +213,10 @@ export default function UserDashboard(props) {
                                                                 type='password'
                                                                 className='form-control'
                                                                 name='password'
-                                                                defaultValue={userObj.password}
+                                                                value={userObj.password}
                                                                 onChange={handleChangeInput}
                                                             // ref={register}
                                                             />
-                                                            {/* <p className='err-message'>{errors.password?.message}</p> */}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -425,6 +428,7 @@ export default function UserDashboard(props) {
                                     <button
                                         // onClick={onSubmit}
                                         // data-dismiss='modal'
+
                                         className='btn btn__create'>
                                         Create
                                     </button>

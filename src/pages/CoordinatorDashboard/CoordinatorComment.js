@@ -30,33 +30,53 @@ export default function CoordinatorComment() {
     let sendComment = () => {
         dispatch(action.handleSendComment(idContribution, interact))
     }
+
+    // onSubmit = async () => {
+    //     await sendComment();
+    //     setInteract({ comment: '' })
+    // }
+
+
+
     let schema = yup.object().shape({
+
         comment: yup.string()
-            .strict(true)
-            .trim('⚠ This field cannot contain spaces')
             .max(255, '⚠ Comment must not exceed 255 characters')
+            .test('trim', '⚠ This field is required',
+                (value) => (!!value.trim())
+            )
+
     })
-    const { register, errors } = useForm({
+
+    const { register, handleSubmit, errors, formState } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
+
     return (
         <div className={`container ${classes.commentContainer}`}>
 
             <div className={`${classes.boxComment}`}>
-                <form >
-                    <label>Comment</label>
-                    <textarea
-                        className={`form-control`}
-                        rows="10"
-                        name="comment"
-                        value={interact.comment}
-                        onChange={handleChange}
-                        ref={register}
-                    />
-                    <p className='err-message'>{errors.comment?.message}</p>
-                    <button onClick={async () => { await sendComment(); setInteract({ comment: '' }) }}><img src={sendIcon} alt="123" /></button>
-                </form>
+
+                <label>Comment</label>
+                <textarea
+                    className={`form-control`}
+                    rows="10"
+                    name="comment"
+                    defaultValue={interact.comment}
+                    onChange={handleChange}
+                    ref={register}
+                />
+                <p className='err-message'>{errors?.comment?.message}</p>
+                <button
+                    disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
+                    onClick={handleSubmit(async () => {
+                        await sendComment();
+                        setInteract({ comment: '' })
+                    })}
+                ><img src={sendIcon} alt="123" />
+                </button>
+
             </div>
             <div className={`${classes.boxMessage}`}>
                 {contributionComment?.map((comment, index) => {
@@ -69,6 +89,6 @@ export default function CoordinatorComment() {
                     </div>
                 })}
             </div>
-        </div>
+        </div >
     )
 }

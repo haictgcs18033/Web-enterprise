@@ -52,13 +52,12 @@ export default function Faculty() {
 
     let schema = yup.object().shape({
         name: yup.string()
-            // .strict(true)
-            // .trim('⚠ This field cannot contain spaces')
             .required('⚠ Faculty name is required')
-            .matches(/^\S+(\s\S+)+$/, '⚠ This field cannot contain spaces'),
+            .max(255, '⚠ Faculty name must not exceed 255 characters')
+            .matches(/^[a-zA-Z ]*$/, '⚠ This field allows entering string values'),
     })
 
-    const { register, handleSubmit, errors } = useForm({
+    const { register, handleSubmit, errors, formState } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -186,6 +185,7 @@ export default function Faculty() {
                                     <button
                                         type='submit'
                                         className='btn btn__create'
+                                        disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                                     >
                                         Create
                                     </button>

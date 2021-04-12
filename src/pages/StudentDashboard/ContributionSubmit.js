@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 import classes from './ContributionSubmit.module.scss'
-// import articleImage from '../../assets/img/image-8.png'
 import { useDispatch, useSelector } from 'react-redux'
 import * as action from '../../redux/action/ActionContribution'
 import { useForm } from 'react-hook-form';
@@ -31,7 +30,8 @@ export default function ContributionSubmit() {
         name: yup.string()
             .strict(true)
             .trim('⚠ This field cannot contain spaces')
-            .required('⚠ Title is required'),
+            .required('⚠ Title is required')
+            .max(255, '⚠ Title must not exceed 255 characters'),
         description: yup.string()
             .strict(true)
             .trim('⚠ This field cannot contain spaces')
@@ -94,16 +94,12 @@ export default function ContributionSubmit() {
                                 className="form-control-file"
                                 name="thumbnail"
                                 onChange={handleChangeInput}
-                                ref={register}
                             />
-                            {/* <p className='err-message'>{errors.thumbnail?.message}</p> */}
-                            {/* Upload Image */}
                         </label>
 
                     </div>
                     <div className={`${classes.articleImage}`}>
                         <h4 className={classes.articleTitle}>Article</h4>
-                        {/* <img src={articleImage} alt="123" /> */}
                         <input
                             type="file"
                             className="form-control-file"
@@ -111,8 +107,6 @@ export default function ContributionSubmit() {
                             onChange={handleChangeInput}
                             ref={register}
                         />
-                        {/* <p className='err-message'>{errors.files?.message}</p> */}
-
                     </div>
                     <div>
                         <h4>Term and privacy</h4>

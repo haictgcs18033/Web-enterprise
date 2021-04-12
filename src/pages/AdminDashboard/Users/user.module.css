@@ -325,3 +325,26 @@ margin-top: 30px;
   color: white;
   background : #be0e62;
 }
+
+.cancelButton{
+    border-radius: 6px;
+    border: 1px solid #32b260;
+    color: #32b260;
+    margin-right: 13px;
+    padding: 10px 15px;
+}
+
+.updateButton {
+    border-radius: 6px;
+    background: #217740;
+    color: white;
+    padding: 10px 15px;
+    transition: all 0.5s;
+}
+
+.updateButton:hover {
+    background: #32b260;
+}
+
+
+
