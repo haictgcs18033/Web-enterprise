@@ -36,19 +36,12 @@ export default function CoordinatorComment() {
     //     setInteract({ comment: '' })
     // }
 
-
-
     let schema = yup.object().shape({
-
         comment: yup.string()
             .max(255, '⚠ Comment must not exceed 255 characters')
-            .test('trim', '⚠ This field is required',
-                (value) => (!!value.trim())
-            )
-
     })
 
-    const { register, handleSubmit, errors } = useForm({
+    const { register, handleSubmit, errors, formState, setValue } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -69,10 +62,11 @@ export default function CoordinatorComment() {
                 />
                 <p className='err-message'>{errors?.comment?.message}</p>
                 <button
-                    // disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
+                    disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                     onClick={handleSubmit(async () => {
                         await sendComment();
-                        setInteract({ comment: '' })
+                        // setInteract({ comment: '' })
+                        setValue("comment", '')
                     })}
                 ><img src={sendIcon} alt="123" />
                 </button>

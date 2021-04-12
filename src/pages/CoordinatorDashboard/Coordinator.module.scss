@@ -233,6 +233,10 @@
             background: #09ec5d;
             cursor: pointer;
         }
+        &:disabled {
+            filter: brightness(0.8);
+            cursor: no-drop;
+        }
     }
 }
 .boxMessage {
