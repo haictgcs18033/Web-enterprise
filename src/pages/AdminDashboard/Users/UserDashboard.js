@@ -45,7 +45,9 @@ export default function UserDashboard(props) {
         [dispatch]
     );
 
-    const editUser = (id, user) => dispatch(action.UpdateUser(id, user));
+    const editUser = (id, user) => {
+        dispatch(action.UpdateUser(id, user));
+    }
 
     const users = useSelector((state) => state.webEnterpriseReducer.users);
 
@@ -91,7 +93,16 @@ export default function UserDashboard(props) {
         }
         dispatch(action.handleInput(newValues));
         setUserObj({ ...userObj, [name]: value });
+
     };
+
+    let handleSubmitUpdate = () => {
+        editUser(userObj.id, {
+            fullName: userObj.fullName,
+            password: userObj.password,
+            facultyId: parseInt(userObj.facultyId),
+        })
+    }
 
     let deleteUser = (id) => {
         dispatch(action.DeleteUser(id));
@@ -100,15 +111,17 @@ export default function UserDashboard(props) {
     const onSubmit = () => {
         let user = { ...createUser.values };
         dispatch(action.handleCreateUser(user));
+        reset({
+            fullName: "",
+            email: ""
+        })
     };
 
     let schema = yup.object().shape({
         fullName: yup.string()
             .required('⚠ Full name is required')
-            // .strict(true)
-            // .trim('⚠ This field cannot contain spaces')
             .max(50, '⚠ Full name must not exceed 50 characters')
-            .matches(/^[a-zA-Z ]*$/, '⚠ This field allows entering string values'),
+            .matches(/^[^-\s][a-zA-Z_\s-]+$/, '⚠ This field must not contain white space at the beginning and numbers'),
         email: yup.string()
             .strict(true)
             .trim('⚠ This field cannot contain spaces')
@@ -118,10 +131,12 @@ export default function UserDashboard(props) {
     })
 
 
-    const { register, handleSubmit, errors } = useForm({
+    const { register, handleSubmit, errors, reset } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
+
+    // console.log(error.fullName);
 
     const renderPages = () => {
         return pageNumber.map((pageNumber, index) => {
@@ -195,22 +210,11 @@ export default function UserDashboard(props) {
                                                             <input
                                                                 type='text'
                                                                 className='form-control'
-                                                                name='userObj.fullName'
-
-                                                                // defaultValue={userObj.fullName}
-                                                                defaultValue={userObj.fullName}
+                                                                name='fullName'
+                                                                value={userObj.fullName}
                                                                 onChange={handleChangeInput}
-                                                            // ref={register("userObj.fullName", {
-                                                            //     required: true,
-                                                            //     maxLength: 3,
-                                                            // })}
                                                             />
-                                                            {/* {errors[userObj.fullName] && errors[userObj.fullName].type === "required" && (
-                                                                <p className='err-message'>sai roi kia dmm</p>
-                                                            )}
-                                                            {errors[userObj.fullName] && errors[userObj.fullName].type === "maxLength" && (
-                                                                <p className='err-message'>oi doi oi</p>
-                                                            )} */}
+                                                            {/* {error.fullName && <p className='err-message'>{error.fullName}</p>} */}
 
                                                         </div>
                                                     </div>
@@ -223,7 +227,6 @@ export default function UserDashboard(props) {
                                                                 name='password'
                                                                 value={userObj.password}
                                                                 onChange={handleChangeInput}
-                                                            // ref={register}
                                                             />
                                                         </div>
                                                     </div>
@@ -260,16 +263,11 @@ export default function UserDashboard(props) {
                                                     Close
                                                 </button>
                                                 <button
-                                                    onClick={() =>
-                                                        editUser(userObj.id, {
-                                                            fullName: userObj.fullName,
-                                                            password: userObj.password,
-                                                            facultyId: parseInt(userObj.facultyId),
-                                                        })
-                                                    }
+                                                    onClick={handleSubmitUpdate}
                                                     type='button'
                                                     className={`btn btn__create`}
-                                                    data-dismiss='modal'>
+                                                // data-dismiss='modal'
+                                                >
                                                     Save changes
                                                 </button>
                                             </div>
@@ -363,7 +361,6 @@ export default function UserDashboard(props) {
                         role='dialog'
                         aria-labelledby='exampleModalLabel'
                         aria-hidden='true'
-                        onSubmit={handleSubmit(onSubmit)}
                     >
                         <div className='modal-dialog' role='document'>
                             <div className='modal-content'>
@@ -434,9 +431,8 @@ export default function UserDashboard(props) {
                                         Cancel
                                     </button>
                                     <button
-                                        // onClick={onSubmit}
+                                        onClick={handleSubmit(onSubmit)}
                                         // data-dismiss='modal'
-
                                         className='btn btn__create'>
                                         Create
                                     </button>

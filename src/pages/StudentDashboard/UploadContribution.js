@@ -203,13 +203,13 @@ export default function UploadContribution() {
                                             <div className='col-12 text-right px-0'>
                                                 <button
                                                     type='button'
-                                                    className={styles.cancelButton}
+                                                    className={styles.cancelBtnContribution}
                                                     data-dismiss='modal'>
                                                     Cancel
                                                 </button>
                                                 <button
                                                     type='button'
-                                                    className={styles.updateButton}
+                                                    className={styles.updateBtnContribution}
                                                     onClick={() => {
                                                         updateContribution(contributionUpdate.id);
                                                     }}

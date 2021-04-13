@@ -54,10 +54,10 @@ export default function Faculty() {
         name: yup.string()
             .required('⚠ Faculty name is required')
             .max(255, '⚠ Faculty name must not exceed 255 characters')
-            .matches(/^[a-zA-Z ]*$/, '⚠ This field allows entering string values'),
+            .matches(/^[^-\s][a-zA-Z_\s-]+$/, '⚠ Faculty name must not contain white space at the beginning and numbers'),
     })
 
-    const { register, handleSubmit, errors, formState } = useForm({
+    const { register, handleSubmit, errors, formState, reset } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -112,6 +112,7 @@ export default function Faculty() {
     let handleCreateFaculty = (e) => {
         let faculty = { ...createFaculty.values }
         dispatch(action.createFacultyAdmin(faculty))
+        reset({ name: "" })
     }
     closureDateAdmin.firstClosureDate = closureDate.toISOString()
     closureDateAdmin.secondClosureDate = finalClosure.toISOString()
@@ -231,10 +232,6 @@ export default function Faculty() {
                                                     onChange={(date) => setFinalClosure(date)}
                                                 />
                                                 <i class='fa fa-calendar'></i>
-
-                                                <p className='err-message'>
-                                                    {/* {errors.fullName?.message} */}
-                                                </p>
                                             </div>
                                         </div>
                                     </div>

@@ -326,23 +326,30 @@ margin-top: 30px;
   background : #be0e62;
 }
 
-.cancelButton{
+.cancelBtnContribution{
     border-radius: 6px;
     border: 1px solid #32b260;
     color: #32b260;
     margin-right: 13px;
     padding: 10px 15px;
+    transition: all 0.4s;
+    background-color: #ffffff;
+}
+.cancelBtnContribution:hover{
+    color: #217740;
+    border: 1px solid #217740;
+    background-color: #e9e7e7;
 }
 
-.updateButton {
+.updateBtnContribution {
     border-radius: 6px;
     background: #217740;
     color: white;
     padding: 10px 15px;
-    transition: all 0.5s;
+    transition: all 0.4s;
 }
 
-.updateButton:hover {
+.updateBtnContribution:hover {
     background: #32b260;
 }
 

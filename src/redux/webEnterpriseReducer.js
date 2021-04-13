@@ -51,7 +51,7 @@ const stateDefault = {
             name: ''
         }
     },
-   
+
     load: false,
 };
 export const webEnterpriseReducer = (state = stateDefault, action) => {
@@ -126,6 +126,9 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
         case 'GET_FACULTY_ID': {
             return { ...state, facultySetting: action.faculty, load: false };
         }
+        case 'FACULTY_ERROR': {
+            return { ...state, load: false }
+        }
         case 'CLOSURE_DATE': {
             return { ...state, closureDateAdmin: action.closureDate, load: false }
         }
@@ -147,7 +150,7 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
             state.faculties = facultyDelete
             return { ...state }
         }
-     
+
         default: {
             return { ...state };
         }
