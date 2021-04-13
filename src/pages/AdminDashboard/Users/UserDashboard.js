@@ -195,15 +195,23 @@ export default function UserDashboard(props) {
                                                             <input
                                                                 type='text'
                                                                 className='form-control'
-                                                                name='fullName'
+                                                                name='userObj.fullName'
 
                                                                 // defaultValue={userObj.fullName}
-                                                                value={userObj.fullName}
+                                                                defaultValue={userObj.fullName}
                                                                 onChange={handleChangeInput}
-                                                            // ref={register}
+                                                            // ref={register("userObj.fullName", {
+                                                            //     required: true,
+                                                            //     maxLength: 3,
+                                                            // })}
                                                             />
-                                                            {/* <p className='err-message'>{errors.fullName?.message}</p> */}
-                                                            {/* <p className='err-message'>{errors[userObj.fullName]?.message}</p> */}
+                                                            {/* {errors[userObj.fullName] && errors[userObj.fullName].type === "required" && (
+                                                                <p className='err-message'>sai roi kia dmm</p>
+                                                            )}
+                                                            {errors[userObj.fullName] && errors[userObj.fullName].type === "maxLength" && (
+                                                                <p className='err-message'>oi doi oi</p>
+                                                            )} */}
+
                                                         </div>
                                                     </div>
                                                     <div className='col-6'>

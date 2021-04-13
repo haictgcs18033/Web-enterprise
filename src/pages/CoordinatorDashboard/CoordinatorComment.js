@@ -34,10 +34,12 @@ export default function CoordinatorComment() {
     let schema = yup.object().shape({
         comment: yup.string()
             .max(255, '⚠ Comment must not exceed 255 characters')
+            .strict(true)
+            .trim('⚠ This field cannot contain spaces')
     })
 
     const { register, handleSubmit, errors, formState, reset } = useForm({
-        mode: 'onChange',
+        mode: 'onSubmit',
         resolver: yupResolver(schema),
     });
 
@@ -59,7 +61,6 @@ export default function CoordinatorComment() {
                     onClick={handleSubmit(async () => {
                         await sendComment();
                         // setInteract({ comment: '' })
-                        // setValue("comment", '')
                         reset({ comment: "" })
                     })}
                 ><img src={sendIcon} alt="123" />
