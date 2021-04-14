@@ -18,16 +18,19 @@ export default function ResetToken(props) {
         let { value, name } = e.target
         setUserReset({ ...userReset, [name]: value })
     }
- 
+
     let onSubmit = (data) => {
-      
-        dispatch(handleResetPassword(userReset))
+        dispatch(handleResetPassword(userReset));
+        reset({
+            newPassword: "",
+            confirmPassword: ""
+        })
     }
 
     let validationSchema = yup.object().shape({
         newPassword: yup.string()
-            // .max(8, '⚠ Password must not be longer than 8 characters')
             .required('⚠ Password is required')
+            .max(255, '⚠ New password is too long')
             .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/, '⚠ Password must have at least 8 characters, 1 uppercase character, 1 number'),
         confirmPassword: yup.string()
             .oneOf([yup.ref('newPassword'), null], '⚠ Password must match')
@@ -42,7 +45,7 @@ export default function ResetToken(props) {
     return (
         <div className="container my-5" >
             <div className="change-password-container">
-                <form className="change-password text-left" onSubmit={handleSubmit(onSubmit)} onReset={reset}>
+                <form className="change-password text-left" onSubmit={handleSubmit(onSubmit)}>
                     <h3>Change Password</h3>
                     <div className="" >
                         <div className="form-group">
@@ -69,7 +72,12 @@ export default function ResetToken(props) {
                             <p className='err-message'>{errors.confirmPassword?.message}</p>
                         </div>
                         <div className="form-group">
-                            <button type="submit" className="btn btn-success">Confirm</button>
+                            <button
+                                type="submit"
+                                className="btn btn-success"
+                            >
+                                Confirm
+                            </button>
                         </div>
                     </div>
 

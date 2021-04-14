@@ -869,6 +869,10 @@ h3 {
     font-style: normal;
     font-size: 14px;
     color: #ffffff;
+    &:disabled {
+        filter: brightness(0.7);
+        cursor: no-drop;
+    }
 }
 @media screen and (max-width: 1024px) {
     .w-100 {
