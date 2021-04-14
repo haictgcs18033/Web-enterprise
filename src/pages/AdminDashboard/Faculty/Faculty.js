@@ -52,13 +52,14 @@ export default function Faculty() {
 
     let schema = yup.object().shape({
         name: yup.string()
-            // .strict(true)
-            // .trim('⚠ This field cannot contain spaces')
             .required('⚠ Faculty name is required')
-            .matches(/^\S+(\s\S+)+$/, '⚠ This field cannot contain spaces'),
+            .max(255, '⚠ Faculty name must not exceed 255 characters')
+            .strict(true)
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
+            .matches(/^[a-zA-Z ]*$/, 'Faculty name must not contain number or special characters'),
     })
 
-    const { register, handleSubmit, errors } = useForm({
+    const { register, handleSubmit, errors, formState, reset } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -113,6 +114,7 @@ export default function Faculty() {
     let handleCreateFaculty = (e) => {
         let faculty = { ...createFaculty.values }
         dispatch(action.createFacultyAdmin(faculty))
+        reset({ name: "" })
     }
     closureDateAdmin.firstClosureDate = closureDate.toISOString()
     closureDateAdmin.secondClosureDate = finalClosure.toISOString()
@@ -186,6 +188,7 @@ export default function Faculty() {
                                     <button
                                         type='submit'
                                         className='btn btn__create'
+                                        disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                                     >
                                         Create
                                     </button>
@@ -231,10 +234,6 @@ export default function Faculty() {
                                                     onChange={(date) => setFinalClosure(date)}
                                                 />
                                                 <i class='fa fa-calendar'></i>
-
-                                                <p className='err-message'>
-                                                    {/* {errors.fullName?.message} */}
-                                                </p>
                                             </div>
                                         </div>
                                     </div>

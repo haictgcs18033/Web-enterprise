@@ -92,9 +92,6 @@ export default function FacultySetting(props) {
                                                     value={facultyUpdate.name}
                                                     onChange={handleChangeName}
                                                 />
-                                                {/* <p className='err-message'>
-                                                    {errors.fullName?.message}
-                                                </p> */}
                                             </div>
                                         </div>
                                     </div>

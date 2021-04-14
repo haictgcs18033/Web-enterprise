@@ -16,6 +16,8 @@ export default function ChatIcon() {
         return '/student/chat';
       case 'MARKETING_CORDINATOR':
         return '/coordinator/chat';
+      default:
+        return '/';
     }
   };
 

@@ -45,7 +45,9 @@ export default function UserDashboard(props) {
         [dispatch]
     );
 
-    const editUser = (id, user) => dispatch(action.UpdateUser(id, user));
+    const editUser = (id, user) => {
+        dispatch(action.UpdateUser(id, user));
+    }
 
     const users = useSelector((state) => state.webEnterpriseReducer.users);
 
@@ -91,7 +93,16 @@ export default function UserDashboard(props) {
         }
         dispatch(action.handleInput(newValues));
         setUserObj({ ...userObj, [name]: value });
+
     };
+
+    let handleSubmitUpdate = () => {
+        editUser(userObj.id, {
+            fullName: userObj.fullName,
+            password: userObj.password,
+            facultyId: parseInt(userObj.facultyId),
+        })
+    }
 
     let deleteUser = (id) => {
         dispatch(action.DeleteUser(id));
@@ -100,28 +111,34 @@ export default function UserDashboard(props) {
     const onSubmit = () => {
         let user = { ...createUser.values };
         dispatch(action.handleCreateUser(user));
+        reset({
+            fullName: "",
+            email: ""
+        })
     };
 
     let schema = yup.object().shape({
         fullName: yup.string()
             .required('⚠ Full name is required')
+            .max(50, '⚠ Full name must not exceed 50 characters')
             .strict(true)
-            .trim('⚠ This field cannot contain spaces')
-            .matches(/\b[^\d\W]+\b/, '⚠ This field cannot contain number'),
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
+            .matches(/^[a-zA-Z ]*$/, 'Faculty name must not contain number or special characters'),
         email: yup.string()
             .strict(true)
-            .trim('⚠ This field cannot contain spaces')
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
             .max(64, '⚠ Email is too long')
             .required('⚠ Description is required')
             .email('⚠ Enter a valid email'),
     })
 
-    const { register, handleSubmit, errors } = useForm({
+
+    const { register, handleSubmit, errors, reset, formState } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
 
-    console.log((userObj['fullName']));
+    // console.log(error.fullName);
 
     const renderPages = () => {
         return pageNumber.map((pageNumber, index) => {
@@ -174,7 +191,8 @@ export default function UserDashboard(props) {
                                     tabIndex={-1}
                                     role='dialog'
                                     aria-labelledby='exampleModalLabel'
-                                    aria-hidden='true'>
+                                    aria-hidden='true'
+                                >
                                     <div
                                         className={`modal-dialog ${styles.dialogUpdate}`}
                                         role='document'>
@@ -195,11 +213,9 @@ export default function UserDashboard(props) {
                                                                 type='text'
                                                                 className='form-control'
                                                                 name='fullName'
-                                                                defaultValue={userObj.fullName}
+                                                                value={userObj.fullName}
                                                                 onChange={handleChangeInput}
-                                                            // ref={register}
                                                             />
-                                                            {/* <p className='err-message'>{errors.userObj['fullName']?.message}</p> */}
                                                         </div>
                                                     </div>
                                                     <div className='col-6'>
@@ -209,11 +225,9 @@ export default function UserDashboard(props) {
                                                                 type='password'
                                                                 className='form-control'
                                                                 name='password'
-                                                                defaultValue={userObj.password}
+                                                                value={userObj.password}
                                                                 onChange={handleChangeInput}
-                                                            // ref={register}
                                                             />
-                                                            {/* <p className='err-message'>{errors.password?.message}</p> */}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -249,16 +263,11 @@ export default function UserDashboard(props) {
                                                     Close
                                                 </button>
                                                 <button
-                                                    onClick={() =>
-                                                        editUser(userObj.id, {
-                                                            fullName: userObj.fullName,
-                                                            password: userObj.password,
-                                                            facultyId: parseInt(userObj.facultyId),
-                                                        })
-                                                    }
+                                                    onClick={handleSubmitUpdate}
                                                     type='button'
                                                     className={`btn btn__create`}
-                                                    data-dismiss='modal'>
+                                                // data-dismiss='modal'
+                                                >
                                                     Save changes
                                                 </button>
                                             </div>
@@ -352,7 +361,6 @@ export default function UserDashboard(props) {
                         role='dialog'
                         aria-labelledby='exampleModalLabel'
                         aria-hidden='true'
-                        onSubmit={handleSubmit(onSubmit)}
                     >
                         <div className='modal-dialog' role='document'>
                             <div className='modal-content'>
@@ -423,8 +431,9 @@ export default function UserDashboard(props) {
                                         Cancel
                                     </button>
                                     <button
-                                        // onClick={onSubmit}
+                                        onClick={handleSubmit(onSubmit)}
                                         // data-dismiss='modal'
+                                        disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                                         className='btn btn__create'>
                                         Create
                                     </button>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 import classes from './ContributionSubmit.module.scss'
-// import articleImage from '../../assets/img/image-8.png'
 import { useDispatch, useSelector } from 'react-redux'
 import * as action from '../../redux/action/ActionContribution'
 import { useForm } from 'react-hook-form';
@@ -30,16 +29,17 @@ export default function ContributionSubmit() {
     let schema = yup.object().shape({
         name: yup.string()
             .strict(true)
-            .trim('⚠ This field cannot contain spaces')
-            .required('⚠ Title is required'),
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
+            .required('⚠ Title is required')
+            .max(255, '⚠ Title must not exceed 255 characters'),
         description: yup.string()
             .strict(true)
-            .trim('⚠ This field cannot contain spaces')
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
             .required('⚠ Description is required')
             .max(255, '⚠ Description must not exceed 255 characters'),
     })
 
-    const { register, handleSubmit, errors } = useForm({
+    const { register, handleSubmit, errors, formState } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -94,16 +94,12 @@ export default function ContributionSubmit() {
                                 className="form-control-file"
                                 name="thumbnail"
                                 onChange={handleChangeInput}
-                                ref={register}
                             />
-                            {/* <p className='err-message'>{errors.thumbnail?.message}</p> */}
-                            {/* Upload Image */}
                         </label>
 
                     </div>
                     <div className={`${classes.articleImage}`}>
                         <h4 className={classes.articleTitle}>Article</h4>
-                        {/* <img src={articleImage} alt="123" /> */}
                         <input
                             type="file"
                             className="form-control-file"
@@ -111,8 +107,6 @@ export default function ContributionSubmit() {
                             onChange={handleChangeInput}
                             ref={register}
                         />
-                        {/* <p className='err-message'>{errors.files?.message}</p> */}
-
                     </div>
                     <div>
                         <h4>Term and privacy</h4>
@@ -127,7 +121,12 @@ export default function ContributionSubmit() {
                         </label><br />
                     </div>
                     <div className="d-block text-center">
-                        <button className={classes.submitBtn}>Submit</button>
+                        <button
+                            className={classes.submitBtn}
+                            disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
+                        >
+                            Submit
+                        </button>
                     </div>
                 </form>
             </div>
