@@ -10,4 +10,7 @@
   .mainChat {
     display: flex;
   }
+  .communicationArea {
+    margin-left: 1.25rem;
+  }
 }

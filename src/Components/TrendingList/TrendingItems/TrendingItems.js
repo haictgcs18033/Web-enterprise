@@ -16,6 +16,7 @@ export default function TrendingItems(props) {
       let date = new Date(trend.createAt).toLocaleDateString('en-US', options);
       return (
         <div
+          key={index}
           onClick={() => history.push(`/contribution-detail/${trend.id}`)}
           className={classes.trendContribute}>
           <div className={classes.trendIntro}>
