@@ -121,17 +121,19 @@ export default function UserDashboard(props) {
         fullName: yup.string()
             .required('⚠ Full name is required')
             .max(50, '⚠ Full name must not exceed 50 characters')
-            .matches(/^[^-\s][a-zA-Z_\s-]+$/, '⚠ This field must not contain white space at the beginning and numbers'),
+            .strict(true)
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
+            .matches(/^[a-zA-Z ]*$/, 'Faculty name must not contain number or special characters'),
         email: yup.string()
             .strict(true)
-            .trim('⚠ This field cannot contain spaces')
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
             .max(64, '⚠ Email is too long')
             .required('⚠ Description is required')
             .email('⚠ Enter a valid email'),
     })
 
 
-    const { register, handleSubmit, errors, reset } = useForm({
+    const { register, handleSubmit, errors, reset, formState } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -214,8 +216,6 @@ export default function UserDashboard(props) {
                                                                 value={userObj.fullName}
                                                                 onChange={handleChangeInput}
                                                             />
-                                                            {/* {error.fullName && <p className='err-message'>{error.fullName}</p>} */}
-
                                                         </div>
                                                     </div>
                                                     <div className='col-6'>
@@ -433,6 +433,7 @@ export default function UserDashboard(props) {
                                     <button
                                         onClick={handleSubmit(onSubmit)}
                                         // data-dismiss='modal'
+                                        disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                                         className='btn btn__create'>
                                         Create
                                     </button>

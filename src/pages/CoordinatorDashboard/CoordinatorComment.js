@@ -33,8 +33,10 @@ export default function CoordinatorComment() {
 
     let schema = yup.object().shape({
         comment: yup.string()
+            .required('⚠ Comment is required')
             .max(255, '⚠ Comment must not exceed 255 characters')
-            .matches(/^[^-\s][a-zA-Z0-9_\s-]+$/, '⚠ This field must not contain white space at the beginning')
+            .strict(true)
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
     })
 
     const { register, handleSubmit, errors, formState, reset } = useForm({

@@ -54,7 +54,9 @@ export default function Faculty() {
         name: yup.string()
             .required('⚠ Faculty name is required')
             .max(255, '⚠ Faculty name must not exceed 255 characters')
-            .matches(/^[^-\s][a-zA-Z_\s-]+$/, '⚠ Faculty name must not contain white space at the beginning and numbers'),
+            .strict(true)
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
+            .matches(/^[a-zA-Z ]*$/, 'Faculty name must not contain number or special characters'),
     })
 
     const { register, handleSubmit, errors, formState, reset } = useForm({
