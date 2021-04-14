@@ -333,7 +333,6 @@ export default function CoordinatorLanding() {
                                                         );
                                                     }}
                                                     data-dismiss='modal'
-                                                    disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                                                 >
                                                     Publish
                                                 </button>

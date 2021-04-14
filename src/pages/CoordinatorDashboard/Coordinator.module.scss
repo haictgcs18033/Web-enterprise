@@ -159,10 +159,6 @@
     .publishButton {
         border: 1px solid #be0e62;
         color: #be0e62;
-        &:disabled {
-            filter: brightness(0.7);
-            cursor: no-drop;
-        }
     }
     .cancelButton {
         border: 1px solid #32b260;
