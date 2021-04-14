@@ -2,8 +2,9 @@
 
 import { Redirect, Route } from 'react-router-dom';
 import swal from 'sweetalert';
-import Footer from '../../Components/Footer';
-import Header from '../../Components/Header';
+import ChatIcon from '../Components/ChatIcon';
+import Footer from '../Components/Footer';
+import Header from '../Components/Header';
 
 export const StudentDashboard = ({ Component, component, ...props }) => {
   if (localStorage.getItem('USER_LOGIN')) {
@@ -18,6 +19,7 @@ export const StudentDashboard = ({ Component, component, ...props }) => {
                 <Header />
                 <Component></Component>
                 <Footer></Footer>
+                <ChatIcon />
               </>
             );
           }}></Route>

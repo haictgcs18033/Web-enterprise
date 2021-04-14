@@ -20,7 +20,7 @@ export default function UserList({ receiver, users, chooseReceiver }) {
       return users.map((user) => {
         return (
           <div
-            onClick={() => chooseReceiver(user.id)}
+            onClick={() => chooseReceiver(user)}
             key={user.id}
             className={clsx(styles.user, receiver === user.id && styles.focus)}>
             <img className={styles.avatar} src={User} alt='User' />
