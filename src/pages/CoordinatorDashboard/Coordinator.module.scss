@@ -143,6 +143,7 @@
         background: white;
         border: 1px solid black;
     }
+
     .cancelButton,
     .updateButton,
     .publishButton {
@@ -158,6 +159,10 @@
     .publishButton {
         border: 1px solid #be0e62;
         color: #be0e62;
+        &:disabled {
+            filter: brightness(0.7);
+            cursor: no-drop;
+        }
     }
     .cancelButton {
         border: 1px solid #32b260;
@@ -167,6 +172,10 @@
     .updateButton {
         background: #32b260;
         color: white;
+        &:disabled {
+            filter: brightness(0.7);
+            cursor: no-drop;
+        }
     }
 }
 @media screen and (min-width: 768px) and (max-width: 992px) {
