@@ -14,13 +14,10 @@ import {
 } from './Routes';
 import { AdminTemplate } from './templates/AdminTemplate';
 import { AdminDashboard } from './templates/AdminDashboard';
-import { createBrowserHistory } from 'history';
-import { StudentDashboard } from './templates/StudentDashBoard/StudentDashboard';
+import { StudentDashboard } from './templates/StudentDashboard';
 import { ManagerDashboard } from './templates/ManagerDashboard';
 import { CordinatorDashboard } from './templates/CoordinatorDashboard';
 
-
-export const history = createBrowserHistory();
 function App() {
   const clientRoute = (routes) => {
     if (routes.length > 0) {
@@ -87,7 +84,7 @@ function App() {
   };
   return (
     <>
-      <BrowserRouter history={history}>
+      <BrowserRouter>
         <Switch>
           {adminRoute(admin)}
           {adminDashboard(adminDashboardRoute)}

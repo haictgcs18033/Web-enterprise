@@ -5,8 +5,10 @@ import PerfectScrollbar from 'perfect-scrollbar';
 
 import styles from './communicate.module.css';
 
-export default function CommunicationList({ communications }) {
+export default function CommunicationList({ communications, receiver }) {
   const wrapperRef = useRef();
+
+  const name = JSON.parse(localStorage.getItem('USER_LOGIN')).user.fullName;
 
   useEffect(() => {
     const ps = new PerfectScrollbar(wrapperRef.current);
@@ -15,23 +17,33 @@ export default function CommunicationList({ communications }) {
 
   const renderCommunications = () => {
     if (communications) {
+      // eslint-disable-next-line
       return communications.map((communication) => {
-        return (
-          <div key={communication.id} className={styles.communication}>
-            <img className={styles.avatar} src={Avatar} alt='Avatar' />
-            <div className={styles.content}>
-              <div className={styles.author}>Coordinator</div>
-              <div className={styles.message}>{communication.message}</div>
+        if (receiver.id === communication.senderId) {
+          return (
+            <div key={communication.id} className={styles.communication}>
+              <img className={styles.avatar} src={Avatar} alt='Avatar' />
+              <div className={styles.content}>
+                <div className={styles.author}>
+                  {communication.senderName === name
+                    ? 'You'
+                    : communication.senderName}
+                </div>
+                <div className={styles.message}>{communication.message}</div>
+              </div>
             </div>
-          </div>
-        );
+          );
+        }
       });
     }
   };
 
   return (
-    <div ref={wrapperRef} className={styles.container}>
-      {renderCommunications()}
+    <div className={styles.wrapper}>
+      <div className={styles.header}>{receiver && receiver.fullName}</div>
+      <div ref={wrapperRef} className={styles.container}>
+        {renderCommunications()}
+      </div>
     </div>
   );
 }

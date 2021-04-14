@@ -2,6 +2,7 @@
 
 import { Redirect, Route } from 'react-router';
 import swal from 'sweetalert';
+import ChatIcon from '../Components/ChatIcon';
 
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
@@ -18,6 +19,7 @@ export const CordinatorDashboard = ({ Component, component, ...props }) => {
                 <Header />
                 <Component></Component>
                 <Footer></Footer>
+                <ChatIcon />
               </>
             );
           }}></Route>
