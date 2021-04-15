@@ -19,15 +19,13 @@ export default function CommunicationList({ communications, receiver }) {
     if (communications) {
       // eslint-disable-next-line
       return communications.map((communication) => {
-        if (receiver.id === communication.senderId) {
+        if (receiver && receiver.id === communication.senderId) {
           return (
             <div key={communication.id} className={styles.communication}>
               <img className={styles.avatar} src={Avatar} alt='Avatar' />
               <div className={styles.content}>
                 <div className={styles.author}>
-                  {communication.senderName === name
-                    ? 'You'
-                    : communication.senderName}
+                  {name === communication.senderName?"You":communication.senderName}
                 </div>
                 <div className={styles.message}>{communication.message}</div>
               </div>

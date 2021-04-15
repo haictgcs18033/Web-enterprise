@@ -24,6 +24,8 @@ export default function ChatApplication() {
 
   const [receiver, setReceiver] = useState();
 
+  const [senderName,setSenderName] = useState("")
+
   const [message, setMessage] = useState('');
 
   const socket = socketCLient(server, {
@@ -68,10 +70,12 @@ export default function ChatApplication() {
   useEffect(() => {
     getChathistory();
   }, [getChathistory]);
+  
 
   useEffect(() => {
     socket.on('server_message', (data) => {
       setMessages((prevData) => [...prevData, data]);
+      setSenderName(data.senderName)
     });
     return () => socket.disconnect();
     // eslint-disable-next-line
@@ -88,35 +92,34 @@ export default function ChatApplication() {
     });
     setMessage('');
   };
-
+  
   const handleTyping = (e) => {
     const { value } = e.target;
     setMessage(value);
+    setSenderName("")
   };
 
   const addNewConversation = () => {
-    const data = {
-      id: receiver.id,
-      message,
-      receiverName: receiver.fullName,
-    };
-    dispatch({
-      type: 'ADD_NEW_CHAT_HISTORY',
-      payload: data,
-    });
-    setMessages((prevData) => [
-      ...prevData,
-      {
-        id: Math.floor(Math.random() * (999 - 100 + 1) + 100),
+      const newData = {
+        id: receiver.id,
         message,
-        senderId: receiver.id,
-        senderName: JSON.parse(localStorage.getItem('USER_LOGIN')).user
-          .fullName,
-      },
-    ]);
+        receiverName: receiver.fullName,
+      };
+      dispatch({
+        type: 'ADD_NEW_CHAT_HISTORY',
+        payload: newData,
+      });
+      setMessages((prevData) => [
+        ...prevData,
+        {
+          id: Math.floor(Math.random() * (999 - 100 + 1) + 100),
+          message,
+          senderId: receiver.id,
+          senderName:senderName!== ""? senderName: JSON.parse(localStorage.getItem('USER_LOGIN')).user
+            .fullName,
+        },
+      ]);
   };
-
-  console.log(messages);
 
   return (
     <div className={styles.container}>
