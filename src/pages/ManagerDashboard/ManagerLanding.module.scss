@@ -46,10 +46,59 @@
     margin-top: 30px;
 }
 
+.gridStatistics {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12.5rem, 14.4rem));
+    row-gap: 26px;
+    column-gap: 26px;
+    // @media screen and (max-width: 1280px) {
+    //     grid-template-columns: repeat(auto-fill, minmax(200px, 230px));
+    // }
+}
+
+.gridStatisticsContainer {
+    width: 1110px;
+    margin: 0 auto;
+    @media screen and (min-width: 1281px) {
+        width: 1000px;
+    }
+    @media screen and (max-width: 1280px) {
+        width: 100%;
+    }
+    @media screen and (max-width: 1024px) {
+        width: 486.8px;
+    }
+    @media screen and (max-width: 768px) {
+        width: 486.8px;
+    }
+    @media screen and (max-width: 656px) {
+        width: 230.4px;
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .grid {
         display: block;
     }
+}
+
+.box {
+    padding: 1.3rem 0;
+    text-align: center;
+    border-radius: 6px;
+    color: #ffffff;
+}
+.blueBox {
+    background-color: rgb(37, 156, 192);
+}
+.purpleBox {
+    background-color: rgb(123, 92, 173);
+}
+.greenBox {
+    background-color: rgb(74, 197, 84);
+}
+.yellowBox {
+    background-color: rgb(214, 125, 61);
 }
 
 .facultyBtn {
