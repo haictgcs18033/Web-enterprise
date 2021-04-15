@@ -1,7 +1,7 @@
 /** @format */
 
 .wrapper {
-  width: 26.125rem;
+  min-width: 20rem;
   margin: 0 auto;
   border-left: 1px solid #32b260;
   border-right: 1px solid #32b260;
@@ -49,4 +49,10 @@
   padding: 1rem 1.125rem;
   border: 1px solid black;
   border-radius: 0 0.75rem 0.75rem 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    min-width: 24rem;
+  }
 }
