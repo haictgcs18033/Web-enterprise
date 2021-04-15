@@ -48,10 +48,9 @@ export default function FacultyContribution() {
     });
   };
   const handleAddDownloadItem = (contribution) => {
-    const contributionIndex = connectApi.contributionIds.findIndex(
-      (contributionId) => contributionId === contribution.id
-    );
-    if (contributionIndex === -1) {
+    let contributionIndex = [...contributionDownload.downloadItem]
+    let index = contributionIndex.findIndex(contribute => contribute.id === contribution.id)
+    if (index === -1) {
       setContributionDownload({
         downloadItem: [...contributionDownload.downloadItem, contribution],
       });
@@ -60,7 +59,7 @@ export default function FacultyContribution() {
       });
     }
   };
-
+  console.log(contributionDownload.downloadItem);
   let download = (contribution) => {
     dispatch(actionContribution.handleDownloadContribution(contribution));
   };
@@ -109,8 +108,8 @@ export default function FacultyContribution() {
 
         <div
           className={`${contributionDownload.downloadItem.length !== 0
-              ? `${classes.selectedItem}`
-              : `${classes.selectedItemHide}`
+            ? `${classes.selectedItem}`
+            : `${classes.selectedItemHide}`
             }`}>
           <p>{contributionDownload.downloadItem.length} items</p>
           <div className={`${classes.groupButton}`}>
@@ -128,8 +127,8 @@ export default function FacultyContribution() {
           </div>
           <div
             className={`${rotate
-                ? `${classes.dropdownContainer}`
-                : `${classes.dropdownContainerHide}`
+              ? `${classes.dropdownContainer}`
+              : `${classes.dropdownContainerHide}`
               }`}>
             <h4>Drowdown Items</h4>
             <div className={`${classes.dropdownItemContainer}`}>
