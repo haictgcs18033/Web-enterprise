@@ -26,10 +26,10 @@ export default function ManagerLanding() {
   useEffect(() => {
     getFacultyList();
   }, [getFacultyList]);
-  console.log(faculties);
+
   return (
     <div className='container'>
-      <h2 className={classes.facultyListTitle}>Faculty list</h2>
+      <h2 className={classes.facultyListTitle}>Faculty list ({`${faculties.length}`})</h2>
       <div className={classes.gridContainer}>
         <div className={classes.grid}>
           {faculties.map((faculty, index) => {
