@@ -16,26 +16,32 @@ import ChatHistory from './ChatHistory';
 const server = 'https://35.224.120.132';
 
 export default function ChatApplication() {
-  const studentToken = localStorage.getItem('ACCESS_TOKEN');
+  const token = localStorage.getItem('ACCESS_TOKEN');
 
   const dispatch = useDispatch();
 
   const [messages, setMessages] = useState([]);
 
-  const [receiverId, setReceiverId] = useState(155);
+  const [receiver, setReceiver] = useState();
+
+  const [senderName,setSenderName] = useState("")
 
   const [message, setMessage] = useState('');
 
   const socket = socketCLient(server, {
     transports: ['polling', 'websocket'],
     query: {
-      token: `${studentToken}`,
+      token: `${token}`,
     },
   });
 
   const userInfo = JSON.parse(localStorage.getItem('USER_LOGIN')).user;
 
   const users = useSelector((state) => state.webEnterpriseReducer.users);
+
+  const chatHistory = useSelector(
+    (state) => state.webEnterpriseReducer.chatHistory
+  );
 
   const getUserList = useCallback(
     () =>
@@ -52,47 +58,90 @@ export default function ChatApplication() {
     [dispatch, userInfo.role]
   );
 
+  const getChathistory = useCallback(
+    () => dispatch(action.fetchChatHistory()),
+    [dispatch]
+  );
+
   useEffect(() => {
     getUserList();
   }, [getUserList]);
 
   useEffect(() => {
+    getChathistory();
+  }, [getChathistory]);
+  
+
+  useEffect(() => {
     socket.on('server_message', (data) => {
       setMessages((prevData) => [...prevData, data]);
+      setSenderName(data.senderName)
     });
     return () => socket.disconnect();
     // eslint-disable-next-line
   }, []);
 
   const handleChooseReceiver = (receiver) => {
-    setReceiverId(receiver);
+    setReceiver(receiver);
   };
 
   const handleSendChat = () => {
     socket.emit('client_message', {
       message,
-      receiverId: parseInt(receiverId),
+      receiverId: parseInt(receiver && receiver.id),
     });
     setMessage('');
   };
-
+  
   const handleTyping = (e) => {
     const { value } = e.target;
     setMessage(value);
+    setSenderName("")
+  };
+
+  const addNewConversation = () => {
+      const newData = {
+        id: receiver.id,
+        message,
+        receiverName: receiver.fullName,
+      };
+      dispatch({
+        type: 'ADD_NEW_CHAT_HISTORY',
+        payload: newData,
+      });
+      setMessages((prevData) => [
+        ...prevData,
+        {
+          id: Math.floor(Math.random() * (999 - 100 + 1) + 100),
+          message,
+          senderId: receiver.id,
+          senderName:senderName!== ""? senderName: JSON.parse(localStorage.getItem('USER_LOGIN')).user
+            .fullName,
+        },
+      ]);
   };
 
   return (
     <div className={styles.container}>
       <UserList
-        receiver={receiverId}
+        receiver={receiver && receiver.id}
         chooseReceiver={handleChooseReceiver}
         users={users}
       />
       <div className={styles.mainChat}>
-        <ChatHistory />
-        <div>
-          <CommunicationList communications={messages} />
+        <ChatHistory
+          receiver={receiver && receiver.id}
+          chooseReceiver={handleChooseReceiver}
+          data={chatHistory}
+        />
+        <div className={styles.communicationArea}>
+          <CommunicationList
+            receiver={receiver && receiver}
+            communications={messages}
+          />
           <ChatArea
+            receiver={receiver && receiver.id}
+            addNewConversation={addNewConversation}
             sendMessage={handleSendChat}
             typing={handleTyping}
             message={message}

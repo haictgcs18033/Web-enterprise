@@ -1,13 +1,24 @@
 /** @format */
 
+.wrapper {
+  width: 26.125rem;
+  margin: 0 auto;
+  border-left: 1px solid #32b260;
+  border-right: 1px solid #32b260;
+}
+
 .container {
   position: relative;
-  padding: 0 1.5rem;
-  width: 26.125rem;
   height: 25.375rem;
+  padding: 1rem 1.5rem;
   overflow: hidden auto;
-  margin: 0 auto;
-  margin-bottom: 2rem;
+}
+
+.header {
+  background-color: #32b260;
+  color: white;
+  text-align: center;
+  padding: 0.75rem 1rem;
 }
 
 .avatar {
@@ -38,10 +49,4 @@
   padding: 1rem 1.125rem;
   border: 1px solid black;
   border-radius: 0 0.75rem 0.75rem 0.75rem;
-}
-
-@media (min-width: 1024px) {
-  .container {
-    border-left: 1px solid #949494;
-  }
 }

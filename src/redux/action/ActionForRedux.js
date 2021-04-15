@@ -22,6 +22,26 @@ export const handleInput = (newValues) => {
   };
 };
 
+export const fetchChatHistory = () => {
+  return async (dispatch) => {
+    try {
+      let result = await Axios({
+        url: 'https://35.224.120.132/chat/conversations',
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+        },
+      });
+      dispatch({
+        type: 'CHAT_HISTORY',
+        payload: result.data,
+      });
+    } catch (err) {
+      return err.response.data.message;
+    }
+  };
+};
+
 export const loginAction = (admin, props) => {
   return async (dispatch) => {
     try {
@@ -382,7 +402,18 @@ export const updateFaculty = (id, facultyUpdate) => {
         button: 'OK',
       });
     } catch (err) {
-      console.log(err.response?.data);
+      dispatch({
+        type: 'FACULTY_ERROR',
+      });
+      swal({
+        title: 'Error',
+        text: Array.isArray(err.response.data.message)
+          ? err.response.data.message[0]
+          : err.response.data.message,
+        icon: 'warning',
+        button: 'OK',
+      });
+      //   console.log(err.response?.data);
     }
   };
 };
@@ -401,7 +432,14 @@ export const handleSendMail = (email) => {
         button: 'OK',
       });
     } catch (err) {
-      console.log(err.response?.data);
+      swal({
+        title: 'Error',
+        text: Array.isArray(err.response?.data.message)
+          ? err.response.data.message[0]
+          : err.response.data.message,
+        icon: 'warning',
+        button: 'OK',
+      });
     }
   };
 };

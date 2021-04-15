@@ -15,24 +15,22 @@ export default function ChangePassword(props) {
     });
     let dispatch = useDispatch();
     let validationSchema = yup.object().shape({
-        currentPassword: yup
-            .string()
-            .required('⚠ Current password is required'),
-        newPassword: yup
-            .string()
+        currentPassword: yup.string()
+            .required('⚠ Current password is required')
+            .max(255, '⚠ Current password is too long')
+            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/, '⚠ Password must have at least 8 characters, 1 uppercase character, 1 number'),
+        newPassword: yup.string()
             .required('⚠ New password is required')
-            .matches(
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/,
-                '⚠ Password must have at least 8 characters, 1 uppercase character, 1 number'
+            .max(255, '⚠ New password is too long')
+            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,}$)/, '⚠ Password must have at least 8 characters, 1 uppercase character, 1 number'
             ),
-        confirmPassword: yup
-            .string()
+        confirmPassword: yup.string()
             .oneOf([yup.ref('newPassword'), null], '⚠ Password must match')
             .required('⚠ Confirm Password is required'),
 
     });
 
-    const { register, errors, handleSubmit, reset } = useForm({
+    const { register, errors, handleSubmit, reset, formState } = useForm({
         mode: 'onChange',
         resolver: yupResolver(validationSchema),
     });
@@ -40,9 +38,13 @@ export default function ChangePassword(props) {
         let { value, name } = e.target;
         setChangePassword({ ...changePassword, [name]: value });
     };
-    let onSubmit = (data, e) => {
+    let onSubmit = () => {
         dispatch(handleChangePassword(changePassword, props));
-        e.target.reset();
+        reset({
+            currentPassword: "",
+            newPassword: "",
+            confirmPassword: "",
+        })
     };
     return (
         <div className='changepassword-container'>
@@ -60,7 +62,6 @@ export default function ChangePassword(props) {
                     <form
                         className='changepassword-form'
                         onSubmit={handleSubmit(onSubmit)}
-                        onReset={reset}
                     >
                         <h3 className='text-center changepassword-title'>
                             Change password
@@ -95,7 +96,12 @@ export default function ChangePassword(props) {
                             onChange={handleChange}
                         />
                         <p className='err-message'>{errors.confirmPassword?.message}</p>
-                        <button className='confirm-btn'>Confirm</button>
+                        <button
+                            className='confirm-btn'
+                            disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
+                        >
+                            Confirm
+                        </button>
                     </form>
                 </div>
             </div>
