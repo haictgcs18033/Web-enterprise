@@ -31,7 +31,8 @@ export default function ContributionSubmit() {
             .strict(true)
             .trim('⚠ This field must not contain whitespace at the beginning and end')
             .required('⚠ Title is required')
-            .max(255, '⚠ Title must not exceed 255 characters'),
+            .max(255, '⚠ Title must not exceed 255 characters')
+            .matches(/^[a-zA-Z ]*$/, '⚠ Title must not contain numbers or special characters'),
         description: yup.string()
             .strict(true)
             .trim('⚠ This field must not contain whitespace at the beginning and end')
