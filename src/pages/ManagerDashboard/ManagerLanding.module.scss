@@ -48,31 +48,46 @@
 
 .gridStatistics {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(12.5rem, 14.4rem));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 258px));
     row-gap: 26px;
     column-gap: 26px;
-    // @media screen and (max-width: 1280px) {
-    //     grid-template-columns: repeat(auto-fill, minmax(200px, 230px));
-    // }
+    @media screen and (max-width: 1280px) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 235px));
+        column-gap: 20px;
+        row-gap: 20px;
+    }
+    @media screen and (max-width: 1024px) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 257px));
+    }
+    @media screen and (max-width: 376px) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 420px));
+    }
+}
+
+.statisticsTitle {
+    font-size: 12px;
+    background: rgb(119, 119, 119);
+    padding: 4px 3px;
+    border-radius: 5px;
 }
 
 .gridStatisticsContainer {
     width: 1110px;
     margin: 0 auto;
     @media screen and (min-width: 1281px) {
-        width: 1000px;
+        width: 100%;
     }
     @media screen and (max-width: 1280px) {
         width: 100%;
     }
     @media screen and (max-width: 1024px) {
-        width: 486.8px;
+        width: 540px;
     }
     @media screen and (max-width: 768px) {
-        width: 486.8px;
+        width: 540px;
     }
-    @media screen and (max-width: 656px) {
-        width: 230.4px;
+    @media screen and (max-width: 376px) {
+        width: 100%;
     }
 }
 
@@ -83,7 +98,7 @@
 }
 
 .box {
-    padding: 1.3rem 0;
+    padding: 1rem 0;
     text-align: center;
     border-radius: 6px;
     color: #ffffff;
@@ -99,6 +114,11 @@
 }
 .yellowBox {
     background-color: rgb(214, 125, 61);
+}
+
+.statisticsContent {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
 }
 
 .facultyBtn {

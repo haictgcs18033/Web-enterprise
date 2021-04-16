@@ -30,49 +30,27 @@ export default function ManagerLanding() {
         dispatch(fetchReport())
     }, [dispatch])
 
-    console.log(report);
-
-    // let renderReport = () => {
-    //     return report.map((report, index) => {
-    //         return (
-    //             <div key={index} className={`${classes.box} ${classes.blueBox}`}>
-    //                 {report.percentOfStudentHasSubmitted}
-    //             </div>
-    //         );
-    //     })
-    // }
-    // <div className={`${classes.box} ${classes.blueBox}`}>
-    //     5000 Sessions
-    // </div>
-    // <div className={`${classes.box} ${classes.greenBox}`}>
-    //     5000 Sessions
-    // </div>
-    // <div className={`${classes.box} ${classes.yellowBox}`}>
-    //     5000 Sessions
-    // </div> 
-
-
     return (
         <div className='container'>
             <h2 className={classes.facultyListTitle}>Site statistics</h2>
             <div className={classes.gridStatisticsContainer}>
                 <div className={classes.gridStatistics}>
-                    {/* {report.map((report, index) => {
-                        <div key={index} className={`${classes.box} ${classes.blueBox}`}>
-                            {report.percentOfStudentHasSubmitted}
-                        </div>
-                    })} */}
+
                     <div className={`${classes.box} ${classes.blueBox}`}>
-                        {Math.ceil(report.percentOfStudentHasSubmitted)} %
+                        <span className={classes.statisticsTitle}>Percent of student has submitted</span>
+                        <p className={classes.statisticsContent}>{Math.ceil(report.percentOfStudentHasSubmitted)} %</p>
                     </div>
                     <div className={`${classes.box} ${classes.purpleBox}`}>
-                        {report.percentOfFacultyHasSubmitted}
+                        <span className={classes.statisticsTitle}>Percent of faculty has submitted</span>
+                        <p className={classes.statisticsContent}>{Math.ceil(report.percentOfFacultyHasSubmitted)} %</p>
                     </div>
                     <div className={`${classes.box} ${classes.greenBox}`}>
-                        {report.largestSubmissionCountOfSingleFaculty}
+                        <span className={classes.statisticsTitle}>Largest submission count of single faculty</span>
+                        <p className={classes.statisticsContent}>{report.largestSubmissionCountOfSingleFaculty}</p>
                     </div>
                     <div className={`${classes.box} ${classes.yellowBox}`}>
-                        {report.newSubmissionsIn7Days}
+                        <span className={classes.statisticsTitle}>New submissions in 7 days</span>
+                        <p className={classes.statisticsContent}>{report.newSubmissionsIn7Days}</p>
                     </div>
                 </div>
             </div>
