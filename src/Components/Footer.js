@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="footer">
             <div className="container-footer" >
                 <img className="logo_footer" src={logoFooter} width="129px" height="122px" alt="123" />
-                <p className="description">Lorem ipsum dolor sit amet, consetetur sadipscing elit</p>
+                <p className="description">A system for collecting student contributions for an annual university magazine</p>
                 <div className="contact">
                     <ul className="contact-info mb-0">
                         <li className="contact-style"><p>+84123456789</p></li>
@@ -20,9 +20,9 @@ export default function Footer() {
                             <img className="social-media__item" src={fbLogo} width="28px" height="33px" alt="123" />
                         </a>
                         <a href="https://twitter.com/HaiCao28747776">
-                        <img className="social-media__item" src={twitterLogo} width="28px" height="33px" alt="123" />
+                            <img className="social-media__item" src={twitterLogo} width="28px" height="33px" alt="123" />
                         </a>
-                        
+
                         <img className="social-media__item" src={insLogo} width="28px" height="33px" alt="123" />
                     </div>
                 </div>
