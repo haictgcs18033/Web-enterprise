@@ -19,7 +19,12 @@ export const getContributionPublishList = (offset, limit, idFaculty) => {
             });
             return result;
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -39,7 +44,12 @@ export const getContributionList = (offset, limit, isPublish) => {
                 contribution: result.data,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -100,7 +110,12 @@ export const handlePublishById=(id)=>{
                 contribution:result.data
             })
         }catch(err){
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     }
 }
@@ -125,7 +140,12 @@ export const handleDeleteContribution = (id) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -150,7 +170,12 @@ export const handleDeleteContributionPublish = (id) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -206,7 +231,12 @@ export const handlePublishContribution = (id, contribution) => {
                 contribution: contribution,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -226,7 +256,12 @@ export const handleSendComment = (id, comment) => {
                 contributionComment: result.data,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -242,7 +277,12 @@ export const getContributionComment = (id) => {
                 contribution: result.data,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -264,7 +304,12 @@ export const handleDownloadContribution = (contribution) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -284,7 +329,12 @@ export const fetchReport = () => {
                 statistic: result.data,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
