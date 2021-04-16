@@ -12,6 +12,7 @@ const stateContribution = {
             description: '',
         },
     },
+    contributionPublish:{},
     contributionComment: [],
 };
 export const contributionReducer = (state = stateContribution, action) => {
@@ -34,6 +35,9 @@ export const contributionReducer = (state = stateContribution, action) => {
         }
         case 'GET_CONTRIBUTION': {
             return { ...state, contributionList: action.contribution.results };
+        }
+        case 'GET_CONTRIBUTION_PUBLISHED_BYID':{
+            return{...state,contributionPublish:action.contribution}
         }
         case 'INPUT_CONTRIBUTION': {
             return { ...state, contribution: action.contribution };
@@ -63,6 +67,11 @@ export const contributionReducer = (state = stateContribution, action) => {
                 (contribute) => contribute.id !== action.id
             );
             state.contributionList = contributionUpdate;
+            let contributionPublishUpdate = [...state.contributionPublishList];
+            contributionPublishUpdate = contributionPublishUpdate.filter(
+                (contribute) => contribute.id !== action.id
+            );
+            state.contributionPublishList = contributionPublishUpdate
             return { ...state };
         }
         case 'DELETE_CONTRIBUTION_PUBLISH': {

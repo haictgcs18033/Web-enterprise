@@ -37,7 +37,12 @@ export const fetchChatHistory = () => {
                 payload: result.data,
             });
         } catch (err) {
-            return err.response.data.message;
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -61,12 +66,18 @@ export const loginAction = (admin, props) => {
             });
             props.history.push('/admin/dashboard/users');
         } catch (err) {
-            return err.response.data.message;
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
 
 export const loginHomePageAction = (student, props) => {
+
     return async (dispatch) => {
         try {
             let result = await Axios({
@@ -74,7 +85,14 @@ export const loginHomePageAction = (student, props) => {
                 method: 'POST',
                 data: student,
             });
-            // if (result.user.role === 'ADMIN') {
+            if (result.data.user.role === 'ADMIN') {
+                swal({
+                    title: "Oops!",
+                    text: "  Oops , may be here is not your dashboard",
+                    icon: "warning",
+                });
+                return props.history.push('/admin')
+            }
             localStorage.setItem('ACCESS_TOKEN', result.data.access_token);
             localStorage.setItem('USER_LOGIN', JSON.stringify(result.data));
             swal({
@@ -84,6 +102,7 @@ export const loginHomePageAction = (student, props) => {
                 button: 'OK',
             });
             props.history.push('/');
+
         } catch (err) {
             swal({
                 title: 'Error',
@@ -95,6 +114,9 @@ export const loginHomePageAction = (student, props) => {
             });
         }
     };
+
+
+
 };
 
 export const fetchUsers = (limit, page, keyword, role) => {
@@ -118,7 +140,12 @@ export const fetchUsers = (limit, page, keyword, role) => {
                 payload: result.data,
             });
         } catch (err) {
-            return err.response.data.message;
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -253,7 +280,12 @@ export const fetchFaculty = (limit, offset, keyword, type) => {
                 payload: result.data,
             });
         } catch (err) {
-            return err.response.data.message;
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -275,7 +307,12 @@ export const fetchFacultyById = (id) => {
                 faculty: result.data,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -297,7 +334,12 @@ export const handleClosureDate = (closureDate) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -316,7 +358,12 @@ export const fetchClosureDate = () => {
                 closureDate: result.data,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -345,7 +392,12 @@ export const createFacultyAdmin = (faculty) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -371,7 +423,12 @@ export const handleDeleteFaculty = (id, props) => {
             });
             props.history.push('/admin/dashboard/faculty');
         } catch (err) {
-            console.log(err.response?.data);
+            console.log(err.response?.data); swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -454,7 +511,12 @@ export const handleResetPassword = (userCredential) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -476,7 +538,12 @@ export const handleChangePassword = (newPassword, props) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };

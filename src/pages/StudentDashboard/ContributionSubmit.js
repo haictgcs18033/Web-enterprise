@@ -93,6 +93,7 @@ export default function ContributionSubmit() {
                             <input
                                 type="file"
                                 className="form-control-file"
+                                accept=".jpg"
                                 name="thumbnail"
                                 onChange={handleChangeInput}
                             />
@@ -104,6 +105,7 @@ export default function ContributionSubmit() {
                         <input
                             type="file"
                             className="form-control-file"
+                           
                             name="files"
                             onChange={handleChangeInput}
                             ref={register}

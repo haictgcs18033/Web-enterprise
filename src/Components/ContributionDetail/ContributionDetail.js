@@ -1,29 +1,22 @@
 /** @format */
 
-import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
+import React, { useEffect } from 'react';
+
 
 import classes from './ContributionDetail.module.scss';
 import docFile from '../../assets/img/doc-file.png';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { handlePublishById } from '../../redux/action/ActionContribution';
 export default function ContributionDetail() {
     let { id } = useParams();
-
-    let [contribution, setContribution] = useState({});
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                let result = await Axios({
-                    url: `https://35.224.120.132/contributions/published/${id}`,
-                    method: 'GET',
-                });
-                setContribution(result.data);
-            } catch (err) {
-                console.log(err.response?.data);
-            }
-        }
-        fetchData();
-    }, [id]);
+  const contributionPublish= useSelector(state => state.contributionReducer.contributionPublish)
+    const dispatch=useDispatch()
+useEffect(() => {
+   dispatch(handlePublishById(id))
+}, [dispatch,id])
+   
+    console.log(contributionPublish);
     return (
         <div className={classes.ContributionDetailContainer}>
             <div className={`card ${classes.ContributionDetailCard}`}>
@@ -33,13 +26,13 @@ export default function ContributionDetail() {
                             <div className={classes.contributionImg}>
                                 <img
                                     className={classes.img}
-                                    src={`https://35.224.120.132/${contribution.thumbnail}`}
-                                    alt={contribution.name}
+                                    src={`https://35.224.120.132/${contributionPublish.thumbnail}`}
+                                    alt={contributionPublish.name}
                                 />
                             </div>
                             <div className={classes.contributionContent}>
-                                <p className={classes.title}>{contribution.facultyName}</p>
-                                <p className={classes.content}>{contribution.description}</p>
+                                <p className={classes.title}>{contributionPublish.facultyName}</p>
+                                <p className={classes.content}>{contributionPublish.description}</p>
                             </div>
                         </div>
                     </div>
@@ -51,9 +44,9 @@ export default function ContributionDetail() {
                         data-target='#contributionDetailModal'
                         className={classes.contribution}>
                         <img src={docFile} alt='123' />
-                        {contribution.files &&
-                            contribution.files.map((contribute, index) => {
-                                return <p className={classes.fileName}>{contribute.file}</p>;
+                        {contributionPublish.files &&
+                            contributionPublish.files.map((contribute,index) => {
+                                return <p key={index} className={classes.fileName}>{contribute.file}</p>;
                             })}
                     </div>
 
@@ -76,7 +69,9 @@ export default function ContributionDetail() {
                                     </button>
                                 </div>
                                 <div className={`modal-body ${classes.modalBody}`}>
-                                    {contribution.files?.map((contribute, index) => {
+                
+                                    {contributionPublish.files?.map((contribute, index) => {
+                                       
                                         return (
                                             <iframe
                                                 title='file word'
