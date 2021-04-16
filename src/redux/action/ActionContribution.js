@@ -79,13 +79,12 @@ export const submitContribution = (formInput, history) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
-            // swal({
-            //   title: 'Error',
-            //   text: err.response.data.message,
-            //   icon: 'error',
-            //   button: 'OK',
-            // });
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
