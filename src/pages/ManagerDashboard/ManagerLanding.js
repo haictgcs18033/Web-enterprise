@@ -7,10 +7,10 @@ import classes from './ManagerLanding.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import * as action from '../../redux/action/ActionForRedux';
 import { NavLink } from 'react-router-dom';
+import { fetchReport } from '../../redux/action/ActionContribution';
 export default function ManagerLanding() {
-    const faculties = useSelector(
-        (state) => state.webEnterpriseReducer.faculties
-    );
+    const faculties = useSelector((state) => state.webEnterpriseReducer.faculties);
+    const report = useSelector((state) => state.webEnterpriseReducer.report);
     const dispatch = useDispatch();
     const [curPage] = useState(1);
     let limit = 99;
@@ -26,24 +26,54 @@ export default function ManagerLanding() {
     useEffect(() => {
         getFacultyList();
     }, [getFacultyList]);
+    useEffect(() => {
+        dispatch(fetchReport())
+    }, [dispatch])
+
+    console.log(report);
+
+    // let renderReport = () => {
+    //     return report.map((report, index) => {
+    //         return (
+    //             <div key={index} className={`${classes.box} ${classes.blueBox}`}>
+    //                 {report.percentOfStudentHasSubmitted}
+    //             </div>
+    //         );
+    //     })
+    // }
+    // <div className={`${classes.box} ${classes.blueBox}`}>
+    //     5000 Sessions
+    // </div>
+    // <div className={`${classes.box} ${classes.greenBox}`}>
+    //     5000 Sessions
+    // </div>
+    // <div className={`${classes.box} ${classes.yellowBox}`}>
+    //     5000 Sessions
+    // </div> 
+
 
     return (
         <div className='container'>
             <h2 className={classes.facultyListTitle}>Site statistics</h2>
             <div className={classes.gridStatisticsContainer}>
                 <div className={classes.gridStatistics}>
+                    {/* {report.map((report, index) => {
+                        <div key={index} className={`${classes.box} ${classes.blueBox}`}>
+                            {report.percentOfStudentHasSubmitted}
+                        </div>
+                    })} */}
                     <div className={`${classes.box} ${classes.blueBox}`}>
-                        5000 Sessions
-                </div>
+                        {Math.ceil(report.percentOfStudentHasSubmitted)} %
+                    </div>
                     <div className={`${classes.box} ${classes.purpleBox}`}>
-                        5000 Sessions
-                </div>
+                        {report.percentOfFacultyHasSubmitted}
+                    </div>
                     <div className={`${classes.box} ${classes.greenBox}`}>
-                        5000 Sessions
-                </div>
+                        {report.largestSubmissionCountOfSingleFaculty}
+                    </div>
                     <div className={`${classes.box} ${classes.yellowBox}`}>
-                        5000 Sessions
-                </div>
+                        {report.newSubmissionsIn7Days}
+                    </div>
                 </div>
             </div>
 

@@ -252,3 +252,23 @@ export const handleDownloadContribution = (contribution) => {
         }
     };
 };
+
+export const fetchReport = () => {
+    return async (dispatch) => {
+        try {
+            let result = await Axios({
+                url: 'https://35.224.120.132/report',
+                method: 'GET',
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+                },
+            });
+            dispatch({
+                type: 'GET_REPORT',
+                statistic: result.data,
+            });
+        } catch (err) {
+            console.log(err.response?.data);
+        }
+    };
+};
