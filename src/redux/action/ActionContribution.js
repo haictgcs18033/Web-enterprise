@@ -88,6 +88,22 @@ export const submitContribution = (formInput, history) => {
         }
     };
 };
+export const handlePublishById=(id)=>{
+    return async dispatch=>{
+        try{
+            let result = await Axios({
+                url:`https://35.224.120.132/contributions/published/${id}`,
+                method:'GET',
+            })
+            dispatch({
+                type:'GET_CONTRIBUTION_PUBLISHED_BYID',
+                contribution:result.data
+            })
+        }catch(err){
+            console.log(err.response?.data);
+        }
+    }
+}
 export const handleDeleteContribution = (id) => {
     return async (dispatch) => {
         try {
