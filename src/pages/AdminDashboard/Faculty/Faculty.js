@@ -221,9 +221,7 @@ export default function Faculty() {
                                                     onChange={(date) => setClosureDate(date)}
                                                 />
                                                 <i class='fa fa-calendar'></i>
-                                                <p className='err-message'>
-                                                    {/* {errors.fullName?.message} */}
-                                                </p>
+
                                             </div>
                                         </div>
                                         <div className='col-6'>
