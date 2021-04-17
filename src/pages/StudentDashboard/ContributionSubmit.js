@@ -105,10 +105,8 @@ export default function ContributionSubmit() {
                         <input
                             type="file"
                             className="form-control-file"
-
                             name="files"
                             onChange={handleChangeInput}
-                            ref={register}
                         />
                     </div>
                     <div>

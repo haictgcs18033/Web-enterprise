@@ -135,11 +135,9 @@
     font-weight: normal;
     transition: all 0.5s;
     font-size: 14px;
+    margin-bottom: 1rem;
     i {
         font-size: 25px;
-    }
-    &:not(:last-child) {
-        margin-bottom: 1rem;
     }
     &:hover {
         background: #32b260;
