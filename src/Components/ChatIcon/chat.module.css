@@ -4,9 +4,12 @@
   position: fixed;
   bottom: 10%;
   right: 0;
+  width: 64px;
+  height: 64px;
   margin-right: 1.75rem;
-  display: block;
-  padding: 1.125rem 1rem 1rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   background-color: #32b260;
   cursor: pointer;
