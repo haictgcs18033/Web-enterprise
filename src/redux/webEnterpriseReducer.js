@@ -3,6 +3,7 @@
 const stateDefault = {
   // User Management
   users: [],
+  messages: [],
   totalUsers: 0,
   user: {
     values: {
@@ -66,6 +67,13 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
         createFaculty: action.createFaculty,
       };
     }
+    case 'GET_MESSAGES':
+      return {
+        ...state,
+        messages: [...state.messages, ...action.payload.results],
+      };
+    case 'RESET_MESSAGES':
+      return { ...state, messages: stateDefault.messages };
     case 'CHAT_HISTORY':
       return { ...state, chatHistory: action.payload };
     case 'ADD_NEW_CHAT_HISTORY':

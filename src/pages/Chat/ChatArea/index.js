@@ -12,22 +12,26 @@ export default function ChatArea({
   receiver,
 }) {
   return (
-    <div className={styles.container}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        e.target.reset();
+        sendMessage();
+        addNewConversation();
+      }}
+      className={styles.container}>
       <input
         onChange={typing}
-        value={message}
+        // value={message}
         className={styles.input}
         placeholder='Type something...'
       />
       <button
-        onClick={() => {
-          sendMessage();
-          addNewConversation();
-        }}
+        type='submit'
         className={styles.send}
-        disabled={message.trim() === '' || receiver === undefined}>
+        disabled={message.trim() === '' || !receiver}>
         <img src={Send} className={styles.img} alt='send' />
       </button>
-    </div>
+    </form>
   );
 }

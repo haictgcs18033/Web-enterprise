@@ -66,6 +66,27 @@ export const loginAction = (admin, props) => {
   };
 };
 
+export const fetchMessages = (receiverId = 1, limit) => {
+  return async (dispatch) => {
+    try {
+      const result = await Axios({
+        url: `https://35.224.120.132/chat/${receiverId}/messages?limit=${limit}`,
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+        },
+      });
+      dispatch({
+        type: 'GET_MESSAGES',
+        payload: result.data,
+      });
+      return result;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 export const loginHomePageAction = (student, props) => {
   return async (dispatch) => {
     try {
