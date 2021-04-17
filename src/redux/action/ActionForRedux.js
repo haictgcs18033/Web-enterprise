@@ -193,17 +193,18 @@ export const handleCreateUser = (user) => {
         button: 'OK',
       });
     } catch (err) {
-      dispatch({
-        type: 'USER_ERROR',
-      });
-      swal({
-        title: 'Error',
-        text: Array.isArray(err.response.data.message)
-          ? err.response.data.message[0]
-          : err.response.data.message,
-        icon: 'warning',
-        button: 'OK',
-      });
+      console.log(err);
+      // dispatch({
+      //   type: 'USER_ERROR',
+      // });
+      // swal({
+      //   title: 'Error',
+      //   text: Array.isArray(err.response.data.message)
+      //     ? err.response.data.message[0]
+      //     : err.response.data.message,
+      //   icon: 'warning',
+      //   button: 'OK',
+      // });
     }
   };
 };
@@ -301,12 +302,13 @@ export const fetchFaculty = (limit, offset, keyword, type) => {
       });
       return result;
     } catch (err) {
-      swal({
-        title: 'Error',
-        text: err.response.data.message,
-        icon: 'error',
-        button: 'OK',
-      });
+      console.log(err.response?.data);
+      // swal({
+      //   title: 'Error',
+      //   text: err.response.data.message,
+      //   icon: 'error',
+      //   button: 'OK',
+      // });
     }
   };
 };

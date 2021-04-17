@@ -65,7 +65,6 @@ export default function UserDashboard(props) {
         (state) => state.webEnterpriseReducer.createUser
     );
     const userType = useSelector((state) => state.webEnterpriseReducer.userType);
-    console.log(userType);
 
     let { fullName, email } = createUser.values;
 
