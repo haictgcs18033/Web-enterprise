@@ -110,7 +110,7 @@ export default function UserDashboard(props) {
 
   const onSubmit = () => {
     let user = { ...createUser.values };
-
+    console.log(user);
     dispatch(action.handleCreateUser(user));
     reset({
       fullName: '',

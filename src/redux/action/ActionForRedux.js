@@ -302,12 +302,13 @@ export const fetchFaculty = (limit, offset, keyword, type) => {
       });
       return result;
     } catch (err) {
-      swal({
-        title: 'Error',
-        text: err.response.data.message,
-        icon: 'error',
-        button: 'OK',
-      });
+      console.log(err.response?.data);
+      // swal({
+      //   title: 'Error',
+      //   text: err.response.data.message,
+      //   icon: 'error',
+      //   button: 'OK',
+      // });
     }
   };
 };
