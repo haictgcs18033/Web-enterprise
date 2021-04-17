@@ -107,7 +107,7 @@ export default function UserDashboard(props) {
   let deleteUser = (id) => {
     dispatch(action.DeleteUser(id));
   };
-
+console.log(createUser.values);
   const onSubmit = () => {
     let user = { ...createUser.values };
     console.log(user);
