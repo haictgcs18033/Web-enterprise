@@ -10,51 +10,50 @@ const stateDefault = {
       email: '',
       password: '',
     },
-    createUser: {
-      values: {
-        fullName: '',
-        email: '',
-        role: 'ADMIN',
-        facultyId: '',
-      },
+  },
+  createUser: {
+    values: {
+      fullName: '',
+      email: '',
+      role: 'ADMIN',
+      facultyId: '',
     },
-    userUpdate: {
-      values: {
-        fullName: '',
-        email: '',
-        role: '',
-        facultyId: '',
-        password: '',
-        facultyName: '',
-        isBlocked: false,
-      },
+  },
+  userUpdate: {
+    values: {
+      fullName: '',
+      email: '',
+      role: '',
+      facultyId: '',
+      password: '',
+      facultyName: '',
+      isBlocked: false,
     },
-    userNameDelete: {
+  },
+  userNameDelete: {
+    name: '',
+  },
+  userType: {
+    admin: 'ADMIN',
+    marketingCordinator: 'MARKETING_CORDINATOR',
+    marketingManager: 'MARKETING_MANAGER',
+    student: 'STUDENT',
+  },
+  // Faculty Management
+  closureDateAdmin: {
+    firstClosureDate: '',
+    secondClosureDate: '',
+  },
+  faculties: [],
+  facultySetting: {},
+  totalFaculties: 0,
+  createFaculty: {
+    values: {
       name: '',
     },
-    userType: {
-      admin: 'ADMIN',
-      marketingCordinator: 'MARKETING_CORDINATOR',
-      marketingManager: 'MARKETING_MANAGER',
-      student: 'STUDENT',
-    },
-    // Faculty Management
-    closureDateAdmin: {
-      firstClosureDate: '',
-      secondClosureDate: '',
-    },
-    faculties: [],
-    facultySetting: {},
-    totalFaculties: 0,
-    createFaculty: {
-      values: {
-        name: '',
-      },
-    },
-    chatHistory: [],
-    report: {},
-    load: false,
   },
+
+  load: false,
 };
 export const webEnterpriseReducer = (state = stateDefault, action) => {
   switch (action.type) {
