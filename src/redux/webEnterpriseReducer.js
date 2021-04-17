@@ -35,8 +35,8 @@ const stateDefault = {
   },
   userType: {
     admin: 'ADMIN',
-    marketingCordinator: 'MARKETING_CORDINATOR',
     marketingManager: 'MARKETING_MANAGER',
+    marketingCordinator: 'MARKETING_CORDINATOR',
     student: 'STUDENT',
   },
   // Faculty Management
