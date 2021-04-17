@@ -277,12 +277,7 @@ export const getContributionComment = (id) => {
                 contribution: result.data,
             });
         } catch (err) {
-            swal({
-                title: 'Error',
-                text: err.response.data.message,
-                icon: 'error',
-                button: 'OK',
-            });
+            // console.log(err.response?.data);
         }
     };
 };
