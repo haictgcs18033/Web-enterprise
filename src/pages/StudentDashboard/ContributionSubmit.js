@@ -31,7 +31,8 @@ export default function ContributionSubmit() {
             .strict(true)
             .trim('⚠ This field must not contain whitespace at the beginning and end')
             .required('⚠ Title is required')
-            .max(255, '⚠ Title must not exceed 255 characters'),
+            .max(255, '⚠ Title must not exceed 255 characters')
+            .matches(/^[a-zA-Z ]*$/, '⚠ Title must not contain numbers or special characters'),
         description: yup.string()
             .strict(true)
             .trim('⚠ This field must not contain whitespace at the beginning and end')
@@ -39,7 +40,7 @@ export default function ContributionSubmit() {
             .max(255, '⚠ Description must not exceed 255 characters'),
     })
 
-    const { register, handleSubmit, errors, formState } = useForm({
+    const { register, handleSubmit, errors } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -92,6 +93,7 @@ export default function ContributionSubmit() {
                             <input
                                 type="file"
                                 className="form-control-file"
+                                accept=".jpg"
                                 name="thumbnail"
                                 onChange={handleChangeInput}
                             />
@@ -103,6 +105,7 @@ export default function ContributionSubmit() {
                         <input
                             type="file"
                             className="form-control-file"
+
                             name="files"
                             onChange={handleChangeInput}
                             ref={register}
@@ -123,7 +126,6 @@ export default function ContributionSubmit() {
                     <div className="d-block text-center">
                         <button
                             className={classes.submitBtn}
-                            disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                         >
                             Submit
                         </button>

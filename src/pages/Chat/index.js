@@ -78,6 +78,10 @@ export default function ChatApplication() {
   );
 
   useEffect(() => {
+    dispatch({ type: 'RESET_MESSAGES' });
+  }, [dispatch]);
+
+  useEffect(() => {
     getUserList();
   }, [getUserList]);
 

@@ -10,51 +10,51 @@ const stateDefault = {
       email: '',
       password: '',
     },
-  },
-  createUser: {
-    values: {
-      fullName: '',
-      email: '',
-      role: 'ADMIN',
-      facultyId: '',
+    createUser: {
+      values: {
+        fullName: '',
+        email: '',
+        role: 'ADMIN',
+        facultyId: '',
+      },
     },
-  },
-  userUpdate: {
-    values: {
-      fullName: '',
-      email: '',
-      role: '',
-      facultyId: '',
-      password: '',
-      facultyName: '',
-      isBlocked: false,
+    userUpdate: {
+      values: {
+        fullName: '',
+        email: '',
+        role: '',
+        facultyId: '',
+        password: '',
+        facultyName: '',
+        isBlocked: false,
+      },
     },
-  },
-  userNameDelete: {
-    name: '',
-  },
-  userType: {
-    admin: 'ADMIN',
-    marketingCordinator: 'MARKETING_CORDINATOR',
-    marketingManager: 'MARKETING_MANAGER',
-    student: 'STUDENT',
-  },
-  // Faculty Management
-  closureDateAdmin: {
-    firstClosureDate: '',
-    secondClosureDate: '',
-  },
-  faculties: [],
-  facultySetting: {},
-  totalFaculties: 0,
-  createFaculty: {
-    values: {
+    userNameDelete: {
       name: '',
     },
+    userType: {
+      admin: 'ADMIN',
+      marketingCordinator: 'MARKETING_CORDINATOR',
+      marketingManager: 'MARKETING_MANAGER',
+      student: 'STUDENT',
+    },
+    // Faculty Management
+    closureDateAdmin: {
+      firstClosureDate: '',
+      secondClosureDate: '',
+    },
+    faculties: [],
+    facultySetting: {},
+    totalFaculties: 0,
+    createFaculty: {
+      values: {
+        name: '',
+      },
+    },
+    chatHistory: [],
+    report: {},
+    load: false,
   },
-  chatHistory: [],
-
-  load: false,
 };
 export const webEnterpriseReducer = (state = stateDefault, action) => {
   switch (action.type) {
@@ -183,7 +183,9 @@ export const webEnterpriseReducer = (state = stateDefault, action) => {
       state.faculties = facultyDelete;
       return { ...state };
     }
-
+    case 'GET_REPORT': {
+      return { ...state, report: action.statistic };
+    }
     default: {
       return { ...state };
     }

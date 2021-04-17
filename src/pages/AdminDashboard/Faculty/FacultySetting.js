@@ -115,7 +115,7 @@ export default function FacultySetting(props) {
                     </form>
                 </div>
                 <div className={styles.settingDelete}>
-                    <h3>Closure date</h3>
+                    <h3>Danger zone</h3>
                     <div className={`d-flex`}>
                         <div className={styles.warning}>
                             <div className="qwe">
@@ -157,7 +157,7 @@ export default function FacultySetting(props) {
                                                     Do you want to delete{' '}
                                                 </span>
                                                 <span className='font-weight-bold'>
-                                                    Faculty Name
+                                                    {facultySetting.name}
                                                 </span>
                                             </p>
                                         </div>

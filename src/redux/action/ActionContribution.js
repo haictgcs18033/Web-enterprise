@@ -19,7 +19,12 @@ export const getContributionPublishList = (offset, limit, idFaculty) => {
             });
             return result;
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -39,7 +44,12 @@ export const getContributionList = (offset, limit, isPublish) => {
                 contribution: result.data,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -79,16 +89,36 @@ export const submitContribution = (formInput, history) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
-            // swal({
-            //   title: 'Error',
-            //   text: err.response.data.message,
-            //   icon: 'error',
-            //   button: 'OK',
-            // });
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
+export const handlePublishById=(id)=>{
+    return async dispatch=>{
+        try{
+            let result = await Axios({
+                url:`https://35.224.120.132/contributions/published/${id}`,
+                method:'GET',
+            })
+            dispatch({
+                type:'GET_CONTRIBUTION_PUBLISHED_BYID',
+                contribution:result.data
+            })
+        }catch(err){
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
+        }
+    }
+}
 export const handleDeleteContribution = (id) => {
     return async (dispatch) => {
         try {
@@ -110,7 +140,12 @@ export const handleDeleteContribution = (id) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -135,7 +170,12 @@ export const handleDeleteContributionPublish = (id) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -191,7 +231,12 @@ export const handlePublishContribution = (id, contribution) => {
                 contribution: contribution,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -211,7 +256,12 @@ export const handleSendComment = (id, comment) => {
                 contributionComment: result.data,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };
@@ -227,7 +277,7 @@ export const getContributionComment = (id) => {
                 contribution: result.data,
             });
         } catch (err) {
-            console.log(err.response?.data);
+            // console.log(err.response?.data);
         }
     };
 };
@@ -249,7 +299,37 @@ export const handleDownloadContribution = (contribution) => {
                 button: 'OK',
             });
         } catch (err) {
-            console.log(err.response?.data);
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
+        }
+    };
+};
+
+export const fetchReport = () => {
+    return async (dispatch) => {
+        try {
+            let result = await Axios({
+                url: 'https://35.224.120.132/report',
+                method: 'GET',
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+                },
+            });
+            dispatch({
+                type: 'GET_REPORT',
+                statistic: result.data,
+            });
+        } catch (err) {
+            swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                button: 'OK',
+            });
         }
     };
 };

@@ -1,10 +1,12 @@
 /** @format */
 
 import { Redirect, Route } from 'react-router-dom';
+
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 
 export const PrimaryTemplate = ({ Component, component, ...props }) => {
+
   if (localStorage.getItem('USER_LOGIN')) {
     let userLogin = JSON.parse(localStorage.getItem('USER_LOGIN'));
     if (userLogin.user.role === 'STUDENT') {
@@ -14,6 +16,7 @@ export const PrimaryTemplate = ({ Component, component, ...props }) => {
     } else if (userLogin.user.role === 'MARKETING_CORDINATOR') {
       return <Redirect to='/coordinator/home' />;
     }
+   
   }
   return (
     <Route
