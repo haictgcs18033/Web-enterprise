@@ -40,7 +40,7 @@ export default function ContributionSubmit() {
             .max(255, '⚠ Description must not exceed 255 characters'),
     })
 
-    const { register, handleSubmit, errors, formState } = useForm({
+    const { register, handleSubmit, errors } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -105,7 +105,7 @@ export default function ContributionSubmit() {
                         <input
                             type="file"
                             className="form-control-file"
-                           
+
                             name="files"
                             onChange={handleChangeInput}
                             ref={register}
@@ -126,7 +126,6 @@ export default function ContributionSubmit() {
                     <div className="d-block text-center">
                         <button
                             className={classes.submitBtn}
-                            disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                         >
                             Submit
                         </button>
