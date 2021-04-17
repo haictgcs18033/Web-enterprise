@@ -10,13 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handlePublishById } from '../../redux/action/ActionContribution';
 export default function ContributionDetail() {
     let { id } = useParams();
-  const contributionPublish= useSelector(state => state.contributionReducer.contributionPublish)
-    const dispatch=useDispatch()
-useEffect(() => {
-   dispatch(handlePublishById(id))
-}, [dispatch,id])
-   
-    console.log(contributionPublish);
+    const contributionPublish = useSelector(state => state.contributionReducer.contributionPublish)
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(handlePublishById(id))
+    }, [dispatch, id])
+
+
     return (
         <div className={classes.ContributionDetailContainer}>
             <div className={`card ${classes.ContributionDetailCard}`}>
@@ -31,7 +32,7 @@ useEffect(() => {
                                 />
                             </div>
                             <div className={classes.contributionContent}>
-                                <p className={classes.title}>{contributionPublish.facultyName}</p>
+                                <p className={classes.title}>{contributionPublish.name}</p>
                                 <p className={classes.content}>{contributionPublish.description}</p>
                             </div>
                         </div>
@@ -45,7 +46,7 @@ useEffect(() => {
                         className={classes.contribution}>
                         <img src={docFile} alt='123' />
                         {contributionPublish.files &&
-                            contributionPublish.files.map((contribute,index) => {
+                            contributionPublish.files.map((contribute, index) => {
                                 return <p key={index} className={classes.fileName}>{contribute.file}</p>;
                             })}
                     </div>
@@ -69,9 +70,9 @@ useEffect(() => {
                                     </button>
                                 </div>
                                 <div className={`modal-body ${classes.modalBody}`}>
-                
+
                                     {contributionPublish.files?.map((contribute, index) => {
-                                       
+
                                         return (
                                             <iframe
                                                 title='file word'

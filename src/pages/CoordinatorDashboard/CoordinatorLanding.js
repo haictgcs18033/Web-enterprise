@@ -30,7 +30,7 @@ export default function CoordinatorLanding() {
         id: 0,
         name: '',
         description: '',
-        contributionObject:''
+        contributionObject: ''
     });
     let [contributionDelete, setContributionDelete] = useState({ id: 0 });
     let dispatch = useDispatch();
@@ -217,7 +217,7 @@ export default function CoordinatorLanding() {
                                             id: contribution.id,
                                             name: contribution.name,
                                             description: contribution.description,
-                                            contributionObject:contribution
+                                            contributionObject: contribution
                                         })
                                     }>
                                     <div className='d-flex'>
@@ -381,8 +381,8 @@ export default function CoordinatorLanding() {
             actionContribution.handleUpdateContribution(id, contributionUpdate)
         );
     };
-    let publishContribution = (id, contribution) => { 
-       dispatch(actionContribution.handlePublishContribution(id, contribution));
+    let publishContribution = (id, contribution) => {
+        dispatch(actionContribution.handlePublishContribution(id, contribution));
     };
     let showMore = () => {
         setCurpage(curPage + 1);
