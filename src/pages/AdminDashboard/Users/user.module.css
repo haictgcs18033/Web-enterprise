@@ -27,7 +27,7 @@
 .email {
   color: #808191;
   font-weight: 600;
-  font-size: .8125rem;
+  font-size: 0.8125rem;
 }
 
 .tableWrap {
@@ -57,8 +57,8 @@
 
 .role {
   font-weight: 600;
-  font-size: .875rem;
-  line-height: calc(20/14);
+  font-size: 0.875rem;
+  line-height: calc(20 / 14);
   color: #808191;
 }
 
@@ -78,7 +78,7 @@
   margin-top: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
-  line-height: calc(19/16);
+  line-height: calc(19 / 16);
 }
 
 .body {
@@ -105,7 +105,8 @@
   align-items: center;
 }
 
-.edit, .del {
+.edit,
+.del {
   position: relative;
   text-align: center;
   display: flex;
@@ -127,7 +128,8 @@
   background: none;
 }
 
-.modalDelete, .modalDisable {
+.modalDelete,
+.modalDisable {
   background: #be0e62;
   color: white;
 }
@@ -142,18 +144,21 @@
   margin-right: 16rem !important;
 }
 
-.edit.disabled, .del.disabled {
+.edit.disabled,
+.del.disabled {
   opacity: 0.7;
   pointer-events: none;
 }
 
-.edit.disabled:hover, .del.disabled:hover {
+.edit.disabled:hover,
+.del.disabled:hover {
   cursor: no-drop;
   transform: translateY(0);
   box-shadow: none;
 }
 
-.edit.disabled:before, .del.disabled:before {
+.edit.disabled:before,
+.del.disabled:before {
   content: '';
   position: absolute;
   top: 0;
@@ -167,7 +172,8 @@
   animation: rotate 2s linear infinite;
 }
 
-.edit:hover, .del:hover {
+.edit:hover,
+.del:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.1);
 }
@@ -213,7 +219,8 @@
   transition: all 0.3s ease;
 }
 
-.page.current, .page:hover {
+.page.current,
+.page:hover {
   transform: translateY(-20%);
   box-shadow: 0 10px 6px -6px black;
 }
@@ -235,7 +242,7 @@
 }
 
 /* Style for faculty setting */
-.tableWrap .goBack{
+.tableWrap .goBack {
   margin-top: 8px;
   margin-right: 2rem;
   color: white;
@@ -243,16 +250,15 @@
   padding: 10px 20px;
   border-radius: 10px;
   height: 40px;
-line-height: 10px;
-  background: #6C5DD3;
-  border:2px solid #6C5DD3;
+  line-height: 10px;
+  background: #6c5dd3;
+  border: 2px solid #6c5dd3;
   transition: all 0.4s;
 }
-.tableWrap .goBack:hover{
+.tableWrap .goBack:hover {
   text-decoration: none;
   background: white;
-  color: #6C5DD3;
-
+  color: #6c5dd3;
 }
 .settingContainer {
   position: relative;
@@ -260,98 +266,96 @@ line-height: 10px;
   display: flex;
 }
 
-.settingUpdate,.settingDelete {
+.settingUpdate,
+.settingDelete {
   width: 553px;
   background: white;
   border-radius: 24px;
-  padding:30px 25px;
+  padding: 30px 25px;
   box-shadow: 0 0 30px 5px gray;
 }
-.settingUpdate{
+.settingUpdate {
   margin-right: 35px;
 }
-.settingUpdate h3{
+.settingUpdate h3 {
   font-size: 24px;
   font-weight: bold;
 }
-.settingUpdate p:nth-child(even){
+.settingUpdate p:nth-child(even) {
   font-size: 13px;
-  color:#B2B3BD;
+  color: #b2b3bd;
 }
-.settingUpdate p:nth-child(odd){
+.settingUpdate p:nth-child(odd) {
   font-size: 15px;
-  color:#111142;
+  color: #111142;
 }
-.updateButton button{
-  width:120px;
+.updateButton button {
+  width: 120px;
   height: 55px;
   border-radius: 24px;
-  background:#6C5DD3;
-  border:3px solid #6C5DD3;
-  color:white;
-  font-weight:bold;
+  background: #6c5dd3;
+  border: 3px solid #6c5dd3;
+  color: white;
+  font-weight: bold;
   transition: all 0.4s;
 }
-.updateButton button:hover{
-   background:white;
-   color: #6C5DD3;
+.updateButton button:hover {
+  background: white;
+  color: #6c5dd3;
 }
-.settingDelete h3{
+.settingDelete h3 {
   font-size: 24px;
   font-weight: bold;
-  color:#be0e62;
+  color: #be0e62;
 }
-.warning{
- display: flex;
- width: 100%;
- justify-content: space-between;
-margin-top: 30px;
+.warning {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 30px;
 }
-.warning h4{
+.warning h4 {
   font-size: 16px;
 }
-.warning p{
+.warning p {
   font-size: 13px;
   color: #808191;
 }
-.deleteButton button{
+.deleteButton button {
   margin-top: 8rem;
   border-radius: 50%;
   background: none;
   color: #be0e62;
   transition: all 0.5s;
 }
-.deleteButton button:hover{
+.deleteButton button:hover {
   color: white;
-  background : #be0e62;
+  background: #be0e62;
 }
 
-.cancelBtnContribution{
-    border-radius: 6px;
-    border: 1px solid #32b260;
-    color: #32b260;
-    margin-right: 13px;
-    padding: 10px 15px;
-    transition: all 0.4s;
-    background-color: #ffffff;
+.cancelBtnContribution {
+  border-radius: 6px;
+  border: 1px solid #32b260;
+  color: #32b260;
+  margin-right: 13px;
+  padding: 10px 15px;
+  transition: all 0.4s;
+  background-color: #ffffff;
 }
-.cancelBtnContribution:hover{
-    color: #217740;
-    border: 1px solid #217740;
-    background-color: #e9e7e7;
+.cancelBtnContribution:hover {
+  color: #217740;
+  border: 1px solid #217740;
+  background-color: #e9e7e7;
 }
 
 .updateBtnContribution {
-    border-radius: 6px;
-    background: #217740;
-    color: white;
-    padding: 10px 15px;
-    transition: all 0.4s;
+  border-radius: 6px;
+  background: #217740;
+  color: white;
+  padding: 10px 15px;
+  transition: all 0.4s;
 }
 
 .updateBtnContribution:hover {
-    background: #32b260;
+  background: #32b260;
 }
-
-
-

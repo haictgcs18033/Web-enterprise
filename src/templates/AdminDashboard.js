@@ -7,13 +7,13 @@ import UserAvt from '../assets/img/user-avt.png';
 import { useState } from 'react';
 
 export const AdminDashboard = ({ Component, component, ...props }) => {
-  let [dropdown, setDropdown] = useState(false)
+  let [dropdown, setDropdown] = useState(false);
   let handleDropdown = () => {
-    setDropdown(!dropdown)
-  }
+    setDropdown(!dropdown);
+  };
   let logout = () => {
     window.localStorage.clear();
-  }
+  };
   if (localStorage.getItem('USER_LOGIN')) {
     let userLogin = JSON.parse(localStorage.getItem('USER_LOGIN'));
     if (userLogin.user.role === 'ADMIN') {
@@ -22,32 +22,33 @@ export const AdminDashboard = ({ Component, component, ...props }) => {
           <Sidebar></Sidebar>
           <div className='container-fluid user-info-wrap'>
             <div className='user-info-tableWrap'>
-              <div className='user-info'
-                onClick={() => { handleDropdown() }}>
+              <div
+                className='user-info'
+                onClick={() => {
+                  handleDropdown();
+                }}>
                 <p className='user-name'>Hello {userLogin.user.fullName}</p>
                 <img className='user-avt' src={UserAvt} alt='123'></img>
-                <div className={dropdown ? "admin-function" : "admin-hidden"}>
+                <div className={dropdown ? 'admin-function' : 'admin-hidden'}>
                   <ul>
                     <li>
                       <NavLink
                         to='/admin/changepassword'
-                        className="link-navigate">
+                        className='link-navigate'>
                         Change password
-                  </NavLink>
+                      </NavLink>
                     </li>
-                     <li>
-                     <NavLink
-                      to='/admin'
-                      className="link-navigate"
-                      onClick={() => {
-                        logout();
-                      }}>
-                      Logout
-                  </NavLink>
-                     </li>
-                   
+                    <li>
+                      <NavLink
+                        to='/'
+                        className='link-navigate'
+                        onClick={() => {
+                          logout();
+                        }}>
+                        Logout
+                      </NavLink>
+                    </li>
                   </ul>
-
                 </div>
               </div>
             </div>
