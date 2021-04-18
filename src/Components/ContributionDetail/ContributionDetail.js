@@ -8,15 +8,15 @@ import docFile from '../../assets/img/doc-file.png';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { handlePublishById } from '../../redux/action/ActionContribution';
-export default function ContributionDetail() {
+export default function ContributionDetail(props) {
     let { id } = useParams();
+    // const id=props.match.params
     const contributionPublish = useSelector(state => state.contributionReducer.contributionPublish)
 
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(handlePublishById(id))
-    }, [dispatch, id])
-
+    }, [dispatch,id])
 
     return (
         <div className={classes.ContributionDetailContainer}>
@@ -71,8 +71,8 @@ export default function ContributionDetail() {
                                 </div>
                                 <div className={`modal-body ${classes.modalBody}`}>
 
-                                    {contributionPublish.files?.map((contribute, index) => {
-
+                                    {
+                                    contributionPublish.files?.map((contribute, index) => {
                                         return (
                                             <iframe
                                                 title='file word'
