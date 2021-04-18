@@ -107,7 +107,7 @@ export default function FacultySetting(props) {
 
                                         type='submit'
                                         className='btn btn__create'>
-                                        Create
+                                        Confirm
                                     </button>
                                 </div>
                             </div>

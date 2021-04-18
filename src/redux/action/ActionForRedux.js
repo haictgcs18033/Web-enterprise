@@ -301,13 +301,13 @@ export const fetchFaculty = (limit, offset, keyword, type) => {
       });
       return result;
     } catch (err) {
-      console.log(err.response?.data);
-      // swal({
-      //   title: 'Error',
-      //   text: err.response.data.message,
-      //   icon: 'error',
-      //   button: 'OK',
-      // });
+      // console.log(err.response?.data);
+      swal({
+        title: 'Error',
+        text: err.response.data.message,
+        icon: 'error',
+        button: 'OK',
+      });
     }
   };
 };
@@ -414,6 +414,9 @@ export const createFacultyAdmin = (faculty) => {
         button: 'OK',
       });
     } catch (err) {
+      dispatch({
+        type: 'USER_ERROR',
+      });
       swal({
         title: 'Error',
         text: err.response.data.message,
