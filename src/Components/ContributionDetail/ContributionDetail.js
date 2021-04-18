@@ -24,13 +24,11 @@ export default function ContributionDetail() {
                 <div className={classes.tableContainer}>
                     <div className={classes.contributeTable}>
                         <div className={classes.tableCell}>
-                            <div className={classes.contributionImg}>
-                                <img
-                                    className={classes.img}
-                                    src={`https://35.224.120.132/${contributionPublish.thumbnail}`}
-                                    alt={contributionPublish.name}
-                                />
-                            </div>
+                            <img
+                                className={classes.img}
+                                src={`https://35.224.120.132/${contributionPublish.thumbnail}`}
+                                alt={contributionPublish.name}
+                            />
                             <div className={classes.contributionContent}>
                                 <p className={classes.title}>{contributionPublish.name}</p>
                                 <p className={classes.content}>{contributionPublish.description}</p>

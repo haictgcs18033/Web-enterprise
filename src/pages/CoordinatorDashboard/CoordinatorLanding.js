@@ -217,7 +217,7 @@ export default function CoordinatorLanding() {
                                             id: contribution.id,
                                             name: contribution.name,
                                             description: contribution.description,
-                                            contributionObject: contribution
+                                            // contributionObject: contribution
                                         })
                                     }>
                                     <div className='d-flex'>
