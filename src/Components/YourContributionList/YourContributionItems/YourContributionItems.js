@@ -12,6 +12,10 @@ import binIcon from '../../../assets/img/bin.png';
 import { useDispatch } from 'react-redux';
 import * as action from '../../../redux/action/ActionContribution';
 import { NavLink } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as  yup from 'yup';
+
 export default function YourContributionItems(props) {
     let { contribution } = props;
     const dispatch = useDispatch();
@@ -28,6 +32,26 @@ export default function YourContributionItems(props) {
         newsValue[name] = value;
         setContributionUpdate(newsValue);
     };
+
+    let schema = yup.object().shape({
+        name: yup.string()
+            .required('⚠ Contribution name is required')
+            .max(255, '⚠ Contribution name must not exceed 255 characters')
+            .strict(true)
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
+            .matches(/^[a-zA-Z ]*$/, 'Faculty name must not contain number or special characters'),
+        description: yup.string()
+            .required('⚠ Contribution description is required')
+            .max(255, '⚠ Contribution description must not exceed 255 characters')
+            .strict(true)
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
+    })
+
+    const { register, errors, formState } = useForm({
+        mode: 'onChange',
+        resolver: yupResolver(schema),
+    });
+
     let renderContributionItem = () => {
         if (contribution) {
             return contribution.map((contribution, index) => {
@@ -150,18 +174,22 @@ export default function YourContributionItems(props) {
                                             <input
                                                 className='form-control'
                                                 name='name'
-                                                value={contributionUpdate.name}
+                                                defaultValue={contributionUpdate.name}
                                                 onChange={handleChangeInput}
+                                                ref={register}
                                             />
+                                            <p className='err-message'>{errors.name?.message}</p>
                                         </div>
                                         <div className='form-group'>
                                             <label>Description</label>
                                             <input
                                                 className='form-control'
                                                 name='description'
-                                                value={contributionUpdate.description}
+                                                defaultValue={contributionUpdate.description}
                                                 onChange={handleChangeInput}
+                                                ref={register}
                                             />
+                                            <p className='err-message'>{errors.description?.message}</p>
                                         </div>
                                     </div>
                                     <div className='modal-footer '>
@@ -178,7 +206,9 @@ export default function YourContributionItems(props) {
                                                     className={classCoordinator.updateButton}
                                                     onClick={() => {
                                                         updateContribution(contributionUpdate.id);
-                                                    }}>
+                                                    }}
+                                                    disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
+                                                >
                                                     Confirm
                                                 </button>
                                             </div>
