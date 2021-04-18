@@ -74,7 +74,6 @@ export default function CoordinatorLanding() {
             .max(255, '⚠ Contribution description must not exceed 255 characters')
             .strict(true)
             .trim('⚠ This field must not contain whitespace at the beginning and end')
-            .matches(/^[a-zA-Z ]*$/, 'Faculty name must not contain number or special characters'),
     })
 
     const { register, errors, formState } = useForm({
