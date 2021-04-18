@@ -12,6 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchClosureDate } from '../../redux/action/ActionForRedux';
 import * as actionContribution from '../../redux/action/ActionContribution';
 import moment from 'moment';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as  yup from 'yup';
 export default function UploadContribution() {
     let { id } = useParams();
     const history = useHistory();
@@ -57,6 +60,25 @@ export default function UploadContribution() {
         newValues[name] = value;
         setContributionUpdate(newValues);
     }
+
+    let schema = yup.object().shape({
+        name: yup.string()
+            .required('⚠ Contribution name is required')
+            .max(255, '⚠ Contribution name must not exceed 255 characters')
+            .strict(true)
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
+            .matches(/^[a-zA-Z ]*$/, 'Faculty name must not contain number or special characters'),
+        description: yup.string()
+            .required('⚠ Contribution description is required')
+            .max(255, '⚠ Contribution description must not exceed 255 characters')
+            .strict(true)
+            .trim('⚠ This field must not contain whitespace at the beginning and end')
+    })
+
+    const { register, errors, formState } = useForm({
+        mode: 'onChange',
+        resolver: yupResolver(schema),
+    });
 
     let renderStatus = (contributionList) => {
         if (contributionList) {
@@ -184,18 +206,22 @@ export default function UploadContribution() {
                                             <input
                                                 className='form-control'
                                                 name='name'
-                                                value={contributionUpdate.name}
+                                                defaultValue={contributionUpdate.name}
                                                 onChange={handleChangeInput}
+                                                ref={register}
                                             />
+                                            <p className='err-message'>{errors.name?.message}</p>
                                         </div>
                                         <div className='form-group'>
                                             <label>Description</label>
                                             <input
                                                 className='form-control'
                                                 name='description'
-                                                value={contributionUpdate.description}
+                                                defaultValue={contributionUpdate.description}
                                                 onChange={handleChangeInput}
+                                                ref={register}
                                             />
+                                            <p className='err-message'>{errors.description?.message}</p>
                                         </div>
                                     </div>
                                     <div className='modal-footer '>
@@ -213,6 +239,7 @@ export default function UploadContribution() {
                                                     onClick={() => {
                                                         updateContribution(contributionUpdate.id);
                                                     }}
+                                                    disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                                                 >
                                                     Confirm
                                                 </button>
