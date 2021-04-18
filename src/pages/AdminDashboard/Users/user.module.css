@@ -350,10 +350,15 @@
 
 .updateBtnContribution {
   border-radius: 6px;
-  background: #217740;
+  background: #288b4d;
   color: white;
   padding: 10px 15px;
   transition: all 0.4s;
+}
+
+.updateBtnContribution:disabled {
+    filter: brightness(0.7);
+    cursor: no-drop;
 }
 
 .updateBtnContribution:hover {
