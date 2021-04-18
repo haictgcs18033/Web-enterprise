@@ -30,8 +30,11 @@ export default function CoordinatorLanding() {
         id: 0,
         name: '',
         description: '',
-        contributionObject: ''
+
     });
+    let [contributionForPublish, setContributionForPublish] = useState({
+        contributionObject: ''
+    })
     let [contributionDelete, setContributionDelete] = useState({ id: 0 });
     let dispatch = useDispatch();
     let limit = 6;
@@ -61,7 +64,7 @@ export default function CoordinatorLanding() {
     const handleRedirectToComment = (contribution) => {
         history.push(`/coordinator/comment/${contribution.id}`);
     };
-
+ console.log(contributionForPublish.contributionObject);
     let schema = yup.object().shape({
         name: yup.string()
             .required('⚠ Contribution name is required')
@@ -77,7 +80,8 @@ export default function CoordinatorLanding() {
             .matches(/^[a-zA-Z ]*$/, 'Faculty name must not contain number or special characters'),
     })
 
-    const { register, errors, formState } = useForm({
+    const { register, errors } = useForm({
+        // , formState 
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -212,13 +216,17 @@ export default function CoordinatorLanding() {
                                     className={classes.contributionBtn}
                                     data-toggle='modal'
                                     data-target='#exampleModalUpdate'
-                                    onClick={() =>
+                                    onClick={() => {
                                         setContributionUpdate({
                                             id: contribution.id,
                                             name: contribution.name,
                                             description: contribution.description,
+
+                                        });
+                                        setContributionForPublish({
                                             contributionObject: contribution
                                         })
+                                    }
                                     }>
                                     <div className='d-flex'>
                                         <img className={classes.icon} src={pen} alt='123' />
@@ -331,7 +339,7 @@ export default function CoordinatorLanding() {
                                                     onClick={() => {
                                                         publishContribution(
                                                             contributionUpdate.id,
-                                                            contributionUpdate.contributionObject
+                                                            contributionForPublish.contributionObject
                                                         );
                                                     }}
                                                     data-dismiss='modal'
@@ -350,7 +358,7 @@ export default function CoordinatorLanding() {
                                                     onClick={() => {
                                                         updateContribution(contributionUpdate.id);
                                                     }}
-                                                    disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
+                                                // disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                                                 >
                                                     Confirm
                                             </button>
