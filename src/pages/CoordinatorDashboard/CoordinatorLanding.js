@@ -64,7 +64,7 @@ export default function CoordinatorLanding() {
     const handleRedirectToComment = (contribution) => {
         history.push(`/coordinator/comment/${contribution.id}`);
     };
- console.log(contributionForPublish.contributionObject);
+    console.log(contributionForPublish.contributionObject);
     let schema = yup.object().shape({
         name: yup.string()
             .required('⚠ Contribution name is required')
@@ -79,8 +79,7 @@ export default function CoordinatorLanding() {
             .trim('⚠ This field must not contain whitespace at the beginning and end')
     })
 
-    const { register, errors } = useForm({
-        // , formState 
+    const { register, errors, formState } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema),
     });
@@ -357,7 +356,7 @@ export default function CoordinatorLanding() {
                                                     onClick={() => {
                                                         updateContribution(contributionUpdate.id);
                                                     }}
-                                                // disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
+                                                    disabled={!formState.isDirty || (formState.isDirty && !formState.isValid)}
                                                 >
                                                     Confirm
                                             </button>

@@ -6,6 +6,10 @@
     padding: 0 1.375rem;
 }
 
+.contributionImg {
+    width: 7.75rem;
+}
+
 .img {
     width: 7.75rem;
     height: 7.75rem;
@@ -40,11 +44,11 @@
 }
 .contributionContent {
     margin-left: 1rem;
+    width: 75%;
 }
 
 .title,
 .content {
-    // text-align: center;
     vertical-align: middle;
 }
 .title {
@@ -100,6 +104,9 @@ iframe {
         border-radius: 6px;
         margin: 0 auto;
     }
+    .contributionContent {
+        width: 69%;
+    }
 }
 
 @media screen and (max-width: 376px) {
@@ -110,12 +117,13 @@ iframe {
     .contributionImg {
         margin: 0 auto;
     }
+
     .tableCell {
         display: block;
     }
     .contributionContent {
         margin-top: 1rem;
-        margin-left: 0;
+        width: 91%;
     }
     .modalBody {
         height: 450px;
