@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 
 import classes from './ContributionDetail.module.scss';
@@ -14,10 +14,13 @@ export default function ContributionDetail(props) {
     const contributionPublish = useSelector(state => state.contributionReducer.contributionPublish)
 
     const dispatch = useDispatch()
+    let getContributionDetail= useCallback(
+        () => dispatch(handlePublishById(id)),
+        [dispatch,id],
+    )
     useEffect(() => {
-        dispatch(handlePublishById(id))
-    }, [dispatch,id])
-
+        getContributionDetail()
+    }, [getContributionDetail])
     return (
         <div className={classes.ContributionDetailContainer}>
             <div className={`card ${classes.ContributionDetailCard}`}>
