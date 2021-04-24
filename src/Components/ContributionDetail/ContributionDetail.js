@@ -10,17 +10,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handlePublishById } from '../../redux/action/ActionContribution';
 export default function ContributionDetail(props) {
     let { id } = useParams();
-    // const id=props.match.params
-    const contributionPublish = useSelector(state => state.contributionReducer.contributionPublish)
 
+    const contributionPublish = useSelector(state => state.contributionReducer.contributionPublish)
+ 
     const dispatch = useDispatch()
-    let getContributionDetail= useCallback(
+    let getContributionDetail = useCallback(
         () => dispatch(handlePublishById(id)),
-        [dispatch,id],
+        [dispatch, id],
     )
     useEffect(() => {
         getContributionDetail()
     }, [getContributionDetail])
+  
+    
     return (
         <div className={classes.ContributionDetailContainer}>
             <div className={`card ${classes.ContributionDetailCard}`}>
@@ -46,14 +48,15 @@ export default function ContributionDetail(props) {
                     <div
                         data-toggle='modal'
                         data-target='#contributionDetailModal'
-                        className={classes.contribution}>
+                        className={classes.contribution}
+                       >
                         <img src={docFile} alt='123' />
                         {contributionPublish.files &&
                             contributionPublish.files.map((contribute, index) => {
                                 return <p key={index} className={classes.fileName}>{contribute.file}</p>;
                             })}
                     </div>
-
+                    
                     <div
                         className='modal fade'
                         id='contributionDetailModal'
@@ -75,14 +78,15 @@ export default function ContributionDetail(props) {
                                 <div className={`modal-body ${classes.modalBody}`}>
 
                                     {
-                                    contributionPublish.files?.map((contribute, index) => {
-                                        return (
-                                            <iframe
-                                                title='file word'
-                                                key={index}
-                                                src={`https://docs.google.com/gview?url=https://35.224.120.132/${contribute.file}&embedded=true`}></iframe>
-                                        );
-                                    })}
+                                        contributionPublish.files &&
+                                        contributionPublish.files.map((contribute, index) => {
+                                            return (
+                                                <iframe
+                                                    title='file word'
+                                                    key={index}
+                                                    src={`https://docs.google.com/gview?url=https://35.224.120.132/${contribute.file}&embedded=true`}></iframe>
+                                            );
+                                        })}
                                 </div>
                             </div>
                         </div>
